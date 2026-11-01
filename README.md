@@ -1,1 +1,79 @@
-# VISITA-DE-LOLO-
+# La visita de Lolo
+
+Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital, tablet y móvil. Lolo, un pulpo, guía a la clase con voz, pictogramas y sin necesidad de leer.
+
+- **18 juegos** en cinco categorías, con filtro por edad.
+- **Rutinas para ciclos de 5 días** basadas en el currículo de Infantil de Andalucía (Decreto 100/2023 y Orden de 30 de mayo de 2023).
+- **Apoyos para alumnado con autismo**, útiles para toda la clase: agenda visual con «Ahora» y «Después», final anunciado, modo tranquilo, rincón de la calma, y la opción de arrastrar o tocar.
+- Sin puntos ni rankings: el progreso es colectivo y se ve en **el jardín de la clase**.
+- Cada juego termina con una actividad manipulativa, sin pantalla.
+
+## Juegos
+
+| Categoría | Juegos |
+|---|---|
+| Rutinas y asamblea | La visita de Lolo · El jardín de la clase · Muévete y responde |
+| Lenguaje, cuentos y emociones | La caja misteriosa · El cuento que decidimos · Las emociones de Lolo |
+| Lógica y matemáticas | Cuenta y toca · Series y patrones · Clasifica en cestas · Grande, mediano, pequeño · Encuentra la pareja · Formas geométricas |
+| Retos y cooperación | Juego a dúo · Mini-escape de colores · El robot perdido |
+| Ciencia y manipulación | ¿Qué pasa si…? · Toca, construye y comprueba · Caza mágica |
+
+Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos.
+
+Se puede abrir un juego concreto añadiendo su nombre a la dirección, por ejemplo `…/#formas`, `…/#robot` o `…/#caja`.
+
+## Probarlo en tu ordenador
+
+Hace falta Python 3 (viene instalado en Mac y Linux).
+
+```bash
+python3 -m http.server 4173
+```
+
+Después abre <http://localhost:4173>. Abrir `index.html` con doble clic también funciona, pero sin modo sin conexión.
+
+## Pruebas automáticas
+
+Las pruebas juegan los 18 juegos de principio a fin en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
+
+```bash
+npm ci
+npx playwright install chromium
+npm test
+```
+
+## Publicación
+
+Cada `push` a la rama `main` lanza el flujo **Probar y publicar** (`.github/workflows/publicar.yml`):
+
+1. Pasa todas las pruebas.
+2. Si todo va bien, publica la web en GitHub Pages.
+
+Si alguna prueba falla, no se publica nada y el informe queda en la pestaña *Actions*.
+
+**Solo la primera vez:** en el repositorio, ve a *Settings → Pages → Build and deployment → Source* y elige **GitHub Actions**.
+
+La dirección es <https://jvlsile.github.io/VISITA-DE-LOLO-/>.
+
+## Estructura
+
+```
+index.html              Página y dibujos compartidos
+css/estilos.css         Estilos
+js/app.js               Toda la lógica de los juegos
+fonts/                  Fuentes Fredoka y Nunito alojadas en el propio sitio
+icons/                  Iconos de la aplicación
+manifest.webmanifest    Permite instalarla como aplicación en tablets
+sw.js                   Modo sin conexión
+tests/juegos.spec.js    Pruebas automáticas
+```
+
+## Privacidad
+
+- La web **no recoge ningún dato** y no usa cookies, analítica ni servicios de terceros (las fuentes van incluidas).
+- Solo guarda en el propio navegador algunas preferencias: la voz elegida, el modo tranquilo, el filtro de edad y los logros del jardín.
+- La voz la genera el navegador del dispositivo. En Microsoft Edge, las voces naturales (Elvira, Álvaro) se procesan en los servidores de Microsoft.
+
+## Antes de usarlo con alumnos
+
+Consulta [PRODUCCION.md](PRODUCCION.md).
