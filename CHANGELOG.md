@@ -1,5 +1,12 @@
 # Cambios
 
+## 1.3.0 · noviembre de 2026
+
+- Voz grabada para Lolo: si una frase tiene su audio en `audio/`, suena el audio; si no, la voz del navegador. Se pueden subir por tandas.
+- Guion completo de las 630 frases (`audio/guion.csv`) con indicación de tono, y guía para generar la voz (`AUDIOS.md`), con un script opcional para ElevenLabs.
+- Las frases que cambian (series, programas del robot, torres…) se encadenan a partir de palabras sueltas grabadas.
+- Correcciones de concordancia: «el calcetín», «la vaca», «¿dónde están las castañuelas?».
+
 ## 1.2.0 · noviembre de 2026
 
 - Portada rediseñada: navegación fija, portada con una acción principal (la rutina de hoy), categorías, buscador y filtros fijos, ficha de cada juego con qué se trabaja y cómo se juega, sección «Cómo funciona».

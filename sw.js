@@ -1,8 +1,8 @@
 /* Modo sin conexión de La visita de Lolo.
-   La versión se sustituye automáticamente en cada despliegue (ver .github/workflows/pages.yml). */
+   La versión se sustituye automáticamente en cada despliegue (ver .github/workflows/publicar.yml). */
 const VERSION = 'lolo-dev';
 const ARCHIVOS = [
-  './', 'index.html', 'jugar.html', 'css/portada.css', 'js/portada.js', 'css/estilos.css', 'js/app.js', 'manifest.webmanifest',
+  './', 'index.html', 'jugar.html', 'css/portada.css', 'js/portada.js', 'css/estilos.css', 'js/app.js', 'manifest.webmanifest', 'audio/frases.json',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
   'fonts/fredoka-latin-500-normal.woff2', 'fonts/fredoka-latin-600-normal.woff2', 'fonts/fredoka-latin-700-normal.woff2',
   'fonts/nunito-latin-600-normal.woff2', 'fonts/nunito-latin-700-normal.woff2', 'fonts/nunito-latin-800-normal.woff2'
@@ -28,7 +28,7 @@ self.addEventListener('fetch', e => {
     return;
   }
   e.respondWith(caches.match(r).then(m => m || fetch(r).then(res => {
-    if (res.ok) { const c = res.clone(); caches.open(VERSION).then(k => k.put(r, c)); }
+    if (res.status === 200) { const c = res.clone(); caches.open(VERSION).then(k => k.put(r, c)); }
     return res;
   })));
 });

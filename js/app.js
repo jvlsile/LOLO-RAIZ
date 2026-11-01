@@ -72,16 +72,36 @@
     const aviso=$('#vozAviso'); if(aviso) aviso.hidden=voces.some(esNatural);
   }catch(e){} }
   try{ cargar(); speechSynthesis.onvoiceschanged=cargar; }catch(e){}
-  function hablar(t){
+  /* Voz de Lolo: audios grabados (audio/frases.json → audio/*.mp3) y, si falta alguno, la voz del navegador.
+     Una frase puede llegar en piezas (por ejemplo, una lista de colores): se reproducen una tras otra. */
+  let audios=null, sonando=null;
+  try{ fetch('audio/frases.json').then(r=>r.ok?r.json():null).then(m=>{ if(m&&m.frases) audios=m; }).catch(()=>{}); }catch(e){}
+  const clipDe=t=>audios&&audios.frases[String(t).trim()];
+  function callar(){ if(sonando){ sonando.fin=true; try{ sonando.el&&sonando.el.pause(); }catch(e){} sonando=null; } try{ speechSynthesis.cancel(); }catch(e){} }
+  function sintetiza(t){
     if(!('speechSynthesis' in window)) return;
-    try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(t); u.lang=vozEs?vozEs.lang:'es-ES'; if(vozEs) u.voice=vozEs;
+    try{ const u=new SpeechSynthesisUtterance(t); u.lang=vozEs?vozEs.lang:'es-ES'; if(vozEs) u.voice=vozEs;
       const nat=vozEs&&esNatural(vozEs); u.rate=calma?.85:(nat?.95:.9); u.pitch=nat?1.05:(calma?1.1:1.25); speechSynthesis.speak(u); }catch(e){}
   }
-  function decir(t){
-    ultimo=t; texto.textContent=t;
-    if(!quieto() && texto.animate) texto.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:300});
-    if(voz) hablar(t);
+  function hablar(t){
+    const partes=(Array.isArray(t)?t:[t]).filter(x=>x!==''&&x!=null);
+    if(window.__frases) window.__frases.push(...partes);
+    callar();
+    const clips=partes.map(clipDe);
+    if(partes.length&&clips.every(Boolean)){
+      const r=sonando={fin:false};
+      (async()=>{ for(const c of clips){ if(r.fin) return; const a=new Audio((audios.base||'audio/')+c); r.el=a; a.volume=calma?.75:1;
+        try{ await a.play(); await new Promise((ok,mal)=>{ a.onended=ok; a.onerror=mal; }); }catch(e){ if(!r.fin) sintetiza(partes.slice(clips.indexOf(c)).join(' ')); return; } } })();
+      return;
+    }
+    sintetiza(partes.join(' '));
   }
+  function decir(t,partes){
+    ultimo=partes?[t,partes]:t; texto.textContent=t;
+    if(!quieto() && texto.animate) texto.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:300});
+    if(voz) hablar(partes||t);
+  }
+  const repite=u=>Array.isArray(u)?decir(u[0],u[1]):decir(u);
   let ac=null;
   const ctx=()=>{ try{ ac=ac||new (window.AudioContext||window.webkitAudioContext)(); return ac; }catch(e){ return null; } };
   const vol=v=>calma?v*.45:v;
@@ -241,17 +261,17 @@
     }},
     higiene:{k:'jabon',lbl:'Lavarse las manos',run(){
       pregunta({texto:'Antes de comer nos lavamos las manos. ¿Qué necesitamos?',opciones:mezcla([{k:'jabon',html:jabon,lbl:'Jabón'},{k:'pelota',html:pelota(36),lbl:'Pelota'},{k:'calcetin',html:calcetin('azul'),lbl:'Calcetín'}]).map(o=>({...o,aria:o.lbl})),
-        esBien:o=>o.k==='jabon',pista:o=>`Con la ${o.lbl.toLowerCase()} no nos lavamos. ¿Qué hace burbujas?`,alAcertar:()=>{ decir('¡El jabón! Agua, jabón, frotamos, frotamos… ¡y aclaramos!'); seguir(); }});
+        esBien:o=>o.k==='jabon',pista:o=>`Con ${o.k==='pelota'?'la pelota':'el calcetín'} no nos lavamos. ¿Qué hace burbujas?`,alAcertar:()=>{ decir('¡El jabón! Agua, jabón, frotamos, frotamos… ¡y aclaramos!'); seguir(); }});
     }},
     animales:{k:'pata',lbl:'Los animales',run(){
-      const Q=[{k:'gato',s:'miau',l:'Gato'},{k:'perro',s:'guau',l:'Perro'},{k:'vaca',s:'muuu',l:'Vaca'},{k:'pato',s:'cuac',l:'Pato'}], q=azar(Q);
+      const Q=[{k:'gato',s:'miau',l:'Gato',ar:'El'},{k:'perro',s:'guau',l:'Perro',ar:'El'},{k:'vaca',s:'muuu',l:'Vaca',ar:'La'},{k:'pato',s:'cuac',l:'Pato',ar:'El'}], q=azar(Q);
       pregunta({texto:`Escuchad: «${q.s}, ${q.s}». ¿Quién dice «${q.s}»?`,opciones:mezcla(Q).map(o=>({k:o.k,html:ANIMALES[o.k],lbl:o.l,aria:o.l})),
-        esBien:o=>o.k===q.k,pista:o=>{ const a=Q.find(x=>x.k===o.k); return `El ${a.l.toLowerCase()} dice «${a.s}». ¿Quién dice «${q.s}»?`; },
-        alAcertar:()=>{ decir(`¡El ${q.l.toLowerCase()}! Todos juntos: ${q.s}, ${q.s}.`); seguir(); }});
+        esBien:o=>o.k===q.k,pista:o=>{ const a=Q.find(x=>x.k===o.k); return `${a.ar} ${a.l.toLowerCase()} dice «${a.s}». ¿Quién dice «${q.s}»?`; },
+        alAcertar:()=>{ decir(`¡${q.ar} ${q.l.toLowerCase()}! Todos juntos: ${q.s}, ${q.s}.`); seguir(); }});
     }},
     instrumentos:{k:'nota',lbl:'Los instrumentos',run(){
       const Q=[{k:'castanuelas',l:'Castañuelas',a:'las castañuelas'},{k:'pandereta',l:'Pandereta',a:'la pandereta'},{k:'tambor',l:'Tambor',a:'el tambor'},{k:'guitarra',l:'Guitarra',a:'la guitarra'}], q=azar(Q);
-      pregunta({texto:`¡Vamos a hacer música! ¿Dónde está ${q.a}?`,opciones:mezcla(Q).map(o=>({k:o.k,html:INSTRUMENTOS[o.k],lbl:o.l,aria:o.l})),
+      pregunta({texto:`¡Vamos a hacer música! ¿Dónde ${q.k==='castanuelas'?'están':'está'} ${q.a}?`,opciones:mezcla(Q).map(o=>({k:o.k,html:INSTRUMENTOS[o.k],lbl:o.l,aria:o.l})),
         alTocar:o=>INSTR[o.k](),esBien:o=>o.k===q.k,pista:o=>`Eso suena así porque es ${Q.find(x=>x.k===o.k).a}. Busco ${q.a}.`,
         alAcertar:()=>{ decir(`¡Sí, ${q.a}! Escuchad cómo suena.`); seguir(); }});
     }},
@@ -378,11 +398,11 @@
   /* ---------- herramientas ---------- */
   function aplicaCalma(){ app.classList.toggle('calma',calma); $('#btnTranquilo').setAttribute('aria-pressed',calma); try{ localStorage.setItem('lolo-calma',calma?'1':'0'); }catch(e){} }
   $('#btnTranquilo').addEventListener('click',()=>{ calma=!calma; aplicaCalma(); });
-  $('#btnRepetir').addEventListener('click',()=>{ if(ultimo) decir(ultimo); });
+  $('#btnRepetir').addEventListener('click',()=>{ if(ultimo) repite(ultimo); });
   const vozCapa=$('#vozCapa');
   function ponVoz(on){ voz=on; $('#btnSonido').setAttribute('aria-pressed',voz); $('#txtVoz').textContent=voz?'Voz':'Sin voz';
     $('#ondas').style.display=voz?'':'none'; $('#mute').style.display=voz?'none':''; $('#vozOn').checked=voz;
-    if(!voz){ try{ speechSynthesis.cancel(); }catch(e){} } }
+    if(!voz) callar(); }
   $('#btnSonido').addEventListener('click',()=>{ cargar(); vozCapa.hidden=false; $('#selVoz').focus(); });
   $('#vozOn').addEventListener('change',e=>ponVoz(e.target.checked));
   $('#selVoz').addEventListener('change',e=>{ vozEs=voces.find(v=>v.voiceURI===e.target.value)||vozEs; try{ localStorage.setItem('lolo-voz',e.target.value); }catch(err){} hablar('¡Hola! Soy Lolo. ¿Te gusta mi voz?'); });
@@ -393,8 +413,8 @@
   let inhala=true; setInterval(()=>{ inhala=!inhala; document.querySelectorAll('.respTxt').forEach(p=>p.textContent=inhala?'Coge aire…':'Suelta el aire…'); },4000);
   const rincon=$('#rincon'), guia=$('#guia');
   let textoAntes='';
-  $('#btnRincon').addEventListener('click',()=>{ textoAntes=ultimo; try{ speechSynthesis.cancel(); }catch(e){} rincon.hidden=false; $('#cerrarRincon').focus(); decir('Vamos a respirar juntos. Cogemos aire… y lo soltamos despacito.'); });
-  $('#cerrarRincon').addEventListener('click',()=>{ rincon.hidden=true; if(textoAntes) decir(textoAntes); });
+  $('#btnRincon').addEventListener('click',()=>{ textoAntes=ultimo; callar(); rincon.hidden=false; $('#cerrarRincon').focus(); decir('Vamos a respirar juntos. Cogemos aire… y lo soltamos despacito.'); });
+  $('#cerrarRincon').addEventListener('click',()=>{ rincon.hidden=true; if(textoAntes) repite(textoAntes); });
   $('#btnGuia').addEventListener('click',()=>{ guia.hidden=false; $('#cerrarGuia').focus(); });
   $('#cerrarGuia').addEventListener('click',()=>guia.hidden=true);
   guia.addEventListener('click',e=>{ if(e.target===guia) guia.hidden=true; });
@@ -687,14 +707,14 @@
         const ops=mezcla(unicos);
         a.z.innerHTML=`<div class="serie">${visto.map(t=>`<span class="tok" style="--s:${t.s||1}">${tokenSvg(t.f,t.c)}</span>`).join('')}<span class="tok hueco" id="huecoS">?</span></div>
           <div class="opciones">${ops.map((t,i)=>`<button class="opcion" type="button" data-i="${i}" style="--s:${t.s||1}" aria-label="${nom(t)}">${tokenSvg(t.f,t.c)}</button>`).join('')}</div>`;
-        const frase=visto.map(nom).join(', ');
+        const frase=visto.map(nom).join(', '), piezas=visto.map(nom);
         const igual=t=>JSON.stringify(t)===JSON.stringify(sol);
         a.z.querySelectorAll('.opcion').forEach(b=>b.addEventListener('click',()=>{
           if(EST.series.resuelta) return; const t=ops[+b.dataset.i];
-          if(igual(t)){ const h=$('#huecoS'); h.classList.add('lleno'); h.style.setProperty('--s',t.s||1); h.innerHTML=tokenSvg(t.f,t.c); b.classList.add('bien'); a.ok(`¡Sí! ${frase}, ¡${nom(sol)}!`,h); }
-          else { sacude(b); a.fallo(`Escuchad otra vez: ${frase}… ¿Qué va ahora?`,()=>marca([a.z.querySelectorAll('.opcion')[ops.findIndex(igual)]],4000)); }
+          if(igual(t)){ const h=$('#huecoS'); h.classList.add('lleno'); h.style.setProperty('--s',t.s||1); h.innerHTML=tokenSvg(t.f,t.c); b.classList.add('bien'); a.ok(null,h); decir(`¡Sí! ${frase}, ¡${nom(sol)}!`,['¡Sí!',...piezas,nom(sol)]); }
+          else { sacude(b); a.fallo(null,()=>marca([a.z.querySelectorAll('.opcion')[ops.findIndex(igual)]],4000)); decir(`Escuchad otra vez: ${frase}… ¿Qué va ahora?`,['Escuchad otra vez:',...piezas,'¿Qué va ahora?']); }
         }));
-        decir(`Mirad la fila: ${frase}… ¿Y ahora qué va?`);
+        decir(`Mirad la fila: ${frase}… ¿Y ahora qué va?`,['Mirad la fila:',...piezas,'¿Y ahora qué va?']);
       }},
 
     cestas:{titulo:'Clasifica en cestas',ic:'j_cestas',
@@ -978,7 +998,7 @@
             pos=[nx,ny]; pon(nx,ny); tono([520],'square',.04,.1,.12); await espera(quieto()?750:550);
           }
           corriendo=false; progEl.querySelectorAll('.paso-p').forEach(e=>e.classList.remove('activo'));
-          if(pos[0]===L.m[0]&&pos[1]===L.m[1]) a.ok(`¡El robot ha llegado a la flor! El programa es: ${prog.map(d=>NOM[d]).join(', ')}. Ahora probadlo con el robot de verdad.`,robi);
+          if(pos[0]===L.m[0]&&pos[1]===L.m[1]) { const t=`¡El robot ha llegado a la flor! El programa es: ${prog.map(d=>NOM[d]).join(', ')}. Ahora probadlo con el robot de verdad.`; a.ok(null,robi); decir(t,['¡El robot ha llegado a la flor! El programa es:',...prog.map(d=>NOM[d]),'Ahora probadlo con el robot de verdad.']); }
           else { a.fallo('El robot no ha llegado a la flor. ¿Qué flechas faltan o sobran?',ayuda); reinicia(); }
         });
         decir(n===0?'Robi el robot quiere llegar a la flor. Tocad las flechas para hacer el camino y después pulsad «¡Adelante!».':'Otro camino para Robi. ¡Cuidado con las rocas!');
@@ -989,7 +1009,7 @@
       ronda(n,a){
         const N=[2,3,3,4,5][n], fila=n===2, mod=Array.from({length:N},()=>azar(Object.keys(COL)));
         a.z.innerHTML=`<div class="modelo"><div class="torre ${fila?'fila-b':''}">${mod.map(c=>`<span class="bloque">${BLOQUE(c)}</span>`).join('')}</div></div><div class="pasos-c"></div>`;
-        decir(`Con vuestros bloques de verdad, construid ${fila?'este tren':'esta torre'} de ${NUMW[N]} bloques. ${fila?'De izquierda a derecha':'De abajo arriba'}: ${mod.join(', ')}.`);
+        { const ini=`Con vuestros bloques de verdad, construid ${fila?'este tren':'esta torre'} de ${NUMW[N]} bloques. ${fila?'De izquierda a derecha':'De abajo arriba'}:`; decir(`${ini} ${mod.join(', ')}.`,[ini,...mod]); }
         const pc=a.z.querySelector('.pasos-c'), f=document.createElement('div'); f.className='fila'; pc.appendChild(f);
         boton('¡Ya lo hemos construido!',()=>{ f.remove(); comprobar(); },true,f,'j_construye');
         function comprobar(){
@@ -1015,7 +1035,7 @@
         const nb=z.querySelector('[data-acc="nuevo"]'); let conf=false;
         nb.addEventListener('click',()=>{ if(!conf){ conf=true; nb.querySelector('span').textContent='¿Seguro? Toca otra vez para empezar de cero'; setTimeout(()=>{ conf=false; if(nb.isConnected) nb.querySelector('span').textContent='Empezar un jardín nuevo'; },4000); return; }
           jardinPon(0); decir('Empezamos un jardín nuevo. ¡A sembrar!'); JUEGOS.jardin.abrir(z,true); });
-        if(!arguments[1]) decir(pts>=T?'¡El jardín está lleno de flores! Lo hemos conseguido entre todos.':`Este es nuestro jardín. Llevamos ${pts} ${pts===1?'logro':'logros'} juntos. ¡Cada logro lo hace crecer!`);
+        if(!arguments[1]) decir(pts>=T?'¡El jardín está lleno de flores! Lo hemos conseguido entre todos.':`Este es nuestro jardín. Llevamos ${pts} ${pts===1?'logro':'logros'} juntos. ¡Cada logro lo hace crecer!`,pts>=T?null:['Este es nuestro jardín. ¡Cada logro que conseguimos juntos lo hace crecer!']);
       }},
 
     quepasa:{titulo:'¿Qué pasa si…?',ic:'j_quepasa',
@@ -1100,7 +1120,7 @@
             hs[ent.length-1].style.background=COL[c]; hs[ent.length-1].style.borderStyle='solid';
             if(ent.length===seq.length){
               if(ent.join()===seq.join()) abre('¡Clic! ¡El primer candado se ha abierto!');
-              else { a.fallo('Ese no es el orden. Miramos otra vez la nota de Paco: '+seq.join(', ')+'.',()=>marca([r.querySelector('.nota-c')])); setTimeout(()=>{ ent=[]; hs.forEach(h=>{ h.style.background=''; h.style.borderStyle=''; }); },800); }
+              else { a.fallo(null,()=>marca([r.querySelector('.nota-c')])); decir('Ese no es el orden. Miramos otra vez la nota de Paco: '+seq.join(', ')+'.',['Ese no es el orden. Miramos otra vez la nota de Paco:',...seq]); setTimeout(()=>{ ent=[]; hs.forEach(h=>{ h.style.background=''; h.style.borderStyle=''; }); },800); }
             }
           }));
           decir('¡Oh, no! El cangrejo Paco está encerrado con tres candados. Para abrir el primero, tocad los colores en el mismo orden que la nota.');
@@ -1254,7 +1274,7 @@
   const panelDe=m=>m==='lolo'?$('#panelLolo'):m==='caja'?$('#panelCaja'):$('#panel-'+m);
   function ponModo(m){
     if(m===modo||!MODOS.includes(m)) return;
-    try{ speechSynthesis.cancel(); }catch(e){}
+    callar();
     paraMusica();
     if(modo==='lolo') caraLolo=lolo.dataset.cara;
     if(seleccion){ seleccion.classList.remove('elegida'); seleccion=null; }

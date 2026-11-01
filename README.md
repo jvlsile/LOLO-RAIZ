@@ -26,6 +26,10 @@ Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#forma
 
 La dirección principal abre la **portada**. Lolo pregunta «¿Qué trabajamos hoy?», la maestra elige un objetivo (contar, emociones, movernos…) y la edad del grupo, y toca un juego. La tarjeta «se sumerge», Lolo se lanza tras ella y se abre el juego en `jugar.html#<juego>`. La fila «Para hoy» muestra la rutina del día, los últimos juegos y sugerencias de Lolo. Dentro de cada juego, el botón **Inicio** vuelve a la portada.
 
+## Voz de Lolo
+
+Lolo puede hablar con audios grabados. Todo lo que dice está en `audio/guion.csv`, y cómo generar y subir los audios está en [AUDIOS.md](AUDIOS.md). Mientras falte un audio, se usa la voz del navegador.
+
 ## Probarlo en tu ordenador
 
 Hace falta Python 3 (viene instalado en Mac y Linux).

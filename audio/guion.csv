@@ -1,0 +1,631 @@
+﻿id;archivo;juego;tipo;indicacion;texto
+0001;lolo_0001.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);abajo
+0002;lolo_0002.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);amarilla
+0003;lolo_0003.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);amarillo
+0004;lolo_0004.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);arriba
+0005;lolo_0005.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);azul
+0006;lolo_0006.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);cinco
+0007;lolo_0007.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);corazón
+0008;lolo_0008.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);cuadrado
+0009;lolo_0009.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);cuatro
+0010;lolo_0010.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);círculo
+0011;lolo_0011.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);derecha
+0012;lolo_0012.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);dos
+0013;lolo_0013.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);el corazón
+0014;lolo_0014.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);el cuadrado
+0015;lolo_0015.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);el círculo
+0016;lolo_0016.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);el rectángulo
+0017;lolo_0017.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);el triángulo
+0018;lolo_0018.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);estrella
+0019;lolo_0019.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);gato
+0020;lolo_0020.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);grande
+0021;lolo_0021.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);izquierda
+0022;lolo_0022.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);la estrella
+0023;lolo_0023.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);mediana
+0024;lolo_0024.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);mediano
+0025;lolo_0025.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);pato
+0026;lolo_0026.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);pequeña
+0027;lolo_0027.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);pequeño
+0028;lolo_0028.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);perro
+0029;lolo_0029.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);roja
+0030;lolo_0030.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);rojo
+0031;lolo_0031.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);tres
+0032;lolo_0032.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);triángulo
+0033;lolo_0033.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);uno
+0034;lolo_0034.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);vaca
+0035;lolo_0035.mp3;Palabras sueltas;pieza;Palabra suelta, clara y neutra, como al enumerar (se une a otras);verde
+0036;lolo_0036.mp3;General;frase;Suave y lenta, voz calmada;Vamos a respirar juntos. Cogemos aire… y lo soltamos despacito.
+0037;lolo_0037.mp3;General;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Soy Lolo, el pulpo. ¿Jugamos juntos?
+0038;lolo_0038.mp3;La visita de Lolo;frase;Suave y lenta, voz calmada;Ahora nos sentamos y respiramos como Lolo. Cogemos aire… y lo soltamos despacito.
+0039;lolo_0039.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí hay dos peces. Contad conmigo con el dedo.
+0040;lolo_0040.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí hay tres peces. Contad conmigo con el dedo.
+0041;lolo_0041.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí hay un pez. Contad conmigo con el dedo.
+0042;lolo_0042.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Antes de comer nos lavamos las manos. ¿Qué necesitamos?
+0043;lolo_0043.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Con el calcetín no nos lavamos. ¿Qué hace burbujas?
+0044;lolo_0044.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Con la pelota no nos lavamos. ¿Qué hace burbujas?
+0045;lolo_0045.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El gato dice «miau». ¿Quién dice «cuac»?
+0046;lolo_0046.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El gato dice «miau». ¿Quién dice «guau»?
+0047;lolo_0047.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El gato dice «miau». ¿Quién dice «muuu»?
+0048;lolo_0048.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El pato dice «cuac». ¿Quién dice «guau»?
+0049;lolo_0049.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El pato dice «cuac». ¿Quién dice «miau»?
+0050;lolo_0050.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El pato dice «cuac». ¿Quién dice «muuu»?
+0051;lolo_0051.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El perro dice «guau». ¿Quién dice «cuac»?
+0052;lolo_0052.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El perro dice «guau». ¿Quién dice «miau»?
+0053;lolo_0053.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";El perro dice «guau». ¿Quién dice «muuu»?
+0054;lolo_0054.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la parte del cuerpo «boca». Probamos otra vez.
+0055;lolo_0055.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la parte del cuerpo «manos». Probamos otra vez.
+0056;lolo_0056.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la parte del cuerpo «nariz». Probamos otra vez.
+0057;lolo_0057.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la parte del cuerpo «ojos». Probamos otra vez.
+0058;lolo_0058.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa pelota es grande. Yo quiero la pequeña.
+0059;lolo_0059.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa pelota es pequeña. Yo quiero la grande.
+0060;lolo_0060.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Escuchad: «cuac, cuac». ¿Quién dice «cuac»?
+0061;lolo_0061.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Escuchad: «guau, guau». ¿Quién dice «guau»?
+0062;lolo_0062.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Escuchad: «miau, miau». ¿Quién dice «miau»?
+0063;lolo_0063.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Escuchad: «muuu, muuu». ¿Quién dice «muuu»?
+0064;lolo_0064.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es amarillo. Yo busco el azul.
+0065;lolo_0065.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es amarillo. Yo busco el rojo.
+0066;lolo_0066.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es amarillo. Yo busco el verde.
+0067;lolo_0067.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es azul. Yo busco el amarillo.
+0068;lolo_0068.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es azul. Yo busco el rojo.
+0069;lolo_0069.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es azul. Yo busco el verde.
+0070;lolo_0070.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es rojo. Yo busco el amarillo.
+0071;lolo_0071.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es rojo. Yo busco el azul.
+0072;lolo_0072.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es rojo. Yo busco el verde.
+0073;lolo_0073.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es verde. Yo busco el amarillo.
+0074;lolo_0074.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es verde. Yo busco el azul.
+0075;lolo_0075.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese calcetín es verde. Yo busco el rojo.
+0076;lolo_0076.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es el tambor. Busco la guitarra.
+0077;lolo_0077.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es el tambor. Busco la pandereta.
+0078;lolo_0078.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es el tambor. Busco las castañuelas.
+0079;lolo_0079.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la guitarra. Busco el tambor.
+0080;lolo_0080.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la guitarra. Busco la pandereta.
+0081;lolo_0081.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la guitarra. Busco las castañuelas.
+0082;lolo_0082.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la pandereta. Busco el tambor.
+0083;lolo_0083.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la pandereta. Busco la guitarra.
+0084;lolo_0084.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es la pandereta. Busco las castañuelas.
+0085;lolo_0085.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es las castañuelas. Busco el tambor.
+0086;lolo_0086.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es las castañuelas. Busco la guitarra.
+0087;lolo_0087.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Eso suena así porque es las castañuelas. Busco la pandereta.
+0088;lolo_0088.mp3;La visita de Lolo;frase;Suave y lenta, voz calmada;Estás enfadado. Respiramos juntos: cogemos aire… y lo soltamos despacito.
+0089;lolo_0089.mp3;La visita de Lolo;frase;Cálida, clara y cercana;Estás triste. Te mando un abrazo de pulpo, ¡con ocho brazos!
+0090;lolo_0090.mp3;La visita de Lolo;frase;Cálida, clara y cercana;Hay nubes. El cielo está gris.
+0091;lolo_0091.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";La vaca dice «muuu». ¿Quién dice «cuac»?
+0092;lolo_0092.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";La vaca dice «muuu». ¿Quién dice «guau»?
+0093;lolo_0093.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";La vaca dice «muuu». ¿Quién dice «miau»?
+0094;lolo_0094.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Mi amigo el cangrejo se ha caído y está llorando. ¿Qué hacemos?
+0095;lolo_0095.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Mirad por la ventana. ¿Qué tiempo hace hoy?
+0096;lolo_0096.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Quiero jugar con mis amigos del mar. ¿Dónde hay dos peces?
+0097;lolo_0097.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Quiero jugar con mis amigos del mar. ¿Dónde hay tres peces?
+0098;lolo_0098.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Quiero jugar con mis amigos del mar. ¿Dónde hay un pez?
+0099;lolo_0099.mp3;La visita de Lolo;frase;Suave y lenta, voz calmada;Shhh… Lolo está dormido. ¿Lo despertamos? Decid todos juntos: «¡Lolo, despierta!»
+0100;lolo_0100.mp3;La visita de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Si nos reímos, el cangrejo se pone más triste. ¿Qué otra cosa podemos hacer?
+0101;lolo_0101.mp3;La visita de Lolo;frase;Cálida, clara y cercana;Uno. ¡Un pez!
+0102;lolo_0102.mp3;La visita de Lolo;frase;Cálida, clara y cercana;Uno… dos. ¡Dos peces!
+0103;lolo_0103.mp3;La visita de Lolo;frase;Cálida, clara y cercana;Uno… dos… tres. ¡Tres peces!
+0104;lolo_0104.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Escuchad mis palmas y repetidlas. ¡Dos palmas!
+0105;lolo_0105.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Escuchad mis palmas y repetidlas. ¡Tres palmas!
+0106;lolo_0106.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Poneos de pie y saltad conmigo: uno, dos, tres.
+0107;lolo_0107.mp3;La visita de Lolo;frase;Suave y lenta, voz calmada;¡A movernos! Somos algas: brazos arriba y nos movemos despacito, a un lado… y al otro.
+0108;lolo_0108.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Tocad conmigo: cabeza, hombros, rodillas y pies.
+0109;lolo_0109.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Ay, ay! He perdido mi calcetín amarillo. ¿Me ayudáis a encontrarlo?
+0110;lolo_0110.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Ay, ay! He perdido mi calcetín azul. ¿Me ayudáis a encontrarlo?
+0111;lolo_0111.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Ay, ay! He perdido mi calcetín rojo. ¿Me ayudáis a encontrarlo?
+0112;lolo_0112.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Ay, ay! He perdido mi calcetín verde. ¿Me ayudáis a encontrarlo?
+0113;lolo_0113.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Con la boca! Abrid la boca: ¡aaa!
+0114;lolo_0114.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Con la nariz! Tocaos la nariz.
+0115;lolo_0115.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Con las manos! Plas, plas, plas.
+0116;lolo_0116.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Con los ojos! Tocaos los ojos.
+0117;lolo_0117.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡El gato! Todos juntos: miau, miau.
+0118;lolo_0118.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡El jabón! Agua, jabón, frotamos, frotamos… ¡y aclaramos!
+0119;lolo_0119.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡El pato! Todos juntos: cuac, cuac.
+0120;lolo_0120.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡El perro! Todos juntos: guau, guau.
+0121;lolo_0121.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Esta semana hemos jugado mucho! ¿Qué os ha gustado más?
+0122;lolo_0122.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Estás alegre! Yo también estoy muy contento de veros.
+0123;lolo_0123.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Estás sorprendido! ¡Oooh! Hoy van a pasar cosas divertidas.
+0124;lolo_0124.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hace sol! Hoy podemos jugar en el patio.
+0125;lolo_0125.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hace viento! Las hojas vuelan, ¡fiuuu!
+0126;lolo_0126.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Hoy es jueves, el día morado. Primero, ¿cómo estás?. Después, los animales y los instrumentos. Luego nos movemos. Y al final, adiós.
+0127;lolo_0127.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Hoy es lunes, el día amarillo. Primero, ¿cómo estás?. Después, el tiempo y los colores. Luego nos movemos. Y al final, adiós.
+0128;lolo_0128.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Hoy es martes, el día rosa. Primero, ¿cómo estás?. Después, contar y grande y pequeño. Luego nos movemos. Y al final, adiós.
+0129;lolo_0129.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Hoy es miércoles, el día verde. Primero, ¿cómo estás?. Después, mi cuerpo y lavarse las manos. Luego nos movemos. Y al final, adiós.
+0130;lolo_0130.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Hola, amigos! Hoy es viernes, el día azul. Primero, ¿cómo estás?. Después, ayudar y lo que más me gustó. Luego nos movemos. Y al final, adiós.
+0131;lolo_0131.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡La música! A mí también me encanta.
+0132;lolo_0132.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡La vaca! Todos juntos: muuu, muuu.
+0133;lolo_0133.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Le ayudamos a levantarse y le damos un abrazo! Ahora el cangrejo está contento.
+0134;lolo_0134.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Llueve! Necesitamos el paraguas y las botas.
+0135;lolo_0135.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Los animales! A mí también me encanta.
+0136;lolo_0136.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Los colores! A mí también me encanta.
+0137;lolo_0137.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Los peces! A mí también me encanta.
+0138;lolo_0138.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad nuestro arrecife! Ha crecido porque me habéis ayudado todos juntos. Por hoy, se acabó. El lunes vuelvo. ¡Adiós, amigos!
+0139;lolo_0139.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad nuestro arrecife! Ha crecido porque me habéis ayudado todos juntos. Por hoy, se acabó. Mañana es jueves y vuelvo. ¡Adiós, amigos!
+0140;lolo_0140.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad nuestro arrecife! Ha crecido porque me habéis ayudado todos juntos. Por hoy, se acabó. Mañana es martes y vuelvo. ¡Adiós, amigos!
+0141;lolo_0141.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad nuestro arrecife! Ha crecido porque me habéis ayudado todos juntos. Por hoy, se acabó. Mañana es miércoles y vuelvo. ¡Adiós, amigos!
+0142;lolo_0142.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad nuestro arrecife! Ha crecido porque me habéis ayudado todos juntos. Por hoy, se acabó. Mañana es viernes y vuelvo. ¡Adiós, amigos!
+0143;lolo_0143.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! La pelota grande. ¡Bota, bota, bota!
+0144;lolo_0144.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! La pelota pequeña. ¡Bota, bota, bota!
+0145;lolo_0145.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí! Mi calcetín amarillo. ¡Gracias, amigos!
+0146;lolo_0146.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí! Mi calcetín azul. ¡Gracias, amigos!
+0147;lolo_0147.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí! Mi calcetín rojo. ¡Gracias, amigos!
+0148;lolo_0148.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí! Mi calcetín verde. ¡Gracias, amigos!
+0149;lolo_0149.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí, el tambor! Escuchad cómo suena.
+0150;lolo_0150.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí, la guitarra! Escuchad cómo suena.
+0151;lolo_0151.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí, la pandereta! Escuchad cómo suena.
+0152;lolo_0152.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Sí, las castañuelas! Escuchad cómo suena.
+0153;lolo_0153.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a hacer música! ¿Dónde está el tambor?
+0154;lolo_0154.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a hacer música! ¿Dónde está la guitarra?
+0155;lolo_0155.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a hacer música! ¿Dónde está la pandereta?
+0156;lolo_0156.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a hacer música! ¿Dónde están las castañuelas?
+0157;lolo_0157.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a jugar a la pelota! Dame la pelota grande.
+0158;lolo_0158.mp3;La visita de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a jugar a la pelota! Dame la pelota pequeña.
+0159;lolo_0159.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Con qué comemos?
+0160;lolo_0160.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Con qué damos palmas?
+0161;lolo_0161.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Con qué miramos?
+0162;lolo_0162.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Con qué olemos las flores?
+0163;lolo_0163.mp3;La visita de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Cómo estáis hoy?
+0164;lolo_0164.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Ahora me pregunto… ¿cuántos puntos tiene la mariquita? ¿Dónde vive? ¿Y vosotros, qué os preguntáis?
+0165;lolo_0165.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Ahora me pregunto… ¿de qué sabor será? ¿Por qué se derrite? ¿Y vosotros, qué os preguntáis?
+0166;lolo_0166.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Ahora me pregunto… ¿dónde crecen las fresas? ¿A quién le gustan? ¿Y vosotros, qué os preguntáis?
+0167;lolo_0167.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Ahora me pregunto… ¿para qué usa la trompa el elefante? ¿Dónde vive? ¿Y vosotros, qué os preguntáis?
+0168;lolo_0168.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Ahora me pregunto… ¿qué come la tortuga? ¿Dónde duerme? ¿Y vosotros, qué os preguntáis?
+0169;lolo_0169.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Me pregunto si será grande o pequeño. ¿Y vosotros, qué os preguntáis?
+0170;lolo_0170.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Mirad bien. ¿Qué veis ahora? ¿Hay alguna forma?
+0171;lolo_0171.mp3;La caja misteriosa;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Mmm… ¿Y ahora qué pensáis? ¿Alguien ha cambiado de idea?
+0172;lolo_0172.mp3;La caja misteriosa;frase;Suave y lenta, voz calmada;Os doy una pista: Anda muy despacito y lleva su casa a cuestas.
+0173;lolo_0173.mp3;La caja misteriosa;frase;Cálida, clara y cercana;Os doy una pista: Es muy grande, tiene las orejas enormes y una trompa muy larga.
+0174;lolo_0174.mp3;La caja misteriosa;frase;Cálida, clara y cercana;Os doy una pista: Es roja, dulce y tiene muchas semillitas por fuera.
+0175;lolo_0175.mp3;La caja misteriosa;frase;Cálida, clara y cercana;Os doy una pista: Es un bichito pequeño, rojo con puntos negros, y puede volar.
+0176;lolo_0176.mp3;La caja misteriosa;frase;Cálida, clara y cercana;Os doy una pista: Está muy frío, es dulce y lo comemos en verano.
+0177;lolo_0177.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el corazón! Me pregunto si será grande o pequeño. ¿Y vosotros, qué os preguntáis?
+0178;lolo_0178.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el corazón! ¿Qué os gustaría saber de lo que hay en la caja?
+0179;lolo_0179.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el corazón! ¿Qué os preguntáis? ¿Será un animal? ¿Será algo de comer?
+0180;lolo_0180.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el círculo! Mmm… ¿Y ahora qué pensáis? ¿Alguien ha cambiado de idea?
+0181;lolo_0181.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el círculo! ¿Qué creéis que hay escondido en la caja?
+0182;lolo_0182.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el círculo! ¿Qué pensáis que es? Todas las ideas valen.
+0183;lolo_0183.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el triángulo! Mirad bien. ¿Qué veis ahora? ¿Hay alguna forma?
+0184;lolo_0184.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el triángulo! ¿Qué veis en esta ventanita? Señaladlo con el dedo.
+0185;lolo_0185.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos el triángulo! ¿Qué veis? ¿Qué colores hay?
+0186;lolo_0186.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos la estrella! Mirad bien. ¿Qué veis ahora? ¿Hay alguna forma?
+0187;lolo_0187.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos la estrella! ¿Qué veis en esta ventanita? Señaladlo con el dedo.
+0188;lolo_0188.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Abrimos la estrella! ¿Qué veis? ¿Qué colores hay?
+0189;lolo_0189.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Es un elefante! ¿Alguien había pensado que era un elefante?
+0190;lolo_0190.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Es un helado! ¿Alguien había pensado que era un helado?
+0191;lolo_0191.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Es una fresa! ¿Alguien había pensado que era una fresa?
+0192;lolo_0192.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Es una mariquita! ¿Alguien había pensado que era una mariquita?
+0193;lolo_0193.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Es una tortuga! ¿Alguien había pensado que era una tortuga?
+0194;lolo_0194.mp3;La caja misteriosa;frase;Alegre y entusiasta, celebrando con la clase;¡Mirad! He traído una caja misteriosa. Dentro hay algo escondido. ¿Qué ventanita abrimos primero? ¿La estrella? ¿La luna?
+0195;lolo_0195.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué creéis que hay escondido en la caja?
+0196;lolo_0196.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué os gustaría saber de lo que hay en la caja?
+0197;lolo_0197.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué os preguntáis? ¿Será un animal? ¿Será algo de comer?
+0198;lolo_0198.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué pensáis que es? Todas las ideas valen.
+0199;lolo_0199.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué veis en esta ventanita? Señaladlo con el dedo.
+0200;lolo_0200.mp3;La caja misteriosa;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué veis? ¿Qué colores hay?
+0201;lolo_0201.mp3;El jardín de la clase;frase;Cálida, clara y cercana;Empezamos un jardín nuevo. ¡A sembrar!
+0202;lolo_0202.mp3;El jardín de la clase;frase;Cálida, clara y cercana;Este es nuestro jardín. ¡Cada logro que conseguimos juntos lo hace crecer!
+0203;lolo_0203.mp3;El jardín de la clase;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis compartido! El jardín crece un poquito más.
+0204;lolo_0204.mp3;El jardín de la clase;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis escuchado muy bien! El jardín crece un poquito más.
+0205;lolo_0205.mp3;El jardín de la clase;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis recogido la clase! El jardín crece un poquito más.
+0206;lolo_0206.mp3;El jardín de la clase;frase;Alegre y entusiasta, celebrando con la clase;¡Os habéis ayudado! El jardín crece un poquito más.
+0207;lolo_0207.mp3;Muévete y responde;frase;Cálida, clara y cercana;Cuando suena la música, bailamos. Cuando para… ¡estatuas! Nadie se mueve.
+0208;lolo_0208.mp3;Muévete y responde;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Mirad las reglas. Cuando salga un color, hacemos lo que dice. ¿Preparados?
+0209;lolo_0209.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Andamos a gatas como un gato y decimos «miau».
+0210;lolo_0210.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Andamos como un pato, con los brazos como alas: «cuac, cuac».
+0211;lolo_0211.mp3;Muévete y responde;frase;Suave y lenta, voz calmada;¡A movernos! Andamos muy despacito como una vaca y decimos «muuu».
+0212;lolo_0212.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡A movernos! Movemos la colita como un perro y decimos «guau».
+0213;lolo_0213.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡Amarillo! ¡Aplaudimos!
+0214;lolo_0214.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡Azul! ¡Nos sentamos!
+0215;lolo_0215.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡De pie! Saltamos cuatro veces. Contamos juntos.
+0216;lolo_0216.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡De pie! Saltamos dos veces. Contamos juntos.
+0217;lolo_0217.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡De pie! Saltamos tres veces. Contamos juntos.
+0218;lolo_0218.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡Estatuas! Nadie se mueve… muy bien.
+0219;lolo_0219.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! ¡Qué bien os movéis!
+0220;lolo_0220.mp3;Muévete y responde;frase;Alegre y entusiasta, celebrando con la clase;¡Rojo! ¡Saltamos!
+0221;lolo_0221.mp3;El cuento que decidimos;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;En la cueva estaba muy oscuro, pero unos peces linterna les dieron luz. De repente, oyeron llorar a alguien. ¡Era el cangrejo Paco, atrapado en una red! ¿Cómo le ayudamos?
+0222;lolo_0222.mp3;El cuento que decidimos;frase;Suave y lenta, voz calmada;La tortuga llegó despacito y cortó la red con mucho cuidado. Paco, muy contento, se fue con ellos. ¡Y por fin encontraron el cofre del tesoro! ¿Lo abrimos ya o esperamos a que lleguen todos los amigos?
+0223;lolo_0223.mp3;El cuento que decidimos;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Las algas les hacían cosquillas. ¡Ji, ji, ji! De repente, oyeron llorar a alguien. ¡Era el cangrejo Paco, atrapado en una red! ¿Cómo le ayudamos?
+0224;lolo_0224.mp3;El cuento que decidimos;frase;Cálida, clara y cercana;Llegaron todos los amigos y abrieron el cofre juntos… ¡Estaba lleno de conchas brillantes, y había una para cada uno! Después volvieron a casa por el bosque de algas. Y colorín colorado, este cuento se ha acabado.
+0225;lolo_0225.mp3;El cuento que decidimos;frase;Cálida, clara y cercana;Llegaron todos los amigos y abrieron el cofre juntos… ¡Estaba lleno de conchas brillantes, y había una para cada uno! Después volvieron a casa por la cueva de los peces linterna. Y colorín colorado, este cuento se ha acabado.
+0226;lolo_0226.mp3;El cuento que decidimos;frase;Cálida, clara y cercana;Lolo abrió el cofre… ¡y estaba lleno de conchas brillantes! Pensó en sus amigos y repartió las conchas con todos. Después volvieron a casa por el bosque de algas. Y colorín colorado, este cuento se ha acabado.
+0227;lolo_0227.mp3;El cuento que decidimos;frase;Cálida, clara y cercana;Lolo abrió el cofre… ¡y estaba lleno de conchas brillantes! Pensó en sus amigos y repartió las conchas con todos. Después volvieron a casa por la cueva de los peces linterna. Y colorín colorado, este cuento se ha acabado.
+0228;lolo_0228.mp3;El cuento que decidimos;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Lolo y sus amigos tiraron todos juntos: ¡una, dos y tres! Y la red se soltó. Paco, muy contento, se fue con ellos. ¡Y por fin encontraron el cofre del tesoro! ¿Lo abrimos ya o esperamos a que lleguen todos los amigos?
+0229;lolo_0229.mp3;El cuento que decidimos;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Para llegar había dos caminos. ¿Vamos por la cueva oscura o por el bosque de algas? ¡Votad!
+0230;lolo_0230.mp3;El cuento que decidimos;frase;Cálida, clara y cercana;Un día, Lolo encontró en la arena un mapa del tesoro. ¡El tesoro estaba al otro lado del mar!
+0231;lolo_0231.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: el bosque de algas!
+0232;lolo_0232.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: esperamos a los amigos!
+0233;lolo_0233.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: la cueva oscura!
+0234;lolo_0234.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: llamamos a la tortuga para que corte la red!
+0235;lolo_0235.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: lo abrimos ya!
+0236;lolo_0236.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Empate! La concha mágica decide: tiramos todos juntos de la red!
+0237;lolo_0237.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis decidido: llamamos a la tortuga para que corte la red!
+0238;lolo_0238.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis decidido: tiramos todos juntos de la red!
+0239;lolo_0239.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis elegido el bosque de algas!
+0240;lolo_0240.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis elegido la cueva oscura!
+0241;lolo_0241.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis elegido: esperamos a los amigos!
+0242;lolo_0242.mp3;El cuento que decidimos;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis elegido: lo abrimos ya!
+0243;lolo_0243.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Al cangrejo Paco se le ha caído su helado al suelo. ¿Cómo se siente el cangrejo Paco?
+0244;lolo_0244.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;El gato abre una caja… ¡y sale un muelle saltarín! ¡Boing! ¿Cómo se siente el gato?
+0245;lolo_0245.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Hay una tormenta con truenos muy fuertes. ¡Bum, bum! ¿Cómo se siente el pez?
+0246;lolo_0246.mp3;Las emociones de Lolo;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Mirad su cara y pensad: si os pasara a vosotros, ¿cómo os sentiríais?
+0247;lolo_0247.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Sí, el cangrejo Paco se siente triste. ¿Cómo le podemos ayudar?
+0248;lolo_0248.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Sí, el gato se siente sorprendido. ¿Cómo le podemos ayudar?
+0249;lolo_0249.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Sí, el pato se siente enfadado. ¿Cómo le podemos ayudar?
+0250;lolo_0250.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Sí, el pez se siente con miedo. ¿Cómo le podemos ayudar?
+0251;lolo_0251.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Sí, la estrella de mar se siente alegre. ¿Cómo le podemos ayudar?
+0252;lolo_0252.mp3;Las emociones de Lolo;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Un niño le ha quitado la pelota al pato sin pedírsela. ¿Cómo se siente el pato?
+0253;lolo_0253.mp3;Las emociones de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Buena idea! Cuando tenemos miedo, estar acompañados nos da seguridad.
+0254;lolo_0254.mp3;Las emociones de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Buena idea! Preguntar y compartir la sorpresa es muy divertido.
+0255;lolo_0255.mp3;Las emociones de Lolo;frase;Suave y lenta, voz calmada;¡Buena idea! Respirar nos calma, y pedir las cosas bien es lo mejor.
+0256;lolo_0256.mp3;Las emociones de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Buena idea! Un abrazo ayuda mucho cuando estamos tristes.
+0257;lolo_0257.mp3;Las emociones de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Buena idea! ¡Cantar juntos hace la fiesta todavía más alegre!
+0258;lolo_0258.mp3;Las emociones de Lolo;frase;Alegre y entusiasta, celebrando con la clase;¡Es el cumpleaños de la estrella de mar y le han preparado una tarta! ¿Cómo se siente la estrella de mar?
+0259;lolo_0259.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cinco. Contamos otra vez: tocad cada concha con el dedo.
+0260;lolo_0260.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cinco. Contamos otra vez: tocad cada estrella de mar con el dedo.
+0261;lolo_0261.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cinco. Contamos otra vez: tocad cada pez con el dedo.
+0262;lolo_0262.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cinco. Contamos otra vez: tocad cada pulpito con el dedo.
+0263;lolo_0263.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cuatro. Contamos otra vez: tocad cada concha con el dedo.
+0264;lolo_0264.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cuatro. Contamos otra vez: tocad cada estrella de mar con el dedo.
+0265;lolo_0265.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cuatro. Contamos otra vez: tocad cada pez con el dedo.
+0266;lolo_0266.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone cuatro. Contamos otra vez: tocad cada pulpito con el dedo.
+0267;lolo_0267.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone dos. Contamos otra vez: tocad cada concha con el dedo.
+0268;lolo_0268.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone dos. Contamos otra vez: tocad cada estrella de mar con el dedo.
+0269;lolo_0269.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone dos. Contamos otra vez: tocad cada pez con el dedo.
+0270;lolo_0270.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone dos. Contamos otra vez: tocad cada pulpito con el dedo.
+0271;lolo_0271.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone tres. Contamos otra vez: tocad cada concha con el dedo.
+0272;lolo_0272.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone tres. Contamos otra vez: tocad cada estrella de mar con el dedo.
+0273;lolo_0273.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone tres. Contamos otra vez: tocad cada pez con el dedo.
+0274;lolo_0274.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone tres. Contamos otra vez: tocad cada pulpito con el dedo.
+0275;lolo_0275.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone uno. Contamos otra vez: tocad cada concha con el dedo.
+0276;lolo_0276.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone uno. Contamos otra vez: tocad cada estrella de mar con el dedo.
+0277;lolo_0277.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone uno. Contamos otra vez: tocad cada pez con el dedo.
+0278;lolo_0278.mp3;Cuenta y toca;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ahí pone uno. Contamos otra vez: tocad cada pulpito con el dedo.
+0279;lolo_0279.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cinco conchas! Muy bien contado.
+0280;lolo_0280.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cinco estrellas de mar! Muy bien contado.
+0281;lolo_0281.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cinco peces! Muy bien contado.
+0282;lolo_0282.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cinco pulpitos! Muy bien contado.
+0283;lolo_0283.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cuatro conchas! Muy bien contado.
+0284;lolo_0284.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cuatro estrellas de mar! Muy bien contado.
+0285;lolo_0285.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cuatro peces! Muy bien contado.
+0286;lolo_0286.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Cuatro pulpitos! Muy bien contado.
+0287;lolo_0287.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Dos conchas! Muy bien contado.
+0288;lolo_0288.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Dos estrellas de mar! Muy bien contado.
+0289;lolo_0289.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Dos peces! Muy bien contado.
+0290;lolo_0290.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Dos pulpitos! Muy bien contado.
+0291;lolo_0291.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! Hemos terminado. Lo habéis hecho genial todos juntos.
+0292;lolo_0292.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Tres conchas! Muy bien contado.
+0293;lolo_0293.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Tres estrellas de mar! Muy bien contado.
+0294;lolo_0294.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Tres peces! Muy bien contado.
+0295;lolo_0295.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Tres pulpitos! Muy bien contado.
+0296;lolo_0296.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Un pez! Muy bien contado.
+0297;lolo_0297.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Un pulpito! Muy bien contado.
+0298;lolo_0298.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Una concha! Muy bien contado.
+0299;lolo_0299.mp3;Cuenta y toca;frase;Alegre y entusiasta, celebrando con la clase;¡Una estrella de mar! Muy bien contado.
+0300;lolo_0300.mp3;Cuenta y toca;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Cuántas conchas hay? Tocadlas para contarlas.
+0301;lolo_0301.mp3;Cuenta y toca;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Cuántas estrellas de mar hay? Tocadlas para contarlas.
+0302;lolo_0302.mp3;Cuenta y toca;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Cuántos peces hay? Tocadlos para contarlos.
+0303;lolo_0303.mp3;Cuenta y toca;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Cuántos pulpitos hay? Tocadlos para contarlos.
+0304;lolo_0304.mp3;Series y patrones;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Escuchad otra vez:
+0305;lolo_0305.mp3;Series y patrones;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Mirad la fila:
+0306;lolo_0306.mp3;Series y patrones;frase;Alegre y entusiasta, celebrando con la clase;¡Sí!
+0307;lolo_0307.mp3;Series y patrones;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué va ahora?
+0308;lolo_0308.mp3;Series y patrones;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Y ahora qué va?
+0309;lolo_0309.mp3;Clasifica en cestas;frase;Cálida, clara y cercana;Ahora ordenamos por formas. Cada juguete va a la cesta de su forma.
+0310;lolo_0310.mp3;Clasifica en cestas;frase;Cálida, clara y cercana;Ahora, los grandes van a una cesta y los pequeños a otra.
+0311;lolo_0311.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta amarilla. ¿De qué color es el corazón?
+0312;lolo_0312.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta amarilla. ¿De qué color es el cuadrado?
+0313;lolo_0313.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta amarilla. ¿De qué color es el círculo?
+0314;lolo_0314.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta amarilla. ¿De qué color es el triángulo?
+0315;lolo_0315.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta amarilla. ¿De qué color es la estrella?
+0316;lolo_0316.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta azul. ¿De qué color es el corazón?
+0317;lolo_0317.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta azul. ¿De qué color es el cuadrado?
+0318;lolo_0318.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta azul. ¿De qué color es el círculo?
+0319;lolo_0319.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta azul. ¿De qué color es el triángulo?
+0320;lolo_0320.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta azul. ¿De qué color es la estrella?
+0321;lolo_0321.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los corazones. ¿Qué forma tiene?
+0322;lolo_0322.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los cuadrados. ¿Qué forma tiene?
+0323;lolo_0323.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los círculos. ¿Qué forma tiene?
+0324;lolo_0324.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los estrellas. ¿Qué forma tiene?
+0325;lolo_0325.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los grandes. ¿Es grande o pequeño?
+0326;lolo_0326.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los pequeños. ¿Es grande o pequeño?
+0327;lolo_0327.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta de los triángulos. ¿Qué forma tiene?
+0328;lolo_0328.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta roja. ¿De qué color es el corazón?
+0329;lolo_0329.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta roja. ¿De qué color es el cuadrado?
+0330;lolo_0330.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta roja. ¿De qué color es el círculo?
+0331;lolo_0331.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta roja. ¿De qué color es el triángulo?
+0332;lolo_0332.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta roja. ¿De qué color es la estrella?
+0333;lolo_0333.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta verde. ¿De qué color es el corazón?
+0334;lolo_0334.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta verde. ¿De qué color es el cuadrado?
+0335;lolo_0335.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta verde. ¿De qué color es el círculo?
+0336;lolo_0336.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta verde. ¿De qué color es el triángulo?
+0337;lolo_0337.mp3;Clasifica en cestas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa es la cesta verde. ¿De qué color es la estrella?
+0338;lolo_0338.mp3;Clasifica en cestas;frase;Cálida, clara y cercana;Lolo quiere ordenar sus juguetes. Poned cada uno en la cesta de su color. Podéis arrastrarlo, o tocarlo y luego tocar la cesta.
+0339;lolo_0339.mp3;Clasifica en cestas;frase;Alegre y entusiasta, celebrando con la clase;¡Todo ordenado! Cada cosa está en su cesta.
+0340;lolo_0340.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es grande. Este sitio es para la mediana.
+0341;lolo_0341.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es grande. Este sitio es para la pequeña.
+0342;lolo_0342.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es mediana. Este sitio es para la grande.
+0343;lolo_0343.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es mediana. Este sitio es para la pequeña.
+0344;lolo_0344.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es pequeña. Este sitio es para la grande.
+0345;lolo_0345.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta concha es pequeña. Este sitio es para la mediana.
+0346;lolo_0346.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es grande. Este sitio es para la mediana.
+0347;lolo_0347.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es grande. Este sitio es para la pequeña.
+0348;lolo_0348.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es mediana. Este sitio es para la grande.
+0349;lolo_0349.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es mediana. Este sitio es para la pequeña.
+0350;lolo_0350.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es pequeña. Este sitio es para la grande.
+0351;lolo_0351.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta estrella de mar es pequeña. Este sitio es para la mediana.
+0352;lolo_0352.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es grande. Este sitio es para la mediana.
+0353;lolo_0353.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es grande. Este sitio es para la pequeña.
+0354;lolo_0354.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es mediana. Este sitio es para la grande.
+0355;lolo_0355.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es mediana. Este sitio es para la pequeña.
+0356;lolo_0356.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es pequeña. Este sitio es para la grande.
+0357;lolo_0357.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esta pelota es pequeña. Este sitio es para la mediana.
+0358;lolo_0358.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es grande. Este sitio es para el mediano.
+0359;lolo_0359.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es grande. Este sitio es para el pequeño.
+0360;lolo_0360.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es mediano. Este sitio es para el grande.
+0361;lolo_0361.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es mediano. Este sitio es para el pequeño.
+0362;lolo_0362.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es pequeño. Este sitio es para el grande.
+0363;lolo_0363.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pez es pequeño. Este sitio es para el mediano.
+0364;lolo_0364.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es grande. Este sitio es para el mediano.
+0365;lolo_0365.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es grande. Este sitio es para el pequeño.
+0366;lolo_0366.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es mediano. Este sitio es para el grande.
+0367;lolo_0367.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es mediano. Este sitio es para el pequeño.
+0368;lolo_0368.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es pequeño. Este sitio es para el grande.
+0369;lolo_0369.mp3;Grande, mediano, pequeño;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Este pulpito es pequeño. Este sitio es para el mediano.
+0370;lolo_0370.mp3;Grande, mediano, pequeño;frase;Cálida, clara y cercana;Ordenamos las conchas: pequeña, mediana y grande. Llevad cada una a su sitio.
+0371;lolo_0371.mp3;Grande, mediano, pequeño;frase;Cálida, clara y cercana;Ordenamos las estrellas de mar: pequeña, mediana y grande. Llevad cada una a su sitio.
+0372;lolo_0372.mp3;Grande, mediano, pequeño;frase;Cálida, clara y cercana;Ordenamos las pelotas: pequeña, mediana y grande. Llevad cada una a su sitio.
+0373;lolo_0373.mp3;Grande, mediano, pequeño;frase;Cálida, clara y cercana;Ordenamos los peces: pequeño, mediano y grande. Llevad cada uno a su sitio.
+0374;lolo_0374.mp3;Grande, mediano, pequeño;frase;Cálida, clara y cercana;Ordenamos los pulpitos: pequeño, mediano y grande. Llevad cada uno a su sitio.
+0375;lolo_0375.mp3;Grande, mediano, pequeño;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! Pequeña, mediana y grande.
+0376;lolo_0376.mp3;Grande, mediano, pequeño;frase;Alegre y entusiasta, celebrando con la clase;¡Muy bien! Pequeño, mediano y grande.
+0377;lolo_0377.mp3;Encuentra la pareja;frase;Cálida, clara y cercana;Mirad bien dónde está cada dibujo… ¡Ahora se dan la vuelta! Buscad las parejas.
+0378;lolo_0378.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Amarillo y amarillo! Son iguales.
+0379;lolo_0379.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Azul y azul! Son iguales.
+0380;lolo_0380.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Cinco y cinco! Son iguales.
+0381;lolo_0381.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Cuatro y cuatro! Son iguales.
+0382;lolo_0382.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Dos y dos! Son iguales.
+0383;lolo_0383.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Gato y gato! Son iguales.
+0384;lolo_0384.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Habéis encontrado todas las parejas!
+0385;lolo_0385.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Pato y pato! Son iguales.
+0386;lolo_0386.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Perro y perro! Son iguales.
+0387;lolo_0387.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Rojo y rojo! Son iguales.
+0388;lolo_0388.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Tres y tres! Son iguales.
+0389;lolo_0389.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Uno y uno! Son iguales.
+0390;lolo_0390.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Vaca y vaca! Son iguales.
+0391;lolo_0391.mp3;Encuentra la pareja;frase;Alegre y entusiasta, celebrando con la clase;¡Verde y verde! Son iguales.
+0392;lolo_0392.mp3;Formas geométricas;frase;Cálida, clara y cercana;Cada forma tiene su sitio. Llevad cada forma a su silueta: arrastradla, o tocadla y luego tocad la silueta.
+0393;lolo_0393.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el corazón. ¿Dónde va el rectángulo?
+0394;lolo_0394.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el corazón. ¿Dónde va el triángulo?
+0395;lolo_0395.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el corazón. ¿Dónde va la estrella?
+0396;lolo_0396.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el cuadrado. ¿Dónde va el círculo?
+0397;lolo_0397.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el cuadrado. ¿Dónde va el triángulo?
+0398;lolo_0398.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el cuadrado. ¿Dónde va la estrella?
+0399;lolo_0399.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el círculo. ¿Dónde va el cuadrado?
+0400;lolo_0400.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el círculo. ¿Dónde va el triángulo?
+0401;lolo_0401.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el círculo. ¿Dónde va la estrella?
+0402;lolo_0402.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el rectángulo. ¿Dónde va el corazón?
+0403;lolo_0403.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el rectángulo. ¿Dónde va el triángulo?
+0404;lolo_0404.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el rectángulo. ¿Dónde va la estrella?
+0405;lolo_0405.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el triángulo. ¿Dónde va el corazón?
+0406;lolo_0406.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el triángulo. ¿Dónde va el cuadrado?
+0407;lolo_0407.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el triángulo. ¿Dónde va el círculo?
+0408;lolo_0408.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el triángulo. ¿Dónde va el rectángulo?
+0409;lolo_0409.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es el triángulo. ¿Dónde va la estrella?
+0410;lolo_0410.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es la estrella. ¿Dónde va el corazón?
+0411;lolo_0411.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es la estrella. ¿Dónde va el cuadrado?
+0412;lolo_0412.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es la estrella. ¿Dónde va el círculo?
+0413;lolo_0413.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es la estrella. ¿Dónde va el rectángulo?
+0414;lolo_0414.mp3;Formas geométricas;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa silueta es la estrella. ¿Dónde va el triángulo?
+0415;lolo_0415.mp3;Formas geométricas;frase;Alegre y entusiasta, celebrando con la clase;¡Más formas! Llevad cada una a su silueta.
+0416;lolo_0416.mp3;Formas geométricas;frase;Alegre y entusiasta, celebrando con la clase;¡Todas las formas están en su sitio!
+0417;lolo_0417.mp3;Juego a dúo;frase;Cálida, clara y cercana;El color está bien, pero la forma no. ¡Jugador 2, prueba otra vez!
+0418;lolo_0418.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el cuadrado amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0419;lolo_0419.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el cuadrado azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0420;lolo_0420.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el cuadrado rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0421;lolo_0421.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el cuadrado verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0422;lolo_0422.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el círculo amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0423;lolo_0423.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el círculo azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0424;lolo_0424.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el círculo rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0425;lolo_0425.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el círculo verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0426;lolo_0426.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el triángulo amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0427;lolo_0427.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el triángulo azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0428;lolo_0428.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el triángulo rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0429;lolo_0429.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita el triángulo verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0430;lolo_0430.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita la estrella amarilla. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0431;lolo_0431.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita la estrella azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0432;lolo_0432.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita la estrella roja. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0433;lolo_0433.mp3;Juego a dúo;frase;Cálida, clara y cercana;Escuchad bien. Lolo necesita la estrella verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0434;lolo_0434.mp3;Juego a dúo;frase;Cálida, clara y cercana;La forma está bien, pero el color no. ¡Jugador 1, prueba otra vez!
+0435;lolo_0435.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el cuadrado amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0436;lolo_0436.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el cuadrado azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0437;lolo_0437.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el cuadrado rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0438;lolo_0438.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el cuadrado verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0439;lolo_0439.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el círculo amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0440;lolo_0440.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el círculo azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0441;lolo_0441.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el círculo rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0442;lolo_0442.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el círculo verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0443;lolo_0443.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el triángulo amarillo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0444;lolo_0444.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el triángulo azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0445;lolo_0445.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el triángulo rojo. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0446;lolo_0446.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita el triángulo verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0447;lolo_0447.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita la estrella amarilla. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0448;lolo_0448.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita la estrella azul. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0449;lolo_0449.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita la estrella roja. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0450;lolo_0450.mp3;Juego a dúo;frase;Cálida, clara y cercana;Lolo necesita la estrella verde. El jugador 1 elige el color y el jugador 2, la forma. ¡Solo lo conseguís juntos!
+0451;lolo_0451.mp3;Juego a dúo;frase;Cálida, clara y cercana;Ni el color ni la forma. ¡Probad otra vez juntos!
+0452;lolo_0452.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El cuadrado amarillo.
+0453;lolo_0453.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El cuadrado azul.
+0454;lolo_0454.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El cuadrado rojo.
+0455;lolo_0455.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El cuadrado verde.
+0456;lolo_0456.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El círculo amarillo.
+0457;lolo_0457.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El círculo azul.
+0458;lolo_0458.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El círculo rojo.
+0459;lolo_0459.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El círculo verde.
+0460;lolo_0460.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El triángulo amarillo.
+0461;lolo_0461.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El triángulo azul.
+0462;lolo_0462.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El triángulo rojo.
+0463;lolo_0463.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! El triángulo verde.
+0464;lolo_0464.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! La estrella amarilla.
+0465;lolo_0465.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! La estrella azul.
+0466;lolo_0466.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! La estrella roja.
+0467;lolo_0467.mp3;Juego a dúo;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis conseguido juntos! La estrella verde.
+0468;lolo_0468.mp3;Mini-escape de colores;frase;Cálida, clara y cercana;El último candado se abre con un sonido. Escuchad bien y elegid el instrumento que suena.
+0469;lolo_0469.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de corazón, y la cerradura tiene forma de cuadrado.
+0470;lolo_0470.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de corazón, y la cerradura tiene forma de círculo.
+0471;lolo_0471.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de corazón, y la cerradura tiene forma de estrella.
+0472;lolo_0472.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de corazón, y la cerradura tiene forma de triángulo.
+0473;lolo_0473.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de cuadrado, y la cerradura tiene forma de corazón.
+0474;lolo_0474.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de cuadrado, y la cerradura tiene forma de círculo.
+0475;lolo_0475.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de cuadrado, y la cerradura tiene forma de estrella.
+0476;lolo_0476.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de cuadrado, y la cerradura tiene forma de triángulo.
+0477;lolo_0477.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de círculo, y la cerradura tiene forma de corazón.
+0478;lolo_0478.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de círculo, y la cerradura tiene forma de cuadrado.
+0479;lolo_0479.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de círculo, y la cerradura tiene forma de estrella.
+0480;lolo_0480.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de círculo, y la cerradura tiene forma de triángulo.
+0481;lolo_0481.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de estrella, y la cerradura tiene forma de corazón.
+0482;lolo_0482.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de estrella, y la cerradura tiene forma de cuadrado.
+0483;lolo_0483.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de estrella, y la cerradura tiene forma de círculo.
+0484;lolo_0484.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de estrella, y la cerradura tiene forma de triángulo.
+0485;lolo_0485.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de triángulo, y la cerradura tiene forma de corazón.
+0486;lolo_0486.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de triángulo, y la cerradura tiene forma de cuadrado.
+0487;lolo_0487.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de triángulo, y la cerradura tiene forma de círculo.
+0488;lolo_0488.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Esa llave tiene forma de triángulo, y la cerradura tiene forma de estrella.
+0489;lolo_0489.mp3;Mini-escape de colores;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";Ese instrumento suena distinto. Escuchad otra vez el sonido.
+0490;lolo_0490.mp3;Mini-escape de colores;frase;Cálida, clara y cercana;Para el segundo candado necesitamos la llave que encaja. Mirad bien la forma de la cerradura.
+0491;lolo_0491.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡El primer candado se ha abierto!
+0492;lolo_0492.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡Era el tambor! Tercer candado abierto.
+0493;lolo_0493.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡Era la guitarra! Tercer candado abierto.
+0494;lolo_0494.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡Era la pandereta! Tercer candado abierto.
+0495;lolo_0495.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡Era las castañuelas! Tercer candado abierto.
+0496;lolo_0496.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Clic! ¡La llave encaja! Segundo candado abierto.
+0497;lolo_0497.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Libre! ¡Habéis rescatado al cangrejo Paco! Gracias, amigos.
+0498;lolo_0498.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Los tres candados están abiertos! Tocad la jaula para liberar a Paco.
+0499;lolo_0499.mp3;Mini-escape de colores;frase;Alegre y entusiasta, celebrando con la clase;¡Oh, no! El cangrejo Paco está encerrado con tres candados. Para abrir el primero, tocad los colores en el mismo orden que la nota.
+0500;lolo_0500.mp3;El robot perdido;frase;Cálida, clara y cercana;Ahora probadlo con el robot de verdad.
+0501;lolo_0501.mp3;El robot perdido;frase;Cálida, clara y cercana;Otro camino para Robi. ¡Cuidado con las rocas!
+0502;lolo_0502.mp3;El robot perdido;frase;Cálida, clara y cercana;Robi el robot quiere llegar a la flor. Tocad las flechas para hacer el camino y después pulsad «¡Adelante!».
+0503;lolo_0503.mp3;El robot perdido;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";¡El robot ha llegado a la flor! El programa es:
+0504;lolo_0504.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted el corcho en el agua. ¿Qué ha pasado?
+0505;lolo_0505.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted la esponja en el agua. ¿Qué ha pasado?
+0506;lolo_0506.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted la hoja en el agua. ¿Qué ha pasado?
+0507;lolo_0507.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted la llave en el agua. ¿Qué ha pasado?
+0508;lolo_0508.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted la moneda en el agua. ¿Qué ha pasado?
+0509;lolo_0509.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que flotará. ¡Ahora lo probamos de verdad! Meted la piedra en el agua. ¿Qué ha pasado?
+0510;lolo_0510.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que saldrá celeste. ¡Ahora mezclamos las pinturas de verdad! ¿Qué color ha salido?
+0511;lolo_0511.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que saldrá morado. ¡Ahora mezclamos las pinturas de verdad! ¿Qué color ha salido?
+0512;lolo_0512.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que saldrá naranja. ¡Ahora mezclamos las pinturas de verdad! ¿Qué color ha salido?
+0513;lolo_0513.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que saldrá rosa. ¡Ahora mezclamos las pinturas de verdad! ¿Qué color ha salido?
+0514;lolo_0514.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que saldrá verde. ¡Ahora mezclamos las pinturas de verdad! ¿Qué color ha salido?
+0515;lolo_0515.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted el corcho en el agua. ¿Qué ha pasado?
+0516;lolo_0516.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted la esponja en el agua. ¿Qué ha pasado?
+0517;lolo_0517.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted la hoja en el agua. ¿Qué ha pasado?
+0518;lolo_0518.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted la llave en el agua. ¿Qué ha pasado?
+0519;lolo_0519.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted la moneda en el agua. ¿Qué ha pasado?
+0520;lolo_0520.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Pensamos que se hundirá. ¡Ahora lo probamos de verdad! Meted la piedra en el agua. ¿Qué ha pasado?
+0521;lolo_0521.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Si mezclamos azul y amarillo, ¿qué color saldrá? ¡Votad!
+0522;lolo_0522.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Si mezclamos azul y blanco, ¿qué color saldrá? ¡Votad!
+0523;lolo_0523.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Si mezclamos rojo y amarillo, ¿qué color saldrá? ¡Votad!
+0524;lolo_0524.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Si mezclamos rojo y azul, ¿qué color saldrá? ¡Votad!
+0525;lolo_0525.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Si mezclamos rojo y blanco, ¿qué color saldrá? ¡Votad!
+0526;lolo_0526.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos el corcho. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0527;lolo_0527.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos la esponja. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0528;lolo_0528.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos la hoja. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0529;lolo_0529.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos la llave. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0530;lolo_0530.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos la moneda. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0531;lolo_0531.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;Tenemos la piedra. ¿Qué pensáis? ¿Flotará o se hundirá? ¡Votad!
+0532;lolo_0532.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y amarillo hacen celeste.
+0533;lolo_0533.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y amarillo hacen morado.
+0534;lolo_0534.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y amarillo hacen naranja.
+0535;lolo_0535.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y amarillo hacen verde.
+0536;lolo_0536.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y blanco hacen celeste.
+0537;lolo_0537.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y blanco hacen morado.
+0538;lolo_0538.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y blanco hacen naranja.
+0539;lolo_0539.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y blanco hacen rosa.
+0540;lolo_0540.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Azul y blanco hacen verde.
+0541;lolo_0541.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! El corcho flota.
+0542;lolo_0542.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! El corcho se hunde.
+0543;lolo_0543.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La esponja flota.
+0544;lolo_0544.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La esponja se hunde.
+0545;lolo_0545.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La hoja flota.
+0546;lolo_0546.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La hoja se hunde.
+0547;lolo_0547.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La llave flota.
+0548;lolo_0548.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La llave se hunde.
+0549;lolo_0549.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La moneda flota.
+0550;lolo_0550.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La moneda se hunde.
+0551;lolo_0551.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La piedra flota.
+0552;lolo_0552.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! La piedra se hunde.
+0553;lolo_0553.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y amarillo hacen celeste.
+0554;lolo_0554.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y amarillo hacen morado.
+0555;lolo_0555.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y amarillo hacen naranja.
+0556;lolo_0556.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y amarillo hacen rosa.
+0557;lolo_0557.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y amarillo hacen verde.
+0558;lolo_0558.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y azul hacen celeste.
+0559;lolo_0559.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y azul hacen morado.
+0560;lolo_0560.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y azul hacen rosa.
+0561;lolo_0561.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y blanco hacen celeste.
+0562;lolo_0562.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y blanco hacen morado.
+0563;lolo_0563.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y blanco hacen naranja.
+0564;lolo_0564.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y blanco hacen rosa.
+0565;lolo_0565.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Acertamos! Rojo y blanco hacen verde.
+0566;lolo_0566.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Ha salido celeste. ¡Así aprendemos!
+0567;lolo_0567.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Ha salido morado. ¡Así aprendemos!
+0568;lolo_0568.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Ha salido naranja. ¡Así aprendemos!
+0569;lolo_0569.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Ha salido rosa. ¡Así aprendemos!
+0570;lolo_0570.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Ha salido verde. ¡Así aprendemos!
+0571;lolo_0571.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero el corcho flota. ¡Así aprendemos!
+0572;lolo_0572.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero el corcho se hunde. ¡Así aprendemos!
+0573;lolo_0573.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la esponja flota. ¡Así aprendemos!
+0574;lolo_0574.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la esponja se hunde. ¡Así aprendemos!
+0575;lolo_0575.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la hoja flota. ¡Así aprendemos!
+0576;lolo_0576.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la hoja se hunde. ¡Así aprendemos!
+0577;lolo_0577.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la llave flota. ¡Así aprendemos!
+0578;lolo_0578.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la llave se hunde. ¡Así aprendemos!
+0579;lolo_0579.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la moneda flota. ¡Así aprendemos!
+0580;lolo_0580.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la moneda se hunde. ¡Así aprendemos!
+0581;lolo_0581.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la piedra flota. ¡Así aprendemos!
+0582;lolo_0582.mp3;¿Qué pasa si…?;frase;Alegre y entusiasta, celebrando con la clase;¡Sorpresa! Pensábamos otra cosa, pero la piedra se hunde. ¡Así aprendemos!
+0583;lolo_0583.mp3;¿Qué pasa si…?;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué experimento hacemos hoy?
+0584;lolo_0584.mp3;Toca, construye y comprueba;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Con vuestros bloques de verdad, construid esta torre de cinco bloques. De abajo arriba:
+0585;lolo_0585.mp3;Toca, construye y comprueba;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Con vuestros bloques de verdad, construid esta torre de cuatro bloques. De abajo arriba:
+0586;lolo_0586.mp3;Toca, construye y comprueba;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Con vuestros bloques de verdad, construid esta torre de dos bloques. De abajo arriba:
+0587;lolo_0587.mp3;Toca, construye y comprueba;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Con vuestros bloques de verdad, construid esta torre de tres bloques. De abajo arriba:
+0588;lolo_0588.mp3;Toca, construye y comprueba;pieza;"Inicio de frase que sigue con una lista; termina en suspenso";Con vuestros bloques de verdad, construid este tren de tres bloques. De izquierda a derecha:
+0589;lolo_0589.mp3;Toca, construye y comprueba;frase;Alegre y entusiasta, celebrando con la clase;¡Es igual que el modelo! ¡Un tren perfecto!
+0590;lolo_0590.mp3;Toca, construye y comprueba;frase;Alegre y entusiasta, celebrando con la clase;¡Es igual que el modelo! ¡Una torre perfecta!
+0591;lolo_0591.mp3;Toca, construye y comprueba;frase;Alegre y entusiasta, celebrando con la clase;¡Vamos a comprobarlo! Mirad vuestra construcción y tocad cada bloque que esté igual que en la pizarra.
+0592;lolo_0592.mp3;Caza mágica;frase;Cálida, clara y cercana;Preparad la varita mágica… Decid todos juntos: «¡Abracadabra!»
+0593;lolo_0593.mp3;Caza mágica;frase;"Pista amable y paciente, sin reproche; anima a intentarlo otra vez";¡Aquí no está! Buscad en otro sitio.
+0594;lolo_0594.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡El Sol se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0595;lolo_0595.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido Júpiter! Júpiter es el planeta más grande de todos.
+0596;lolo_0596.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido Marte! Marte es el planeta rojo. Está lleno de polvo y de rocas.
+0597;lolo_0597.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido Saturno! Saturno tiene unos anillos enormes a su alrededor.
+0598;lolo_0598.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido el Sol! El Sol es una estrella enorme que nos da luz y calor.
+0599;lolo_0599.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido la Luna! La Luna sale por la noche y va cambiando de forma.
+0600;lolo_0600.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido la Tierra! La Tierra es nuestro planeta. Tiene mucha agua y aquí vivimos todos.
+0601;lolo_0601.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido un gato! Los gatos ven muy bien en la oscuridad.
+0602;lolo_0602.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido un pato! Los patos nadan y también vuelan.
+0603;lolo_0603.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido un perro! Los perros tienen un olfato buenísimo.
+0604;lolo_0604.mp3;Caza mágica;frase;Suave y lenta, voz calmada;¡Ha aparecido un pez! Los peces respiran debajo del agua.
+0605;lolo_0605.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido una estrella de mar! La estrella de mar tiene cinco brazos.
+0606;lolo_0606.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Ha aparecido una vaca! La vaca come hierba y nos da la leche.
+0607;lolo_0607.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Júpiter se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0608;lolo_0608.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡La Luna se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0609;lolo_0609.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡La Tierra se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0610;lolo_0610.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es Júpiter.
+0611;lolo_0611.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es Marte.
+0612;lolo_0612.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es Saturno.
+0613;lolo_0613.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es el Sol.
+0614;lolo_0614.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es la Luna.
+0615;lolo_0615.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es la Tierra.
+0616;lolo_0616.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es un gato.
+0617;lolo_0617.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es un pato.
+0618;lolo_0618.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es un perro.
+0619;lolo_0619.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es un pez.
+0620;lolo_0620.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es una estrella de mar.
+0621;lolo_0621.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Lo habéis encontrado! Es una vaca.
+0622;lolo_0622.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Marte se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0623;lolo_0623.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Saturno se ha escondido detrás de una nube! ¿Dónde está? Tocad para buscar.
+0624;lolo_0624.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Un gato se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0625;lolo_0625.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Un pato se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0626;lolo_0626.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Un perro se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0627;lolo_0627.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Un pez se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0628;lolo_0628.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Una estrella de mar se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0629;lolo_0629.mp3;Caza mágica;frase;Alegre y entusiasta, celebrando con la clase;¡Una vaca se ha escondido detrás de una roca! ¿Dónde está? Tocad para buscar.
+0630;lolo_0630.mp3;Caza mágica;frase;Curiosa e invitadora, deja un pequeño silencio tras la pregunta;¿Qué vamos a cazar hoy con la varita mágica?
