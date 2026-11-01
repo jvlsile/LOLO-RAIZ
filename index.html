@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>La visita de Lolo</title>
-<meta name="description" content="18 juegos educativos de Educación Infantil para pizarra digital, tablet y móvil. Lolo el pulpo guía a la clase.">
-<meta name="theme-color" content="#16698A">
+<meta name="description" content="18 juegos de Educación Infantil para la pizarra digital, guiados por Lolo el pulpo. Rutinas, lógica, emociones, cooperación y ciencia.">
+<meta name="theme-color" content="#137A99">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
 <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
@@ -16,102 +16,167 @@
 <link rel="stylesheet" href="css/portada.css">
 </head>
 <body>
-<div class="mar" aria-hidden="true">
-  <div class="rayo"></div><div class="rayo"></div><div class="rayo"></div>
-  <canvas id="burbujas"></canvas>
-</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gLolo" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#FFCB8A"/><stop offset=".5" stop-color="#FF8A3D"/><stop offset="1" stop-color="#DE5A18"/></radialGradient>
+    <linearGradient id="gTent" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#F06A22"/></linearGradient>
+    <radialGradient id="gMejilla"><stop offset="0" stop-color="#FF5D8F" stop-opacity=".7"/><stop offset="1" stop-color="#FF5D8F" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gIris" cx=".4" cy=".35"><stop offset="0" stop-color="#3A5C8C"/><stop offset="1" stop-color="#0E1E3A"/></radialGradient>
+  </defs>
+</svg>
 
-<header class="cabecera">
-  <a class="marca" href="./" aria-label="La visita de Lolo, portada">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="22" r="17" fill="url(#gLolo)" stroke="#183153" stroke-width="2.5"/><circle cx="18" cy="21" r="4.5" fill="#fff"/><circle cx="30" cy="21" r="4.5" fill="#fff"/><circle cx="19" cy="22" r="2.2" fill="#183153"/><circle cx="31" cy="22" r="2.2" fill="#183153"/><path d="M19 29q5 4 10 0" stroke="#183153" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
-    <span><b>La visita de Lolo</b><small>Educación Infantil · 18 juegos</small></span>
-  </a>
-  <div class="acciones">
-    <button class="accion" id="btnCalma" type="button" aria-pressed="false" aria-label="Modo tranquilo">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Modo tranquilo</span>
-    </button>
-    <button class="accion" id="btnPantalla" type="button" aria-label="Pantalla completa">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg><span>Pantalla completa</span>
-    </button>
+<a class="saltar" href="#juegos">Ir a los juegos</a>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="./" aria-label="La visita de Lolo, inicio">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="22" r="17" fill="url(#gLolo)"/><circle cx="18" cy="21" r="4.6" fill="#fff"/><circle cx="30" cy="21" r="4.6" fill="#fff"/><circle cx="19" cy="22" r="2.3" fill="#13263F"/><circle cx="31" cy="22" r="2.3" fill="#13263F"/><path d="M19 29q5 4 10 0" stroke="#13263F" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      <span>La visita de Lolo</span>
+    </a>
+    <nav class="enlaces" aria-label="Secciones">
+      <a href="#categorias">Categorías</a>
+      <a href="#juegos">Juegos</a>
+      <a href="#como">Cómo funciona</a>
+    </nav>
+    <div class="nav-acciones">
+      <button class="icono-btn" id="btnCalma" type="button" aria-pressed="false" aria-label="Modo tranquilo" title="Modo tranquilo: menos movimiento y sonido">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <button class="icono-btn" id="btnPantalla" type="button" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+      <a class="btn btn-sm btn-primario" id="navHoy" href="jugar.html#lolo" data-id="lolo">Rutina de hoy</a>
+    </div>
   </div>
 </header>
 
 <main>
-  <section class="hero" aria-labelledby="pregunta">
-    <div class="lolo-escena" aria-hidden="true">
-      <svg id="lolo" viewBox="0 0 240 260">
-        <defs>
-          <radialGradient id="gLolo" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#FFCB8A"/><stop offset=".5" stop-color="#FF8A3D"/><stop offset="1" stop-color="#DE5A18"/></radialGradient>
-          <linearGradient id="gTent" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#F06A22"/></linearGradient>
-          <radialGradient id="gMejilla"><stop offset="0" stop-color="#FF5D8F" stop-opacity=".7"/><stop offset="1" stop-color="#FF5D8F" stop-opacity="0"/></radialGradient>
-          <radialGradient id="gIris" cx=".4" cy=".35"><stop offset="0" stop-color="#3A5C8C"/><stop offset="1" stop-color="#0E1E3A"/></radialGradient>
-        </defs>
-        <g class="cuerpo">
-          <g id="tentaculos"></g>
-          <g class="saludo"><path d="M196 142 Q236 120 226 70" stroke="url(#gTent)" stroke-width="24" stroke-linecap="round" fill="none"/><circle cx="222" cy="96" r="4.5" fill="#FFD7B0" stroke="#F0A070" stroke-width="1.5"/><circle cx="228" cy="80" r="3.5" fill="#FFD7B0" stroke="#F0A070" stroke-width="1.5"/></g>
-          <ellipse cx="120" cy="96" rx="80" ry="74" fill="url(#gLolo)"/>
-          <g fill="#D9581A" opacity=".35"><ellipse cx="160" cy="58" rx="9" ry="6"/><ellipse cx="176" cy="80" rx="6" ry="4.5"/><ellipse cx="62" cy="70" rx="6" ry="4"/><ellipse cx="148" cy="40" rx="5" ry="3.5"/></g>
-          <ellipse cx="92" cy="52" rx="26" ry="14" fill="#fff" opacity=".35" transform="rotate(-18 92 52)"/>
-          <ellipse cx="72" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/><ellipse cx="168" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/>
-          <g class="ojo"><ellipse cx="92" cy="96" rx="19" ry="21" fill="#fff"/><g class="pupila"><circle cx="95" cy="100" r="12" fill="url(#gIris)"/><circle cx="99" cy="94" r="4.5" fill="#fff"/><circle cx="91" cy="105" r="2" fill="#fff"/></g></g>
-          <g class="ojo"><ellipse cx="148" cy="96" rx="19" ry="21" fill="#fff"/><g class="pupila"><circle cx="145" cy="100" r="12" fill="url(#gIris)"/><circle cx="149" cy="94" r="4.5" fill="#fff"/><circle cx="141" cy="105" r="2" fill="#fff"/></g></g>
-          <path class="boca" d="M102 126 q18 20 36 0" fill="#B83A3A" stroke="#183153" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-      </svg>
-      <div class="sombra"></div>
+  <section class="hero" aria-labelledby="titulo">
+    <canvas id="burbujas" aria-hidden="true"></canvas>
+    <div class="hero-in">
+      <div class="hero-texto">
+        <h1 id="titulo"><span class="linea">Aprender jugando</span> <span class="linea">con Lolo</span></h1>
+        <p class="hero-sub">18 juegos de Educación Infantil para la pizarra digital. Elige uno, tócalo y la clase empieza a jugar con Lolo.</p>
+        <div class="hero-cta">
+          <a class="btn btn-grande btn-sol" id="ctaHoy" href="jugar.html#lolo" data-id="lolo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+            <span><b id="ctaHoyT">Empezar la rutina de hoy</b><small id="ctaHoyS">La visita de Lolo</small></span>
+          </a>
+          <a class="btn btn-grande btn-cristal" href="#juegos">Ver los 18 juegos</a>
+        </div>
+        <ul class="hero-datos" aria-label="Características">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>De 3 a 5 años</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1.2"/></svg>Funciona sin conexión</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>Sin datos personales</li>
+        </ul>
+      </div>
+
+      <div class="hero-lolo" aria-hidden="true">
+        <div class="aro"></div>
+        <div class="orbita" id="orbita"></div>
+        <svg id="lolo" viewBox="0 0 240 260">
+          <g class="cuerpo">
+            <g id="tentaculos"></g>
+            <g class="saludo"><path d="M196 142 Q236 120 226 70" stroke="url(#gTent)" stroke-width="24" stroke-linecap="round" fill="none"/><circle cx="222" cy="96" r="4.5" fill="#FFD7B0" stroke="#F0A070" stroke-width="1.5"/><circle cx="228" cy="80" r="3.5" fill="#FFD7B0" stroke="#F0A070" stroke-width="1.5"/></g>
+            <ellipse cx="120" cy="96" rx="80" ry="74" fill="url(#gLolo)"/>
+            <g fill="#D9581A" opacity=".35"><ellipse cx="160" cy="58" rx="9" ry="6"/><ellipse cx="176" cy="80" rx="6" ry="4.5"/><ellipse cx="62" cy="70" rx="6" ry="4"/><ellipse cx="148" cy="40" rx="5" ry="3.5"/></g>
+            <ellipse cx="92" cy="52" rx="26" ry="14" fill="#fff" opacity=".35" transform="rotate(-18 92 52)"/>
+            <ellipse cx="72" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/><ellipse cx="168" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/>
+            <g class="ojo"><ellipse cx="92" cy="96" rx="19" ry="21" fill="#fff"/><g class="pupila"><circle cx="95" cy="100" r="12" fill="url(#gIris)"/><circle cx="99" cy="94" r="4.5" fill="#fff"/><circle cx="91" cy="105" r="2" fill="#fff"/></g></g>
+            <g class="ojo"><ellipse cx="148" cy="96" rx="19" ry="21" fill="#fff"/><g class="pupila"><circle cx="145" cy="100" r="12" fill="url(#gIris)"/><circle cx="149" cy="94" r="4.5" fill="#fff"/><circle cx="141" cy="105" r="2" fill="#fff"/></g></g>
+            <path d="M102 126 q18 20 36 0" fill="#B83A3A" stroke="#13263F" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <svg class="ola" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40c160 34 320 50 480 34S800 6 960 10s320 44 480 46v34H0z"/></svg>
+  </section>
+
+  <section class="seccion" id="categorias" aria-labelledby="tCat">
+    <div class="cab">
+      <h2 id="tCat">Explora por categoría</h2>
+      <p>Cada categoría reúne juegos que trabajan lo mismo. Toca una para ver sus juegos.</p>
+    </div>
+    <div class="categorias" id="listaCat"></div>
+  </section>
+
+  <section class="seccion" id="juegos" aria-labelledby="tJuegos">
+    <div class="cab">
+      <h2 id="tJuegos">Todos los juegos</h2>
+      <p>Toca un juego para ver de qué trata, o «Jugar» para empezar ya.</p>
     </div>
 
-    <div class="pregunta">
-      <h1 id="pregunta" class="bocadillo"><span id="frase">¿Qué trabajamos hoy?</span></h1>
-      <p class="sub">Elige qué queréis trabajar y la edad del grupo. Toca un juego para empezar.</p>
-      <div class="chips" id="chips" role="group" aria-label="Qué trabajamos"></div>
-      <div class="edades" role="group" aria-label="Edad del grupo">
-        <span class="edades-lbl">Edad</span>
+    <div class="recientes" id="recientes" hidden>
+      <span class="recientes-lbl">Jugados hace poco</span>
+      <div class="recientes-fila" id="recientesFila"></div>
+    </div>
+
+    <div class="barra" id="barra">
+      <label class="buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="buscar" type="search" placeholder="Buscar un juego" autocomplete="off" aria-label="Buscar un juego">
+      </label>
+      <div class="pestanas" id="pestanas" role="group" aria-label="Categoría"></div>
+      <div class="edad" role="group" aria-label="Edad">
+        <span>Edad</span>
         <div class="segmento" id="edades"></div>
       </div>
     </div>
-  </section>
 
-  <section class="hoy" aria-labelledby="tHoy">
-    <h2 id="tHoy">Para hoy</h2>
-    <div class="hoy-fila" id="hoy"></div>
-  </section>
-
-  <section class="juegos" aria-labelledby="tJuegos">
-    <div class="juegos-cab">
-      <h2 id="tJuegos">Todos los juegos</h2>
-      <p class="cuantos" id="cuantos" aria-live="polite"></p>
-    </div>
+    <p class="cuantos" id="cuantos" aria-live="polite"></p>
     <div class="rejilla" id="rejilla"></div>
     <div class="vacio" id="vacio" hidden>
-      <svg viewBox="0 0 120 110" aria-hidden="true"><g stroke="#F06A22" stroke-width="9" stroke-linecap="round" fill="none"><path d="M40 70q-8 18-2 30"/><path d="M53 76q-2 16-6 26"/><path d="M67 76q2 16 6 26"/><path d="M80 70q8 18 2 30"/></g><ellipse cx="60" cy="52" rx="36" ry="33" fill="url(#gLolo)" stroke="#183153" stroke-width="3.5"/><circle cx="49" cy="50" r="7" fill="#fff"/><circle cx="71" cy="50" r="7" fill="#fff"/><circle cx="49" cy="52" r="3.5" fill="#183153"/><circle cx="71" cy="52" r="3.5" fill="#183153"/><ellipse cx="60" cy="68" rx="6" ry="7" fill="#B83A3A" stroke="#183153" stroke-width="3"/></svg>
-      <p><b>No hay juegos para esa combinación.</b> Prueba con otra edad o con «Todo».</p>
-      <button class="boton" id="limpiar" type="button">Ver todos los juegos</button>
+      <svg viewBox="0 0 120 110" aria-hidden="true"><g stroke="#F06A22" stroke-width="9" stroke-linecap="round" fill="none"><path d="M40 70q-8 18-2 30"/><path d="M53 76q-2 16-6 26"/><path d="M67 76q2 16 6 26"/><path d="M80 70q8 18 2 30"/></g><ellipse cx="60" cy="52" rx="36" ry="33" fill="url(#gLolo)"/><circle cx="49" cy="50" r="7" fill="#fff"/><circle cx="71" cy="50" r="7" fill="#fff"/><circle cx="49" cy="52" r="3.5" fill="#13263F"/><circle cx="71" cy="52" r="3.5" fill="#13263F"/><ellipse cx="60" cy="68" rx="6" ry="7" fill="#B83A3A"/></svg>
+      <p><b>Lolo no encuentra ningún juego así.</b> Prueba con otra palabra, otra categoría u otra edad.</p>
+      <button class="btn btn-primario" id="limpiar" type="button">Ver todos los juegos</button>
+    </div>
+  </section>
+
+  <section class="seccion como" id="como" aria-labelledby="tComo">
+    <div class="cab">
+      <h2 id="tComo">Cómo funciona</h2>
+      <p>Sesiones cortas, en grupo y siempre con una actividad final sin pantalla.</p>
+    </div>
+    <ol class="pasos">
+      <li><span class="paso-ic" style="--c:var(--c-logica)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></span><h3>Elige el juego</h3><p>Filtra por categoría o edad y mira la ficha: qué se trabaja y cómo se juega.</p></li>
+      <li><span class="paso-ic" style="--c:var(--c-rutinas)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span><h3>Jugad en la pizarra</h3><p>Lolo explica cada reto con su voz. Los niños salen a tocar por turnos. No hay tiempo ni puntos.</p></li>
+      <li><span class="paso-ic" style="--c:var(--c-ciencia)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V6a1.5 1.5 0 0 1 3 0v5M11 11V4.5a1.5 1.5 0 0 1 3 0V11M14 11V6a1.5 1.5 0 0 1 3 0v7c0 4-2.5 7-6 7-2.5 0-4-1-5.5-3L3.5 14a1.5 1.5 0 0 1 2.5-1.5L8 15"/></svg></span><h3>Seguid sin pantalla</h3><p>Cada juego termina con una propuesta manipulativa para el aula.</p></li>
+    </ol>
+    <div class="apoyos">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-8-4.9-8-11A4.5 4.5 0 0 1 12 7.5 4.5 4.5 0 0 1 20 10c0 6.1-8 11-8 11z"/></svg>
+      <p><b>Pensado para toda la clase, también para el alumnado con autismo:</b> agenda visual con pictogramas, anticipación de cada cambio, modo tranquilo, rincón de la calma y la opción de tocar en lugar de arrastrar.</p>
     </div>
   </section>
 </main>
 
 <footer class="pie">
-  <svg class="fondo-marino" viewBox="0 -24 1600 144" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <g fill="none" stroke-linecap="round"><path d="M640 120C624 96 656 82 640 58S660 26 650 8" stroke="#1E9E6E" stroke-width="14"/><path d="M968 120C984 98 954 84 970 62" stroke="#2EC08A" stroke-width="12"/></g>
-    <g fill="none" stroke-linecap="round">
-      <path d="M70 120C52 92 92 76 72 50S96 18 84 0" stroke="#1E9E6E" stroke-width="16"/>
-      <path d="M104 120C90 98 120 86 106 64" stroke="#2EC08A" stroke-width="11"/>
-      <path d="M430 120C414 100 444 88 430 66" stroke="#2EC08A" stroke-width="12"/>
-      <path d="M1180 120C1196 96 1164 80 1184 54S1170 22 1182 4" stroke="#1E9E6E" stroke-width="16"/>
-      <path d="M1214 120C1228 100 1204 88 1218 70" stroke="#2EC08A" stroke-width="11"/>
-      <path d="M1520 120C1504 94 1536 80 1520 56" stroke="#1E9E6E" stroke-width="14"/>
-    </g>
-    <g fill="#A8B3C2" stroke="#7D8A9C" stroke-width="4">
-      <path d="M240 120q-6-34 30-44q34-8 46 22q8 22-4 22z"/><path d="M880 120q-4-22 22-28q24-4 30 18l2 10z"/><path d="M1380 120q-8-30 26-38q30-6 40 20l4 18z"/>
-    </g>
-    <g fill="none" stroke="#FF5D8F" stroke-width="8" stroke-linecap="round"><path d="M760 120v-30M760 104q-14-4-16-20M760 98q14-4 14-20"/></g>
-  </svg>
-  <div class="arena" aria-hidden="true"></div>
-  <p>No recoge datos personales · Funciona sin conexión · Cada juego incluye su guía docente</p>
+  <div class="pie-in">
+    <span class="logo-pie">La visita de Lolo</span>
+    <span>Educación Infantil · Basado en el currículo de Andalucía · No recoge datos personales · Funciona sin conexión</span>
+  </div>
 </footer>
 
-<div class="inmersion" id="inmersion" aria-hidden="true"></div>
+<div class="ficha-fondo" id="fichaFondo" hidden></div>
+<aside class="ficha" id="ficha" role="dialog" aria-modal="true" aria-labelledby="fichaT" hidden>
+  <div class="ficha-cab" id="fichaCab">
+    <button class="ficha-cerrar" id="fichaCerrar" type="button" aria-label="Cerrar la ficha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <span class="ficha-ic" id="fichaIc"></span>
+  </div>
+  <div class="ficha-cuerpo">
+    <p class="ficha-meta" id="fichaMeta"></p>
+    <h2 id="fichaT"></h2>
+    <p class="ficha-desc" id="fichaDesc"></p>
+    <h3>Qué se trabaja</h3>
+    <ul class="ficha-lista" id="fichaTrabaja"></ul>
+    <h3>Cómo se juega</h3>
+    <p class="ficha-como" id="fichaComo"></p>
+  </div>
+  <div class="ficha-pie">
+    <a class="btn btn-grande btn-primario" id="fichaJugar" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Jugar ahora</a>
+  </div>
+</aside>
+
+<div class="lanzador" id="lanzador" aria-hidden="true"><div class="lanzador-in"><span class="lanzador-ic" id="lanzadorIc"></span><span class="lanzador-t" id="lanzadorT"></span></div></div>
 
 <script src="js/portada.js"></script>
 </body>

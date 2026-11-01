@@ -1,4 +1,4 @@
-// Pruebas de la portada: elegir y lanzar juegos.
+// Pruebas de la portada: explorar, conocer y lanzar los juegos.
 const { test, expect } = require('@playwright/test');
 
 let errores;
@@ -10,35 +10,64 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(() => { expect(errores, 'errores en la consola').toEqual([]); });
 
-test('muestra a Lolo, la pregunta y los 18 juegos', async ({ page }) => {
+test('muestra la portada con Lolo, las categorías y los 18 juegos', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('La visita de Lolo');
-  await expect(page.locator('#pregunta')).toHaveText('¿Qué trabajamos hoy?');
-  await expect(page.locator('.juego')).toHaveCount(18);
-  await expect(page.locator('#hoy > *')).toHaveCount(4);
+  await expect(page.locator('h1')).toContainText('Aprender jugando');
+  await expect(page.locator('#ctaHoy')).toBeVisible();
+  await expect(page.locator('.cat')).toHaveCount(5);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(18);
 });
 
-test('filtra por objetivo y por edad', async ({ page }) => {
+test('una categoría filtra los juegos y lleva hasta ellos', async ({ page }) => {
   await page.goto('/');
-  await page.click('.chip[data-k="numeros"]');
-  await expect(page.locator('#tJuegos')).toHaveText('Juegos para «contar»');
-  await expect(page.locator('.juego')).toHaveCount(5);
-  await page.click('#edades button[data-e="5"]');
-  await expect(page.locator('.juego')).toHaveCount(3);
-  await page.click('.chip[data-k="moverse"]');
-  await page.click('#edades button[data-e="3"]');
-  await expect(page.locator('.juego')).toHaveCount(2);
+  await page.locator('.cat[data-cat="logica"]').click();
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(6);
+  await expect(page.locator('.pestana[data-cat="logica"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#cuantos')).toContainText('6 de 18 juegos');
 });
 
-test('combina objetivo y edad', async ({ page }) => {
+test('filtra por edad y por búsqueda', async ({ page }) => {
   await page.goto('/');
-  await page.click('.chip[data-k="ciencia"]');
-  await page.click('#edades button[data-e="3"]');
-  await page.click('.chip[data-k="pensar"]');
-  await expect(page.locator('.juego')).toHaveCount(1);
-  await page.click('.chip[data-k="moverse"]');
   await page.click('#edades button[data-e="5"]');
-  await expect(page.locator('.juego')).toHaveCount(1);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(14);
+  await page.fill('#buscar', 'robot');
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(1);
+  await page.fill('#buscar', 'xyz');
+  await expect(page.locator('#vacio')).toBeVisible();
+  await page.click('#limpiar');
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(18);
+});
+
+test('la ficha explica el juego y lo lanza', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.tarjeta[data-id="formas"] h3').click();
+  await expect(page.locator('#ficha')).toBeVisible();
+  await expect(page.locator('#fichaT')).toHaveText('Formas geométricas');
+  await expect(page.locator('#fichaTrabaja li')).toHaveCount(3);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#ficha')).toBeHidden();
+  await page.locator('.tarjeta[data-id="robot"] h3').click();
+  await page.click('#fichaJugar');
+  await page.waitForURL(/jugar\.html#robot$/);
+  await expect(page.locator('#actualT')).toHaveText('El robot perdido');
+});
+
+test('«Jugar» abre el juego directamente y aparece en recientes', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('.tarjeta[data-id="cuenta"] .jugar').click();
+  await page.waitForURL(/jugar\.html#cuenta$/);
+  await page.click('.btn-inicio');
+  await page.waitForURL(/\/(index\.html)?$/);
+  await expect(page.locator('#recientes')).toBeVisible();
+  await expect(page.locator('.reciente[data-id="cuenta"]')).toBeVisible();
+});
+
+test('la rutina de hoy abre La visita de Lolo', async ({ page }) => {
+  await page.goto('/');
+  await page.click('#ctaHoy');
+  await page.waitForURL(/jugar\.html#lolo$/);
+  await expect(page.locator('#actualT')).toHaveText('La visita de Lolo');
 });
 
 test('la edad elegida se recuerda en los juegos', async ({ page }) => {
@@ -49,27 +78,20 @@ test('la edad elegida se recuerda en los juegos', async ({ page }) => {
   await expect(page.locator('.edad-f[data-e="4"]')).toHaveAttribute('aria-pressed', 'true');
 });
 
-test('tocar un juego lo abre y aparece en «jugados hace poco»', async ({ page }) => {
-  await page.goto('/');
-  await page.locator('.juego[data-id="robot"]').click();
-  await page.waitForURL(/jugar\.html#robot$/);
-  await expect(page.locator('#actualT')).toHaveText('El robot perdido');
-  await page.click('.btn-inicio');
-  await page.waitForURL(/\/(index\.html)?$/);
-  await expect(page.locator('.mini[data-id="robot"]')).toBeVisible();
-});
-
-test('los enlaces funcionan sin animación en modo tranquilo', async ({ page }) => {
+test('en modo tranquilo se lanza sin animación', async ({ page }) => {
   await page.goto('/');
   await page.click('#btnCalma');
   await expect(page.locator('html')).toHaveClass(/calma/);
-  await page.locator('.juego[data-id="formas"]').click();
+  await page.locator('.tarjeta[data-id="formas"] .jugar').click();
   await page.waitForURL(/jugar\.html#formas$/);
   await expect(page.locator('html')).toHaveClass(/calma/);
 });
 
 test('la portada no se sale de la pantalla a lo ancho', async ({ page }) => {
   await page.goto('/');
-  const ancho = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(ancho).toBeLessThanOrEqual(1);
+  for (const y of [0, 900, 2000, 99999]) {
+    await page.evaluate(v => scrollTo(0, v), y);
+    const ancho = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(ancho).toBeLessThanOrEqual(1);
+  }
 });

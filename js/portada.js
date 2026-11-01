@@ -1,15 +1,17 @@
-/* Portada de La visita de Lolo: elegir y lanzar juegos. */
+/* Portada de La visita de Lolo: explorar, conocer y lanzar los juegos. */
 (() => {
   'use strict';
   const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
   const html = document.documentElement;
+  html.classList.add('js');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const lee = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } };
   const guarda = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
   let calma = lee('lolo-calma', '0') === '1';
   const quieto = () => reduce || calma;
 
-  /* ---------- iconos (trazo, 24×24) ---------- */
+  /* ---------- iconos de trazo (24×24) ---------- */
   const IC = {
     lolo: '<circle cx="12" cy="10" r="6"/><path d="M8 15l-2 5M11 16l-1 5M13 16l1 5M16 15l2 5"/><circle cx="10" cy="9.5" r=".8" fill="currentColor"/><circle cx="14" cy="9.5" r=".8" fill="currentColor"/>',
     caja: '<rect x="3.5" y="10" width="17" height="11" rx="2"/><path d="M2.5 7h19v3h-19zM12 7v14M12 7c-2-4-6-3.5-5 0M12 7c2-4 6-3.5 5 0"/>',
@@ -29,149 +31,166 @@
     emociones: '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5q3.5 3 7 0"/><path d="M8 9.5h2M14 9.5h2"/>',
     muevete: '<circle cx="13" cy="4" r="2"/><path d="M8 9l4-2 3 3 3 1M12 7l-1 6 4 3v5M11 13l-4 3-3-1"/>',
     caza: '<path d="M4 20L14 10"/><path d="M15 9l1.4-4 1 3.6 3.6 1-3.6 1-1 3.6-1-3.6z"/><circle cx="7" cy="6" r="1"/><circle cx="19" cy="17" r="1"/>',
-    todo: '<rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>',
-    reloj: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'
+    flecha: '<path d="M5 12h14M13 6l6 6-6 6"/>'
   };
-  const svg = (k) => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
+  const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
+  const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 
   /* ---------- catálogo ---------- */
-  const CATS = {
-    rutinas: { t: 'Rutinas y asamblea', c: 'var(--c-rutinas)' },
-    lenguaje: { t: 'Lenguaje y emociones', c: 'var(--c-lenguaje)' },
-    logica: { t: 'Lógica y matemáticas', c: 'var(--c-logica)' },
-    retos: { t: 'Retos y cooperación', c: 'var(--c-retos)' },
-    ciencia: { t: 'Ciencia y manipulación', c: 'var(--c-ciencia)' }
-  };
+  const CATS = [
+    { k: 'rutinas', t: 'Rutinas y asamblea', corto: 'Rutinas', c: 'var(--c-rutinas)', ic: 'lolo', d: 'Para empezar el día: saludo, emociones y movimiento.' },
+    { k: 'lenguaje', t: 'Lenguaje y emociones', corto: 'Lenguaje', c: 'var(--c-lenguaje)', ic: 'cuento', d: 'Cuentos, preguntas y reconocer cómo nos sentimos.' },
+    { k: 'logica', t: 'Lógica y matemáticas', corto: 'Lógica', c: 'var(--c-logica)', ic: 'formas', d: 'Contar, formas, series, tamaños y memoria.' },
+    { k: 'retos', t: 'Retos y cooperación', corto: 'Retos', c: 'var(--c-retos)', ic: 'duo', d: 'Resolver juntos: candados, robots y parejas.' },
+    { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' }
+  ];
+  const cat = Object.fromEntries(CATS.map(c => [c.k, c]));
   const JUEGOS = [
-    { id: 'lolo', t: 'La visita de Lolo', cat: 'rutinas', e: [3, 4], obj: ['lenguaje', 'emociones', 'moverse', 'numeros'], d: 'Asamblea con Lolo: una rutina distinta para cada día de la semana.' },
-    { id: 'jardin', t: 'El jardín de la clase', cat: 'rutinas', e: [3, 4, 5], obj: ['emociones'], d: 'Un jardín de toda la clase que crece con cada logro del grupo.' },
-    { id: 'muevete', t: 'Muévete y responde', cat: 'rutinas', e: [3, 4, 5], obj: ['moverse', 'numeros'], d: 'Saltar números, imitar animales, señales de colores y estatuas.' },
-    { id: 'caja', t: 'La caja misteriosa', cat: 'lenguaje', e: [3, 4, 5], obj: ['lenguaje', 'pensar'], d: 'Una imagen escondida y la rutina Veo, Pienso, Me pregunto.' },
-    { id: 'cuento', t: 'El cuento que decidimos', cat: 'lenguaje', e: [3, 4, 5], obj: ['lenguaje', 'emociones'], d: 'Un cuento con tres decisiones que vota toda la clase.' },
-    { id: 'emociones', t: 'Las emociones de Lolo', cat: 'lenguaje', e: [3, 4, 5], obj: ['emociones'], d: 'Reconocer cómo se sienten los personajes y pensar cómo ayudarles.' },
-    { id: 'cuenta', t: 'Cuenta y toca', cat: 'logica', e: [3, 4], obj: ['numeros'], d: 'Contar objetos del 1 al 5 y elegir el número.' },
-    { id: 'series', t: 'Series y patrones', cat: 'logica', e: [4, 5], obj: ['formas', 'pensar'], d: 'Completar series de colores, formas y tamaños.' },
-    { id: 'cestas', t: 'Clasifica en cestas', cat: 'logica', e: [3, 4], obj: ['formas'], d: 'Clasificar juguetes por color, forma o tamaño.' },
-    { id: 'tamanos', t: 'Grande, mediano, pequeño', cat: 'logica', e: [3, 4], obj: ['formas'], d: 'Ordenar de pequeño a grande.' },
-    { id: 'parejas', t: 'Encuentra la pareja', cat: 'logica', e: [3, 4, 5], obj: ['numeros', 'formas'], d: 'Memory de colores, animales y números.' },
-    { id: 'formas', t: 'Formas geométricas', cat: 'logica', e: [3, 4, 5], obj: ['formas'], d: 'Encajar cada forma en su silueta.' },
-    { id: 'duo', t: 'Juego a dúo', cat: 'retos', e: [4, 5], obj: ['emociones', 'formas'], d: 'Dos niños, cada uno con su mitad de la pantalla: solo ganan juntos.' },
-    { id: 'escape', t: 'Mini-escape de colores', cat: 'retos', e: [4, 5], obj: ['pensar', 'formas'], d: 'Tres candados de colores, formas y sonidos para rescatar a Paco.' },
-    { id: 'robot', t: 'El robot perdido', cat: 'retos', e: [4, 5], obj: ['pensar'], d: 'Programar con flechas el camino de un robot, en pantalla y en el suelo.' },
-    { id: 'quepasa', t: '¿Qué pasa si…?', cat: 'ciencia', e: [4, 5], obj: ['ciencia'], d: 'Predecir, probar y registrar: flotar y hundirse, mezclar colores.' },
-    { id: 'construye', t: 'Toca, construye y comprueba', cat: 'ciencia', e: [3, 4, 5], obj: ['ciencia', 'numeros'], d: 'Copiar torres con bloques de verdad y comprobarlas en la pizarra.' },
-    { id: 'caza', t: 'Caza mágica', cat: 'ciencia', e: [3, 4, 5], obj: ['ciencia', 'lenguaje'], d: 'Animales y planetas que aparecen por arte de magia y se esconden.' }
+    { id: 'lolo', t: 'La visita de Lolo', cat: 'rutinas', e: [3, 4], d: 'La asamblea con Lolo, con una rutina distinta para cada día de la semana.',
+      tr: ['Emociones y autorregulación', 'Colores, números, cuerpo y música según el día', 'Anticipación con agenda visual'], como: 'Lolo saluda, pregunta cómo estáis y propone dos retos y un juego de movimiento. Al final, una actividad sin pantalla.' },
+    { id: 'jardin', t: 'El jardín de la clase', cat: 'rutinas', e: [3, 4, 5], d: 'Un jardín de toda la clase que crece con cada logro del grupo.',
+      tr: ['Cooperación y sentido de grupo', 'Hábitos del aula', 'Refuerzo positivo sin puntos individuales'], como: 'Cada reto superado en cualquier juego hace crecer una flor. También podéis apuntar logros de clase, como recoger o ayudarse.' },
+    { id: 'muevete', t: 'Muévete y responde', cat: 'rutinas', e: [3, 4, 5], d: 'Saltar números, imitar animales, señales de colores y estatuas.',
+      tr: ['Coordinación y esquema corporal', 'Atención y control de impulsos', 'Conteo con el cuerpo'], como: 'Cinco retos de movimiento delante de la pizarra. La maestra marca el ritmo con «¡Lo hemos hecho!».' },
+    { id: 'caja', t: 'La caja misteriosa', cat: 'lenguaje', e: [3, 4, 5], d: 'Una imagen escondida bajo seis ventanitas y la rutina Veo, Pienso, Me pregunto.',
+      tr: ['Observación y vocabulario', 'Formular hipótesis', 'Hacer preguntas'], como: 'Un niño elige qué ventanita abrir y Lolo pregunta: ¿qué veis?, ¿qué pensáis?, ¿qué os preguntáis? Las ideas se apuntan en el muro.' },
+    { id: 'cuento', t: 'El cuento que decidimos', cat: 'lenguaje', e: [3, 4, 5], d: 'Un cuento con tres decisiones que vota toda la clase.',
+      tr: ['Comprensión oral', 'Tomar decisiones en grupo', 'Secuencia de una historia'], como: 'Lolo cuenta la historia y, en cada cruce, los niños salen a votar. El final cambia según lo que elijáis.' },
+    { id: 'emociones', t: 'Las emociones de Lolo', cat: 'lenguaje', e: [3, 4, 5], d: 'Reconocer cómo se sienten los personajes y pensar cómo ayudarles.',
+      tr: ['Alegría, tristeza, enfado, miedo y sorpresa', 'Empatía', 'Proponer soluciones'], como: 'En cada situación, la clase elige la emoción y después cómo ayudar. «Tenemos otra idea» acepta las propuestas de los niños.' },
+    { id: 'cuenta', t: 'Cuenta y toca', cat: 'logica', e: [3, 4], d: 'Contar objetos del 1 al 5 y elegir el número correcto.',
+      tr: ['Conteo uno a uno', 'Asociar cantidad y cifra', 'Números del 1 al 5'], como: 'Los niños tocan cada objeto para contarlo y Lolo dice el número en voz alta. Después eligen la cifra.' },
+    { id: 'series', t: 'Series y patrones', cat: 'logica', e: [4, 5], d: 'Completar series de colores, formas y tamaños.',
+      tr: ['Patrones AB, ABC y AAB', 'Atención visual', 'Anticipación lógica'], como: 'Lolo lee la fila en voz alta y la clase elige qué pieza va después. Cinco retos de dificultad creciente.' },
+    { id: 'cestas', t: 'Clasifica en cestas', cat: 'logica', e: [3, 4], d: 'Clasificar juguetes por color, forma o tamaño.',
+      tr: ['Clasificación por un criterio', 'Colores y formas básicas', 'Grande y pequeño'], como: 'Se arrastra cada juguete a su cesta, o se toca el juguete y luego la cesta.' },
+    { id: 'tamanos', t: 'Grande, mediano, pequeño', cat: 'logica', e: [3, 4], d: 'Ordenar de pequeño a grande.',
+      tr: ['Comparar tamaños', 'Seriación de tres elementos', 'Vocabulario de medida'], como: 'Tres objetos iguales de distinto tamaño se llevan a su sitio. En los últimos retos desaparece la silueta de ayuda.' },
+    { id: 'parejas', t: 'Encuentra la pareja', cat: 'logica', e: [3, 4, 5], d: 'Memory de colores, animales y números.',
+      tr: ['Memoria visual', 'Turnos y espera', 'Vocabulario'], como: 'Las cartas se ven unos segundos y se dan la vuelta. Lolo nombra cada carta que se levanta.' },
+    { id: 'formas', t: 'Formas geométricas', cat: 'logica', e: [3, 4, 5], d: 'Encajar cada forma en su silueta.',
+      tr: ['Círculo, cuadrado, triángulo y más', 'Discriminación visual', 'Motricidad fina'], como: 'Se arrastra cada forma a su silueta, o se toca la forma y luego la silueta.' },
+    { id: 'duo', t: 'Juego a dúo', cat: 'retos', e: [4, 5], d: 'Dos niños, cada uno con su mitad de la pantalla: solo ganan juntos.',
+      tr: ['Cooperación e interdependencia', 'Colores y formas', 'Escucha atenta'], como: 'Uno elige el color y el otro la forma de lo que pide Lolo. Solo se consigue si aciertan los dos.' },
+    { id: 'escape', t: 'Mini-escape de colores', cat: 'retos', e: [4, 5], d: 'Tres candados para rescatar al cangrejo Paco, sin tiempo límite.',
+      tr: ['Secuencias de colores', 'Formas y discriminación auditiva', 'Resolución de problemas'], como: 'Cada candado es un reto distinto: una secuencia de colores, una llave con forma y un sonido. Al abrirlos, Paco queda libre.' },
+    { id: 'robot', t: 'El robot perdido', cat: 'retos', e: [4, 5], d: 'Programar con flechas el camino de un robot, en pantalla y en el suelo.',
+      tr: ['Pensamiento computacional', 'Orientación espacial', 'Probar, equivocarse y corregir'], como: 'La clase hace el programa con flechas y pulsa «¡Adelante!». Si el robot se choca, se arregla el programa. Después se copia en el robot de suelo.' },
+    { id: 'quepasa', t: '¿Qué pasa si…?', cat: 'ciencia', e: [4, 5], d: 'Predecir, probar y registrar: flotar y hundirse, mezclar colores.',
+      tr: ['Hacer predicciones', 'Experimentar con materiales reales', 'Registrar resultados'], como: 'La clase vota qué cree que pasará, lo prueba de verdad y anota el resultado en la tabla de la pizarra.' },
+    { id: 'construye', t: 'Toca, construye y comprueba', cat: 'ciencia', e: [3, 4, 5], d: 'Copiar torres con bloques de verdad y comprobarlas en la pizarra.',
+      tr: ['Construcción con bloques', 'Colores y orden', 'Autocomprobación'], como: 'La pizarra muestra una torre, la clase la construye con bloques reales y después la comprueba bloque a bloque.' },
+    { id: 'caza', t: 'Caza mágica', cat: 'ciencia', e: [3, 4, 5], d: 'Animales y planetas que aparecen por arte de magia y se esconden.',
+      tr: ['Curiosidad y vocabulario', 'Datos sencillos del mundo', 'Atención y búsqueda'], como: 'Con «¡Abracadabra!» aparece un animal o un planeta que cuenta un dato y se esconde. La clase lo busca.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
-  const OBJETIVOS = [
-    { k: 'todo', t: 'Todo', ic: 'todo', c: 'var(--tinta)', frase: '¿Qué trabajamos hoy?' },
-    { k: 'numeros', t: 'Contar', ic: 'cuenta', c: 'var(--c-logica)', frase: '¡A contar! Uno, dos, tres…' },
-    { k: 'formas', t: 'Formas y colores', ic: 'formas', c: '#E0870A', frase: 'Formas, colores y tamaños' },
-    { k: 'lenguaje', t: 'Hablar y escuchar', ic: 'cuento', c: 'var(--c-lenguaje)', frase: '¡Hablamos y escuchamos!' },
-    { k: 'emociones', t: 'Emociones', ic: 'emociones', c: 'var(--c-retos)', frase: '¿Cómo nos sentimos?' },
-    { k: 'moverse', t: 'Movernos', ic: 'muevete', c: '#E8641F', frase: '¡A movernos!' },
-    { k: 'pensar', t: 'Pensar y resolver', ic: 'robot', c: '#1F8FA3', frase: 'Pensamos y resolvemos' },
-    { k: 'ciencia', t: 'Experimentar', ic: 'quepasa', c: 'var(--c-ciencia)', frase: '¿Qué pasará si…?' }
-  ];
-  const EDADES = [[0, 'Todas'], [3, '3 años'], [4, '4 años'], [5, '5 años']];
-  const DIAS = [
-    null,
-    { n: 'Lunes', c: '#FFC93C', r: 'El tiempo y los colores' },
-    { n: 'Martes', c: '#FF8FB1', r: 'Contar y grande o pequeño' },
-    { n: 'Miércoles', c: '#7FD9A4', r: 'Mi cuerpo y lavarse las manos' },
-    { n: 'Jueves', c: '#C3A6FF', r: 'Los animales y los instrumentos' },
-    { n: 'Viernes', c: '#8FDDE8', r: 'Ayudar y lo que más nos gustó' }
-  ];
-
-  let objetivo = 'todo';
-  let edad = +lee('lolo-edad', '0') || 0;
+  const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
   const edadTxt = e => e.length === 1 ? `${e[0]} años` : `${e[0]}–${e[e.length - 1]} años`;
-  const ojoBuey = id => `<span class="ojo-buey"><span class="cristal">${svg(id)}<i></i><i></i><i></i></span></span>`;
+  const sinTilde = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+  let filtroCat = 'todas', edad = +lee('lolo-edad', '0') || 0, busca = '';
 
   /* ---------- pintar ---------- */
-  function pintaChips() {
-    $('#chips').innerHTML = OBJETIVOS.map(o => `<button class="chip" type="button" data-k="${o.k}" style="--c:${o.c}" aria-pressed="${o.k === objetivo}"><span class="ci">${svg(o.ic)}</span>${o.t}</button>`).join('');
-    $('#edades').innerHTML = EDADES.map(([v, t]) => `<button type="button" data-e="${v}" aria-pressed="${v === edad}">${t}</button>`).join('');
+  function pintaCategorias() {
+    $('#listaCat').innerHTML = CATS.map(c => {
+      const n = JUEGOS.filter(j => j.cat === c.k).length;
+      return `<button class="cat revela" type="button" data-cat="${c.k}" style="--c:${c.c}"><span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p><span class="cat-n">${n} juegos ${svg('flecha')}</span></button>`;
+    }).join('');
   }
-  function tarjeta(j, i) {
-    const c = CATS[j.cat];
-    return `<a class="juego" href="jugar.html#${j.id}" data-id="${j.id}" style="--c:${c.c};--i:${i}">${ojoBuey(j.id)}<h3>${j.t}</h3><p>${j.d}</p><span class="etiquetas"><span class="cat">${c.t}</span><span class="edad">${edadTxt(j.e)}</span></span></a>`;
+  function pintaFiltros() {
+    $('#pestanas').innerHTML = [{ k: 'todas', t: 'Todas', c: 'var(--tinta)' }, ...CATS].map(c => `<button class="pestana" type="button" data-cat="${c.k}" style="--c:${c.c}" aria-pressed="${c.k === filtroCat}" title="${c.t}"><i></i>${c.corto || c.t}</button>`).join('');
+    $('#edades').innerHTML = [[0, 'Todas'], [3, '3'], [4, '4'], [5, '5']].map(([v, t]) => `<button type="button" data-e="${v}" aria-pressed="${v === edad}" aria-label="${v ? v + ' años' : 'Todas las edades'}">${t}</button>`).join('');
   }
-  function pintaJuegos() {
-    const lista = JUEGOS.filter(j => (objetivo === 'todo' || j.obj.includes(objetivo)) && (!edad || j.e.includes(edad)));
-    $('#rejilla').innerHTML = lista.map(tarjeta).join('');
-    $('#vacio').hidden = lista.length > 0;
-    const o = OBJETIVOS.find(x => x.k === objetivo);
-    $('#tJuegos').textContent = objetivo === 'todo' ? 'Todos los juegos' : `Juegos para «${o.t.toLowerCase()}»`;
-    $('#cuantos').textContent = lista.length === JUEGOS.length ? '18 juegos' : `${lista.length} de 18 juegos${edad ? ` · ${edad} años` : ''}`;
+  const tarjeta = j => {
+    const c = cat[j.cat];
+    return `<article class="tarjeta" data-id="${j.id}" style="--c:${c.c}" tabindex="0" aria-label="${j.t}. ${c.t}, ${edadTxt(j.e)}. Abrir ficha">
+      <div class="tarjeta-media"><span class="tarjeta-ic">${svg(j.id)}</span><span class="tarjeta-edad">${edadTxt(j.e)}</span></div>
+      <div class="tarjeta-cuerpo"><span class="tarjeta-cat">${c.t}</span><h3>${j.t}</h3><p>${j.d}</p>
+        <div class="tarjeta-pie"><button class="tarjeta-mas" type="button" tabindex="-1">Ver ficha</button><a class="jugar" href="jugar.html#${j.id}" data-id="${j.id}">${PLAY}Jugar</a></div></div></article>`;
+  };
+  // Las 18 tarjetas se crean una vez; filtrar las oculta y anima las que se recolocan (FLIP).
+  function montaRejilla() { $('#rejilla').innerHTML = JUEGOS.map(tarjeta).join(''); }
+  function visible(j) {
+    if (filtroCat !== 'todas' && j.cat !== filtroCat) return false;
+    if (edad && !j.e.includes(edad)) return false;
+    if (busca) { const q = sinTilde(busca); if (!sinTilde(j.t + ' ' + j.d + ' ' + cat[j.cat].t).includes(q)) return false; }
+    return true;
+  }
+  function filtra(animar = true) {
+    const tarjetas = $$('.tarjeta');
+    const antes = new Map(tarjetas.filter(t => !t.hidden).map(t => [t, t.getBoundingClientRect()]));
+    let n = 0, i = 0;
+    tarjetas.forEach(t => { const v = visible(porId[t.dataset.id]); t.hidden = !v; if (v) n++; });
+    if (animar && !quieto()) {
+      tarjetas.filter(t => !t.hidden).forEach(t => {
+        const a = antes.get(t), b = t.getBoundingClientRect();
+        if (a) {
+          const dx = a.left - b.left, dy = a.top - b.top;
+          if (dx || dy) t.animate([{ transform: `translate(${dx}px,${dy}px)` }, { transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.23,1,.32,1)' });
+        } else { t.classList.remove('entra'); void t.offsetWidth; t.style.setProperty('--i', i++); t.classList.add('entra'); }
+      });
+    }
+    $('#vacio').hidden = n > 0;
+    const partes = [];
+    if (filtroCat !== 'todas') partes.push(cat[filtroCat].t);
+    if (edad) partes.push(`${edad} años`);
+    if (busca) partes.push(`«${busca}»`);
+    $('#cuantos').textContent = n === JUEGOS.length ? '18 juegos' : `${n} de 18 juegos${partes.length ? ' · ' + partes.join(' · ') : ''}`;
+  }
+  function pintaRecientes() {
+    let r = [];
+    try { r = JSON.parse(lee('lolo-recientes', '[]')).filter(id => porId[id]).slice(0, 4); } catch (e) {}
+    $('#recientes').hidden = !r.length;
+    $('#recientesFila').innerHTML = r.map(id => { const j = porId[id]; return `<a class="reciente" href="jugar.html#${id}" data-id="${id}" style="--c:${cat[j.cat].c}"><span>${svg(id)}</span>${j.t}</a>`; }).join('');
   }
   function pintaHoy() {
-    const d = new Date().getDay(), dia = DIAS[d];
-    let recientes = [];
-    try { recientes = JSON.parse(lee('lolo-recientes', '[]')).filter(id => porId[id] && id !== 'lolo').slice(0, 3); } catch (e) {}
-    const logros = +lee('lolo-jardin', '0') || 0;
-    const dest = dia
-      ? `<a class="destacada" href="jugar.html#lolo" data-id="lolo" style="--dia:${dia.c}"><span class="dia"><span><b>${dia.n.slice(0, 2)}</b>${dia.n}</span></span><span><strong>La visita de Lolo · ${dia.n.toLowerCase()}</strong><span class="txt">Rutina de hoy: ${dia.r}.</span></span></a>`
-      : `<a class="destacada" href="jugar.html#lolo" data-id="lolo" style="--dia:#FFC93C"><span class="dia"><span><b>Lu</b>Lunes</span></span><span><strong>La visita de Lolo</strong><span class="txt">Hoy no hay clase: prepara la rutina del lunes.</span></span></a>`;
-    const minis = recientes.map(id => { const j = porId[id]; return `<a class="mini" href="jugar.html#${id}" data-id="${id}" style="--c:${CATS[j.cat].c}">${ojoBuey(id)}<span><strong>${j.t}</strong><span class="txt">Jugado hace poco</span></span></a>`; });
-    if (minis.length < 3) minis.push(`<a class="mini" href="jugar.html#jardin" data-id="jardin" style="--c:var(--c-rutinas)">${ojoBuey('jardin')}<span><strong>El jardín de la clase</strong><span class="txt">${logros ? `${logros} ${logros === 1 ? 'logro' : 'logros'} conseguidos entre todos` : 'Cada reto superado hace crecer el jardín'}</span></span></a>`);
-    // Huecos libres: sugerencias de Lolo según la edad elegida (sin repetir lo que ya se ve).
-    const vistos = new Set(['lolo', 'jardin', ...recientes]);
-    const sug = JUEGOS.filter(j => !vistos.has(j.id) && (!edad || j.e.includes(edad)));
-    const dia0 = Math.floor(Date.now() / 864e5);
-    for (let i = 0; minis.length < 3 && sug.length; i++) { const j = sug.splice((dia0 + i * 7) % sug.length, 1)[0]; minis.push(`<a class="mini" href="jugar.html#${j.id}" data-id="${j.id}" style="--c:${CATS[j.cat].c}">${ojoBuey(j.id)}<span><strong>${j.t}</strong><span class="txt">Sugerencia de Lolo · ${edadTxt(j.e)}</span></span></a>`); }
-    $('#hoy').innerHTML = dest + minis.join('');
+    const d = DIAS[new Date().getDay()];
+    $('#ctaHoyT').textContent = d ? `Empezar la rutina del ${d}` : 'Preparar la rutina del lunes';
+    $('#ctaHoyS').textContent = 'La visita de Lolo · 10 minutos';
   }
 
-  /* ---------- Lolo ---------- */
+  /* ---------- Lolo y su órbita ---------- */
   const lolo = $('#lolo');
   (function tentaculos() {
     const defs = [[62, 140, 30, 175, 44, 226], [88, 156, 70, 196, 78, 238], [112, 162, 108, 206, 104, 244], [136, 162, 140, 206, 150, 242], [158, 154, 178, 194, 174, 236]];
     const q = (a, b, c, t) => (1 - t) * (1 - t) * a + 2 * (1 - t) * t * b + t * t * c;
     $('#tentaculos').innerHTML = defs.map(([x0, y0, cx, cy, x1, y1]) => `<g class="tent"><path d="M${x0} ${y0} Q${cx} ${cy} ${x1} ${y1}" stroke="url(#gTent)" stroke-width="24" stroke-linecap="round" fill="none"/>${[.45, .7, .9].map((t, i) => `<circle cx="${q(x0, cx, x1, t).toFixed(1)}" cy="${q(y0, cy, y1, t).toFixed(1)}" r="${5 - i}" fill="#FFD7B0" stroke="#F0A070" stroke-width="1.5"/>`).join('')}</g>`).join('');
   })();
-  // Lolo sigue con la mirada el dedo o el puntero (con algo de inercia).
+  $('#orbita').innerHTML = CATS.map((c, i) => {
+    const a = (i / CATS.length) * Math.PI * 2 - Math.PI / 2, x = 50 + Math.cos(a) * 46, y = 50 + Math.sin(a) * 46;
+    return `<span class="orbe" style="--c:${c.c};left:${x.toFixed(2)}%;top:${y.toFixed(2)}%;margin:0;transform:translate(-50%,-50%)"><span class="orbe-in">${svg(c.ic)}</span></span>`;
+  }).join('');
   const pupilas = [...lolo.querySelectorAll('.pupila')];
-  let objetivoMirada = { x: 0, y: 0 }, mirada = { x: 0, y: 0 }, mirando = false;
+  let meta = { x: 0, y: 0 }, mir = { x: 0, y: 0 }, mirando = false;
   function mira(ev) {
     if (quieto()) return;
-    const r = lolo.getBoundingClientRect(), cx = r.left + r.width * .5, cy = r.top + r.height * .38;
-    const dx = ev.clientX - cx, dy = ev.clientY - cy, d = Math.hypot(dx, dy) || 1, m = Math.min(1, d / 400);
-    objetivoMirada = { x: dx / d * 6 * m, y: dy / d * 6 * m };
+    const r = lolo.getBoundingClientRect(); if (r.bottom < 0) return;
+    const dx = ev.clientX - (r.left + r.width * .5), dy = ev.clientY - (r.top + r.height * .38), d = Math.hypot(dx, dy) || 1, m = Math.min(1, d / 420);
+    meta = { x: dx / d * 6 * m, y: dy / d * 6 * m };
     if (!mirando) { mirando = true; requestAnimationFrame(paso); }
   }
   function paso() {
-    mirada.x += (objetivoMirada.x - mirada.x) * .18; mirada.y += (objetivoMirada.y - mirada.y) * .18;
-    pupilas.forEach(p => p.setAttribute('transform', `translate(${mirada.x.toFixed(2)} ${mirada.y.toFixed(2)})`));
-    if (Math.abs(objetivoMirada.x - mirada.x) + Math.abs(objetivoMirada.y - mirada.y) > .05) requestAnimationFrame(paso); else mirando = false;
+    mir.x += (meta.x - mir.x) * .16; mir.y += (meta.y - mir.y) * .16;
+    pupilas.forEach(p => p.setAttribute('transform', `translate(${mir.x.toFixed(2)} ${mir.y.toFixed(2)})`));
+    if (Math.abs(meta.x - mir.x) + Math.abs(meta.y - mir.y) > .05) requestAnimationFrame(paso); else mirando = false;
   }
   addEventListener('pointermove', mira, { passive: true });
-  addEventListener('pointerdown', mira, { passive: true });
-  function asiente() {
-    if (quieto()) return;
-    lolo.classList.remove('asiente'); void lolo.getBoundingClientRect(); lolo.classList.add('asiente');
-    setTimeout(() => lolo.classList.remove('asiente'), 560);
-  }
-  function diFrase(t) {
-    const f = $('#frase'); if (f.textContent === t) return;
-    if (quieto()) { f.textContent = t; return; }
-    f.classList.add('cambia'); setTimeout(() => { f.textContent = t; f.classList.remove('cambia'); }, 180);
-  }
 
-  /* ---------- burbujas del fondo ---------- */
+  /* ---------- burbujas de la cabecera ---------- */
   (function burbujas() {
-    const c = $('#burbujas'), x = c.getContext('2d'); let w, h; const b = [];
-    const tam = () => { w = c.width = innerWidth * devicePixelRatio; h = c.height = innerHeight * devicePixelRatio; };
+    const c = $('#burbujas'), x = c.getContext('2d'), hero = $('.hero'); let w, h, ver = true; const b = [];
+    const tam = () => { const r = hero.getBoundingClientRect(); w = c.width = r.width * devicePixelRatio; h = c.height = r.height * devicePixelRatio; };
     tam(); addEventListener('resize', tam);
-    for (let i = 0; i < 26; i++) b.push({ x: Math.random(), y: Math.random(), r: 2 + Math.random() * 7, v: .0005 + Math.random() * .001, o: Math.random() * 6 });
+    try { new IntersectionObserver(([e]) => { ver = e.isIntersecting; }).observe(hero); } catch (e) {}
+    for (let i = 0; i < 22; i++) b.push({ x: Math.random(), y: Math.random(), r: 2 + Math.random() * 6, v: .0006 + Math.random() * .0012, o: Math.random() * 6 });
     const dib = t => {
-      if (!quieto() && !document.hidden) {
+      if (ver && !quieto() && !document.hidden) {
         x.clearRect(0, 0, w, h);
         b.forEach(p => {
           p.y -= p.v; if (p.y < -.05) { p.y = 1.05; p.x = Math.random(); }
-          const px = (p.x + Math.sin(t / 1500 + p.o) * .008) * w, py = p.y * h, r = p.r * devicePixelRatio;
-          x.beginPath(); x.arc(px, py, r, 0, 7); x.fillStyle = 'rgba(255,255,255,.16)'; x.fill();
-          x.lineWidth = 1.2 * devicePixelRatio; x.strokeStyle = 'rgba(255,255,255,.5)'; x.stroke();
+          const px = (p.x + Math.sin(t / 1600 + p.o) * .01) * w, py = p.y * h, r = p.r * devicePixelRatio;
+          x.beginPath(); x.arc(px, py, r, 0, 7); x.fillStyle = 'rgba(255,255,255,.12)'; x.fill();
+          x.lineWidth = 1.2 * devicePixelRatio; x.strokeStyle = 'rgba(255,255,255,.4)'; x.stroke();
         });
       }
       requestAnimationFrame(dib);
@@ -179,46 +198,101 @@
     requestAnimationFrame(dib);
   })();
 
-  /* ---------- la inmersión: lanzar un juego ---------- */
-  let lanzando = false;
-  function lanza(a, ev) {
-    if (lanzando) return; lanzando = true;
-    const url = a.getAttribute('href');
-    if (quieto()) { location.href = url; return; }
-    const r = a.getBoundingClientRect(), x = ev && ev.clientX ? ev.clientX : r.left + r.width / 2, y = ev && ev.clientY ? ev.clientY : r.top + r.height / 2;
-    a.classList.add('hunde');
-    // Lolo se lanza tras la tarjeta: toma impulso y nada hacia el punto tocado.
-    const lr = lolo.getBoundingClientRect(), lx = lr.left + lr.width / 2, ly = lr.top + lr.height / 2;
-    lolo.animate([
-      { transform: 'none' },
-      { transform: 'translateY(-18px) rotate(-6deg)', offset: .3 },
-      { transform: `translate(${(x - lx) * .85}px, ${(y - ly) * .85}px) rotate(12deg) scale(.45)`, opacity: .2 }
-    ], { duration: 620, easing: 'cubic-bezier(.45,0,.25,1)', fill: 'forwards' });
-    for (let i = 0; i < 14; i++) {
-      const s = 8 + Math.random() * 22, bub = document.createElement('span');
-      bub.className = 'burbuja'; bub.style.cssText = `left:${x - s / 2 + (Math.random() - .5) * r.width * .6}px;top:${y - s / 2}px;width:${s}px;height:${s}px`;
-      document.body.appendChild(bub);
-      bub.animate([{ transform: 'translateY(0) scale(.6)', opacity: 0 }, { opacity: 1, offset: .2 }, { transform: `translateY(${-160 - Math.random() * 260}px) translateX(${(Math.random() - .5) * 60}px) scale(1)`, opacity: 0 }],
-        { duration: 700 + Math.random() * 400, delay: Math.random() * 120, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'forwards' });
-    }
-    const capa = $('#inmersion');
-    capa.style.setProperty('--x', x + 'px'); capa.style.setProperty('--y', y + 'px');
-    $('.lolo-escena').classList.add('lanza');
-    setTimeout(() => capa.classList.add('activa'), 140);
-    setTimeout(() => { location.href = url; }, 700);
-  }
-  // Al volver con el botón «atrás», la página puede restaurarse desde la caché: deshacemos la inmersión.
-  addEventListener('pageshow', () => { lanzando = false; lolo.getAnimations().forEach(an => an.cancel()); $('.lolo-escena').classList.remove('lanza'); $('#inmersion').classList.remove('activa'); document.querySelectorAll('.hunde').forEach(e => e.classList.remove('hunde')); document.querySelectorAll('.burbuja').forEach(e => e.remove()); pintaHoy(); });
+  /* ---------- navegación que se vuelve sólida y barra que se pega ---------- */
+  const nav = $('#nav'), barra = $('#barra');
+  const alDesplazar = () => {
+    nav.classList.toggle('solida', scrollY > 40);
+    const top = barra.getBoundingClientRect().top, navH = nav.getBoundingClientRect().height;
+    barra.classList.toggle('pegada', top <= navH + 1);
+  };
+  addEventListener('scroll', alDesplazar, { passive: true }); alDesplazar();
 
-  document.addEventListener('click', ev => {
-    const a = ev.target.closest('a[data-id]');
-    if (a && !ev.metaKey && !ev.ctrlKey && !ev.shiftKey && ev.button === 0) { ev.preventDefault(); lanza(a, ev); return; }
-    const chip = ev.target.closest('.chip');
-    if (chip) { objetivo = chip.dataset.k; pintaChips(); pintaJuegos(); diFrase(OBJETIVOS.find(o => o.k === objetivo).frase); asiente(); return; }
-    const e = ev.target.closest('#edades button');
-    if (e) { edad = +e.dataset.e; guarda('lolo-edad', String(edad)); pintaChips(); pintaJuegos(); pintaHoy(); asiente(); return; }
-    if (ev.target.closest('#limpiar')) { objetivo = 'todo'; edad = 0; guarda('lolo-edad', '0'); pintaChips(); pintaJuegos(); diFrase(OBJETIVOS[0].frase); }
+  /* ---------- aparecer al desplazarse (contenido visible si no hay soporte) ---------- */
+  function revelar() {
+    const els = $$('.revela, .pasos li, .apoyos, .cab');
+    if (quieto() || !('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('visible')); return; }
+    els.forEach(e => e.classList.add('revela'));
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach((e, i) => { e.style.transitionDelay = (e.classList.contains('cat') || e.closest('.pasos')) ? `${(i % 5) * 60}ms` : '0ms'; io.observe(e); });
+  }
+
+  /* ---------- ficha del juego ---------- */
+  const ficha = $('#ficha'), fondo = $('#fichaFondo');
+  let ultimoFoco = null;
+  function abreFicha(id, origen) {
+    const j = porId[id], c = cat[j.cat];
+    ultimoFoco = origen || document.activeElement;
+    ficha.style.setProperty('--c', c.c); $('#fichaCab').style.setProperty('--c', c.c);
+    $('#fichaIc').innerHTML = svg(id);
+    $('#fichaMeta').innerHTML = `<span>${c.t}</span><span>${edadTxt(j.e)}</span>`;
+    $('#fichaT').textContent = j.t;
+    $('#fichaDesc').textContent = j.d;
+    $('#fichaTrabaja').innerHTML = j.tr.map(x => `<li>${x}</li>`).join('');
+    $('#fichaComo').textContent = j.como;
+    const btn = $('#fichaJugar'); btn.href = `jugar.html#${id}`; btn.dataset.id = id;
+    fondo.hidden = false; ficha.hidden = false;
+    const cuerpo = ficha.querySelector('.ficha-cuerpo'); cuerpo.scrollTop = 0;
+    cuerpo.querySelectorAll(':scope > *').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
+    requestAnimationFrame(() => { fondo.classList.add('abierta'); ficha.classList.add('abierta'); });
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => btn.focus({ preventScroll: true }), quieto() ? 0 : 200);
+  }
+  function cierraFicha() {
+    if (ficha.hidden) return;
+    fondo.classList.remove('abierta'); ficha.classList.remove('abierta');
+    document.body.style.overflow = '';
+    setTimeout(() => { ficha.hidden = true; fondo.hidden = true; }, quieto() ? 0 : 300);
+    if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus({ preventScroll: true });
+  }
+  $('#fichaCerrar').addEventListener('click', cierraFicha);
+  fondo.addEventListener('click', cierraFicha);
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') cierraFicha();
+    if (e.key === 'Tab' && !ficha.hidden) {
+      const f = [...ficha.querySelectorAll('button, a[href]')]; const a = f[0], z = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+      else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+    }
   });
+
+  /* ---------- lanzar: el origen se expande hasta llenar la pantalla ---------- */
+  let lanzando = false;
+  function lanza(el, id) {
+    if (lanzando) return; lanzando = true;
+    const url = `jugar.html#${id}`, j = porId[id];
+    if (quieto()) { location.href = url; return; }
+    const box = (el.closest('.tarjeta') || (ficha.contains(el) ? ficha : el)).getBoundingClientRect();
+    const L = $('#lanzador');
+    L.style.setProperty('--c', cat[j.cat].c);
+    L.style.setProperty('--t', Math.max(0, box.top) + 'px'); L.style.setProperty('--l', Math.max(0, box.left) + 'px');
+    L.style.setProperty('--r', Math.max(0, innerWidth - box.right) + 'px'); L.style.setProperty('--b', Math.max(0, innerHeight - box.bottom) + 'px');
+    $('#lanzadorIc').innerHTML = svg(id); $('#lanzadorT').textContent = j.t;
+    L.classList.remove('activo'); L.style.visibility = 'visible'; void L.offsetWidth; L.style.visibility = '';
+    requestAnimationFrame(() => L.classList.add('activo'));
+    setTimeout(() => { location.href = url; }, 820);
+  }
+  addEventListener('pageshow', () => { lanzando = false; $('#lanzador').classList.remove('activo'); cierraFicha(); pintaRecientes(); });
+
+  /* ---------- eventos ---------- */
+  function irAJuegos() { $('#juegos').scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); }
+  document.addEventListener('click', ev => {
+    const lnk = ev.target.closest('a[data-id]');
+    if (lnk && !ev.metaKey && !ev.ctrlKey && !ev.shiftKey && ev.button === 0) { ev.preventDefault(); lanza(lnk, lnk.dataset.id); return; }
+    const card = ev.target.closest('.tarjeta');
+    if (card) { abreFicha(card.dataset.id, card); return; }
+    const c = ev.target.closest('.cat');
+    if (c) { filtroCat = c.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
+    const p = ev.target.closest('.pestana');
+    if (p) { filtroCat = p.dataset.cat; pintaFiltros(); filtra(); return; }
+    const e = ev.target.closest('#edades button');
+    if (e) { edad = +e.dataset.e; guarda('lolo-edad', String(edad)); pintaFiltros(); filtra(); return; }
+    if (ev.target.closest('#limpiar')) { filtroCat = 'todas'; edad = 0; busca = ''; $('#buscar').value = ''; guarda('lolo-edad', '0'); pintaFiltros(); filtra(); }
+  });
+  document.addEventListener('keydown', ev => {
+    const card = ev.target.closest && ev.target.closest('.tarjeta');
+    if (card && ev.target === card && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); abreFicha(card.dataset.id, card); }
+  });
+  $('#buscar').addEventListener('input', ev => { busca = ev.target.value.trim(); filtra(); });
 
   /* ---------- acciones ---------- */
   function aplicaCalma() { html.classList.toggle('calma', calma); $('#btnCalma').setAttribute('aria-pressed', String(calma)); }
@@ -226,9 +300,9 @@
   const btnP = $('#btnPantalla');
   if (!document.fullscreenEnabled) btnP.hidden = true;
   btnP.addEventListener('click', () => { (document.fullscreenElement ? document.exitFullscreen() : html.requestFullscreen()).catch(() => {}); });
-  document.addEventListener('fullscreenchange', () => { const t = document.fullscreenElement ? 'Salir de pantalla completa' : 'Pantalla completa'; btnP.querySelector('span').textContent = t; btnP.setAttribute('aria-label', t); });
+  document.addEventListener('fullscreenchange', () => { btnP.setAttribute('aria-label', document.fullscreenElement ? 'Salir de pantalla completa' : 'Pantalla completa'); });
 
-  aplicaCalma(); pintaChips(); pintaJuegos(); pintaHoy();
+  aplicaCalma(); pintaHoy(); pintaCategorias(); pintaFiltros(); montaRejilla(); filtra(false); pintaRecientes(); revelar();
 
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });

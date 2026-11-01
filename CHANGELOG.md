@@ -1,5 +1,11 @@
 # Cambios
 
+## 1.2.0 · noviembre de 2026
+
+- Portada rediseñada: navegación fija, portada con una acción principal (la rutina de hoy), categorías, buscador y filtros fijos, ficha de cada juego con qué se trabaja y cómo se juega, sección «Cómo funciona».
+- Animaciones: entrada orquestada, Lolo con órbita de categorías, filtros con recolocación suave, ficha deslizante y lanzador que expande la tarjeta a pantalla completa.
+- Adaptada a pizarra, portátil, tablet y móvil (la ficha pasa a hoja inferior en móvil).
+
 ## 1.1.0 · noviembre de 2026
 
 - Nueva portada con Lolo como protagonista: «¿Qué trabajamos hoy?», filtros por objetivo y edad, fila «Para hoy» (rutina del día, recientes y sugerencias) y transición de inmersión al lanzar un juego.
