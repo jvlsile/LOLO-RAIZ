@@ -2,7 +2,7 @@
    La versión se sustituye automáticamente en cada despliegue (ver .github/workflows/pages.yml). */
 const VERSION = 'lolo-dev';
 const ARCHIVOS = [
-  './', 'index.html', 'css/estilos.css', 'js/app.js', 'manifest.webmanifest',
+  './', 'index.html', 'jugar.html', 'css/portada.css', 'js/portada.js', 'css/estilos.css', 'js/app.js', 'manifest.webmanifest',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
   'fonts/fredoka-latin-500-normal.woff2', 'fonts/fredoka-latin-600-normal.woff2', 'fonts/fredoka-latin-700-normal.woff2',
   'fonts/nunito-latin-600-normal.woff2', 'fonts/nunito-latin-700-normal.woff2', 'fonts/nunito-latin-800-normal.woff2'

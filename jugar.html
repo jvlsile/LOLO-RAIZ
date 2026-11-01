@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La visita de Lolo</title>
+<meta name="description" content="Juegos educativos de Educación Infantil para pizarra digital, tablet y móvil, con rutinas semanales y apoyos para alumnado con autismo.">
+<meta name="theme-color" content="#16698A">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<noscript><p style="padding:24px;font:18px system-ui">Este juego necesita JavaScript. Actívalo en el navegador para jugar.</p></noscript>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <radialGradient id="gLolo" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#FFCB8A"/><stop offset=".5" stop-color="#FF8A3D"/><stop offset="1" stop-color="#DE5A18"/></radialGradient>
+    <linearGradient id="gTent" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A3D"/><stop offset="1" stop-color="#F06A22"/></linearGradient>
+    <radialGradient id="gMejilla"><stop offset="0" stop-color="#FF5D8F" stop-opacity=".7"/><stop offset="1" stop-color="#FF5D8F" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gIris" cx=".4" cy=".35"><stop offset="0" stop-color="#3A5C8C"/><stop offset="1" stop-color="#0E1E3A"/></radialGradient>
+    <radialGradient id="gPez" cx=".35" cy=".3"><stop offset="0" stop-color="#FFE38A"/><stop offset="1" stop-color="#FFB21E"/></radialGradient>
+    <radialGradient id="gBrillo" cx=".3" cy=".25" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset=".35" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gSombra"><stop offset="0" stop-color="#0B3550" stop-opacity=".28"/><stop offset="1" stop-color="#0B3550" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cFeliz" cx=".4" cy=".3"><stop offset="0" stop-color="#FFE98A"/><stop offset="1" stop-color="#FFC21E"/></radialGradient>
+    <radialGradient id="cTriste" cx=".4" cy=".3"><stop offset="0" stop-color="#C6E4FF"/><stop offset="1" stop-color="#6FB2F2"/></radialGradient>
+    <radialGradient id="cEnfado" cx=".4" cy=".3"><stop offset="0" stop-color="#FFB3A6"/><stop offset="1" stop-color="#F2674E"/></radialGradient>
+    <radialGradient id="cMiedo" cx=".4" cy=".3"><stop offset="0" stop-color="#E3D6FF"/><stop offset="1" stop-color="#A88BE8"/></radialGradient>
+    <radialGradient id="cSorpresa" cx=".4" cy=".3"><stop offset="0" stop-color="#CBF5C6"/><stop offset="1" stop-color="#5CCB78"/></radialGradient>
+    <radialGradient id="gPiel" cx=".4" cy=".3"><stop offset="0" stop-color="#FFE3CC"/><stop offset="1" stop-color="#F5B98C"/></radialGradient>
+    <radialGradient id="gSol" cx=".4" cy=".35"><stop offset="0" stop-color="#FFF1A8"/><stop offset="1" stop-color="#FFC21E"/></radialGradient>
+    <linearGradient id="gNube" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#D5E4EC"/></linearGradient>
+    <linearGradient id="gMadera" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9934E"/><stop offset="1" stop-color="#9C5A22"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="mar" aria-hidden="true">
+  <div class="rayo"></div><div class="rayo"></div><div class="rayo"></div>
+  <canvas id="burbujas"></canvas>
+  <svg class="alga izq" viewBox="0 0 80 260"><path d="M40 260 C10 220 70 190 38 150 C10 115 62 90 36 50 C24 30 34 12 40 0" stroke="#1E9E6E" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M22 260 C2 230 34 205 16 175 C4 150 26 130 18 108" stroke="#2EC08A" stroke-width="11" fill="none" stroke-linecap="round"/></svg>
+  <svg class="alga der" viewBox="0 0 80 260"><path d="M40 260 C10 220 70 190 38 150 C10 115 62 90 36 50" stroke="#1E9E6E" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M60 260 C76 232 48 210 64 180 C76 158 56 140 64 120" stroke="#2EC08A" stroke-width="11" fill="none" stroke-linecap="round"/></svg>
+  <div class="arena"></div>
+</div>
+
+<div class="app" id="app">
+  <header class="top">
+    <div class="marca">
+      <span class="ico"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="9" cy="11" r="2.4" fill="#fff"/><circle cx="15" cy="11" r="2.4" fill="#fff"/><circle cx="9.4" cy="11.4" r="1.2" fill="#183153"/><circle cx="15.4" cy="11.4" r="1.2" fill="#183153"/><path d="M9.5 15.5q2.5 2 5 0" stroke="#183153" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>
+      <div><h1>La visita de Lolo</h1><small><i></i><b id="diaMarca">Lunes</b> · Educación Infantil</small></div>
+    </div>
+    <div class="tools">
+      <button class="tool" id="btnRepetir" type="button" aria-label="Repetir lo que dice Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8"/><path d="M4 4v5h5"/></svg><span>Repetir</span></button>
+      <button class="tool" id="btnSonido" type="button" aria-pressed="true" aria-label="Voz de Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path id="ondas" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path id="mute" d="M17 9l5 6M22 9l-5 6" style="display:none"/></svg><span id="txtVoz">Voz</span></button>
+      <button class="tool calmaBtn" id="btnTranquilo" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Modo tranquilo</span></button>
+      <button class="tool" id="btnRincon" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span>Rincón de la calma</span></button>
+      <button class="tool" id="btnGuia" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span>Guía docente</span></button>
+    </div>
+  </header>
+
+  <div class="barra-juegos">
+    <a class="btn-inicio" href="./" aria-label="Volver a la portada"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg><span>Inicio</span></a>
+    <button class="btn-menu" id="btnMenu" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg>Todos los juegos</button>
+    <div class="actual"><span class="ti" id="actualIc"></span><div><b id="actualT">La visita de Lolo</b><small id="actualC">Rutinas y asamblea · 3–4 años</small></div></div>
+    <button class="chip-jardin" id="chipJardin" type="button" aria-label="Ver el jardín de la clase"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 15c-4 0-6-3-6-6 4 0 6 3 6 6zM12 13c0-4 3-6 6-6 0 4-3 6-6 6z"/><path d="M4 21h16"/></svg></span><b id="jardinN">0</b><span>logros en el jardín</span></button>
+  </div>
+
+  <nav class="agenda" id="agenda" aria-label="Agenda visual"></nav>
+
+  <main class="stage">
+    <div class="mascota" aria-hidden="true">
+      <svg id="lolo" data-cara="duerme" viewBox="0 0 240 250">
+        <g class="cuerpo">
+          <g id="tentaculos"></g>
+          <ellipse cx="120" cy="96" rx="80" ry="74" fill="url(#gLolo)"/>
+          <g fill="#D9581A" opacity=".35"><ellipse cx="160" cy="58" rx="9" ry="6"/><ellipse cx="176" cy="80" rx="6" ry="4.5"/><ellipse cx="62" cy="70" rx="6" ry="4"/><ellipse cx="148" cy="40" rx="5" ry="3.5"/></g>
+          <ellipse cx="92" cy="52" rx="26" ry="14" fill="#fff" opacity=".35" transform="rotate(-18 92 52)"/>
+          <ellipse cx="72" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/><ellipse cx="168" cy="118" rx="18" ry="12" fill="url(#gMejilla)"/>
+          <g class="abiertos">
+            <g class="ojo"><ellipse cx="92" cy="96" rx="19" ry="21" fill="#fff"/><circle cx="95" cy="100" r="12" fill="url(#gIris)"/><circle cx="99" cy="94" r="4.5" fill="#fff"/><circle cx="91" cy="105" r="2" fill="#fff"/></g>
+            <g class="ojo"><ellipse cx="148" cy="96" rx="19" ry="21" fill="#fff"/><circle cx="145" cy="100" r="12" fill="url(#gIris)"/><circle cx="149" cy="94" r="4.5" fill="#fff"/><circle cx="141" cy="105" r="2" fill="#fff"/></g>
+          </g>
+          <g class="cerrados" stroke="#183153" stroke-width="5" stroke-linecap="round" fill="none"><path d="M76 98 q16 11 32 0"/><path d="M132 98 q16 11 32 0"/></g>
+          <g class="ceja" stroke="#183153" stroke-width="6" stroke-linecap="round"><path d="M72 70 l32 10"/><path d="M168 70 l-32 10"/></g>
+          <path class="lagrima" d="M78 118 q-6 12 0 16 q6 -4 0 -16z" fill="#6FB2F2"/>
+          <g stroke="#183153" stroke-width="5.5" stroke-linecap="round" fill="none">
+            <path class="boca b-feliz" d="M102 126 q18 20 36 0" fill="#B83A3A" stroke-linejoin="round"/>
+            <path class="boca b-triste" d="M104 138 q16 -14 32 0"/>
+            <path class="boca b-enfado" d="M104 133 q16 -6 32 0"/>
+            <ellipse class="boca b-sorpresa" cx="120" cy="132" rx="9" ry="12" fill="#B83A3A"/>
+            <path class="boca b-duerme" d="M110 130 q10 6 20 0"/>
+          </g>
+          <g class="zzz" fill="#fff" font-family="Fredoka, sans-serif" font-weight="700" stroke="#183153" stroke-width="1.5" paint-order="stroke"><text x="186" y="40" font-size="30">z</text><text x="206" y="16" font-size="22">z</text></g>
+        </g>
+      </svg>
+      <div class="sombra"></div>
+    </div>
+
+    <section class="panel" id="panelLolo" aria-label="La visita de Lolo">
+      <div class="bocadillo">
+        <span class="quien">Lolo</span>
+        <p id="texto" aria-live="polite">Shhh… Lolo está dormido.</p>
+      </div>
+      <div class="zona" id="zona"></div>
+    </section>
+
+    <section class="panel" id="panelCaja" aria-label="La caja misteriosa" hidden>
+      <div class="bocadillo">
+        <span class="quien">Lolo</span>
+        <p id="textoCaja" aria-live="polite">Lolo ha traído una caja misteriosa.</p>
+      </div>
+      <div class="caja-grid">
+        <div class="caja">
+          <svg class="lazo" viewBox="0 0 120 64" aria-hidden="true"><path d="M60 34C40 8 8 4 10 26s34 18 50 8zM60 34c20-26 52-30 50-8s-34 18-50 8z" fill="#FF5D8F" stroke="#183153" stroke-width="4" stroke-linejoin="round"/><path d="M53 36l-15 24 12-2 6 6 4-28zM67 36l15 24-12-2-6 6-4-28z" fill="#E8417A" stroke="#183153" stroke-width="4" stroke-linejoin="round"/><circle cx="60" cy="33" r="9" fill="#FF8FB1" stroke="#183153" stroke-width="4"/></svg>
+          <div class="caja-marco">
+            <div class="caja-ventana">
+              <div class="caja-img" id="cajaImg" aria-hidden="true"></div>
+              <div class="tapas" id="tapas"></div>
+            </div>
+          </div>
+        </div>
+        <div class="caja-lado">
+          <div class="rutina" role="group" aria-label="Rutina Veo, Pienso, Me pregunto">
+            <button class="rut" type="button" data-r="veo" style="--c:#3DBBC9"><span class="ri"></span><span>Veo<small>¿Qué veis?</small></span></button>
+            <button class="rut" type="button" data-r="pienso" style="--c:#FFC93C"><span class="ri"></span><span>Pienso<small>¿Qué creéis que es?</small></span></button>
+            <button class="rut" type="button" data-r="pregunto" style="--c:#9B6BFF"><span class="ri"></span><span>Me pregunto<small>¿Qué os preguntáis?</small></span></button>
+          </div>
+          <div class="fila">
+            <button class="big sec peq" id="btnPista" type="button"><span>Una pista</span></button>
+            <button class="big peq" id="btnDestapar" type="button"><span>Destapar todo</span></button>
+            <button class="big sec peq" id="btnPreg" type="button" hidden><span>Ahora nos preguntamos…</span></button>
+            <button class="big peq" id="btnOtra" type="button" hidden><span>Otra caja</span></button>
+          </div>
+          <div class="muro">
+            <b>Lo que pensamos</b>
+            <div class="ideas" id="ideas"></div>
+            <form class="form-idea" id="formIdea">
+              <input id="inIdea" type="text" maxlength="40" placeholder="Escribe lo que dicen los niños" aria-label="Nueva idea" autocomplete="off">
+              <button type="submit">Añadir</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="arrecife" id="arrecife" aria-label="El arrecife de la clase">
+    <span class="arrecife-txt">Nuestro arrecife crece cuando ayudamos a Lolo</span>
+  </footer>
+</div>
+
+<!-- Rincón de la calma -->
+<div class="capa" id="rincon" hidden>
+  <div class="capa-card calma-card" role="dialog" aria-modal="true" aria-labelledby="rinconT">
+    <span class="eyebrow">Rincón de la calma</span>
+    <h2 id="rinconT">Respira con Lolo</h2>
+    <div class="respira"><div class="globo"></div><p class="respTxt">Coge aire…</p></div>
+    <p style="margin:0;color:var(--tinta-2)">El juego espera aquí. Volvemos cuando estés listo.</p>
+    <button class="big" id="cerrarRincon" type="button"><span>Ya estoy listo</span></button>
+  </div>
+</div>
+
+<!-- Menú de juegos -->
+<div class="capa" id="menuCapa" hidden>
+  <div class="capa-card menu-card" role="dialog" aria-modal="true" aria-labelledby="menuT">
+    <div class="menu-top"><div><span class="eyebrow">Juegos de Lolo · Educación Infantil</span><h2 id="menuT">Elige un juego</h2></div><button class="cerrar" id="cerrarMenu" type="button" aria-label="Cerrar el menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="edades" role="group" aria-label="Filtrar por edad"><button class="edad-f" type="button" data-e="0">Todas las edades</button><button class="edad-f" type="button" data-e="3">3 años</button><button class="edad-f" type="button" data-e="4">4 años</button><button class="edad-f" type="button" data-e="5">5 años</button></div>
+    <div id="menuCats"></div>
+  </div>
+</div>
+
+<!-- Voz de Lolo -->
+<div class="capa" id="vozCapa" hidden>
+  <div class="capa-card" role="dialog" aria-modal="true" aria-labelledby="vozT">
+    <span class="eyebrow">Voz de Lolo</span>
+    <h2 id="vozT">Elige la voz</h2>
+    <p>Las voces con ★ son las más naturales y aparecen primero. Las pone el navegador, así que la lista cambia según el dispositivo.</p>
+    <label class="campo" for="selVoz">Voz</label>
+    <select id="selVoz" class="sel"></select>
+    <div class="fila" style="margin-top:16px">
+      <button class="big sec" id="probarVoz" type="button"><span>Probar voz</span></button>
+      <label class="interruptor" for="vozOn"><input type="checkbox" id="vozOn" checked> Lolo habla en voz alta</label>
+    </div>
+    <p class="nota" id="vozAviso" style="margin-top:16px">Este navegador no tiene voces naturales en español. En la pizarra digital, abre el juego con <b>Microsoft Edge</b>: trae gratis voces naturales como Elvira o Álvaro (necesitan internet). En Chrome, elige «Google español».</p>
+    <p style="margin-top:18px"><button class="big" id="cerrarVoz" type="button"><span>Listo</span></button></p>
+  </div>
+</div>
+
+<!-- Guía docente -->
+<div class="capa" id="guia" hidden>
+  <div class="capa-card" role="dialog" aria-modal="true" aria-labelledby="guiaT">
+    <span class="eyebrow">Guía docente</span>
+    <h2 id="guiaT">La visita de Lolo · Ciclo de 5 días</h2>
+    <p>Sesión colectiva de unos 10 minutos en la pizarra digital. Cada día tiene la misma estructura (saludo, emociones, dos retos, movimiento y despedida) y cambia el contenido. La estructura fija da seguridad. El contenido nuevo mantiene el interés.</p>
+
+    <h3>Las rutinas de la semana</h3>
+    <div class="tabla"><table>
+      <thead><tr><th>Día</th><th>Retos</th><th>Movimiento</th><th>Sin pantalla</th><th>Área del currículo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lunes</b></td><td>El tiempo · Los colores</td><td>Somos algas</td><td>Buscar objetos del color del día</td><td>Descubrimiento y Exploración del Entorno</td></tr>
+        <tr><td><b>Martes</b></td><td>Contar hasta 3 · Grande y pequeño</td><td>Saltos</td><td>Contar y ordenar objetos reales</td><td>Descubrimiento y Exploración del Entorno</td></tr>
+        <tr><td><b>Miércoles</b></td><td>Mi cuerpo · Lavarse las manos</td><td>Cabeza, hombros, rodillas y pies</td><td>Lavarnos las manos juntos</td><td>Crecimiento en Armonía</td></tr>
+        <tr><td><b>Jueves</b></td><td>Los animales · Los instrumentos</td><td>Palmas al ritmo de Lolo</td><td>Tocar instrumentos del aula</td><td>Comunicación y Representación de la Realidad</td></tr>
+        <tr><td><b>Viernes</b></td><td>Ayudar a un amigo · Lo que más me gustó</td><td>Respiramos como Lolo</td><td>Decir algo bonito a un compañero</td><td>Crecimiento en Armonía</td></tr>
+      </tbody>
+    </table></div>
+    <p>La emoción del día se trabaja todos los días al empezar (Crecimiento en Armonía). En cada partida cambian el color, la cantidad, el tamaño, la parte del cuerpo, el animal y el instrumento, así que el ciclo se puede repetir varias semanas.</p>
+
+    <h3>La caja misteriosa (rutina Veo · Pienso · Me pregunto)</h3>
+    <p>Rutina de pensamiento del proyecto Pensamiento Visible (Project Zero, Universidad de Harvard). Lolo trae una caja con un dibujo escondido debajo de seis ventanitas. Un niño elige qué ventanita abrir, «¿la estrella o la luna?», y Lolo hace una pregunta en orden:</p>
+    <ul>
+      <li><b>Veo:</b> describir lo que se ve (colores, formas). Solo lo que se ve, sin adivinar todavía.</li>
+      <li><b>Pienso:</b> lanzar hipótesis sobre lo que puede ser. Todas las ideas valen.</li>
+      <li><b>Me pregunto:</b> hacer preguntas. Es lo más difícil a esta edad, así que modelad vosotros las preguntas en voz alta.</li>
+    </ul>
+    <p>Al final, el muro «Lo que pensamos» sirve para apuntar lo que dicen los niños y hacer visible el pensamiento. Podéis tocar los botones Veo, Pienso o Me pregunto para repetir una pregunta, y pedir una pista si la clase se atasca. Cuando se destapa todo, «Ahora nos preguntamos…» abre una última pregunta sobre lo descubierto. Trabaja sobre todo el área de Comunicación y Representación de la Realidad. Si un niño no habla, puede señalar la forma de la ventanita.</p>
+
+    <h3>Juegos de lógica y matemáticas</h3>
+    <p>Cada juego tiene cinco retos que van de más fácil a más difícil, y la agenda muestra cuántos quedan. Las piezas se pueden <b>arrastrar</b> o <b>tocar y luego tocar el sitio</b>, para que puedan jugar todos los niños, también los que tienen menos control motor. Al acabar, se propone una actividad manipulativa. Todos trabajan sobre todo el área de Descubrimiento y Exploración del Entorno.</p>
+    <div class="tabla"><table>
+      <thead><tr><th>Juego</th><th>Qué hacen</th><th>Cómo sube la dificultad</th></tr></thead>
+      <tbody>
+        <tr><td><b>Cuenta y toca</b></td><td>Tocan cada objeto para contarlo (Lolo dice el número) y eligen la cifra.</td><td>De 1–3 objetos a 3–5.</td></tr>
+        <tr><td><b>Series y patrones</b></td><td>Completan la fila con la pieza que falta.</td><td>Color, forma y tamaño (AB), después tres colores (ABC) y AAB.</td></tr>
+        <tr><td><b>Clasifica en cestas</b></td><td>Llevan cada juguete a su cesta.</td><td>Por color, forma y tamaño con dos cestas, y después con tres.</td></tr>
+        <tr><td><b>Grande, mediano, pequeño</b></td><td>Colocan tres objetos en su sitio según su tamaño.</td><td>En los últimos retos desaparece la silueta de ayuda.</td></tr>
+        <tr><td><b>Encuentra la pareja</b></td><td>Memory: primero ven las cartas boca arriba y luego buscan las parejas.</td><td>De 2 a 4 parejas: colores, animales, números y mezcla.</td></tr>
+        <tr><td><b>Formas geométricas</b></td><td>Encajan cada forma en su silueta.</td><td>De 2 a 4 formas, incluidas estrella, corazón y rectángulo.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Menú por categorías y edades</h3>
+    <p>«Todos los juegos» abre el menú, ordenado en cinco categorías: rutinas y asamblea, lenguaje y emociones, lógica y matemáticas, retos y cooperación, y ciencia y manipulación. Se puede filtrar por 3, 4 o 5 años, y el filtro se recuerda en este navegador.</p>
+    <div class="tabla"><table>
+      <thead><tr><th>Juego</th><th>Cómo se juega</th><th>Edad</th></tr></thead>
+      <tbody>
+        <tr><td><b>El cuento que decidimos</b></td><td>Cuento de Lolo con tres decisiones. Los niños salen a tocar su opción y se cuentan los votos. Si hay empate, decide la «concha mágica».</td><td>3–5</td></tr>
+        <tr><td><b>El robot perdido</b></td><td>Programa de flechas para que Robi llegue a la flor. Si se choca, se depura el programa. Después se copia en el robot de suelo. En pantalla las flechas son absolutas (arriba, abajo…). En un Bee-Bot, el adulto ayuda a traducir «izquierda» y «derecha» en giros.</td><td>4–5</td></tr>
+        <tr><td><b>Toca, construye y comprueba</b></td><td>Copian una torre o un tren con bloques reales y la clase comprueba bloque a bloque en la pizarra.</td><td>3–5</td></tr>
+        <tr><td><b>El jardín de la clase</b></td><td>Crece con cada reto superado en cualquier juego y con logros de clase apuntados a mano (recoger, ayudarse…). No hay puntos individuales. Se guarda en este navegador.</td><td>3–5</td></tr>
+        <tr><td><b>¿Qué pasa si…?</b></td><td>Predicción por votos, experimento real (flotar o hundirse, mezclar pinturas) y registro de lo que pensamos frente a lo que pasó.</td><td>4–5</td></tr>
+        <tr><td><b>Juego a dúo</b></td><td>Pantalla partida: un niño elige el color y el otro la forma. Solo se consigue si aciertan los dos. En los retos 4 y 5 solo se oye la pista.</td><td>4–5</td></tr>
+        <tr><td><b>Mini-escape de colores</b></td><td>Tres candados (secuencia de colores, llave con forma y sonido de un instrumento) para rescatar al cangrejo Paco. Sin tiempo.</td><td>4–5</td></tr>
+        <tr><td><b>Las emociones de Lolo</b></td><td>Identificar la emoción en una situación (alegría, tristeza, enfado, miedo y sorpresa) y elegir o proponer cómo ayudar.</td><td>3–5</td></tr>
+        <tr><td><b>Muévete y responde</b></td><td>Saltar el número, imitar animales, señales de colores y estatuas con música.</td><td>3–5</td></tr>
+        <tr><td><b>Caza mágica</b></td><td>Un animal o un planeta aparece girando en un portal mágico, cuenta un dato y se esconde. La clase lo busca. Es una simulación en pantalla, no realidad aumentada con cámara.</td><td>3–5</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Apoyos para el alumno con autismo (útiles para toda la clase)</h3>
+    <ul>
+      <li><b>Agenda visual arriba:</b> pictogramas fijos con «Ahora» y «Después». Lo hecho se marca con un check. Al empezar, Lolo cuenta lo que vais a hacer.</li>
+      <li><b>Misma estructura cada día:</b> empieza y termina igual. El final se marca con un cartel claro de «Se acabó».</li>
+      <li><b>Anticipar cada cambio:</b> el botón para avanzar muestra el pictograma y el nombre de lo siguiente. El ritmo lo marca el docente.</li>
+      <li><b>Modo tranquilo:</b> quita burbujas, destellos, movimientos y sonidos de error, y baja el volumen. Se recuerda en este navegador.</li>
+      <li><b>Rincón de la calma:</b> pausa el juego con una respiración guiada. Al volver, el juego sigue donde estaba.</li>
+      <li><b>Sin presión:</b> no hay tiempo, puntos ni ranking. El error recibe una pista y, al segundo intento, la respuesta se ilumina.</li>
+      <li><b>Varias formas de participar:</b> tocar, señalar, decirlo en voz alta o imitar el gesto. Todas valen.</li>
+    </ul>
+    <p class="nota">Antes de la sesión, enseñadle la agenda en papel con los mismos pictogramas (por ejemplo, de ARASAAC). Dadle un papel fijo si le ayuda, como pulsar «Despertar a Lolo». Las medidas concretas para él deben acordarse con el equipo de orientación (EOE), el profesorado de PT y AL y la familia.</p>
+
+    <h3>Marco normativo en Andalucía</h3>
+    <ul>
+      <li><b>Decreto 100/2023, de 9 de mayo</b>, que establece la ordenación y el currículo de Educación Infantil en Andalucía.</li>
+      <li><b>Orden de 30 de mayo de 2023</b> (BOJA n.º 104, de 2 de junio), que desarrolla el currículo de Infantil, la atención a la diversidad y la evaluación:
+        <ul>
+          <li>Las tres áreas: Crecimiento en Armonía, Descubrimiento y Exploración del Entorno, y Comunicación y Representación de la Realidad (art. 5).</li>
+          <li>La vida escolar se organiza «en torno a rutinas estables, planificadas a partir de los ritmos biológicos» (Anexo I).</li>
+          <li>Las medidas de atención a la diversidad se rigen por los principios del DUA (art. 16).</li>
+          <li>Las adaptaciones de acceso modifican los elementos para la accesibilidad a la información, la comunicación y la participación (art. 25): agenda visual, pictogramas y voz.</li>
+        </ul>
+      </li>
+      <li><b>Instrucciones de 8 de marzo de 2017</b>, que regulan el protocolo de detección e identificación del alumnado con NEAE y la organización de la respuesta educativa.</li>
+    </ul>
+    <p class="nota">La Orden no regula el uso de pantallas en Infantil. Por eso esta propuesta es colectiva, breve y siempre termina con una actividad manipulativa, siguiendo la recomendación de la Asociación Española de Pediatría.</p>
+    <p style="margin-top:20px"><button class="big" id="cerrarGuia" type="button"><span>Entendido</span></button></p>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

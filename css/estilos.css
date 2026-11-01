@@ -313,6 +313,10 @@ button{font-family:inherit}
 
 /* ---------- barra de juego y menú ---------- */
 .barra-juegos{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn-inicio{display:inline-flex;align-items:center;gap:8px;height:54px;padding:0 18px 0 14px;border-radius:999px;border:3px solid #fff;background:var(--vidrio);color:var(--tinta);font:700 1.05rem var(--f-display);text-decoration:none;box-shadow:0 8px 20px rgba(10,40,70,.18);transition:transform .16s}
+.btn-inicio:active{transform:scale(.97)}
+.btn-inicio svg{width:24px;height:24px}
+@media (max-width:600px){.btn-inicio span{display:none}.btn-inicio{padding:0 14px}}
 .btn-menu{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 22px 0 16px;border-radius:999px;border:0;background:var(--tinta);color:#fff;font:700 1.08rem var(--f-display);cursor:pointer;box-shadow:0 8px 20px rgba(10,40,70,.25);transition:transform .15s}
 .btn-menu:hover{transform:translateY(-2px)}
 .btn-menu svg{width:24px;height:24px}

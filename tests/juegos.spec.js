@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
 test.afterEach(() => { expect(errores, 'errores en la consola').toEqual([]); });
 
 const abrir = async (page, juego) => {
-  await page.goto(juego && juego !== 'lolo' ? `/#${juego}` : '/');
+  await page.goto(juego && juego !== 'lolo' ? `/jugar.html#${juego}` : '/jugar.html');
   await expect(page.locator('#actualT')).toBeVisible();
 };
 

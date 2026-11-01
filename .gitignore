@@ -4,3 +4,7 @@ test-results/
 blob-report/
 _site/
 .DS_Store
+.impeccable/review/
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/build/

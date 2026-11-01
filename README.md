@@ -20,7 +20,11 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 
 Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos.
 
-Se puede abrir un juego concreto añadiendo su nombre a la dirección, por ejemplo `…/#formas`, `…/#robot` o `…/#caja`.
+Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#formas`, `…/jugar.html#robot` o `…/jugar.html#caja`.
+
+## Portada
+
+La dirección principal abre la **portada**. Lolo pregunta «¿Qué trabajamos hoy?», la maestra elige un objetivo (contar, emociones, movernos…) y la edad del grupo, y toca un juego. La tarjeta «se sumerge», Lolo se lanza tras ella y se abre el juego en `jugar.html#<juego>`. La fila «Para hoy» muestra la rutina del día, los últimos juegos y sugerencias de Lolo. Dentro de cada juego, el botón **Inicio** vuelve a la portada.
 
 ## Probarlo en tu ordenador
 
@@ -34,7 +38,7 @@ Después abre <http://localhost:4173>. Abrir `index.html` con doble clic tambié
 
 ## Pruebas automáticas
 
-Las pruebas juegan los 18 juegos de principio a fin en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
+Las pruebas recorren la portada (filtros, lanzar un juego, recientes) y juegan los 18 juegos de principio a fin en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
 
 ```bash
 npm ci
@@ -58,14 +62,18 @@ La dirección es <https://jvlsile.github.io/VISITA-DE-LOLO-/>.
 ## Estructura
 
 ```
-index.html              Página y dibujos compartidos
-css/estilos.css         Estilos
+index.html              Portada: elegir y lanzar juegos
+css/portada.css         Estilos de la portada
+js/portada.js           Lógica de la portada
+jugar.html              Los 18 juegos
+css/estilos.css         Estilos de los juegos
 js/app.js               Toda la lógica de los juegos
 fonts/                  Fuentes Fredoka y Nunito alojadas en el propio sitio
 icons/                  Iconos de la aplicación
 manifest.webmanifest    Permite instalarla como aplicación en tablets
 sw.js                   Modo sin conexión
-tests/juegos.spec.js    Pruebas automáticas
+tests/                  Pruebas automáticas (portada y juegos)
+PRODUCT.md, DESIGN.md   Producto y sistema visual documentados
 ```
 
 ## Privacidad

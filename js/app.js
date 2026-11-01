@@ -1245,6 +1245,9 @@
   jardinPon(jardinMem);
   $('#panelCaja').insertAdjacentHTML('afterend',IDS.map(id=>`<section class="panel juego" id="panel-${id}" aria-label="${JUEGOS[id].titulo}" hidden><div class="bocadillo"><span class="quien">Lolo</span><p class="txt" aria-live="polite"></p></div><div class="zona jz"></div></section>`).join(''));
 
+  /* últimos juegos abiertos, para la portada */
+  function registraReciente(m){ try{ const r=JSON.parse(localStorage.getItem('lolo-recientes')||'[]').filter(x=>x!==m); r.unshift(m); localStorage.setItem('lolo-recientes',JSON.stringify(r.slice(0,6))); }catch(e){} }
+
   /* ---------- cambiar de juego ---------- */
   const MODOS=['lolo','caja',...IDS];
   let caraLolo='duerme';
@@ -1259,7 +1262,7 @@
     app.classList.toggle('modo-caja',m!=='lolo');
     document.querySelectorAll('.panel').forEach(p=>p.hidden=p!==panelDe(m));
     texto=m==='lolo'?$('#texto'):m==='caja'?$('#textoCaja'):panelDe(m).querySelector('.txt');
-    pintaActual();
+    pintaActual(); registraReciente(m);
     if(m==='lolo'){ cara(caraLolo); pintaAgenda(); ultimo=texto.textContent; }
     else if(m==='caja'){ if(cajaIdx<0) nuevaCaja(); else { cara('feliz'); pintaRutina(); ultimo=texto.textContent; } }
     else if(JUEGOS[m].libre){ EST[m]=EST[m]||{libre:true}; cara('feliz'); pintaRondas(); JUEGOS[m].abrir(zonaDe(m)); }
@@ -1274,7 +1277,7 @@
   aplicaCalma();
   inicio();
   pintaActual();
-  { const m=location.hash.slice(1); if(m&&m!=='lolo') ponModo(m); }
+  { const m=location.hash.slice(1); if(m&&m!=='lolo') ponModo(m); else if(m==='lolo') registraReciente('lolo'); }
 
   /* Modo sin conexión: guarda la aplicación en la pizarra tras la primera visita */
   if('serviceWorker' in navigator && location.protocol!=='file:'){

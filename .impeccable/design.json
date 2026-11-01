@@ -1,0 +1,661 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T11:11:56+00:00",
+  "title": "Design System: La visita de Lolo",
+  "extensions": {
+    "colorMeta": {
+      "mar-1": {
+        "role": "secondary",
+        "displayName": "Aguamarina Somera",
+        "canonical": "#A6EEE6",
+        "oklch": "oklch(90.0% 0.072 187.3)",
+        "tonalRamp": [
+          "#000F0D",
+          "#022B28",
+          "#154945",
+          "#2A6A64",
+          "#498B84",
+          "#74AAA4",
+          "#A3CEC9",
+          "#D7F6F2"
+        ]
+      },
+      "mar-2": {
+        "role": "secondary",
+        "displayName": "Turquesa Media Agua",
+        "canonical": "#3DBBC9",
+        "oklch": "oklch(73.0% 0.109 205.8)",
+        "tonalRamp": [
+          "#000E10",
+          "#012A2E",
+          "#0B484F",
+          "#146A73",
+          "#1C8D99",
+          "#55AEB9",
+          "#8ED1DA",
+          "#C9F9FF"
+        ]
+      },
+      "mar-3": {
+        "role": "secondary",
+        "displayName": "Azul Profundo",
+        "canonical": "#16698A",
+        "oklch": "oklch(49.0% 0.091 230.6)",
+        "tonalRamp": [
+          "#000D15",
+          "#022838",
+          "#0C465D",
+          "#206683",
+          "#4086A7",
+          "#6EA7C3",
+          "#9FCCE3",
+          "#DBF3FF"
+        ]
+      },
+      "abismo": {
+        "role": "secondary",
+        "displayName": "Abismo",
+        "canonical": "#0F4E6E",
+        "oklch": "oklch(40.2% 0.080 236.9)",
+        "tonalRamp": [
+          "#000D17",
+          "#072738",
+          "#1C445C",
+          "#316482",
+          "#4F84A5",
+          "#78A5C2",
+          "#A6CAE1",
+          "#DFF2FE"
+        ]
+      },
+      "arena": {
+        "role": "tertiary",
+        "displayName": "Arena",
+        "canonical": "#F5D596",
+        "oklch": "oklch(88.6% 0.088 83.8)",
+        "tonalRamp": [
+          "#110A00",
+          "#302100",
+          "#503C0F",
+          "#735922",
+          "#957940",
+          "#B39B6C",
+          "#D5C29C",
+          "#FBEDD1"
+        ]
+      },
+      "arena-2": {
+        "role": "tertiary",
+        "displayName": "Arena Tostada",
+        "canonical": "#E7BD72",
+        "oklch": "oklch(82.0% 0.105 80.9)",
+        "tonalRamp": [
+          "#120900",
+          "#312100",
+          "#533B05",
+          "#79570B",
+          "#9B762F",
+          "#B99961",
+          "#DAC093",
+          "#FEECCE"
+        ]
+      },
+      "laton": {
+        "role": "tertiary",
+        "displayName": "Latón Claro",
+        "canonical": "#E8C66A",
+        "oklch": "oklch(83.7% 0.118 89.5)",
+        "tonalRamp": [
+          "#100A00",
+          "#2E2202",
+          "#4F3D00",
+          "#735A00",
+          "#97791B",
+          "#B69C57",
+          "#D7C28C",
+          "#FDEEC6"
+        ]
+      },
+      "laton-2": {
+        "role": "tertiary",
+        "displayName": "Latón Viejo",
+        "canonical": "#B98C2E",
+        "oklch": "oklch(66.7% 0.120 81.9)",
+        "tonalRamp": [
+          "#110A00",
+          "#302101",
+          "#523B09",
+          "#775811",
+          "#9F7519",
+          "#BC9955",
+          "#DDC08C",
+          "#FEECCC"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta Marina",
+        "canonical": "#183153",
+        "oklch": "oklch(31.2% 0.069 256.6)",
+        "tonalRamp": [
+          "#040B18",
+          "#162538",
+          "#2E415B",
+          "#475F81",
+          "#647FA4",
+          "#89A0C1",
+          "#B2C6E1",
+          "#E5EFFE"
+        ]
+      },
+      "tinta-2": {
+        "role": "neutral",
+        "displayName": "Tinta Suave",
+        "canonical": "#46607F",
+        "oklch": "oklch(48.1% 0.059 253.3)",
+        "tonalRamp": [
+          "#040C16",
+          "#172535",
+          "#2F4157",
+          "#48607C",
+          "#66809E",
+          "#8AA1BC",
+          "#B4C6DC",
+          "#E4F0FE"
+        ]
+      },
+      "blanco": {
+        "role": "neutral",
+        "displayName": "Blanco Vidrio",
+        "canonical": "#FFFFFF",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#242424",
+          "#404040",
+          "#5D5D5D",
+          "#7D7D7D",
+          "#9E9E9E",
+          "#C4C4C4",
+          "#EEEEEE"
+        ]
+      },
+      "espuma": {
+        "role": "neutral",
+        "displayName": "Espuma",
+        "canonical": "#EEF8FA",
+        "oklch": "oklch(97.2% 0.011 211.0)",
+        "tonalRamp": [
+          "#090C0C",
+          "#212526",
+          "#3B4142",
+          "#585F61",
+          "#777F81",
+          "#99A0A1",
+          "#BFC5C7",
+          "#EBEFF0"
+        ]
+      },
+      "lolo": {
+        "role": "primary",
+        "displayName": "Naranja Lolo",
+        "canonical": "#FF8A3D",
+        "oklch": "oklch(75.0% 0.167 50.5)",
+        "tonalRamp": [
+          "#180600",
+          "#3C1801",
+          "#642F08",
+          "#904610",
+          "#BF5F18",
+          "#DF844C",
+          "#FCB085",
+          "#FFEADE"
+        ]
+      },
+      "sol": {
+        "role": "primary",
+        "displayName": "Amarillo Sol",
+        "canonical": "#FFC93C",
+        "oklch": "oklch(86.1% 0.159 86.4)",
+        "tonalRamp": [
+          "#110A00",
+          "#2E2203",
+          "#513C05",
+          "#755909",
+          "#9C770E",
+          "#C19830",
+          "#E1C076",
+          "#FEEDC8"
+        ]
+      },
+      "sol-2": {
+        "role": "primary",
+        "displayName": "Sol Tostado",
+        "canonical": "#E9A514",
+        "oklch": "oklch(76.8% 0.156 78.2)",
+        "tonalRamp": [
+          "#120900",
+          "#322001",
+          "#543A09",
+          "#7A5610",
+          "#A27318",
+          "#C89436",
+          "#E7BD79",
+          "#FFECCF"
+        ]
+      },
+      "c-rutinas": {
+        "role": "tertiary",
+        "displayName": "Categoría Rutinas y asamblea",
+        "canonical": "#FF8A3D",
+        "oklch": "oklch(75.0% 0.167 50.5)",
+        "tonalRamp": [
+          "#180600",
+          "#3C1801",
+          "#642F08",
+          "#904610",
+          "#BF5F18",
+          "#DF844C",
+          "#FCB085",
+          "#FFEADE"
+        ]
+      },
+      "c-lenguaje": {
+        "role": "tertiary",
+        "displayName": "Categoría Lenguaje y emociones",
+        "canonical": "#9B6BFF",
+        "oklch": "oklch(64.9% 0.211 294.8)",
+        "tonalRamp": [
+          "#0F0029",
+          "#2B0959",
+          "#492289",
+          "#693ABB",
+          "#895BE5",
+          "#A786FA",
+          "#C8B8FC",
+          "#EFECFE"
+        ]
+      },
+      "c-logica": {
+        "role": "tertiary",
+        "displayName": "Categoría Lógica y matemáticas",
+        "canonical": "#3D8DF2",
+        "oklch": "oklch(64.4% 0.170 255.9)",
+        "tonalRamp": [
+          "#000A20",
+          "#01234D",
+          "#073E7C",
+          "#0E5BB2",
+          "#327DDA",
+          "#63A0F1",
+          "#9DC7FF",
+          "#E4F0FF"
+        ]
+      },
+      "c-retos": {
+        "role": "tertiary",
+        "displayName": "Categoría Retos y cooperación",
+        "canonical": "#FF5D8F",
+        "oklch": "oklch(70.3% 0.200 4.8)",
+        "tonalRamp": [
+          "#1D0008",
+          "#48011D",
+          "#760C36",
+          "#A81550",
+          "#D23C6E",
+          "#ED6F91",
+          "#FBA9BC",
+          "#FFE8EC"
+        ]
+      },
+      "c-ciencia": {
+        "role": "tertiary",
+        "displayName": "Categoría Ciencia y manipulación (verde acierto)",
+        "canonical": "#2BB673",
+        "oklch": "oklch(68.8% 0.152 156.7)",
+        "tonalRamp": [
+          "#000F06",
+          "#022C17",
+          "#0B4C2D",
+          "#146F44",
+          "#1D945C",
+          "#55B57F",
+          "#8FD7AB",
+          "#C9FDDC"
+        ]
+      },
+      "lavanda-calma": {
+        "role": "neutral",
+        "displayName": "Lavanda Calma",
+        "canonical": "#7E8CE0",
+        "oklch": "oklch(66.5% 0.126 275.3)",
+        "tonalRamp": [
+          "#060722",
+          "#1A1F48",
+          "#323971",
+          "#4C569D",
+          "#6A76C3",
+          "#8C99DD",
+          "#B5C1F8",
+          "#EAEEFE"
+        ]
+      },
+      "calma-mar-alto": {
+        "role": "neutral",
+        "displayName": "Mar en calma, alto",
+        "canonical": "#BFE9E6",
+        "oklch": "oklch(90.4% 0.044 191.1)",
+        "tonalRamp": [
+          "#020E0D",
+          "#142827",
+          "#2A4544",
+          "#436563",
+          "#618583",
+          "#86A6A3",
+          "#B1CAC8",
+          "#E0F3F2"
+        ]
+      },
+      "calma-mar-bajo": {
+        "role": "neutral",
+        "displayName": "Mar en calma, bajo",
+        "canonical": "#7CC7CF",
+        "oklch": "oklch(78.4% 0.075 204.4)",
+        "tonalRamp": [
+          "#000E10",
+          "#032A2D",
+          "#0F484E",
+          "#24696F",
+          "#448A91",
+          "#71AAB0",
+          "#A1CED2",
+          "#D5F6F9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "La pregunta de Lolo en el bocadillo; una por pantalla."
+      },
+      "speech": {
+        "displayName": "Voz de Lolo",
+        "purpose": "Lo que Lolo dice en el panel de juego; text-wrap balance, altura mínima de dos líneas."
+      },
+      "headline": {
+        "displayName": "Título de sección",
+        "purpose": "Títulos sobre el agua, en blanco con sombra de texto azul."
+      },
+      "title": {
+        "displayName": "Título de tarjeta",
+        "purpose": "Nombre del juego en la tarjeta; 1.05rem en móvil."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Chips, selector de edad y botones."
+      },
+      "body": {
+        "displayName": "Texto",
+        "purpose": "Texto corrido para la maestra; 58–64ch en guías."
+      },
+      "body-small": {
+        "displayName": "Texto pequeño",
+        "purpose": "Descripción de tarjeta, recortada a tres líneas."
+      },
+      "label": {
+        "displayName": "Etiqueta",
+        "purpose": "Categoría y edad; en mayúsculas solo como etiqueta de control, marca o estado de agenda."
+      }
+    },
+    "shadows": [
+      {
+        "name": "flotacion",
+        "value": "0 14px 30px rgba(10,58,88,.18), 0 2px 6px rgba(10,58,88,.10)",
+        "purpose": "Tarjetas, «Para hoy» y bocadillo (token --sombra)."
+      },
+      {
+        "name": "flotacion-alta",
+        "value": "0 22px 40px rgba(10,58,88,.24), 0 2px 6px rgba(10,58,88,.1)",
+        "purpose": "Tarjeta bajo el puntero fino."
+      },
+      {
+        "name": "vidrio",
+        "value": "0 6px 14px rgba(10,58,88,.13)",
+        "purpose": "Chips y controles de vidrio (hasta 0 8px 24px rgba(10,60,90,.18))."
+      },
+      {
+        "name": "panel",
+        "value": "0 24px 60px rgba(8,50,80,.25)",
+        "purpose": "Panel de juego de la app."
+      },
+      {
+        "name": "personaje",
+        "value": "drop-shadow(0 22px 22px rgba(8,50,80,.28))",
+        "purpose": "Lolo (filter), con sombra elíptica en el suelo."
+      },
+      {
+        "name": "ojo-de-buey",
+        "value": "0 8px 14px rgba(8,50,80,.2), inset 0 -3px 0 rgba(0,0,0,.15)",
+        "purpose": "Anillo de latón; el cristal añade inset 0 6px 14px rgba(0,0,0,.25)."
+      },
+      {
+        "name": "foco",
+        "value": "outline: 4px solid #FFC93C; outline-offset: 3px",
+        "purpose": "Anillo de foco visible en todo elemento interactivo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23,1,.32,1)",
+        "purpose": "Entradas, pulsaciones, respuestas y burbujas."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(.77,0,.175,1)",
+        "purpose": "Saludo de Lolo, hundimiento de tarjeta y apertura de la inmersión."
+      },
+      {
+        "name": "ease-impulso",
+        "value": "cubic-bezier(.45,0,.25,1)",
+        "purpose": "Lolo nadando tras la tarjeta (620ms)."
+      },
+      {
+        "name": "respuesta",
+        "value": "160–200ms",
+        "purpose": "Respuesta al toque: scale(.97), cambios de color."
+      },
+      {
+        "name": "entrada",
+        "value": "420–520ms",
+        "purpose": "Entrada de tarjetas (escalonado de 35ms) y bocadillo."
+      },
+      {
+        "name": "inmersion",
+        "value": "hundir 420ms · capa 620ms desde +140ms · navegar a 700ms",
+        "purpose": "Firma: lanzar un juego desde el punto tocado."
+      },
+      {
+        "name": "lolo-reposo",
+        "value": "asoma 900ms · flota 3.4s · tentáculos 2.8s · parpadeo 5s · saludo 1.6s ×2",
+        "purpose": "Vida de Lolo en reposo."
+      },
+      {
+        "name": "lolo-atento",
+        "value": "mirada ≤6px inercia .18 · asiente 520ms",
+        "purpose": "Lolo sigue el dedo y asiente al elegir."
+      },
+      {
+        "name": "calma",
+        "value": "fundido 160ms; sin rayos, burbujas, balanceos ni inmersión",
+        "purpose": "Modo tranquilo (lolo-calma) y prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "movil",
+        "value": "760px"
+      },
+      {
+        "name": "tablet",
+        "value": "1100px"
+      },
+      {
+        "name": "pizarra-ancha",
+        "value": "1700px"
+      },
+      {
+        "name": "app-apilada",
+        "value": "860px"
+      },
+      {
+        "name": "app-pequena",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario amarillo",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "La acción principal: píldora amarilla que se hunde al pulsar.",
+      "html": "<button class=\"ds-boton\" type=\"button\">Ver todos los juegos</button>",
+      "css": ".ds-boton{height:52px;padding:0 26px;border:0;border-radius:999px;background:linear-gradient(180deg,#FFDA6A,#FFC93C);font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:1.1rem;color:#183153;cursor:pointer;box-shadow:0 10px 22px rgba(233,165,20,.35);transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 200ms ease}.ds-boton:hover{box-shadow:0 14px 28px rgba(233,165,20,.42)}.ds-boton:active{transform:scale(.97)}.ds-boton:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;}"
+    },
+    {
+      "name": "Botón de vidrio (Modo tranquilo)",
+      "kind": "button",
+      "refersTo": "button-glass",
+      "description": "Control de cabecera; activado pasa a lavanda calma.",
+      "html": "<button class=\"ds-accion\" type=\"button\" aria-pressed=\"false\" onclick=\"this.setAttribute('aria-pressed',this.getAttribute('aria-pressed')!=='true')\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z\"/></svg><span>Modo tranquilo</span></button>",
+      "css": ".ds-accion{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border:3px solid rgba(255,255,255,.9);border-radius:999px;background:rgba(255,255,255,.82);font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.92rem;color:#183153;cursor:pointer;box-shadow:0 6px 16px rgba(10,58,88,.14);transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 200ms ease}.ds-accion:hover{background:#fff}.ds-accion:active{transform:scale(.97)}.ds-accion:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;}.ds-accion[aria-pressed=\"true\"]{background:#7E8CE0;border-color:#fff;color:#fff}"
+    },
+    {
+      "name": "Chip de objetivo",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Filtro por objetivo con icono en círculo tintado; seleccionado en tinta.",
+      "html": "<div style=\"display:flex;gap:10px;flex-wrap:wrap\"><button class=\"ds-chip\" type=\"button\" aria-pressed=\"true\" style=\"--c:#3D8DF2\"><span class=\"ds-ci\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"4\"/><path d=\"M8 10v4M11 10h2v2h-2v2h2M16 10h1.5v4\"/></svg></span>Contar</button><button class=\"ds-chip\" type=\"button\" aria-pressed=\"false\" style=\"--c:#9B6BFF\"><span class=\"ds-ci\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 5h7a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h7z\"/></svg></span>Hablar y escuchar</button></div>",
+      "css": ".ds-chip{--c:#183153;display:inline-flex;align-items:center;gap:10px;min-height:56px;padding:6px 20px 6px 7px;border:3px solid rgba(255,255,255,.95);border-radius:999px;background:rgba(255,255,255,.88);font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:1.1rem;color:#183153;cursor:pointer;box-shadow:0 6px 14px rgba(10,58,88,.13);transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 200ms ease,color 200ms ease}.ds-chip .ds-ci{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 22%,#fff);color:var(--c)}.ds-chip:hover{background:#fff}.ds-chip:active{transform:scale(.97)}.ds-chip:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;}.ds-chip[aria-pressed=\"true\"]{background:#183153;border-color:#183153;color:#fff;box-shadow:0 8px 18px color-mix(in srgb,var(--c) 45%,transparent)}.ds-chip[aria-pressed=\"true\"] .ds-ci{background:rgba(255,255,255,.22);color:#fff}"
+    },
+    {
+      "name": "Selector de edad",
+      "kind": "nav",
+      "refersTo": "segmented-age",
+      "description": "Control segmentado 3 · 4 · 5 en cápsula de vidrio.",
+      "html": "<div class=\"ds-edades\" role=\"group\" aria-label=\"Edad del grupo\"><span class=\"ds-edades-lbl\">Edad</span><button type=\"button\" aria-pressed=\"false\">Todas</button><button type=\"button\" aria-pressed=\"true\">3 años</button><button type=\"button\" aria-pressed=\"false\">4 años</button><button type=\"button\" aria-pressed=\"false\">5 años</button></div>",
+      "css": ".ds-edades{display:inline-flex;align-items:center;gap:4px;flex-wrap:wrap;padding:4px 4px 4px 18px;border-radius:999px;background:rgba(255,255,255,.78);border:3px solid rgba(255,255,255,.9)}.ds-edades-lbl{font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#183153;margin-right:6px}.ds-edades button{min-width:78px;height:46px;padding:0 16px;border:0;border-radius:999px;background:transparent;cursor:pointer;font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:1.05rem;color:#183153;transition:background-color 200ms ease,color 200ms ease,transform 160ms cubic-bezier(.23,1,.32,1)}.ds-edades button:hover{background:rgba(24,49,83,.08)}.ds-edades button:active{transform:scale(.97)}.ds-edades button:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;}.ds-edades button[aria-pressed=\"true\"]{background:#183153;color:#fff}"
+    },
+    {
+      "name": "Bocadillo de Lolo",
+      "kind": "custom",
+      "refersTo": "speech-bubble",
+      "description": "La pregunta de Lolo: globo blanco con pico hacia el personaje.",
+      "html": "<div style=\"padding:12px 12px 12px 30px;background:linear-gradient(180deg,#A6EEE6,#3DBBC9)\"><h1 class=\"ds-bocadillo\">¿Qué trabajamos hoy?</h1></div>",
+      "css": ".ds-bocadillo{position:relative;display:inline-block;margin:0;background:#fff;border-radius:36px;padding:20px 32px;font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:2.6rem;line-height:1.04;letter-spacing:-.01em;color:#183153;box-shadow:0 14px 30px rgba(10,58,88,.18),0 2px 6px rgba(10,58,88,.10);}.ds-bocadillo::before{content:\"\";position:absolute;left:-22px;top:56%;width:44px;height:36px;background:#fff;clip-path:polygon(100% 0,0 60%,100% 100%)}"
+    },
+    {
+      "name": "Tarjeta de juego con ojo de buey",
+      "kind": "card",
+      "refersTo": "game-card",
+      "description": "Tarjeta blanca flotante con ventana de latón, título, descripción, categoría y edad.",
+      "html": "<a class=\"ds-juego\" href=\"#\" style=\"--c:#3D8DF2\"><span class=\"ds-ojo\"><span class=\"ds-cristal\"><svg viewBox=\"0 0 24 24\"  fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"4\"/><path d=\"M8 10v4M11 10h2v2h-2v2h2M16 10h1.5v4\"/></svg><i></i><i></i><i></i></span></span><h3>Cuenta y toca</h3><p>Contar objetos del 1 al 5 y elegir el número.</p><span class=\"ds-etq\"><span class=\"ds-cat\">Lógica y matemáticas</span><span class=\"ds-edad\">3–4 años</span></span></a>",
+      "css": ".ds-juego{--c:#3D8DF2;display:grid;gap:8px;width:250px;padding:14px 16px 16px;border-radius:30px;background:#fff;text-decoration:none;color:#183153;box-shadow:0 14px 30px rgba(10,58,88,.18),0 2px 6px rgba(10,58,88,.10);transition:transform 200ms cubic-bezier(.23,1,.32,1),box-shadow 200ms ease}.ds-juego:hover{transform:translateY(-4px);box-shadow:0 22px 40px rgba(10,58,88,.24),0 2px 6px rgba(10,58,88,.1)}.ds-juego:hover svg{transform:rotate(-8deg) scale(1.08)}.ds-juego:active{transform:scale(.97)}.ds-juego:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;border-radius:30px}.ds-ojo{justify-self:center;width:148px;aspect-ratio:1;border-radius:50%;padding:9px;background:conic-gradient(from 210deg,#E8C66A,#FFF1B8,#E8C66A,#B98C2E,#E8C66A);box-shadow:0 8px 14px rgba(8,50,80,.2),inset 0 -3px 0 rgba(0,0,0,.15)}.ds-cristal{position:relative;display:grid;place-items:center;width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 34% 28%,color-mix(in srgb,var(--c) 40%,#fff) 0%,var(--c) 62%,color-mix(in srgb,var(--c) 70%,#0B2A44) 100%);box-shadow:inset 0 6px 14px rgba(0,0,0,.25);color:#fff}.ds-cristal::after{content:\"\";position:absolute;inset:8% 14% auto auto;width:34%;height:22%;border-radius:50%;background:rgba(255,255,255,.45);rotate:-30deg}.ds-cristal svg{width:54%;height:auto;stroke-width:1.9;transition:transform 260ms cubic-bezier(.23,1,.32,1)}.ds-cristal i{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.7);width:10px;height:10px}.ds-cristal i:nth-of-type(1){left:20%;bottom:18%}.ds-cristal i:nth-of-type(2){width:7px;height:7px;left:30%;bottom:34%}.ds-cristal i:nth-of-type(3){right:22%;bottom:24%}.ds-juego h3{margin:6px 0 0;font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:1.3rem;line-height:1.15}.ds-juego p{margin:0;font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:600;font-size:.95rem;line-height:1.38;color:#46607F}.ds-etq{display:flex;justify-content:space-between;align-items:center;gap:8px}.ds-cat{display:flex;align-items:center;gap:6px;font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.78rem;color:#46607F}.ds-cat::before{content:\"\";width:10px;height:10px;border-radius:50%;background:var(--c)}.ds-edad{font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.8rem;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 16%,#fff);color:#183153;white-space:nowrap}"
+    },
+    {
+      "name": "Agenda visual",
+      "kind": "custom",
+      "refersTo": "agenda-strip",
+      "description": "Tira de pictogramas: hecho, ahora y después.",
+      "html": "<div class=\"ds-agenda\" style=\"--dia:#FFC93C\"><div class=\"ds-ag ds-hecho\"><span class=\"ds-pic\"><svg viewBox=\"0 0 24 24\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z\"/></svg></span><span>Saludo</span></div><div class=\"ds-ag ds-ahora\"><b class=\"ds-tag\">Ahora</b><span class=\"ds-pic\"><svg viewBox=\"0 0 24 24\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"4\"/><path d=\"M8 10v4M11 10h2v2h-2v2h2M16 10h1.5v4\"/></svg></span><span>Contamos</span></div><div class=\"ds-ag\"><span class=\"ds-pic\"><svg viewBox=\"0 0 24 24\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 5h7a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h7z\"/></svg></span><span>Cuento</span></div></div>",
+      "css": ".ds-agenda{display:flex;gap:6px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:26px;padding:8px 10px;box-shadow:0 8px 24px rgba(10,60,90,.16);max-width:360px}.ds-ag{position:relative;flex:1 0 82px;display:grid;justify-items:center;gap:4px;padding:18px 4px 6px;border-radius:18px}.ds-ag>span:last-child{font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.78rem;color:#46607F}.ds-pic{width:52px;height:52px;border-radius:16px;background:#fff;border:3px solid #DCE8EE;display:grid;place-items:center;color:#183153}.ds-hecho{opacity:.45}.ds-hecho .ds-pic{background:#E9F8F0;border-color:#BFE8D2}.ds-ahora{background:color-mix(in srgb,var(--dia) 22%,#fff)}.ds-ahora .ds-pic{border-color:var(--dia);box-shadow:0 0 0 4px color-mix(in srgb,var(--dia) 35%,transparent)}.ds-ahora>span:last-child{color:#183153}.ds-tag{position:absolute;top:2px;left:50%;translate:-50% 0;font-family:'Nunito',ui-rounded,system-ui,sans-serif;font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:#183153;color:#fff}"
+    },
+    {
+      "name": "Tarjeta de opción",
+      "kind": "card",
+      "refersTo": "option-card",
+      "description": "Respuesta táctil de los juegos, con estados de acierto y pista.",
+      "html": "<div style=\"display:flex;gap:12px\"><button class=\"ds-opt\" type=\"button\"><svg viewBox=\"0 0 60 60\" width=\"80\" height=\"80\"><circle cx=\"30\" cy=\"30\" r=\"22\" fill=\"#3D8DF2\"/></svg><span class=\"ds-lbl\">Círculo</span></button><button class=\"ds-opt ds-bien\" type=\"button\"><svg viewBox=\"0 0 60 60\" width=\"80\" height=\"80\"><rect x=\"10\" y=\"10\" width=\"40\" height=\"40\" rx=\"6\" fill=\"#FF8A3D\"/></svg><span class=\"ds-lbl\">Cuadrado</span></button></div>",
+      "css": ".ds-opt{position:relative;display:grid;place-items:center;gap:8px;width:150px;min-height:150px;padding:12px 10px;border:4px solid #fff;border-radius:28px;cursor:pointer;color:#183153;background:linear-gradient(180deg,#fff 0%,#EEF8FA 100%);box-shadow:0 18px 30px rgba(8,50,80,.14);transition:transform 180ms cubic-bezier(.23,1,.32,1)}.ds-opt:hover{transform:translateY(-4px)}.ds-opt:active{transform:scale(.97)}.ds-opt:focus-visible{outline:4px solid #FFC93C;outline-offset:3px;}.ds-lbl{font-family:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;font-weight:700;font-size:1rem;color:#46607F;background:#E6F3F6;padding:3px 14px;border-radius:999px}.ds-bien{border-color:#2BB673;background:linear-gradient(180deg,#F2FFF8,#D9F6E7);box-shadow:0 0 0 8px rgba(43,182,115,.18)}.ds-bien::after{content:\"\";position:absolute;top:-14px;right:-14px;width:46px;height:46px;border-radius:50%;background:#2BB673 url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\") center/28px no-repeat}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El mar de Lolo",
+    "overview": "Todo ocurre bajo el agua. La pantalla es un mar en vertical: agua clara y luminosa arriba, azul profundo abajo y arena en el fondo, con rayos de luz que respiran despacio, burbujas que suben y algas en el lecho. Lolo, un pulpo naranja con volumen, vive en ese mar y es quien habla: cada pantalla empieza con una pregunta suya en un bocadillo blanco. Sobre el agua flotan superficies blancas de vidrio con sombra azul, que son donde se toca. Los ojos de buey de latón son las ventanas a cada juego.\n\nEl sistema está pensado para una pizarra digital de 1920×1080 manejada con el dedo delante de toda la clase. Las piezas son grandes, redondas y táctiles. Ninguna zona táctil baja de 46px, y los controles principales miden entre 52 y 56px. La densidad es media: la maestra tiene que poder leer de un vistazo, y los niños, que aún no leen, se orientan por el color, el icono y el pictograma. El movimiento tiene carácter (Lolo saluda, mira, asiente y se lanza tras la tarjeta), pero el modo tranquilo y `prefers-reduced-motion` lo dejan siempre en fundidos breves.\n\nEl mar es el único tema, a propósito. No hay modo oscuro ni cambio de tema: el modo tranquilo es la única variante, y baja estímulos sin cambiar de mundo.",
+    "keyCharacteristics": [
+      "Fondo de mar en degradado vertical (aguamarina, turquesa, azul profundo, abismo) con arena en el pie.",
+      "Lolo grande, ilustrado en SVG con degradado radial, a la izquierda y como narrador.",
+      "Superficies blancas de vidrio con sombra azul difusa sobre el agua.",
+      "Color de categoría en cinco tonos (naranja, morado, azul, rosa, verde), siempre junto a icono y texto.",
+      "Fredoka redondeada para lo que se dice y se toca; Nunito para lo que se lee.",
+      "Formas de píldora y esquinas muy redondeadas: nada tiene canto vivo.",
+      "Movimiento con curvas de salida propias y una firma, la inmersión."
+    ],
+    "rules": [
+      {
+        "name": "La Regla del Color Acompañado",
+        "body": "El color nunca va solo: cada color de categoría o de día aparece junto a un icono, un pictograma o una palabra. Ningún dato se comunica solo con el tono.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Sol Escaso",
+        "body": "El amarillo sol se reserva para la acción principal, el foco y las pistas. Si dos cosas amarillas compiten en la misma pantalla, una sobra.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Mar Fijo",
+        "body": "El fondo siempre es el mar, en degradado vertical de claro a profundo. No hay fondos planos neutros, temas alternativos ni modo oscuro.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla de las Dos Voces",
+        "body": "Lo que Lolo dice y lo que se toca va en Fredoka; lo que la maestra lee va en Nunito. No se mezclan dentro de un mismo elemento.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Peso Mínimo",
+        "body": "No hay texto por debajo de 600. A distancia de pizarra, los pesos finos desaparecen.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de la Sombra Azul",
+        "body": "Toda sombra está teñida del azul del mar (rgba(8–10, 50–60, 80–90, …)). No se usan sombras grises ni negras.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Repisa Heredada",
+        "body": "Algunos botones y tarjetas de la app (botón amarillo, tarjetas de opción, números, cartas de memoria, flechas) llevan una repisa dura sin desenfoque (`0 8px 0 …`) que desaparece al pulsar. Es una herencia de la app y no se extiende a superficies nuevas: en ellas, la pulsación se expresa con la sombra azul difusa y una escala de .97.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla del Modo Tranquilo",
+        "body": "El modo tranquilo (preferencia `lolo-calma`, compartida por la portada y la app) apaga los rayos, las burbujas, la flotación, los tentáculos, el saludo, los pulsos y los latidos. Deja solo fundidos de 160ms, lanza el juego sin inmersión, baja el volumen al 45 % y hace la voz más lenta. Es una variante del mismo mar, no otro mundo.",
+        "section": "components"
+      },
+      {
+        "name": "La Regla del Movimiento Reducido",
+        "body": "Con `prefers-reduced-motion: reduce` se aplica lo mismo que en el modo tranquilo, y además se quitan el parpadeo y la entrada del bocadillo. La mirada, el asentimiento y el cambio de frase con fundido no se ejecutan. La información nunca depende de una animación.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** empezar cada pantalla con Lolo y una pregunta suya en el bocadillo blanco, en segunda persona del plural («¿Qué trabajamos hoy?»).",
+      "**Do** acompañar cada color de categoría o de día con su icono o pictograma y su texto.",
+      "**Do** mantener las zonas táctiles en 46px como mínimo y en 52–56px para los controles principales.",
+      "**Do** usar la sombra azul de flotación (`--sombra`) en toda superficie blanca que flote sobre el mar.",
+      "**Do** usar `--ease-out` en entradas y respuestas, en 160–200ms al tocar, y `scale(.97)` como respuesta de pulsación.",
+      "**Do** dar a cada animación su versión para el modo tranquilo y para `prefers-reduced-motion` en el mismo cambio.",
+      "**Do** usar el anillo de foco amarillo sol de 4px con separación de 3px en todo elemento interactivo.",
+      "**Do** cargar Fredoka y Nunito desde `fonts/`, en el propio sitio."
+    ],
+    "donts": [
+      "**Don't** convertir la portada en un catálogo con buscador y categorías como pestañas; se filtra con chips de objetivo y el selector de edad.",
+      "**Don't** mostrar puntos, rankings, tiempos límite ni nada que señale o compare a un niño concreto.",
+      "**Don't** usar rojo ni sonidos de castigo para el error; el error es un tembleque breve y una nueva oportunidad.",
+      "**Don't** usar sombras grises o negras, ni fondos planos neutros en lugar del mar.",
+      "**Don't** inventar datos (duración, número de usos, testimonios) para rellenar tarjetas.",
+      "**Don't** extender a superficies nuevas la repisa dura heredada ni las etiquetas en mayúsculas sobre los títulos de las capas."
+    ]
+  }
+}

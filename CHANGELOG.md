@@ -1,5 +1,11 @@
 # Cambios
 
+## 1.1.0 · noviembre de 2026
+
+- Nueva portada con Lolo como protagonista: «¿Qué trabajamos hoy?», filtros por objetivo y edad, fila «Para hoy» (rutina del día, recientes y sugerencias) y transición de inmersión al lanzar un juego.
+- Los juegos pasan a `jugar.html`, con un botón «Inicio» para volver a la portada.
+- PRODUCT.md y DESIGN.md con el producto y el sistema visual documentados.
+
 ## 1.0.0 · noviembre de 2026
 
 Primera versión para producción.
