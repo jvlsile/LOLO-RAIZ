@@ -508,6 +508,61 @@ button{font-family:inherit}
 @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
 @keyframes golpe{50%{transform:scale(1.25) rotate(-8deg)}}
 @keyframes pulso{0%,100%{box-shadow:0 8px 0 var(--sol-2),0 0 0 0 rgba(255,201,60,.6)}50%{box-shadow:0 8px 0 var(--sol-2),0 0 0 16px rgba(255,201,60,0)}}
+/* ---------- El otoño ---------- */
+.etq .sw-h{display:inline-grid;place-items:center;width:28px;height:28px}
+.etq .sw-h svg{width:calc(var(--s,1)*28px);height:auto}
+.monton{background:radial-gradient(120% 70% at 50% 100%,#E9C08A 0 38%,transparent 39%),linear-gradient(180deg,#FFF6E6,#FBE3BF);box-shadow:inset 0 -10px 0 rgba(160,90,30,.12),0 10px 20px rgba(8,50,80,.1)}
+.hojas-caen .pieza svg{animation:caeHoja .9s cubic-bezier(.23,1,.32,1) both;animation-delay:var(--d,0ms)}
+@keyframes caeHoja{0%{opacity:0;transform:translate(-30px,-90px) rotate(-70deg)}60%{opacity:1;transform:translate(10px,8px) rotate(14deg)}100%{transform:none}}
+.arboles .opt{min-height:0;padding:10px}
+.arboles .opt svg{width:min(100%,170px)}
+.secuencia-est{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,22px)}
+.est-caja{display:grid;justify-items:center;gap:6px;width:clamp(110px,14vw,160px);font:700 1.05rem var(--f-display);color:var(--tinta-2)}
+.est-caja svg{width:100%;height:auto;filter:drop-shadow(0 6px 10px rgba(8,50,80,.15))}
+.hueco-est{aspect-ratio:120/132;place-content:center;border-radius:20px;border:4px dashed #B9CCDA;background:rgba(255,255,255,.6)}
+.hueco-est b{font:700 3rem var(--f-display);color:#9DB2C4}
+.hueco-est.lleno{aspect-ratio:auto;border:0;background:none;animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
+.secuencia-est .signo{font:700 2.4rem var(--f-display);color:var(--tinta-2)}
+.clima{width:min(100%,460px);margin:0 auto}
+.clima svg{width:100%;height:auto;display:block;border-radius:22px;box-shadow:0 10px 24px rgba(8,50,80,.15)}
+.animal-otono{display:grid;justify-items:center;gap:6px;margin:0 auto;padding:12px 24px 10px;border-radius:28px;background:linear-gradient(180deg,#FFF6E6,#F9DDB3);box-shadow:0 10px 0 #EBC896}
+.animal-otono svg{width:clamp(110px,15vw,170px);height:auto}
+.animal-otono span{font:700 1.3rem var(--f-display);color:var(--tinta)}
+.puesto{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(12px,2vw,24px);align-items:center}
+.pedido{display:grid;justify-items:center;gap:8px;padding:14px 20px;border-radius:24px;background:#fff;box-shadow:0 8px 0 #F3DDBE}
+.pedido .grande{font:700 clamp(3rem,7vw,5rem)/1 var(--f-display);color:#8B4A22}
+.pedido small{font:800 .8rem var(--f-body);text-transform:uppercase;letter-spacing:.06em;color:var(--tinta-2)}
+.pedido .pts-g i{background:#8B4A22}
+.pedido.pista{animation:latido 1.1s ease-in-out infinite;box-shadow:0 8px 0 #F3DDBE,0 0 0 8px rgba(255,201,60,.45)}
+.brasero{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:16px 14px 20px;border-radius:24px;min-height:120px;
+  background:radial-gradient(90% 60% at 50% 110%,rgba(255,138,61,.55),transparent 70%),repeating-linear-gradient(90deg,#3B3F48 0 6px,#2A2D34 6px 14px);box-shadow:inset 0 0 0 4px #1D2027,0 10px 20px rgba(8,50,80,.18)}
+.castana{width:clamp(48px,5.6vw,74px);aspect-ratio:1;padding:2px;border:0;background:none;cursor:pointer;border-radius:50%;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+.castana svg{width:100%;height:100%;pointer-events:none;filter:drop-shadow(0 4px 3px rgba(0,0,0,.25))}
+.castana:active{transform:scale(.92)}
+.castana.pop{animation:pop .3s cubic-bezier(.34,1.56,.64,1)}
+.cucurucho{display:grid;justify-items:center;width:clamp(140px,17vw,210px)}
+.cucurucho .dentro{display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-end;gap:0;min-height:clamp(60px,8vw,96px);width:100%;margin-bottom:-30px;position:relative;z-index:1}
+.cucurucho .dentro .castana{width:clamp(40px,4.4vw,58px)}
+.cucurucho .cono{width:82%;height:auto;filter:drop-shadow(0 8px 10px rgba(8,50,80,.15))}
+.carta-viento{padding:26px 18px}
+.carta-viento .reglas{margin-top:8px}
+.hojas-viento{position:relative;display:flex;justify-content:center;gap:clamp(6px,1.4vw,16px);min-height:clamp(70px,10vw,110px);align-items:center}
+.hojas-viento span{display:block;width:clamp(44px,6vw,72px)}
+.hojas-viento span svg{width:100%;height:auto}
+.hojas-viento span{animation:mece 2.8s ease-in-out infinite;animation-delay:calc(var(--i)*-.5s)}
+.hojas-viento.suave span{animation:mece 2.2s ease-in-out infinite;animation-delay:calc(var(--i)*-.4s)}
+.hojas-viento.fuerte span{animation:remolino .9s linear infinite;animation-delay:calc(var(--i)*-.18s)}
+.hojas-viento.cae span{animation:caida 2.6s ease-in infinite;animation-delay:calc(var(--i)*-.5s)}
+.hojas-viento.quieto span{animation:none;transform:translateY(24px) rotate(calc(var(--i)*35deg - 60deg))}
+@keyframes mece{0%,100%{transform:rotate(-12deg) translateX(-4px)}50%{transform:rotate(12deg) translateX(4px)}}
+@keyframes remolino{0%{transform:translate(-20px,0) rotate(0)}50%{transform:translate(20px,-16px) rotate(180deg)}100%{transform:translate(-20px,0) rotate(360deg)}}
+@keyframes caida{0%{transform:translateY(-30px) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(40px) rotate(220deg);opacity:.2}}
+.calma .hojas-viento span,.calma .hojas-caen .pieza svg,.calma .pedido.pista{animation:none!important}
+@media (max-width:760px){
+  .puesto{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .puesto .brasero{grid-column:1/-1;order:3}
+  .secuencia-est .est-caja{width:min(36vw,140px)}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 @media (max-width:760px){

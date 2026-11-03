@@ -1,5 +1,18 @@
 # Cambios
 
+## 1.4.0 · noviembre de 2026
+
+- Nueva categoría **El otoño**, con siete juegos:
+  - Las hojas del otoño: clasificar hojas por color y tamaño.
+  - El árbol y las estaciones: cómo cambia el árbol y qué estación viene después.
+  - ¿Qué nos ponemos?: la ropa adecuada para la lluvia, los charcos, el viento y el frío.
+  - Adivina el fruto del otoño: adivinanzas de castañas, granadas, uvas, calabazas, setas y bellotas.
+  - Los animales en otoño: migrar, hibernar o guardar comida.
+  - El puesto de castañas: contar del 1 al 5 sirviendo castañas asadas.
+  - El viento de otoño: movimiento, expresión corporal y relajación.
+- Aviso de novedad en la portada que lleva directamente a los juegos de otoño.
+- 110 frases nuevas en el guion de audios (740 en total).
+
 ## 1.3.0 · noviembre de 2026
 
 - Voz grabada para Lolo: si una frase tiene su audio en `audio/`, suena el audio; si no, la voz del navegador. Se pueden subir por tandas.

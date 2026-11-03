@@ -2,7 +2,8 @@
 const { test, expect } = require('@playwright/test');
 
 const MINIJUEGOS = ['cuenta', 'series', 'cestas', 'tamanos', 'parejas', 'formas', 'cuento', 'construye',
-  'quepasa', 'emociones', 'muevete', 'caza', 'robot', 'duo', 'escape'];
+  'quepasa', 'emociones', 'muevete', 'caza', 'robot', 'duo', 'escape',
+  'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento'];
 const TODOS = ['lolo', 'caja', 'jardin', ...MINIJUEGOS];
 
 // Programas correctos para los 5 mapas del robot.
@@ -61,6 +62,20 @@ async function resolverReto(page, id, reto) {
         break;
       }
       case 'cuento': await votar(); break;
+      case 'hojas':
+        for (const p of [...z.querySelectorAll('.piezas .pieza')])
+          for (const c of z.querySelectorAll('.monton')) { if (p.disabled) break; pulsa(p); pulsa(c); await dormir(20); }
+        break;
+      case 'arbol': case 'ropa': case 'frutos': case 'bosque': await probarTodas('.opts .opt'); break;
+      case 'castanas': {
+        const n = +z.querySelector('.puesto').dataset.n;
+        for (let i = 0; i < n + 1; i++) pulsa(z.querySelector('.brasero .castana'));
+        pulsa(boton('Ya está')); await dormir(40);
+        pulsa(z.querySelector('.cucurucho .castana')); pulsa(boton('Ya está')); break;
+      }
+      case 'viento':
+        for (let i = 0; i < 3; i++) { pulsa(boton('Soplar')); await dormir(30); }
+        pulsa(z.querySelector('[data-listo] .big')); break;
       case 'construye': pulsa(boton('construido')); await dormir(80); for (const b of z.querySelectorAll('.chk')) { pulsa(b); await dormir(15); } break;
       case 'quepasa':
         if (!z.querySelector('.votos') && z.querySelector('.opts .opt')) { pulsa(z.querySelector('.opts .opt')); await dormir(300); }
@@ -93,21 +108,21 @@ async function resolverReto(page, id, reto) {
 }
 
 test.describe('Menú', () => {
-  test('carga sin errores y muestra los 18 juegos por categorías', async ({ page }) => {
+  test('carga sin errores y muestra los 25 juegos por categorías', async ({ page }) => {
     await abrir(page);
     await expect(page).toHaveTitle('La visita de Lolo');
     await page.click('#btnMenu');
-    await expect(page.locator('.jcard')).toHaveCount(18);
-    await expect(page.locator('.cat')).toHaveCount(5);
+    await expect(page.locator('.jcard')).toHaveCount(25);
+    await expect(page.locator('.cat')).toHaveCount(6);
   });
 
   test('filtra por edad', async ({ page }) => {
     await abrir(page);
     await page.click('#btnMenu');
     await page.click('.edad-f[data-e="3"]');
-    await expect(page.locator('.jcard')).toHaveCount(13);
+    await expect(page.locator('.jcard')).toHaveCount(19);
     await page.click('.edad-f[data-e="5"]');
-    await expect(page.locator('.jcard')).toHaveCount(14);
+    await expect(page.locator('.jcard')).toHaveCount(21);
   });
 
   test('abre un juego desde el menú', async ({ page }) => {

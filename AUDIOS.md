@@ -1,9 +1,9 @@
 # Las voces de Lolo · guion y prompts para generar los audios
 
-Todo lo que dice Lolo está en **`audio/guion.csv`**: son **630 audios** (unos 37 000 caracteres).
+Todo lo que dice Lolo está en **`audio/guion.csv`**: son **740 audios** (unos 44 000 caracteres).
 
-- **595 frases completas.**
-- **35 palabras sueltas** (colores, números, formas, direcciones…). El juego las encadena para las frases que cambian cada vez, como «Mirad la fila: rojo, azul, rojo… ¿Y ahora qué va?».
+- **700 frases completas.**
+- **40 palabras sueltas** (colores, números, formas, direcciones…). El juego las encadena para las frases que cambian cada vez, como «Mirad la fila: rojo, azul, rojo… ¿Y ahora qué va?».
 
 Mientras falte un audio, el juego usa la voz del navegador para esa frase. Así se pueden ir subiendo por tandas sin que nada deje de sonar.
 
@@ -36,12 +36,12 @@ Cada fila del guion trae una columna **`indicacion`** con el tono:
 
 | Indicación | Cómo suena | Ajustes orientativos (ElevenLabs) |
 |---|---|---|
-| **Alegre y entusiasta** (260) | Celebración sincera, sonrisa, sin gritar | Estabilidad 35–40 %, estilo 45 % |
-| **Pista amable y paciente** (171) | Cuando el niño se equivoca: tranquilo, sin reproche, animando | Estabilidad 60 %, estilo 15 % |
-| **Curiosa e invitadora** (78) | Pregunta abierta; deja ½ segundo de silencio al final | Estabilidad 50 %, estilo 25 % |
-| **Cálida, clara y cercana** (68) | Explicaciones e instrucciones | Estabilidad 50 %, estilo 25 % |
-| **Suave y lenta** (10) | Respiración y calma: más lento y más bajo | Estabilidad 75 %, estilo 5 % |
-| **Palabra suelta** (35) | Neutra, como al enumerar; ni pregunta ni final | Estabilidad 80 %, estilo 0 % |
+| **Alegre y entusiasta** (299) | Celebración sincera, sonrisa, sin gritar | Estabilidad 35–40 %, estilo 45 % |
+| **Pista amable y paciente** (189) | Cuando el niño se equivoca: tranquilo, sin reproche, animando | Estabilidad 60 %, estilo 15 % |
+| **Curiosa e invitadora** (103) | Pregunta abierta; deja ½ segundo de silencio al final | Estabilidad 50 %, estilo 25 % |
+| **Cálida, clara y cercana** (86) | Explicaciones e instrucciones | Estabilidad 50 %, estilo 25 % |
+| **Suave y lenta** (15) | Respiración y calma: más lento y más bajo | Estabilidad 75 %, estilo 5 % |
+| **Palabra suelta** (40) | Neutra, como al enumerar; ni pregunta ni final | Estabilidad 80 %, estilo 0 % |
 | **Inicio de frase** (8) | Termina en suspenso porque sigue una lista | Estabilidad 70 %, estilo 10 % |
 
 Reglas que valen para todas:
@@ -88,7 +88,7 @@ done
    export ELEVENLABS_API_KEY=tu_clave
    export LOLO_VOICE_ID=el_id_de_la_voz
    python3 scripts/generar-audios.py 1-20    # prueba primero con 20
-   python3 scripts/generar-audios.py         # luego, todos los que falten
+   python3 scripts/generar-audios.py         # luego, todos los que falten (o solo los nuevos: ya se saltan los hechos)
    ```
 
    El script aplica los ajustes de la tabla según la indicación de cada frase y se salta los que ya existen. Para repetir uno que no te guste: `python3 scripts/generar-audios.py --rehacer 153`.

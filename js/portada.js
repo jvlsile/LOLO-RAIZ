@@ -31,6 +31,14 @@
     emociones: '<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5q3.5 3 7 0"/><path d="M8 9.5h2M14 9.5h2"/>',
     muevete: '<circle cx="13" cy="4" r="2"/><path d="M8 9l4-2 3 3 3 1M12 7l-1 6 4 3v5M11 13l-4 3-3-1"/>',
     caza: '<path d="M4 20L14 10"/><path d="M15 9l1.4-4 1 3.6 3.6 1-3.6 1-1 3.6-1-3.6z"/><circle cx="7" cy="6" r="1"/><circle cx="19" cy="17" r="1"/>',
+    hoja: '<path d="M12 21v-6"/><path d="M12 3l1.8 3.6 3.7-1.2-1 3.8 3.5 1.6-3.3 2 1.2 3.4-3.7-.6L12 15l-2.2-.4-3.7.6 1.2-3.4-3.3-2 3.5-1.6-1-3.8 3.7 1.2z"/>',
+    hojas: '<path d="M12 21v-6"/><path d="M12 3l1.8 3.6 3.7-1.2-1 3.8 3.5 1.6-3.3 2 1.2 3.4-3.7-.6L12 15l-2.2-.4-3.7.6 1.2-3.4-3.3-2 3.5-1.6-1-3.8 3.7 1.2z"/>',
+    arbol: '<circle cx="12" cy="9" r="6"/><path d="M12 21v-7M12 16l-3-2.5M12 15.5l3-2.5M4 21h16"/>',
+    ropa: '<path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6a2 2 0 0 1-4 0M12 3V2"/>',
+    frutos: '<path d="M12 4c4 2.5 6.5 7 5 10.5-1 2.5-3 3.5-5 3.5s-4-1-5-3.5C5.5 11 8 6.5 12 4z"/><path d="M7 15.5c3 1.5 7 1.5 10 0"/>',
+    bosque: '<ellipse cx="12" cy="16" rx="4.5" ry="3.8"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.5" cy="6.5" r="1.9"/><circle cx="14.5" cy="6.5" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/>',
+    castanas: '<path d="M5 9h14l-7 12z"/><circle cx="9" cy="6.5" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/>',
+    viento: '<path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/><path d="M3 19h6"/>',
     flecha: '<path d="M5 12h14M13 6l6 6-6 6"/>'
   };
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
@@ -42,7 +50,8 @@
     { k: 'lenguaje', t: 'Lenguaje y emociones', corto: 'Lenguaje', c: 'var(--c-lenguaje)', ic: 'cuento', d: 'Cuentos, preguntas y reconocer cómo nos sentimos.' },
     { k: 'logica', t: 'Lógica y matemáticas', corto: 'Lógica', c: 'var(--c-logica)', ic: 'formas', d: 'Contar, formas, series, tamaños y memoria.' },
     { k: 'retos', t: 'Retos y cooperación', corto: 'Retos', c: 'var(--c-retos)', ic: 'duo', d: 'Resolver juntos: candados, robots y parejas.' },
-    { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' }
+    { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' },
+    { k: 'otono', t: 'El otoño', corto: 'Otoño', c: 'var(--c-otono)', ic: 'hoja', d: 'Hojas, frutos, animales, ropa y tiempo de esta estación.', nuevo: true }
   ];
   const cat = Object.fromEntries(CATS.map(c => [c.k, c]));
   const JUEGOS = [
@@ -81,7 +90,21 @@
     { id: 'construye', t: 'Toca, construye y comprueba', cat: 'ciencia', e: [3, 4, 5], d: 'Copiar torres con bloques de verdad y comprobarlas en la pizarra.',
       tr: ['Construcción con bloques', 'Colores y orden', 'Autocomprobación'], como: 'La pizarra muestra una torre, la clase la construye con bloques reales y después la comprueba bloque a bloque.' },
     { id: 'caza', t: 'Caza mágica', cat: 'ciencia', e: [3, 4, 5], d: 'Animales y planetas que aparecen por arte de magia y se esconden.',
-      tr: ['Curiosidad y vocabulario', 'Datos sencillos del mundo', 'Atención y búsqueda'], como: 'Con «¡Abracadabra!» aparece un animal o un planeta que cuenta un dato y se esconde. La clase lo busca.' }
+      tr: ['Curiosidad y vocabulario', 'Datos sencillos del mundo', 'Atención y búsqueda'], como: 'Con «¡Abracadabra!» aparece un animal o un planeta que cuenta un dato y se esconde. La clase lo busca.' },
+    { id: 'hojas', t: 'Las hojas del otoño', cat: 'otono', e: [3, 4, 5], d: 'El viento tira las hojas del árbol: hacemos montones por color y por tamaño.',
+      tr: ['Colores del otoño: amarillo, naranja, rojo y marrón', 'Clasificar por un criterio', 'Grande y pequeño'], como: 'Las hojas caen y la clase las arrastra a su montón, o toca la hoja y luego el montón. Cinco retos con más colores cada vez.' },
+    { id: 'arbol', t: 'El árbol y las estaciones', cat: 'otono', e: [3, 4, 5], d: 'Cómo cambia un árbol en otoño, invierno, primavera y verano.',
+      tr: ['Cambios de la naturaleza en otoño', 'Las cuatro estaciones', 'Secuencia temporal: qué viene después'], como: 'Lolo describe cada estación y la clase elige el árbol que corresponde. El último reto pregunta qué estación llega después del verano.' },
+    { id: 'ropa', t: '¿Qué nos ponemos?', cat: 'otono', e: [3, 4, 5], d: 'Elegir la ropa según el tiempo: lluvia, charcos, viento y frío.',
+      tr: ['El tiempo atmosférico en otoño', 'Vocabulario de prendas', 'Autonomía y cuidado de uno mismo'], como: 'Aparece el tiempo que hace y la clase elige la prenda adecuada. Si eligen ropa de verano, Lolo explica por qué no sirve.' },
+    { id: 'frutos', t: 'Adivina el fruto del otoño', cat: 'otono', e: [3, 4, 5], d: 'Adivinanzas de castañas, granadas, uvas, calabazas, setas y bellotas.',
+      tr: ['Frutos típicos del otoño en Andalucía', 'Comprensión oral y adivinanzas', 'Cuidado: las setas no se tocan'], como: 'Lolo dice una adivinanza y la clase elige entre tres dibujos. Al acertar, cuenta algo del fruto.' },
+    { id: 'bosque', t: 'Los animales en otoño', cat: 'otono', e: [4, 5], d: 'Qué hacen los animales cuando llega el frío: viajar, dormir o guardar comida.',
+      tr: ['Migración, hibernación y almacenar comida', 'Golondrina, erizo, oso, ardilla y hormiga', 'Relacionar causa y efecto'], como: 'Aparece un animal y la clase elige qué hace en otoño entre tres opciones con dibujo. Lolo explica cada respuesta.' },
+    { id: 'castanas', t: 'El puesto de castañas', cat: 'otono', e: [3, 4, 5], d: 'Lolo vende castañas asadas: hay que contar las que pide cada cliente.',
+      tr: ['Contar del 1 al 5', 'Correspondencia uno a uno', 'Tradiciones de otoño: las castañas asadas'], como: 'Lolo enseña el número que pide el cliente. Los niños tocan castañas para meterlas en el cucurucho (o sacarlas) y pulsan «¡Ya está!».' },
+    { id: 'viento', t: 'El viento de otoño', cat: 'otono', e: [3, 4, 5], d: 'Somos hojas: nos mecemos, giramos con el viento, caemos y respiramos.',
+      tr: ['Expresión corporal', 'Atención y control del movimiento', 'Relajación y respiración'], como: 'Cinco momentos de movimiento delante de la pizarra. En uno, Lolo sopla viento fuerte, suave o nada, y la clase se mueve así.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
   const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
@@ -94,7 +117,7 @@
   function pintaCategorias() {
     $('#listaCat').innerHTML = CATS.map(c => {
       const n = JUEGOS.filter(j => j.cat === c.k).length;
-      return `<button class="cat revela" type="button" data-cat="${c.k}" style="--c:${c.c}"><span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p><span class="cat-n">${n} juegos ${svg('flecha')}</span></button>`;
+      return `<button class="cat revela" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p><span class="cat-n">${n} juegos ${svg('flecha')}</span></button>`;
     }).join('');
   }
   function pintaFiltros() {
@@ -108,7 +131,7 @@
       <div class="tarjeta-cuerpo"><span class="tarjeta-cat">${c.t}</span><h3>${j.t}</h3><p>${j.d}</p>
         <div class="tarjeta-pie"><button class="tarjeta-mas" type="button" tabindex="-1">Ver ficha</button><a class="jugar" href="jugar.html#${j.id}" data-id="${j.id}">${PLAY}Jugar</a></div></div></article>`;
   };
-  // Las 18 tarjetas se crean una vez; filtrar las oculta y anima las que se recolocan (FLIP).
+  // Las tarjetas se crean una vez; filtrar las oculta y anima las que se recolocan (FLIP).
   function montaRejilla() { $('#rejilla').innerHTML = JUEGOS.map(tarjeta).join(''); }
   function visible(j) {
     if (filtroCat !== 'todas' && j.cat !== filtroCat) return false;
@@ -135,7 +158,7 @@
     if (filtroCat !== 'todas') partes.push(cat[filtroCat].t);
     if (edad) partes.push(`${edad} años`);
     if (busca) partes.push(`«${busca}»`);
-    $('#cuantos').textContent = n === JUEGOS.length ? '18 juegos' : `${n} de 18 juegos${partes.length ? ' · ' + partes.join(' · ') : ''}`;
+    $('#cuantos').textContent = n === JUEGOS.length ? `${n} juegos` : `${n} de ${JUEGOS.length} juegos${partes.length ? ' · ' + partes.join(' · ') : ''}`;
   }
   function pintaRecientes() {
     let r = [];
@@ -280,6 +303,8 @@
     if (lnk && !ev.metaKey && !ev.ctrlKey && !ev.shiftKey && ev.button === 0) { ev.preventDefault(); lanza(lnk, lnk.dataset.id); return; }
     const card = ev.target.closest('.tarjeta');
     if (card) { abreFicha(card.dataset.id, card); return; }
+    const nv = ev.target.closest('.novedad');
+    if (nv) { ev.preventDefault(); filtroCat = nv.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const c = ev.target.closest('.cat');
     if (c) { filtroCat = c.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const p = ev.target.closest('.pestana');

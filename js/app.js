@@ -606,7 +606,7 @@
   document.addEventListener('keydown',e=>{ const d=e.target.closest&&e.target.closest('[data-destino]'); if(d&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); d.click(); } });
 
   const EST={};
-  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza'];
+  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento'];
   const zonaDe=id=>$('#panel-'+id+' .jz');
   const espera=ms=>new Promise(r=>setTimeout(r,ms));
   function botonSig(id){
@@ -1220,13 +1220,264 @@
       }}
   });
 
+  /* ================= EL OTOÑO ================= */
+  Object.assign(P,{
+    j_hojas:'<path d="M12 21v-6"/><path d="M12 3l1.8 3.6 3.7-1.2-1 3.8 3.5 1.6-3.3 2 1.2 3.4-3.7-.6L12 15l-2.2-.4-3.7.6 1.2-3.4-3.3-2 3.5-1.6-1-3.8 3.7 1.2z"/>',
+    j_arbol:'<circle cx="12" cy="9" r="6"/><path d="M12 21v-7M12 16l-3-2.5M12 15.5l3-2.5M4 21h16"/>',
+    j_ropa:'<path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6a2 2 0 0 1-4 0M12 3V2"/>',
+    j_frutos:'<path d="M12 4c4 2.5 6.5 7 5 10.5-1 2.5-3 3.5-5 3.5s-4-1-5-3.5C5.5 11 8 6.5 12 4z"/><path d="M7 15.5c3 1.5 7 1.5 10 0"/>',
+    j_bosque:'<ellipse cx="12" cy="16" rx="4.5" ry="3.8"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.5" cy="6.5" r="1.9"/><circle cx="14.5" cy="6.5" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/>',
+    j_castanas:'<path d="M5 9h14l-7 12z"/><circle cx="9" cy="6.5" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/>',
+    j_viento:'<path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/><path d="M3 19h6"/>'
+  });
+  const sv=(vb,inner,cl='')=>`<svg viewBox="${vb}"${cl?` class="${cl}"`:''} aria-hidden="true">${inner}</svg>`;
+  const trazo=`stroke="${K}" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"`;
+
+  /* --- hojas --- */
+  const HCOL={amarillo:'#F6C443',naranja:'#F2892E',rojo:'#D9483B',marron:'#A0662F'};
+  const HNOM={amarillo:['amarilla','amarillas'],naranja:['naranja','naranjas'],rojo:['roja','rojas'],marron:['marrón','marrones']};
+  const hojaIn=(c,t=0)=>t
+    ? `<path d="M50 6L58 30L80 20L72 44L94 50L72 60L80 82L56 70L50 80L44 70L20 82L28 60L6 50L28 44L20 20L42 30Z" fill="${c}" ${trazo}/><path d="M50 78V96M50 70V26M50 54L28 44M50 54L72 44" stroke="${K}" stroke-width="3" stroke-linecap="round" opacity=".4" fill="none"/>`
+    : `<path d="M50 6C80 22 88 56 66 80Q56 89 50 90Q44 89 34 80C12 56 20 22 50 6z" fill="${c}" ${trazo}/><path d="M50 16V97M50 42L37 32M50 42L63 32M50 62L35 51M50 62L65 51" stroke="${K}" stroke-width="3" stroke-linecap="round" opacity=".4" fill="none"/><ellipse cx="38" cy="36" rx="6" ry="11" fill="#fff" opacity=".3" transform="rotate(25 38 36)"/>`;
+  const hoja=(c,t)=>sv('0 0 100 100',hojaIn(HCOL[c]||c,t));
+
+  /* --- árboles de cada estación --- */
+  const ESTA={
+    verano:{n:'verano',d:'tiene muchas hojas verdes y hace calor'},
+    otono:{n:'otoño',d:'las hojas se ponen amarillas y naranjas, y se caen'},
+    invierno:{n:'invierno',d:'no tiene hojas y hace mucho frío'},
+    primavera:{n:'primavera',d:'le salen hojas nuevas y flores'}
+  };
+  function arbol(e){
+    const copa=cs=>`<g stroke="${K}" stroke-width="4">${[[60,44,30],[34,60,22],[86,60,22],[60,66,22]].map(([x,y,r],i)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${cs[i%cs.length]}"/>`).join('')}</g>`;
+    const hojita=(x,y,c,g)=>`<g transform="translate(${x} ${y}) rotate(${g}) scale(.15) translate(-50 -50)">${hojaIn(c)}</g>`;
+    let fondo='', capa='', extra='';
+    if(e==='verano'){ fondo='#DDF3FF'; capa=copa(['#4CB050','#3E9E44','#5BC062']); extra=`<circle cx="102" cy="18" r="10" fill="#FFC93C" stroke="${K}" stroke-width="3"/>`; }
+    if(e==='otono'){ fondo='#FFF1DC'; capa=copa(['#F2892E','#F6C443','#D9483B','#F2892E']); extra=hojita(22,104,HCOL.amarillo,30)+hojita(96,110,HCOL.rojo,-20)+hojita(78,94,HCOL.naranja,60)+hojita(40,118,HCOL.marron,-50); }
+    if(e==='invierno'){ fondo='#E9F0F7'; extra=`<path d="M60 70L40 44M60 64L82 40M42 48L30 40M80 44L92 34M60 60V30" stroke="#7A4A2A" stroke-width="6" stroke-linecap="round" fill="none"/><g fill="#fff" stroke="#9BB4CC" stroke-width="2">${[[24,22],[96,30],[50,16],[106,70],[16,74]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="4"/>`).join('')}</g><ellipse cx="60" cy="128" rx="50" ry="8" fill="#fff"/>`; }
+    if(e==='primavera'){ fondo='#EAF8E6'; capa=copa(['#7ED06F','#6CC35E','#8EDC7F'])+`<g fill="#FF9EC0" stroke="${K}" stroke-width="2.5">${[[48,34],[72,30],[30,58],[88,56],[60,58],[44,72],[78,74]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="5.5"/>`).join('')}</g>`; }
+    return sv('0 0 120 132',`<rect x="2" y="2" width="116" height="128" rx="20" fill="${fondo}"/><ellipse cx="60" cy="124" rx="44" ry="6" fill="#0B3550" opacity=".12"/><path d="M54 124L56 84Q44 76 38 64M66 124L64 86Q76 78 82 66M60 96V60" stroke="#7A4A2A" stroke-width="10" stroke-linecap="round" fill="none"/>${capa}${extra}`);
+  }
+
+  /* --- ropa y tiempo --- */
+  const ROPA={
+    paraguas:{n:'el paraguas',lbl:'Paraguas',svg:`<path d="M8 52Q50 0 92 52Q81 44 71 52Q61 44 50 52Q39 44 29 52Q19 44 8 52z" fill="#3D8DF2" ${trazo}/><path d="M50 52V82q0 9-8 9t-8-8M50 14V7" fill="none" ${trazo}/>`},
+    botas:{n:'las botas de agua',lbl:'Botas de agua',svg:`<path d="M44 16h20v46h14q8 0 8 10v8H44z" fill="#F0A817" ${trazo}/><path d="M16 22h20v46h14q8 0 8 10v8H16z" fill="#FFC93C" ${trazo}/>`},
+    bufanda:{n:'la bufanda',lbl:'Bufanda',svg:`<path d="M58 34v52h18V30" fill="#E5484D" ${trazo}/><path d="M16 22q34 20 68 0v16q-34 20-68 0z" fill="#E5484D" ${trazo}/><path d="M58 52h18M58 68h18" stroke="#fff" stroke-width="5"/><path d="M60 86v8M68 86v8M74 86v8" ${trazo}/>`},
+    chubasquero:{n:'el chubasquero',lbl:'Chubasquero',svg:`<path d="M30 30q20-28 40 0l16 10 6 52H8l6-52z" fill="#FFC93C" ${trazo}/><ellipse cx="50" cy="28" rx="11" ry="9" fill="#FFE7B0" stroke="${K}" stroke-width="3.5"/><path d="M50 40v52" stroke="${K}" stroke-width="3.5"/><circle cx="43" cy="56" r="3" fill="${K}"/><circle cx="43" cy="74" r="3" fill="${K}"/>`},
+    gorro:{n:'el gorro de lana',lbl:'Gorro de lana',svg:`<path d="M18 70q0-48 32-48t32 48z" fill="#8E5BE8" ${trazo}/><rect x="14" y="64" width="72" height="18" rx="9" fill="#B79BF2" ${trazo}/><circle cx="50" cy="18" r="10" fill="#fff" ${trazo}/>`},
+    gafas:{n:'las gafas de sol',lbl:'Gafas de sol',no:'Las gafas de sol son para los días de mucho sol. Hoy no nos ayudan.',svg:`<path d="M46 50q4-6 8 0M14 46L5 36M86 46l9-10" fill="none" ${trazo}/><circle cx="30" cy="54" r="17" fill="${K}"/><circle cx="70" cy="54" r="17" fill="${K}"/><ellipse cx="25" cy="48" rx="5" ry="3" fill="#fff" opacity=".5"/><ellipse cx="65" cy="48" rx="5" ry="3" fill="#fff" opacity=".5"/>`},
+    chanclas:{n:'las chanclas',lbl:'Chanclas',no:'Las chanclas son para la playa y la piscina. ¡Con ellas se nos mojan y se nos enfrían los pies!',svg:`<ellipse cx="32" cy="54" rx="15" ry="34" fill="#FF9EC0" ${trazo}/><ellipse cx="68" cy="54" rx="15" ry="34" fill="#FF9EC0" ${trazo}/><path d="M21 38q11 14 22 0M57 38q11 14 22 0" stroke="#3D8DF2" stroke-width="6" fill="none" stroke-linecap="round"/>`},
+    banador:{n:'el bañador',lbl:'Bañador',no:'El bañador es para bañarnos en verano. ¡Hoy pasaríamos mucho frío!',svg:`<path d="M18 26h64l-4 52H58l-8-22-8 22H22z" fill="#3DBBC9" ${trazo}/><path d="M18 36h64" stroke="#fff" stroke-width="5"/>`}
+  };
+  const nube=(x,y,c='#fff')=>`<g fill="${c}"><circle cx="${x-22}" cy="${y+6}" r="16"/><circle cx="${x}" cy="${y-6}" r="22"/><circle cx="${x+24}" cy="${y+4}" r="17"/><rect x="${x-38}" y="${y+4}" width="78" height="18" rx="9"/></g>`;
+  const CLIMA={
+    lluvia:`<rect width="200" height="120" rx="20" fill="#B9CCDA"/>${nube(70,34,'#E9F0F5')}${nube(140,28,'#F7FAFC')}<g stroke="#3D8DF2" stroke-width="5" stroke-linecap="round">${[[48,72],[72,88],[96,70],[120,90],[146,68],[168,86],[60,104],[132,108]].map(([x,y])=>`<path d="M${x} ${y}l-5 10"/>`).join('')}</g>`,
+    charcos:`<rect width="200" height="120" rx="20" fill="#CFE0EA"/>${nube(100,26,'#F2F6F9')}<path d="M0 78h200v22a20 20 0 0 1-20 20H20A20 20 0 0 1 0 100z" fill="#B58A5A"/><ellipse cx="58" cy="96" rx="34" ry="9" fill="#5FA8E8"/><ellipse cx="146" cy="100" rx="28" ry="7" fill="#5FA8E8"/><g stroke="#3D8DF2" stroke-width="4" stroke-linecap="round"><path d="M80 56l-4 8M120 52l-4 8M150 60l-4 8"/></g>`,
+    viento:`<rect width="200" height="120" rx="20" fill="#DDF0FA"/><g fill="none" stroke="#7FB8D8" stroke-width="6" stroke-linecap="round"><path d="M14 40h96a16 16 0 1 0-16-16"/><path d="M24 66h130a16 16 0 1 1-16 16"/><path d="M12 92h56"/></g>${[[150,30,'#F2892E',30],[176,58,'#D9483B',-30],[120,104,'#F6C443',70]].map(([x,y,c,g])=>`<g transform="translate(${x} ${y}) rotate(${g}) scale(.22) translate(-50 -50)">${hojaIn(c)}</g>`).join('')}`,
+    frio:`<rect width="200" height="120" rx="20" fill="#DCE8F4"/>${nube(64,40,'#fff')}<rect x="140" y="16" width="20" height="74" rx="10" fill="#fff" stroke="${K}" stroke-width="4"/><circle cx="150" cy="96" r="15" fill="#3D8DF2" stroke="${K}" stroke-width="4"/><rect x="146" y="66" width="8" height="24" fill="#3D8DF2"/><g stroke="#9BB4CC" stroke-width="3" stroke-linecap="round">${[[40,90],[96,98],[70,108]].map(([x,y])=>`<path d="M${x-6} ${y}h12M${x} ${y-6}v12M${x-4} ${y-4}l8 8M${x+4} ${y-4}l-8 8"/>`).join('')}</g>`
+  };
+
+  /* --- frutos del otoño --- */
+  const FRUT={
+    castana:{n:'la castaña',lbl:'Castaña',svg:`<path d="M50 12C74 26 88 54 78 74Q68 90 50 90Q32 90 22 74C12 54 26 26 50 12z" fill="#8B4A22" ${trazo}/><path d="M23 72Q50 86 77 72Q70 90 50 90Q30 90 23 72z" fill="#E6C49A" ${trazo}/><path d="M50 12l-2-6" ${trazo}/><ellipse cx="40" cy="40" rx="7" ry="13" fill="#fff" opacity=".35" transform="rotate(25 40 40)"/>`,
+      adiv:'Soy marrón y brillante. Vivo dentro de un erizo que pincha, y en otoño me asáis en el fuego. ¿Quién soy?',dato:'¡Es la castaña! En otoño comemos castañas asadas, calentitas.'},
+    granada:{n:'la granada',lbl:'Granada',svg:`<path d="M38 26l2-14 5 9 5-11 5 11 5-9 2 14z" fill="#B02A2A" ${trazo}/><circle cx="50" cy="58" r="34" fill="#D23A3A" ${trazo}/><ellipse cx="36" cy="44" rx="7" ry="11" fill="#fff" opacity=".35" transform="rotate(30 36 44)"/>`,
+      adiv:'Soy redonda y tengo una coronita. Por dentro estoy llena de granitos rojos, como joyas. ¿Quién soy?',dato:'¡Es la granada! Por dentro tiene muchos granos rojos y dulces. ¡Es el fruto de la ciudad de Granada!'},
+    uvas:{n:'las uvas',lbl:'Uvas',svg:`<path d="M50 22V8M50 16q12-12 26-4-6 14-26 4z" fill="#5BC062" ${trazo}/><g fill="#8E5BE8" stroke="${K}" stroke-width="3.5">${[[32,34],[50,32],[68,34],[41,50],[59,50],[32,66],[68,66],[50,66],[41,82],[59,82],[50,96]].map(([x,y])=>`<circle cx="${x}" cy="${y-6}" r="10"/>`).join('')}</g>`,
+      adiv:'Somos pequeñitas y redondas, vamos todas juntas en un racimo, y en otoño nos recogen en la vendimia. ¿Quiénes somos?',dato:'¡Son las uvas! En otoño se recogen en la vendimia.'},
+    calabaza:{n:'la calabaza',lbl:'Calabaza',svg:`<path d="M50 34q0-14 10-20" stroke="#2E9E4F" stroke-width="8" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="62" rx="40" ry="28" fill="#FF8A3D" ${trazo}/><ellipse cx="50" cy="62" rx="15" ry="28" fill="#FF9F55" stroke="${K}" stroke-width="3.5"/>`,
+      adiv:'Soy grande, redonda y naranja, y conmigo se hace una crema muy rica. ¿Quién soy?',dato:'¡Es la calabaza! Con ella hacemos cremas, purés y dulces.'},
+    seta:{n:'la seta',lbl:'Seta',svg:`<rect x="39" y="50" width="22" height="40" rx="9" fill="#F5E6CC" ${trazo}/><path d="M8 58Q12 14 50 14Q88 14 92 58z" fill="#E5484D" ${trazo}/><circle cx="32" cy="38" r="6" fill="#fff"/><circle cx="56" cy="27" r="5" fill="#fff"/><circle cx="72" cy="44" r="6" fill="#fff"/>`,
+      adiv:'Tengo sombrero y pie, y salgo en el bosque cuando llueve en otoño. ¿Quién soy?',dato:'¡Es la seta! Recordad: las setas del campo no se tocan ni se comen. Solo las mira una persona mayor.'},
+    bellota:{n:'la bellota',lbl:'Bellota',svg:`<ellipse cx="50" cy="62" rx="22" ry="28" fill="#C68A45" ${trazo}/><path d="M50 26V12" ${trazo}/><path d="M24 50Q24 24 50 24Q76 24 76 50Q50 60 24 50z" fill="#7A4A2A" ${trazo}/><path d="M34 36l8 8M46 30l8 10M58 32l8 8" stroke="#A8743E" stroke-width="3" stroke-linecap="round"/>`,
+      adiv:'Soy pequeña y llevo un gorrito. Caigo de la encina, y a las ardillas les encanto. ¿Quién soy?',dato:'¡Es la bellota! Cae de las encinas y de los robles.'}
+  };
+  const frutoSvg=k=>sv('0 0 100 100',FRUT[k].svg);
+
+  /* --- animales del bosque --- */
+  const espinas=(()=>{ let s=''; for(let a=192;a<=348;a+=12){ const r=a*Math.PI/180, x1=62+Math.cos(r)*30, y1=86+Math.sin(r)*30, x2=62+Math.cos(r)*46, y2=86+Math.sin(r)*46; s+=`<path d="M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}"/>`; } return `<g stroke="#4A2E16" stroke-width="7" stroke-linecap="round">${s}</g>`; })();
+  const BOS={
+    golondrina:{n:'golondrina',ar:'la',hace:'viaje',ok:'¡Sí! La golondrina se va de viaje a África, donde hace calor. En primavera vuelve a su nido.',
+      svg:`<path d="M24 60Q52 42 86 54L114 40 100 62 114 84 84 70Q52 82 24 60z" fill="#24407A" ${trazo}/><path d="M34 66Q58 78 84 68Q58 72 34 66z" fill="#fff"/><path d="M48 56Q64 18 92 22Q78 46 68 60z" fill="#2F55A0" ${trazo}/><circle cx="30" cy="56" r="15" fill="#24407A" ${trazo}/><circle cx="23" cy="64" r="6" fill="#E5484D"/><circle cx="27" cy="52" r="3.5" fill="#fff"/><path d="M16 54l-10 3 10 3" fill="#F0A817" ${trazo}/>`},
+    erizo:{n:'erizo',ar:'el',hace:'duerme',ok:'¡Sí! El erizo se hace una bola entre las hojas secas y duerme todo el invierno.',
+      svg:`${espinas}<path d="M16 88Q18 48 62 44Q102 46 106 88z" fill="#8A5A34" ${trazo}/><path d="M34 70Q10 74 6 86Q18 96 36 90z" fill="#E8C9A0" ${trazo}/><circle cx="7" cy="86" r="4.5" fill="${K}"/><circle cx="24" cy="78" r="3.5" fill="${K}"/><path d="M40 96v8M80 96v8" ${trazo}/>`},
+    oso:{n:'oso',ar:'el',hace:'duerme',ok:'¡Sí! El oso come mucho en otoño y después duerme todo el invierno en su cueva.',
+      svg:`<circle cx="30" cy="32" r="15" fill="#8A5A34" ${trazo}/><circle cx="90" cy="32" r="15" fill="#8A5A34" ${trazo}/><circle cx="60" cy="64" r="40" fill="#8A5A34" ${trazo}/><ellipse cx="60" cy="80" rx="19" ry="15" fill="#D9A06B" ${trazo}/><ellipse cx="60" cy="73" rx="8" ry="5.5" fill="${K}"/><circle cx="44" cy="56" r="5" fill="${K}"/><circle cx="76" cy="56" r="5" fill="${K}"/><path d="M52 86q8 6 16 0" fill="none" stroke="${K}" stroke-width="3.5" stroke-linecap="round"/>`},
+    ardilla:{n:'ardilla',ar:'la',hace:'guarda',ok:'¡Sí! La ardilla guarda bellotas y nueces para tener comida en invierno.',
+      svg:`<path d="M80 104Q120 74 104 36Q92 12 72 24Q94 40 84 66Q76 86 80 104z" fill="#E07A2E" ${trazo}/><ellipse cx="54" cy="84" rx="26" ry="24" fill="#C9682B" ${trazo}/><ellipse cx="50" cy="90" rx="13" ry="15" fill="#F5D7B0"/><path d="M34 34l4-16 10 12M58 32l8-14 4 16" fill="#C9682B" ${trazo}/><circle cx="50" cy="48" r="20" fill="#C9682B" ${trazo}/><circle cx="43" cy="45" r="3.5" fill="${K}"/><circle cx="31" cy="54" r="3.5" fill="${K}"/><g transform="translate(40 70) scale(.26)"><ellipse cx="50" cy="62" rx="22" ry="28" fill="#C68A45" stroke="${K}" stroke-width="10"/><path d="M24 50Q24 24 50 24Q76 24 76 50Q50 60 24 50z" fill="#7A4A2A" stroke="${K}" stroke-width="10"/></g>`},
+    hormiga:{n:'hormiga',ar:'la',hace:'guarda',ok:'¡Sí! La hormiga lleva comida al hormiguero para el invierno.',
+      svg:`<g stroke="${K}" stroke-width="4" stroke-linecap="round" fill="none"><path d="M50 74l-12 22M58 74l0 24M66 74l12 22M50 66l-14-16M66 66l14-16M24 54l-8-18M30 52l2-20"/></g><circle cx="28" cy="66" r="15" fill="#5A3A30" ${trazo}/><ellipse cx="58" cy="70" rx="13" ry="11" fill="#5A3A30" ${trazo}/><ellipse cx="90" cy="70" rx="22" ry="17" fill="#5A3A30" ${trazo}/><circle cx="22" cy="62" r="3.5" fill="#fff"/>`}
+  };
+  const HACE={
+    viaje:{lbl:'Se va de viaje',no:'se va de viaje',svg:`<circle cx="78" cy="28" r="17" fill="#FFC93C" ${trazo}/><path d="M10 92Q22 70 48 58" fill="none" stroke="${K}" stroke-width="4" stroke-dasharray="6 7" stroke-linecap="round"/><path d="M40 62Q52 46 66 40" fill="none" stroke="${K}" stroke-width="4" stroke-linecap="round"/><path d="M58 36l9 4-6 8" fill="none" ${trazo}/><path d="M16 46q7-8 14 0q7-8 14 0" fill="none" stroke="${K}" stroke-width="4" stroke-linecap="round"/>`},
+    duerme:{lbl:'Duerme todo el invierno',no:'duerme todo el invierno',svg:`<path d="M6 92Q12 22 50 20Q88 22 94 92z" fill="#9AA5B4" ${trazo}/><path d="M28 92Q30 54 50 52Q70 54 72 92z" fill="#3A4558"/><text x="58" y="78" font-family="Fredoka, sans-serif" font-weight="700" font-size="16" fill="#fff">z</text><text x="44" y="70" font-family="Fredoka, sans-serif" font-weight="700" font-size="12" fill="#fff">z</text><path d="M76 14a10 10 0 1 0 10 14 8 8 0 0 1-10-14z" fill="#FFE36E" stroke="${K}" stroke-width="3"/>`},
+    guarda:{lbl:'Guarda comida',no:'guarda comida',svg:`<path d="M12 50h76l-8 40H20z" fill="#D9A066" ${trazo}/><path d="M18 62h64M22 76h56" stroke="#A8743E" stroke-width="4"/>${[[30,30],[50,24],[70,30]].map(([x,y])=>`<g transform="translate(${x-13} ${y-10}) scale(.26)"><ellipse cx="50" cy="62" rx="22" ry="28" fill="#C68A45" stroke="${K}" stroke-width="12"/><path d="M24 50Q24 24 50 24Q76 24 76 50Q50 60 24 50z" fill="#7A4A2A" stroke="${K}" stroke-width="12"/></g>`).join('')}`}
+  };
+
+  /* --- castañas --- */
+  const CASTANA=sv('0 0 100 100',FRUT.castana.svg);
+  const CUCURUCHO=sv('0 0 100 104',`<path d="M6 8H94L50 100z" fill="#F3E3C3" ${trazo}/><path d="M18 30H82M30 56H70" stroke="#D6BF94" stroke-width="5" stroke-linecap="round"/>`,'cono');
+  const NUMF=['cero','una','dos','tres','cuatro','cinco','seis','siete','ocho'];
+  const cF=n=>n===1?'una castaña':NUMW[n]+' castañas';
+
+  Object.assign(JUEGOS,{
+    hojas:{titulo:'Las hojas del otoño',ic:'j_hojas',
+      puente:'Salid al patio a recoger hojas de verdad. En clase, haced montones por colores y buscad la hoja más grande y la más pequeña.',
+      ronda(n,a){
+        const cfg=[{k:'color',v:2},{k:'color',v:3},{k:'tamano'},{k:'color',v:3},{k:'color',v:4}][n];
+        const cs=mezcla(Object.keys(HCOL)); let vals, items=[];
+        if(cfg.k==='color'){ vals=cs.slice(0,cfg.v); const por=cfg.v===2?3:2; vals.forEach(v=>{ for(let i=0;i<por;i++) items.push({v,c:v,t:Math.random()<.5?1:0,s:1}); }); }
+        else { vals=['grande','pequena']; vals.forEach(v=>{ for(let i=0;i<3;i++) items.push({v,c:cs[i],t:i%2,s:v==='grande'?1:.55}); }); }
+        items=mezcla(items);
+        const nomV=v=>cfg.k==='color'?HNOM[v][1]:(v==='grande'?'grandes':'pequeñas');
+        const lbl=v=>cfg.k==='color'?`<span class="sw-h">${hoja(v)}</span>${may(HNOM[v][1])}`:`<span class="sw-h" style="--s:${v==='grande'?1:.6}">${hoja('naranja')}</span>${v==='grande'?'Grandes':'Pequeñas'}`;
+        a.z.innerHTML=`<div class="piezas hojas-caen">${items.map((it,i)=>`<button class="pieza" type="button" data-i="${i}" style="--s:${it.s};--d:${(i*90)}ms" aria-label="hoja ${HNOM[it.c][0]}${cfg.k==='tamano'?(it.s===1?' grande':' pequeña'):''}">${hoja(it.c,it.t)}</button>`).join('')}</div>
+          <div class="cestas montones" style="--n:${vals.length}">${vals.map(v=>`<div class="dest cesta monton" data-destino data-v="${v}" role="button" tabindex="0" data-di="El montón de las hojas ${nomV(v)}" aria-label="Montón de las hojas ${nomV(v)}"><span class="etq">${lbl(v)}</span><div class="dentro"></div></div>`).join('')}</div>`;
+        let quedan=items.length;
+        a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
+          const it=items[+el.dataset.i];
+          if(d.dataset.v===it.v){ el.disabled=true; d.querySelector('.dentro').appendChild(el); a.bien(); if(--quedan===0) a.ok('¡Qué montones tan bonitos! Cada hoja está en su sitio.',d.parentElement); }
+          else { sacude(el); sacude(d); a.fallo(cfg.k==='color'?`Ese es el montón de las hojas ${nomV(d.dataset.v)}. ¿De qué color es esta hoja?`:`Ese es el montón de las hojas ${nomV(d.dataset.v)}. ¿Esta hoja es grande o pequeña?`,()=>marca([a.z.querySelector(`.monton[data-v="${it.v}"]`)])); }
+        }));
+        decir(n===0?'¡Ha soplado el viento y se han caído las hojas del árbol! En otoño, las hojas cambian de color. Haced montones: cada hoja va al montón de su color.'
+          :cfg.k==='tamano'?'Ahora hacemos un montón de hojas grandes y otro de hojas pequeñas.'
+          :cfg.v===4?'¡Último reto! Hojas amarillas, naranjas, rojas y marrones. ¿Las ordenamos?':'¡Se han caído más hojas! Cada hoja, a su montón.');
+      }},
+
+    arbol:{titulo:'El árbol y las estaciones',ic:'j_arbol',
+      puente:'Elegid un árbol del patio y dibujadlo hoy. Volved a mirarlo en invierno y en primavera: ¿cómo ha cambiado?',
+      ronda(n,a){
+        const R=[
+          {q:'otono',ops:['otono','verano'],t:'En otoño, las hojas de los árboles se ponen amarillas y naranjas, y se caen. ¿Qué árbol está en otoño?',ok:'¡Sí! Es el árbol del otoño: sus hojas son amarillas, naranjas y rojas, y se caen al suelo.'},
+          {q:'otono',ops:['otono','verano','invierno'],t:'¿En qué árbol se están cayendo las hojas?',ok:'¡Muy bien! En otoño, las hojas se caen y hacen una alfombra en el suelo.'},
+          {q:'invierno',ops:['invierno','otono','primavera'],t:'Después del otoño llega el invierno, y el árbol se queda sin hojas. ¿Cuál es el árbol del invierno?',ok:'¡Eso es! En invierno, el árbol descansa sin hojas.'},
+          {q:'primavera',ops:['primavera','invierno','otono'],t:'En primavera, al árbol le salen hojas nuevas y flores. ¿Cuál es?',ok:'¡Sí! En primavera, el árbol se llena de flores.'},
+          {q:'otono',ops:['otono','invierno','primavera'],t:'Mirad: este árbol está en verano. ¿Qué estación viene después del verano?',ok:'¡Eso es! Después del verano llega el otoño. Luego vienen el invierno y la primavera.',seq:1}
+        ][n];
+        const ops=mezcla(R.ops);
+        a.z.innerHTML=`${R.seq?`<div class="secuencia-est"><div class="est-caja">${arbol('verano')}<span>Verano</span></div><span class="signo">→</span><div class="est-caja hueco-est" id="huecoEst"><b>?</b></div></div>`:''}
+          <div class="opts arboles">${ops.map(k=>`<button class="opt" type="button" data-k="${k}" aria-label="Árbol en ${ESTA[k].n}"><span class="dib">${arbol(k)}</span></button>`).join('')}</div>`;
+        a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+          if(EST.arbol.resuelta) return; const k=b.dataset.k;
+          if(k===R.q){ b.classList.add('bien'); b.insertAdjacentHTML('beforeend',`<span class="lbl">${may(ESTA[k].n)}</span>`); const h=$('#huecoEst'); if(h){ h.classList.add('lleno'); h.innerHTML=`${arbol(k)}<span>Otoño</span>`; } a.ok(R.ok,b); }
+          else { sacude(b); a.fallo(R.seq?`Ese árbol está en ${ESTA[k].n}. Pensad: después del verano, ¿cuándo se caen las hojas?`:`Ese árbol está en ${ESTA[k].n}: ${ESTA[k].d}.`,()=>marca([a.z.querySelector(`.opt[data-k="${R.q}"]`)],4000)); }
+        }));
+        decir(R.t);
+      }},
+
+    ropa:{titulo:'¿Qué nos ponemos?',ic:'j_ropa',
+      puente:'Preparad en el rincón una caja con ropa de otoño (paraguas, botas, bufanda, gorro) y vestid a un muñeco según el tiempo que hace hoy.',
+      ronda(n,a){
+        const R=[
+          {c:'lluvia',q:'paraguas',d:['gafas','chanclas'],t:'¡Mirad por la ventana! Está lloviendo. ¿Qué cogemos para no mojarnos?',ok:'¡Sí! Con el paraguas no nos mojamos.'},
+          {c:'charcos',q:'botas',d:['chanclas','banador'],t:'Ha llovido mucho y el patio está lleno de charcos. ¿Qué nos ponemos en los pies?',ok:'¡Muy bien! Con las botas de agua podemos saltar en los charcos.'},
+          {c:'viento',q:'bufanda',d:['banador','gafas'],t:'Sopla un viento fresquito y nos da frío en el cuello. ¿Qué nos ponemos?',ok:'¡Eso es! La bufanda nos tapa el cuello.'},
+          {c:'lluvia',q:'chubasquero',d:['banador','chanclas'],t:'Vamos de excursión al campo y llueve un poquito. ¿Qué nos ponemos encima de la ropa?',ok:'¡Sí! El chubasquero no deja pasar el agua.'},
+          {c:'frio',q:'gorro',d:['gafas','chanclas'],t:'Esta mañana hace mucho frío y se nos enfrían las orejas. ¿Qué nos ponemos en la cabeza?',ok:'¡Muy bien! El gorro de lana nos calienta la cabeza y las orejas.'}
+        ][n];
+        const ops=mezcla([R.q,...R.d]);
+        a.z.innerHTML=`<div class="clima">${sv('0 0 200 120',CLIMA[R.c])}</div>
+          <div class="opts">${ops.map(k=>`<button class="opt" type="button" data-k="${k}" aria-label="${ROPA[k].lbl}"><span class="dib">${sv('0 0 100 100',ROPA[k].svg)}</span><span class="lbl">${ROPA[k].lbl}</span></button>`).join('')}</div>`;
+        a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+          if(EST.ropa.resuelta) return; const k=b.dataset.k;
+          if(k===R.q){ b.classList.add('bien'); a.ok(R.ok,b); }
+          else { sacude(b); b.disabled=true; a.fallo(ROPA[k].no,()=>marca([a.z.querySelector(`.opt[data-k="${R.q}"]`)],4000)); }
+        }));
+        decir(R.t);
+      }},
+
+    frutos:{titulo:'Adivina el fruto del otoño',ic:'j_frutos',
+      puente:'Traed a clase castañas, granadas, uvas, una calabaza y bellotas: tocadlas, oledlas y describidlas. Las setas, mejor en foto.',
+      ronda(n,a){
+        const s=EST.frutos; if(n===0) s.lista=mezcla(Object.keys(FRUT)).slice(0,5);
+        const q=s.lista[n], ops=mezcla([q,...mezcla(Object.keys(FRUT).filter(k=>k!==q)).slice(0,2)]), F=FRUT[q];
+        a.z.innerHTML=`<div class="opts">${ops.map(k=>`<button class="opt" type="button" data-k="${k}" aria-label="${FRUT[k].lbl}"><span class="dib">${frutoSvg(k)}</span><span class="lbl">${FRUT[k].lbl}</span></button>`).join('')}</div>`;
+        a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+          if(EST.frutos.resuelta) return; const k=b.dataset.k;
+          if(k===q){ b.classList.add('bien'); a.ok(F.dato,b); }
+          else { sacude(b); a.fallo(`Esa es ${FRUT[k].n}. Escuchad otra vez la adivinanza.`,()=>marca([a.z.querySelector(`.opt[data-k="${q}"]`)],4000)); }
+        }));
+        if(n===0) decir('Adivina, adivinanza. '+F.adiv,['Adivina, adivinanza.',F.adiv]); else decir(F.adiv);
+      }},
+
+    bosque:{titulo:'Los animales en otoño',ic:'j_bosque',
+      puente:'Jugad a ser animales del bosque: unos vuelan de viaje, otros se hacen una bola para dormir y otros llevan bellotas a su casa.',
+      ronda(n,a){
+        const s=EST.bosque; if(n===0) s.lista=mezcla(Object.keys(BOS));
+        const q=s.lista[n], B=BOS[q];
+        a.z.innerHTML=`<div class="animal-otono">${sv('0 0 120 120',B.svg)}<span>${may(B.n)}</span></div>
+          <div class="opts">${Object.keys(HACE).map(k=>`<button class="opt" type="button" data-k="${k}"><span class="dib">${sv('0 0 100 100',HACE[k].svg)}</span><span class="lbl">${HACE[k].lbl}</span></button>`).join('')}</div>`;
+        a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+          if(EST.bosque.resuelta) return; const k=b.dataset.k;
+          if(k===B.hace){ b.classList.add('bien'); a.ok(B.ok,b); }
+          else { sacude(b); b.disabled=true; a.fallo(`No, ${B.ar} ${B.n} no ${HACE[k].no}. ¡Probamos otra vez!`,()=>marca([a.z.querySelector(`.opt[data-k="${B.hace}"]`)],4000)); }
+        }));
+        decir(n===0?`En otoño hace frío y hay poca comida. Cada animal se prepara a su manera. ¿Qué hace ${B.ar} ${B.n}?`:`¿Y ${B.ar} ${B.n}? ¿Qué hace en otoño?`);
+      }},
+
+    castanas:{titulo:'El puesto de castañas',ic:'j_castanas',
+      puente:'Montad en el rincón un puesto de castañas con castañas de verdad (o piñas) y cucuruchos de papel. Unos piden, otros sirven y todos cuentan.',
+      ronda(n,a){
+        const N=[2,3,1,4,5][n];
+        a.z.innerHTML=`<div class="puesto" data-n="${N}">
+          <div class="pedido"><span class="grande">${N}</span><span class="pts-g">${'<i></i>'.repeat(N)}</span><small>Lolo quiere</small></div>
+          <div class="brasero" data-di="Las castañas calentitas">${Array.from({length:8},(_,i)=>`<button class="castana" type="button" aria-label="Castaña">${CASTANA}</button>`).join('')}</div>
+          <div class="cucurucho" aria-label="Cucurucho"><div class="dentro" aria-live="polite"></div>${CUCURUCHO}</div></div>`;
+        const brasero=a.z.querySelector('.brasero'), dentro=a.z.querySelector('.cucurucho .dentro');
+        const cuenta=()=>dentro.children.length;
+        a.z.querySelectorAll('.castana').forEach(c=>c.addEventListener('click',()=>{
+          if(EST.castanas.resuelta) return;
+          if(c.parentElement===brasero){ dentro.appendChild(c); const k=cuenta(); hablar(NUMF[k]); tono([400+k*60],'sine',.1,.1,.2); }
+          else { brasero.appendChild(c); hablar(NUMF[cuenta()]); }
+          if(!quieto()){ c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+        }));
+        const f=document.createElement('div'); f.className='fila'; a.z.appendChild(f);
+        boton('¡Ya está!',()=>{
+          if(EST.castanas.resuelta) return; const k=cuenta();
+          if(k===N){ f.remove(); a.ok(`¡${may(cF(N))}! Muy bien contadas. ¡Qué ricas!`,a.z.querySelector('.cucurucho')); }
+          else if(k<N) a.fallo('Faltan castañas. Contad las del cucurucho conmigo, y poned las que faltan.',()=>marca([a.z.querySelector('.pedido')],3000));
+          else a.fallo('¡Hay demasiadas castañas! Quitad alguna y contamos otra vez.',()=>marca([a.z.querySelector('.pedido')],3000));
+        },false,f,'fin');
+        decir(n===0?`¡Castañas calentitas! En otoño, Lolo pone un puesto de castañas asadas. Quiere ${cF(N)}. Tocad las castañas para ponerlas en el cucurucho.`:`¡Otro cliente! Ahora quiere ${cF(N)}.`);
+      }},
+
+    viento:{titulo:'El viento de otoño',ic:'j_viento',
+      puente:'Con un abanico o soplando, mirad cómo se mueven las hojas secas, las plumas y los papelitos. ¿Cuál vuela más lejos?',
+      ronda(n,a){
+        const s=EST.viento;
+        const listo=()=>{ if(a.z.querySelector('[data-listo]')) return; const f=document.createElement('div'); f.className='fila'; f.dataset.listo=1; a.z.appendChild(f); boton('¡Lo hemos hecho!',()=>{ f.remove(); a.ok(n===4?'¡Qué hojas tan tranquilas! Lo habéis hecho genial.':'¡Muy bien! ¡Qué bien os movéis!'); },true,f,'mover'); };
+        const hojas=cl=>`<div class="hojas-viento ${cl||''}">${['amarillo','naranja','rojo','marron','naranja'].map((c,i)=>`<span style="--i:${i}">${hoja(c,i%2)}</span>`).join('')}</div>`;
+        const T=[
+          ['','Somos hojas en el árbol. Levantamos los brazos como ramas y movemos los dedos despacito, como hojas.'],
+          ['suave','Escuchad al viento. Viento fuerte: giramos. Brisa suave: nos mecemos. Sin viento: nos quedamos quietos.'],
+          ['cae','¡Las hojas se caen del árbol! Bajamos muy despacito hasta el suelo, girando como una hoja.'],
+          ['suave','Ahora somos ardillas: andamos a cuatro patas buscando bellotas por la clase.'],
+          ['quieto','Las hojas descansan en el suelo. Nos tumbamos y respiramos despacito. Cogemos aire… y lo soltamos.']
+        ][n];
+        a.z.innerHTML=`<div class="carta-mov carta-viento">${hojas(T[0])}</div>`;
+        decir(T[1]);
+        if(n===1){
+          a.z.querySelector('.carta-mov').insertAdjacentHTML('beforeend',`<div class="reglas"><span class="regla"><i style="background:#7FB8D8"></i>Viento fuerte: giramos</span><span class="regla"><i style="background:#BFE0F0"></i>Brisa suave: nos mecemos</span><span class="regla"><i style="background:#E1ECF1"></i>Sin viento: quietos</span></div>`);
+          let k=0, ant='';
+          const f=document.createElement('div'); f.className='fila'; a.z.appendChild(f); const b=document.createElement('button'); b.className='big sec peq'; b.type='button'; b.innerHTML='<span>Soplar el viento</span>'; f.appendChild(b);
+          b.onclick=()=>{ const op=['fuerte','suave','quieto'].filter(x=>x!==ant), v=azar(op); ant=v;
+            const h=a.z.querySelector('.hojas-viento'); h.className='hojas-viento '+v;
+            if(v==='fuerte') ruido(0,.9,.25,700); else if(v==='suave') ruido(0,.9,.1,500);
+            decir({fuerte:'¡Viento fuerte! ¡Giramos y giramos como hojas locas!',suave:'¡Brisa suave! Nos mecemos despacito, de un lado a otro.',quieto:'¡Sin viento! Las hojas se quedan quietas.'}[v]);
+            if(++k>=3) listo(); };
+        } else listo();
+      }}
+  });
+
   /* ================= MENÚ POR CATEGORÍAS Y EDADES ================= */
   const CATS=[
     {t:'Rutinas y asamblea',c:'#FF8A3D',ids:['lolo','jardin','muevete']},
     {t:'Lenguaje, cuentos y emociones',c:'#9B6BFF',ids:['caja','cuento','emociones']},
     {t:'Lógica y matemáticas',c:'#3D8DF2',ids:['cuenta','series','cestas','tamanos','parejas','formas']},
     {t:'Retos y cooperación',c:'#FF5D8F',ids:['duo','escape','robot']},
-    {t:'Ciencia y manipulación',c:'#2BB673',ids:['quepasa','construye','caza']}
+    {t:'Ciencia y manipulación',c:'#2BB673',ids:['quepasa','construye','caza']},
+    {t:'El otoño',c:'#B8652B',ids:['hojas','arbol','ropa','frutos','bosque','castanas','viento']}
   ];
   const INFO={
     lolo:{t:'La visita de Lolo',ic:'lolo',e:[3,4],d:'Asamblea con Lolo: una rutina distinta para cada día de la semana.'},
@@ -1246,7 +1497,14 @@
     robot:{e:[4,5],d:'Programar con flechas el camino de un robot, en pantalla y con el robot de suelo.'},
     quepasa:{e:[4,5],d:'Predecir, probar y registrar: flotar y hundirse, mezclar colores.'},
     construye:{e:[3,4,5],d:'Copiar torres con bloques de verdad y comprobarlas en la pizarra.'},
-    caza:{e:[3,4,5],d:'Animales y planetas que aparecen por arte de magia y se esconden.'}
+    caza:{e:[3,4,5],d:'Animales y planetas que aparecen por arte de magia y se esconden.'},
+    hojas:{e:[3,4,5],d:'Clasificar hojas caídas por color y tamaño.'},
+    arbol:{e:[3,4,5],d:'Cómo cambia un árbol en otoño, invierno, primavera y verano.'},
+    ropa:{e:[3,4,5],d:'Elegir la ropa según el tiempo: lluvia, charcos, viento y frío.'},
+    frutos:{e:[3,4,5],d:'Adivinanzas de castañas, granadas, uvas, setas y más.'},
+    bosque:{e:[4,5],d:'Qué hacen los animales en otoño: viajar, dormir o guardar comida.'},
+    castanas:{e:[3,4,5],d:'Contar castañas asadas y servirlas en el cucurucho.'},
+    viento:{e:[3,4,5],d:'Movernos como hojas con el viento, caer y respirar.'}
   };
   const tituloDe=id=>INFO[id].t||JUEGOS[id].titulo, icDe=id=>INFO[id].ic||JUEGOS[id].ic, catDe=id=>CATS.find(c=>c.ids.includes(id));
   const edadTxt=e=>e.length===1?`${e[0]} años`:`${e[0]}–${e[e.length-1]} años`;
