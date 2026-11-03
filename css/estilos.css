@@ -563,6 +563,77 @@ button{font-family:inherit}
   .puesto .brasero{grid-column:1/-1;order:3}
   .secuencia-est .est-caja{width:min(36vw,140px)}
 }
+/* ---------- Trazos: la tinta de Lolo ---------- */
+#panel-tinta .opts{grid-template-columns:repeat(4,minmax(0,1fr))}
+#panel-tinta .opt{min-height:0;padding:10px 8px 12px}
+#panel-tinta .opt svg{width:min(100%,170px)}
+#panel-tinta .opt .lbl{font-size:.95rem;text-align:center;line-height:1.2;padding:4px 12px}
+.trazo-wrap{display:grid;gap:14px;justify-items:center}
+.pizarra-trazo{position:relative;width:min(100%,calc(min(48vh,560px)*1.5));aspect-ratio:3/2;border:4px solid #fff;border-radius:30px;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#FFFFFF 0%,#F3FAFB 60%,#E7F4F7 100%);box-shadow:0 10px 0 #CFE6EC,0 18px 30px rgba(8,50,80,.14);
+  touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.lienzo{display:block;width:100%;height:100%;max-width:none;touch-action:none;cursor:crosshair}
+.trazo-nombre{position:absolute;left:14px;top:12px;z-index:1;display:inline-flex;align-items:center;gap:8px;padding:4px 14px 4px 4px;border-radius:999px;background:rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(8,50,80,.08);
+  font:700 clamp(.85rem,1.4vw,1.05rem) var(--f-display);color:var(--tinta);pointer-events:none}
+.trazo-nombre b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#0B7A8F;color:#fff;font-size:.95rem}
+.trazo-nombre i{font:italic 600 .9em var(--f-body);color:var(--tinta-2)}
+.trazo-nombre i::before{content:"· "}
+/* guías */
+.lienzo .banda{fill:none;stroke:#D6EEF3;stroke-width:42;stroke-linecap:round;stroke-linejoin:round}
+.lienzo .banda.tenue{stroke:#E4F2F5;opacity:.75}
+.lienzo .avance{fill:none;stroke:#A8DCE6;stroke-width:42;stroke-linecap:round;stroke-linejoin:round;transition:stroke-dasharray .12s linear}
+.lienzo .eje{fill:none;stroke:#7FA9B8;stroke-width:3;stroke-dasharray:1 10;stroke-linecap:round;stroke-linejoin:round}
+.lienzo .punto{fill:#B9CCDA;transition:fill .2s ease,r .2s ease}
+.lienzo .punto.pasado{fill:#0B7A8F}
+.lienzo .tramo{transition:opacity .4s ease}
+.lienzo .tramo.espera{opacity:.35}
+/* tinta */
+.lienzo .trazo,.lienzo .demo{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lienzo .trazo{stroke:var(--tinta-c);stroke-width:13;transition:stroke .6s ease,stroke-width .5s ease}
+.lienzo .trazo.fuera{opacity:.3}
+.lienzo .demo{stroke:#FF8A3D;stroke-width:12;opacity:.85}
+.lienzo .demo.desvanece{opacity:0;transition:opacity .45s ease}
+/* marcas: Lolo en el punto verde y la estrella */
+.lienzo .punta{transition:transform .12s linear}
+.mirando .lienzo .punta{transition:none}
+.lienzo .halo{fill:#2BB673;opacity:.38;transition:opacity .3s ease;transform-box:fill-box;transform-origin:center;animation:haloLate 1.8s ease-in-out infinite}
+.lienzo .lolito{animation:flota 2.4s ease-in-out infinite}
+.lienzo .punta.llama .lolito{animation:llamar .9s cubic-bezier(.3,1.6,.5,1) 2}
+.lienzo .meta{transition:opacity .3s ease}
+.lienzo .meta path{transform-box:fill-box;transform-origin:center;animation:gira 6s linear infinite}
+@keyframes haloLate{0%,100%{transform:scale(.85)}50%{transform:scale(1.12)}}
+@keyframes flota{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes llamar{0%,100%{transform:scale(1)}40%{transform:scale(1.35) rotate(-10deg)}70%{transform:scale(1.1) rotate(8deg)}}
+@keyframes gira{to{transform:rotate(360deg)}}
+/* final: la guía se va y aparece la recompensa */
+.lienzo .pr{opacity:0;transform-box:fill-box;transform-origin:center bottom}
+.hecho .lienzo .pr{opacity:1;animation:brota .7s cubic-bezier(.3,1.5,.5,1) both;animation-delay:calc(var(--d,0)*140ms + 150ms)}
+.hecho .lienzo .guias,.hecho .lienzo .marcas{opacity:0;transition:opacity .4s ease}
+.hecho .lienzo .trazo.fuera{opacity:0;transition:opacity .4s ease}
+.gordo.hecho .lienzo .trazo:not(.fuera){stroke-width:24}
+.hecho[data-trazo="gusano"] .lienzo .tinta-nino,.hecho[data-trazo="gusano"] .lienzo .premio-frente{animation:culebrea 1.4s ease-in-out .8s 3}
+.hecho[data-trazo="sonrisa"] .ojos-hoja{transform-box:fill-box;transform-origin:center;animation:parpadeo 3.2s ease-in-out 1s infinite}
+.hecho .lienzo .pajaro{animation:posa .9s cubic-bezier(.3,1.4,.5,1) both;animation-delay:.6s}
+.hecho .nube-va{animation:nubeVa 1.6s ease-in 1.2s both}
+.hecho[data-trazo="rayo"]{animation:destello 1s ease-out .2s}
+.hecho .cuerpo-caracol{animation:asoma 1s cubic-bezier(.3,1.3,.5,1) .5s both}
+@keyframes brota{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@keyframes culebrea{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes posa{0%{opacity:0;transform:translate(60px,-90px) rotate(-15deg)}70%{opacity:1;transform:translate(0,4px)}100%{transform:none}}
+@keyframes nubeVa{to{opacity:0;transform:translateX(140px)}}
+@keyframes destello{0%{box-shadow:0 10px 0 #CFE6EC,0 0 0 0 rgba(255,201,60,.0)}30%{box-shadow:0 10px 0 #CFE6EC,0 0 0 14px rgba(255,201,60,.45)}100%{box-shadow:0 10px 0 #CFE6EC,0 18px 30px rgba(8,50,80,.14)}}
+@keyframes asoma{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.trazo-acc{justify-content:center}
+.calma .lienzo .halo,.calma .lienzo .lolito,.calma .lienzo .meta path,.calma .hecho .lienzo .tinta-nino,.calma .hecho .lienzo .premio-frente,.calma .hecho .ojos-hoja,.calma .hecho[data-trazo="rayo"]{animation:none!important}
+.calma .hecho .lienzo .pr{animation-name:aparece!important;animation-duration:.5s!important}
+.calma .hecho .nube-va{animation:nubeVa .8s ease-in .8s both!important}
+@keyframes aparece{from{opacity:0}to{opacity:1}}
+@media (max-width:760px){
+  #panel-tinta .opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pizarra-trazo{width:100%;border-radius:24px}
+  .trazo-nombre{left:8px;top:8px;padding-right:10px}
+  .trazo-nombre i{display:none}
+}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 @media (max-width:760px){

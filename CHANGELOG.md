@@ -1,5 +1,17 @@
 # Cambios
 
+## 1.5.0 · noviembre de 2026
+
+- Nueva categoría **Trazos**, con el juego **La tinta de Lolo**: los ocho trazos de la grafomotricidad, de menor a mayor dificultad (vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral).
+  - Tres pasos por trazo: Lolo lo dibuja y se repasa por un camino ancho; se siguen los puntos; solo inicio y final.
+  - Se traza con el dedo y deja tinta. Cuenta el recorrido en orden, del punto verde a la estrella, con un margen amplio que crece en móvil. Solo cuenta el primer dedo.
+  - Sin sonido de error: si el dedo se sale, la tinta se aclara y Lolo indica dónde seguir. Botones «Mira a Lolo» y «Borrar».
+  - Al terminar, el trazo cobra vida: crece el árbol, la hoja sonríe, sale el gusanito, se posa un pajarito, el caracol saca los cuernos…
+- Portada: tarjeta destacada de Trazos con los ocho trazos en miniatura, y aviso de novedad que lleva a ella.
+- Guía docente: apartado sobre La tinta de Lolo.
+- 25 frases nuevas en el guion de audios (765 en total).
+- Pruebas automáticas que trazan con el ratón cada uno de los ocho trazos.
+
 ## 1.4.0 · noviembre de 2026
 
 - Nueva categoría **El otoño**, con siete juegos:

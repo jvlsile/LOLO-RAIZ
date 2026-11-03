@@ -4,7 +4,7 @@ const { test, expect } = require('@playwright/test');
 const MINIJUEGOS = ['cuenta', 'series', 'cestas', 'tamanos', 'parejas', 'formas', 'cuento', 'construye',
   'quepasa', 'emociones', 'muevete', 'caza', 'robot', 'duo', 'escape',
   'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento'];
-const TODOS = ['lolo', 'caja', 'jardin', ...MINIJUEGOS];
+const TODOS = ['lolo', 'caja', 'jardin', ...MINIJUEGOS, 'tinta'];
 
 // Programas correctos para los 5 mapas del robot.
 const ROBOT = [['derecha', 'derecha'], ['abajo', 'abajo', 'abajo'], ['abajo', 'derecha', 'derecha', 'abajo'],
@@ -108,21 +108,21 @@ async function resolverReto(page, id, reto) {
 }
 
 test.describe('Menú', () => {
-  test('carga sin errores y muestra los 25 juegos por categorías', async ({ page }) => {
+  test('carga sin errores y muestra los 26 juegos por categorías', async ({ page }) => {
     await abrir(page);
     await expect(page).toHaveTitle('La visita de Lolo');
     await page.click('#btnMenu');
-    await expect(page.locator('.jcard')).toHaveCount(25);
-    await expect(page.locator('.cat')).toHaveCount(6);
+    await expect(page.locator('.jcard')).toHaveCount(26);
+    await expect(page.locator('.cat')).toHaveCount(7);
   });
 
   test('filtra por edad', async ({ page }) => {
     await abrir(page);
     await page.click('#btnMenu');
     await page.click('.edad-f[data-e="3"]');
-    await expect(page.locator('.jcard')).toHaveCount(19);
+    await expect(page.locator('.jcard')).toHaveCount(20);
     await page.click('.edad-f[data-e="5"]');
-    await expect(page.locator('.jcard')).toHaveCount(21);
+    await expect(page.locator('.jcard')).toHaveCount(22);
   });
 
   test('abre un juego desde el menú', async ({ page }) => {
@@ -181,6 +181,76 @@ for (const id of MINIJUEGOS) {
     await expect(page.locator(`#panel-${id} .fin`)).toBeVisible();
   });
 }
+
+/* La tinta de Lolo: se traza con el ratón de verdad, recorriendo el camino como lo haría un dedo. */
+const TRAZOS = ['tronco', 'rama', 'sonrisa', 'fruto', 'rayo', 'gusano', 'cruz', 'caracol'];
+async function trazar(page, { temblor = 6, alReves = false } = {}) {
+  await page.locator('#panel-tinta .pizarra-trazo').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(400);
+  const tramos = await page.evaluate(() => [...document.querySelectorAll('#panel-tinta .guia')].map(g => {
+    const L = g.getTotalLength(), m = g.getScreenCTM(), pts = [];
+    for (let i = 0; i <= 50; i++) { const q = g.getPointAtLength(L * i / 50), s = new DOMPoint(q.x, q.y).matrixTransform(m); pts.push([s.x, s.y]); }
+    return pts;
+  }));
+  for (const pts of tramos) {
+    const lista = alReves ? [...pts].reverse() : pts;
+    await page.mouse.move(lista[0][0], lista[0][1]);
+    await page.mouse.down();
+    for (const [i, [x, y]] of lista.entries()) await page.mouse.move(x + Math.sin(i) * temblor, y + Math.cos(i * 1.3) * temblor);
+    await page.mouse.up();
+  }
+}
+const elegirTrazo = async (page, k) => {
+  await page.click(`#panel-tinta .opt[data-k="${k}"]`);
+  await expect(page.locator('#panel-tinta .pizarra-trazo')).toBeVisible();
+};
+
+test('La tinta de Lolo: muestra los ocho trazos del cuaderno', async ({ page }) => {
+  await abrir(page, 'tinta');
+  await expect(page.locator('#panel-tinta .opt')).toHaveCount(8);
+  await expect(page.locator('#panel-tinta .opt').first()).toContainText('1 · El Tronco');
+  await expect(page.locator('#panel-tinta .opt').last()).toContainText('8 · El Caracol de la Raíz');
+});
+
+test('La tinta de Lolo: se juega de principio a fin (la cruz, con dos trazos)', async ({ page }) => {
+  test.slow();
+  await abrir(page, 'tinta');
+  await elegirTrazo(page, 'cruz');
+  for (let reto = 0; reto < 3; reto++) {
+    await trazar(page);
+    await expect(page.locator('#panel-tinta .pizarra-trazo[data-hecho]'), `reto ${reto + 1}`).toBeVisible();
+    const sig = page.locator('#panel-tinta .big.pulso').last();
+    await expect(sig).toBeVisible({ timeout: 8000 });
+    await sig.click({ force: true });
+  }
+  await expect(page.locator('#panel-tinta .fin')).toBeVisible();
+  await expect(page.locator('#panel-tinta .manos')).toContainText('las ramas que se cruzan');
+});
+
+for (const k of TRAZOS) {
+  test(`La tinta de Lolo: el trazo «${k}» se completa siguiendo los puntos`, async ({ page }) => {
+    await abrir(page, 'tinta');
+    await elegirTrazo(page, k);
+    await trazar(page);
+    await expect(page.locator('#panel-tinta .pizarra-trazo[data-hecho]')).toBeVisible();
+  });
+}
+
+test('La tinta de Lolo: un trazo al revés o fuera del camino no cuenta, y Borrar empieza de nuevo', async ({ page }) => {
+  await abrir(page, 'tinta');
+  await elegirTrazo(page, 'rama');
+  await trazar(page, { alReves: true });
+  await page.waitForTimeout(300);
+  const caja = await page.locator('#panel-tinta .lienzo').boundingBox();
+  await page.mouse.move(caja.x + 20, caja.y + caja.height - 20); await page.mouse.down();
+  await page.mouse.move(caja.x + caja.width - 20, caja.y + caja.height - 20, { steps: 20 }); await page.mouse.up();
+  await expect(page.locator('#panel-tinta .pizarra-trazo[data-hecho]')).toHaveCount(0);
+  await expect(page.locator('#panel-tinta .trazo')).not.toHaveCount(0);
+  await page.locator('#panel-tinta .big', { hasText: 'Borrar' }).click();
+  await expect(page.locator('#panel-tinta .trazo')).toHaveCount(0);
+  await trazar(page);
+  await expect(page.locator('#panel-tinta .pizarra-trazo[data-hecho]')).toBeVisible();
+});
 
 test('arrastrar una forma hasta su silueta', async ({ page, isMobile }) => {
   test.skip(isMobile, 'el arrastre con ratón se prueba en escritorio');

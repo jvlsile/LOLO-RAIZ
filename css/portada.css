@@ -12,7 +12,7 @@
   --tinta:#13263F; --tinta-2:#4F6379; --tinta-3:#6E8196;
   --mar-claro:#7FDCD8; --mar:#1B91B0; --mar-hondo:#137A99; --abismo:#0B4767;
   --lolo:#FF7A2F; --sol:#FFC53D; --sol-hondo:#E5A40E;
-  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B;
+  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B; --c-trazos:#0B7A8F;
   --f-titulo:"Fredoka", ui-rounded, system-ui, sans-serif;
   --f-texto:"Nunito", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -132,7 +132,10 @@ svg{flex:none}
 .revela.visible{opacity:1;transform:none}
 
 /* categorías */
-.categorias{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.categorias{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.cat.cat-ancha{grid-column:span 2}
+.cat-trazos{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 4px}
+.cat-trazos svg{width:40px;height:40px;padding:7px;border-radius:12px;background:rgba(255,255,255,.75);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 22%,transparent);fill:none;stroke:var(--c);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .cat-nuevo{position:absolute;top:16px;right:16px;z-index:2;padding:3px 10px;border-radius:999px;background:var(--c);color:#fff;font:800 .74rem var(--f-texto);letter-spacing:.04em;text-transform:uppercase}
 .cat{--c:var(--c-logica);position:relative;display:grid;align-content:start;gap:10px;min-height:220px;padding:22px 20px 20px;border:0;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;text-align:left;
   background:linear-gradient(165deg,color-mix(in srgb,var(--c) 14%,#fff) 0%,color-mix(in srgb,var(--c) 6%,#fff) 100%);box-shadow:var(--sombra-1),inset 0 0 0 1px color-mix(in srgb,var(--c) 18%,transparent);
@@ -304,7 +307,7 @@ svg{flex:none}
 @keyframes fundir{from{opacity:0}to{opacity:1}}
 
 /* ---------- adaptable ---------- */
-@media (max-width:1440px){.categorias{grid-template-columns:repeat(3,minmax(0,1fr))}.cat{min-height:190px}}
+@media (max-width:1440px){.categorias{grid-template-columns:repeat(3,minmax(0,1fr))}.cat{min-height:190px}.cat.cat-ancha{grid-column:1/-1}}
 @media (max-width:1020px){
   .edad{margin-left:0}
   .buscar{max-width:none}
@@ -316,6 +319,7 @@ svg{flex:none}
   .hero-in{grid-template-columns:minmax(0,1fr);text-align:left;gap:8px;padding-top:calc(var(--nav-h) + 20px)}
   .hero-lolo{order:-1;width:min(64vw,300px)}
   .categorias{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat-trazos svg{width:34px;height:34px;padding:6px}
   .pasos{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){

@@ -1,8 +1,8 @@
 # Las voces de Lolo · guion y prompts para generar los audios
 
-Todo lo que dice Lolo está en **`audio/guion.csv`**: son **740 audios** (unos 44 000 caracteres).
+Todo lo que dice Lolo está en **`audio/guion.csv`**: son **765 audios** (unos 45 000 caracteres).
 
-- **700 frases completas.**
+- **725 frases completas.**
 - **40 palabras sueltas** (colores, números, formas, direcciones…). El juego las encadena para las frases que cambian cada vez, como «Mirad la fila: rojo, azul, rojo… ¿Y ahora qué va?».
 
 Mientras falte un audio, el juego usa la voz del navegador para esa frase. Así se pueden ir subiendo por tandas sin que nada deje de sonar.
@@ -36,10 +36,10 @@ Cada fila del guion trae una columna **`indicacion`** con el tono:
 
 | Indicación | Cómo suena | Ajustes orientativos (ElevenLabs) |
 |---|---|---|
-| **Alegre y entusiasta** (299) | Celebración sincera, sonrisa, sin gritar | Estabilidad 35–40 %, estilo 45 % |
-| **Pista amable y paciente** (189) | Cuando el niño se equivoca: tranquilo, sin reproche, animando | Estabilidad 60 %, estilo 15 % |
-| **Curiosa e invitadora** (103) | Pregunta abierta; deja ½ segundo de silencio al final | Estabilidad 50 %, estilo 25 % |
-| **Cálida, clara y cercana** (86) | Explicaciones e instrucciones | Estabilidad 50 %, estilo 25 % |
+| **Alegre y entusiasta** (310) | Celebración sincera, sonrisa, sin gritar | Estabilidad 35–40 %, estilo 45 % |
+| **Pista amable y paciente** (191) | Cuando el niño se equivoca: tranquilo, sin reproche, animando | Estabilidad 60 %, estilo 15 % |
+| **Curiosa e invitadora** (104) | Pregunta abierta; deja ½ segundo de silencio al final | Estabilidad 50 %, estilo 25 % |
+| **Cálida, clara y cercana** (97) | Explicaciones e instrucciones | Estabilidad 50 %, estilo 25 % |
 | **Suave y lenta** (15) | Respiración y calma: más lento y más bajo | Estabilidad 75 %, estilo 5 % |
 | **Palabra suelta** (40) | Neutra, como al enumerar; ni pregunta ni final | Estabilidad 80 %, estilo 0 % |
 | **Inicio de frase** (8) | Termina en suspenso porque sigue una lista | Estabilidad 70 %, estilo 10 % |

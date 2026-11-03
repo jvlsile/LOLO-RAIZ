@@ -39,6 +39,7 @@
     bosque: '<ellipse cx="12" cy="16" rx="4.5" ry="3.8"/><circle cx="6" cy="10.5" r="1.9"/><circle cx="9.5" cy="6.5" r="1.9"/><circle cx="14.5" cy="6.5" r="1.9"/><circle cx="18" cy="10.5" r="1.9"/>',
     castanas: '<path d="M5 9h14l-7 12z"/><circle cx="9" cy="6.5" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/>',
     viento: '<path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/><path d="M3 19h6"/>',
+    tinta: '<path d="M11 12a1 1 0 1 1 2 0a3 3 0 1 1-6 0a5 5 0 1 1 10 0a7 7 0 1 1-14 0"/>',
     flecha: '<path d="M5 12h14M13 6l6 6-6 6"/>'
   };
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
@@ -51,9 +52,13 @@
     { k: 'logica', t: 'Lógica y matemáticas', corto: 'Lógica', c: 'var(--c-logica)', ic: 'formas', d: 'Contar, formas, series, tamaños y memoria.' },
     { k: 'retos', t: 'Retos y cooperación', corto: 'Retos', c: 'var(--c-retos)', ic: 'duo', d: 'Resolver juntos: candados, robots y parejas.' },
     { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' },
-    { k: 'otono', t: 'El otoño', corto: 'Otoño', c: 'var(--c-otono)', ic: 'hoja', d: 'Hojas, frutos, animales, ropa y tiempo de esta estación.', nuevo: true }
+    { k: 'otono', t: 'El otoño', corto: 'Otoño', c: 'var(--c-otono)', ic: 'hoja', d: 'Hojas, frutos, animales, ropa y tiempo de esta estación.' },
+    { k: 'trazos', t: 'Trazos', corto: 'Trazos', c: 'var(--c-trazos)', ic: 'tinta', d: 'Los ocho trazos de la grafomotricidad, con la tinta de Lolo.', nuevo: true }
   ];
   const cat = Object.fromEntries(CATS.map(c => [c.k, c]));
+  // Los ocho trazos del cuaderno, en miniatura, para la tarjeta de la categoría Trazos.
+  const TRAZOS_MINI = ['<path d="M12 4v16"/>', '<path d="M4 12h16"/>', '<path d="M4 8q8 13 16 0"/>', '<circle cx="12" cy="12" r="7.5"/>',
+    '<path d="M3 19L7.5 5 12 16l4.5-11L21 19"/>', '<path d="M2 12q2.5-7 5 0t5 0 5 0 5 0"/>', '<path d="M12 4v16M4 12h16"/>', IC.tinta];
   const JUEGOS = [
     { id: 'lolo', t: 'La visita de Lolo', cat: 'rutinas', e: [3, 4], d: 'La asamblea con Lolo, con una rutina distinta para cada día de la semana.',
       tr: ['Emociones y autorregulación', 'Colores, números, cuerpo y música según el día', 'Anticipación con agenda visual'], como: 'Lolo saluda, pregunta cómo estáis y propone dos retos y un juego de movimiento. Al final, una actividad sin pantalla.' },
@@ -104,7 +109,9 @@
     { id: 'castanas', t: 'El puesto de castañas', cat: 'otono', e: [3, 4, 5], d: 'Lolo vende castañas asadas: hay que contar las que pide cada cliente.',
       tr: ['Contar del 1 al 5', 'Correspondencia uno a uno', 'Tradiciones de otoño: las castañas asadas'], como: 'Lolo enseña el número que pide el cliente. Los niños tocan castañas para meterlas en el cucurucho (o sacarlas) y pulsan «¡Ya está!».' },
     { id: 'viento', t: 'El viento de otoño', cat: 'otono', e: [3, 4, 5], d: 'Somos hojas: nos mecemos, giramos con el viento, caemos y respiramos.',
-      tr: ['Expresión corporal', 'Atención y control del movimiento', 'Relajación y respiración'], como: 'Cinco momentos de movimiento delante de la pizarra. En uno, Lolo sopla viento fuerte, suave o nada, y la clase se mueve así.' }
+      tr: ['Expresión corporal', 'Atención y control del movimiento', 'Relajación y respiración'], como: 'Cinco momentos de movimiento delante de la pizarra. En uno, Lolo sopla viento fuerte, suave o nada, y la clase se mueve así.' },
+    { id: 'tinta', t: 'La tinta de Lolo', cat: 'trazos', e: [3, 4, 5], d: 'Ocho trazos con el dedo, de la raya de pie a la espiral. Lolo los dibuja primero con su tinta.',
+      tr: ['Grafomotricidad: vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral', 'Dirección del trazo: del punto verde a la estrella', 'Coordinación ojo-mano y gesto amplio'], como: 'Se elige uno de los ocho trazos. Primero Lolo lo dibuja y la clase lo repasa por un camino ancho; después se siguen los puntos, y al final solo hay inicio y final. Al acabar, el trazo cobra vida: crece un árbol, sale el gusanito, el caracol saca los cuernos.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
   const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
@@ -117,7 +124,8 @@
   function pintaCategorias() {
     $('#listaCat').innerHTML = CATS.map(c => {
       const n = JUEGOS.filter(j => j.cat === c.k).length;
-      return `<button class="cat revela" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p><span class="cat-n">${n} juegos ${svg('flecha')}</span></button>`;
+      const tira = c.k === 'trazos' ? `<span class="cat-trazos" aria-hidden="true">${TRAZOS_MINI.map(d => `<svg viewBox="0 0 24 24">${d}</svg>`).join('')}</span>` : '';
+      return `<button class="cat revela${c.k === 'trazos' ? ' cat-ancha' : ''}" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p>${tira}<span class="cat-n">${n} ${n === 1 ? 'juego' : 'juegos'} ${svg('flecha')}</span></button>`;
     }).join('');
   }
   function pintaFiltros() {

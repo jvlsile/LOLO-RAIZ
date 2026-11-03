@@ -606,7 +606,7 @@
   document.addEventListener('keydown',e=>{ const d=e.target.closest&&e.target.closest('[data-destino]'); if(d&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); d.click(); } });
 
   const EST={};
-  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento'];
+  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento','tinta'];
   const zonaDe=id=>$('#panel-'+id+' .jz');
   const espera=ms=>new Promise(r=>setTimeout(r,ms));
   function botonSig(id){
@@ -1470,6 +1470,221 @@
       }}
   });
 
+  /* ================= TRAZOS: LA TINTA DE LOLO =================
+     Ocho trazos, de menor a mayor dificultad motriz. Cada uno en tres pasos:
+     1) Lolo lo hace y la clase lo repasa sobre un camino ancho; 2) se siguen los puntos; 3) solo inicio y final.
+     El dedo deja tinta. El trazo cuenta si se recorre en orden desde el punto verde (donde está Lolo) hasta la estrella,
+     con un margen generoso que crece en pantallas pequeñas. Solo cuenta el primer dedo que toca. */
+  Object.assign(P,{
+    j_tinta:'<path d="M11 12a1 1 0 1 1 2 0a3 3 0 1 1-6 0a5 5 0 1 1 10 0a7 7 0 1 1-14 0"/>',
+    goma:'<path d="M7 21h13"/><path d="M3.6 13.4l8.8-8.8a2 2 0 0 1 2.8 0l4.2 4.2a2 2 0 0 1 0 2.8L12 19l-2 2H8z"/><path d="M8.5 8.5l7 7"/>'
+  });
+  const espiralD=(()=>{ const N=150, v=2.5; let d='';
+    for(let i=0;i<=N;i++){ const t=i/N, ang=-Math.PI/2-t*v*2*Math.PI, r=80-t*72;
+      d+=(i?'L':'M')+(150+Math.cos(ang)*r).toFixed(1)+' '+(102+Math.sin(ang)*r).toFixed(1); }
+    return d; })();
+  const hojaEn=(x,y,c,g,e=.3)=>`<g transform="translate(${x} ${y}) rotate(${g}) scale(${e}) translate(-50 -94)">${hojaIn(c)}</g>`;
+  const pr=(i,inner,cl='')=>`<g class="pr ${cl}" style="--d:${i}">${inner}</g>`;
+  const TRAZOS={
+    tronco:{n:'El Tronco',tipo:'vertical',d:['M150 34V172'],tinta:'#7A4A22',
+      intro:'El tronco es una raya de pie. Mirad a Lolo: de arriba… abajo.',
+      ok:'¡El árbol ha crecido! ¡Qué tronco tan recto!',
+      fondo:pr(0,`<circle cx="118" cy="52" r="30" fill="#F2892E" stroke="${K}" stroke-width="4"/><circle cx="182" cy="52" r="30" fill="#D9483B" stroke="${K}" stroke-width="4"/><circle cx="150" cy="34" r="34" fill="#F6C443" stroke="${K}" stroke-width="4"/>`)+pr(1,`<ellipse cx="150" cy="178" rx="70" ry="9" fill="#A0662F" opacity=".25"/>`),
+      frente:pr(2,hojaEn(98,120,HCOL.naranja,-30,.2))+pr(3,hojaEn(204,140,HCOL.rojo,40,.2))},
+    rama:{n:'La Rama Dormida',tipo:'horizontal',d:['M48 104H252'],tinta:'#7A4A22',
+      intro:'La rama dormida es una raya tumbada. Mirad a Lolo: de un lado… al otro.',
+      ok:'¡La rama se ha despertado y le han salido hojas!',
+      frente:[[84,104,HCOL.amarillo,-35],[126,104,HCOL.naranja,35],[168,104,HCOL.rojo,-35],[214,104,'#2BB673',35]].map(([x,y,c,g],i)=>pr(i,hojaEn(x,y,c,g))).join('')
+        +pr(4,`<g transform="translate(256 42)"><circle r="18" fill="#FFC93C" stroke="${K}" stroke-width="4"/><g stroke="#F0A817" stroke-width="4" stroke-linecap="round"><path d="M0-27v-7M0 27v7M-27 0h-7M27 0h7M-19-19l-5-5M19 19l5 5M19-19l5-5M-19 19l-5 5"/></g><circle cx="-6" cy="-3" r="2.6" fill="${K}"/><circle cx="6" cy="-3" r="2.6" fill="${K}"/><path d="M-6 5q6 5 12 0" stroke="${K}" stroke-width="2.6" fill="none" stroke-linecap="round"/></g>`)},
+    sonrisa:{n:'La Sonrisa de la Hoja',tipo:'curva',d:['M64 78Q150 196 236 78'],tinta:K,
+      intro:'La hoja quiere sonreír. Mirad a Lolo: bajamos… y subimos, como un columpio.',
+      ok:'¡Mirad qué sonrisa tan bonita tiene la hoja!',
+      fondo:pr(0,`<g transform="translate(150 100) scale(2.7 2.05) translate(-50 -50)"><path d="M50 6C80 22 88 56 66 80Q56 89 50 90Q44 89 34 80C12 56 20 22 50 6z" fill="#F6C443" stroke="${K}" stroke-width="4.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></g>`),
+      frente:pr(1,`<g class="ojos-hoja"><circle cx="118" cy="62" r="9" fill="${K}"/><circle cx="182" cy="62" r="9" fill="${K}"/><circle cx="121" cy="59" r="3" fill="#fff"/><circle cx="185" cy="59" r="3" fill="#fff"/></g>`)+pr(2,`<circle cx="90" cy="72" r="11" fill="#FF8FA3" opacity=".6"/><circle cx="210" cy="72" r="11" fill="#FF8FA3" opacity=".6"/>`)},
+    fruto:{n:'El Fruto',tipo:'círculo',d:['M150 32A68 68 0 1 0 150 168A68 68 0 1 0 150 32'],tinta:'#8E1F2A',
+      intro:'El fruto es redondo. Mirad a Lolo: empezamos arriba, damos la vuelta… y volvemos arriba.',
+      ok:'¡Una manzana redonda y roja! ¡Qué rica!',
+      fondo:pr(0,`<circle cx="150" cy="100" r="68" fill="#E5484D"/><ellipse cx="122" cy="72" rx="16" ry="10" fill="#fff" opacity=".45" transform="rotate(-30 122 72)"/>`),
+      frente:pr(1,`<path d="M150 34q-2-16 8-26" stroke="#7A4A22" stroke-width="7" fill="none" stroke-linecap="round"/>`)+pr(2,hojaEn(160,20,'#2BB673',70,.24))},
+    rayo:{n:'El Rayo entre las Ramas',tipo:'zigzag',amplio:1,d:['M48 172L99 46L150 154L201 46L252 172'],tinta:'#D99A00',
+      intro:'El rayo sube y baja. Mirad a Lolo: arriba, abajo, arriba, abajo.',
+      ok:'¡Rayo! La nube se va y vuelve a salir el sol.',
+      frente:pr(0,`<g class="nube-va"><path d="M118 34a16 16 0 0 1 22-20 20 20 0 0 1 36 6 14 14 0 0 1 4 28h-58a14 14 0 0 1-4-14z" fill="#DDE7F0" stroke="${K}" stroke-width="4" stroke-linejoin="round"/></g>`)
+        +pr(1,`<g transform="translate(36 40)"><circle r="17" fill="#FFC93C" stroke="${K}" stroke-width="4"/><g stroke="#F0A817" stroke-width="4" stroke-linecap="round"><path d="M0-25v-6M0 25v6M-25 0h-6M25 0h6M-18-18l-4-4M18 18l4 4M18-18l4-4M-18 18l-4 4"/></g></g>`)},
+    gusano:{n:'El Gusanito de la Tierra',tipo:'onda',d:['M34 104Q63 44 92 104T150 104T208 104T266 104'],tinta:'#E86F8C',gordo:1,
+      intro:'El gusanito va haciendo olas. Mirad a Lolo: sube y baja, despacito.',
+      ok:'¡El gusanito ha salido de la tierra! Mirad cómo se mueve.',
+      fondo:pr(0,`<path d="M0 150Q75 140 150 150T300 150V200H0z" fill="#C79A6B" opacity=".55"/><g fill="#A0662F" opacity=".5"><circle cx="40" cy="178" r="4"/><circle cx="120" cy="186" r="3"/><circle cx="196" cy="174" r="4"/><circle cx="260" cy="188" r="3"/></g>`),
+      frente:pr(1,`<g class="cabeza-gusano" transform="translate(266 104)"><circle r="17" fill="#F28AA0" stroke="${K}" stroke-width="4"/><circle cx="-5" cy="-4" r="3.4" fill="${K}"/><circle cx="6" cy="-4" r="3.4" fill="${K}"/><path d="M-6 5q6 5 12 0" stroke="${K}" stroke-width="2.6" fill="none" stroke-linecap="round"/></g>`)},
+    cruz:{n:'Las Ramas que se Cruzan',tipo:'cruz',d:['M150 32V172','M72 104H228'],tinta:'#7A4A22',
+      intro:'Dos ramas se cruzan. Mirad a Lolo: primero de arriba abajo… y luego de un lado al otro.',
+      medio:'¡Muy bien! Ahora la otra rama: de un lado al otro.',
+      ok:'¡Un pajarito se ha posado en las ramas! ¡Pío, pío!',
+      frente:pr(0,hojaEn(150,34,'#2BB673',0,.24))+pr(1,hojaEn(228,104,HCOL.naranja,90,.24))+pr(2,hojaEn(72,104,HCOL.amarillo,-90,.24))
+        +pr(3,`<g transform="translate(176 82)"><path d="M-20 4q10 18 30 6" fill="#2F80ED"/><ellipse rx="22" ry="17" fill="#3D8DF2" stroke="${K}" stroke-width="4"/><circle cx="12" cy="-16" r="11" fill="#3D8DF2" stroke="${K}" stroke-width="4"/><circle cx="15" cy="-18" r="2.8" fill="${K}"/><path d="M22-16l10 3-10 4z" fill="#FFC93C" stroke="${K}" stroke-width="2.5" stroke-linejoin="round"/><path d="M-12-2q8 12 20 4" stroke="${K}" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M-4 16v6M6 16v6" stroke="#F0A817" stroke-width="4" stroke-linecap="round"/></g>`,'pajaro')},
+    caracol:{n:'El Caracol de la Raíz',tipo:'espiral',amplio:1,banda:24,d:[espiralD],tinta:'#7A4A22',
+      intro:'La casa del caracol da vueltas. Mirad a Lolo: empezamos fuera y vamos girando hacia dentro.',
+      ok:'¡El caracol ha sacado los cuernos! ¡Hola, caracol!',
+      fondo:pr(0,`<circle cx="150" cy="102" r="90" fill="#F6C99A" stroke="${K}" stroke-width="4"/>`),
+      frente:pr(1,`<g class="cuerpo-caracol"><path d="M118 190Q200 198 274 186Q292 180 286 162L262 160Q200 178 128 178Z" fill="#C8E6A0" stroke="${K}" stroke-width="4" stroke-linejoin="round"/><circle cx="270" cy="150" r="16" fill="#C8E6A0" stroke="${K}" stroke-width="4"/><path d="M262 136l-8-24M278 136l6-24" stroke="${K}" stroke-width="4" stroke-linecap="round"/><circle cx="254" cy="110" r="5" fill="${K}"/><circle cx="284" cy="110" r="5" fill="${K}"/><path d="M264 156q6 4 12 0" stroke="${K}" stroke-width="2.6" fill="none" stroke-linecap="round"/></g>`)}
+  };
+  const TRAZO_IDS=Object.keys(TRAZOS);
+  const miniTrazo=k=>sv('0 0 300 200',`<rect x="4" y="4" width="292" height="192" rx="26" fill="#F2FAFC"/>${TRAZOS[k].d.map(d=>`<path d="${d}" fill="none" stroke="#0B7A8F" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}`);
+  const LOLITO=`<g class="lolito"><circle r="15" fill="#FF8A3D" stroke="${K}" stroke-width="3.2"/><circle cx="-5.2" cy="-2.5" r="3.8" fill="#fff"/><circle cx="5.2" cy="-2.5" r="3.8" fill="#fff"/><circle cx="-4.6" cy="-2" r="1.9" fill="${K}"/><circle cx="5.8" cy="-2" r="1.9" fill="${K}"/><path d="M-4.5 5.5q4.5 3.4 9 0" stroke="${K}" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>`;
+  const ESTRELLA=`<path d="M0-16l4.7 9.6 10.5 1.5-7.6 7.4 1.8 10.5L0 8l-9.4 5 1.8-10.5-7.6-7.4 10.5-1.5z" fill="#FFC93C" stroke="${K}" stroke-width="3" stroke-linejoin="round"/>`;
+  const FR_TINTA={
+    eleg:'¿Qué trazo practicamos hoy? Elegid uno.',
+    r0:'¡Ahora vosotros! Poned el dedo en Lolo, en el punto verde, y seguid el camino hasta la estrella.',
+    r1:'Ahora seguimos los puntos. Empezamos en el punto verde y llegamos a la estrella.',
+    r2:'Ahora, casi solos. Del punto verde a la estrella. ¡Vosotros podéis!',
+    ok1:'¡Muy bien! Habéis seguido todos los puntos.',
+    inicio:'Empezamos donde está Lolo, en el punto verde.',
+    camino:'Volvemos al caminito. Seguimos desde donde está Lolo.',
+    borrar:'Borramos y empezamos otra vez.'
+  };
+  const hablando=()=>{ try{ if(sonando&&!sonando.fin&&sonando.el&&!sonando.el.ended) return true; return 'speechSynthesis' in window&&speechSynthesis.speaking; }catch(e){ return false; } };
+  async function trasLaVoz(max=8000){ const t0=Date.now(); await espera(250); while(hablando()&&Date.now()-t0<max) await espera(150); }
+
+  JUEGOS.tinta={titulo:'La tinta de Lolo',ic:'j_tinta',R:3,etiq:['Mira y repasa','Sigue los puntos','Tú solo'],
+    get puente(){ const T=TRAZOS[EST.tinta&&EST.tinta.v]||TRAZOS.tronco; return `Repetid «${T.n.toLowerCase()}» en grande: primero en el aire con todo el brazo, luego con el dedo en una bandeja de arena o de sal, y por último con ceras gordas en un papel grande.`; },
+    elegir:{texto:FR_TINTA.eleg,ops:TRAZO_IDS.map((k,i)=>({k,lbl:`${i+1} · ${TRAZOS[k].n}`,html:miniTrazo(k)}))},
+    ronda(n,a){
+      const s=EST.tinta, T=TRAZOS[s.v], num=TRAZO_IDS.indexOf(s.v)+1;
+      a.z.innerHTML=`<div class="trazo-wrap"><div class="pizarra-trazo r${n}" data-trazo="${s.v}" style="--tinta-c:#3B3486">
+          <span class="trazo-nombre"><b>${num}</b>${T.n}<i>${T.tipo}</i></span>
+          <svg class="lienzo" viewBox="0 0 300 200" role="img" aria-label="${T.n}, trazo ${T.tipo}. Empieza en el punto verde y termina en la estrella.">
+            <g class="premio-fondo">${T.fondo||''}</g><g class="guias"></g><g class="tinta-nino"></g><g class="tinta-demo"></g><g class="premio-frente">${T.frente||''}</g><g class="marcas"></g>
+          </svg></div><div class="fila trazo-acc"></div></div>`;
+      const pz=a.z.querySelector('.pizarra-trazo'), svg=pz.querySelector('.lienzo'), NS='http://www.w3.org/2000/svg';
+      const gG=svg.querySelector('.guias'), gT=svg.querySelector('.tinta-nino'), gD=svg.querySelector('.tinta-demo'), gM=svg.querySelector('.marcas');
+      const el=(tag,at,padre)=>{ const e=document.createElementNS(NS,tag); for(const k in at) e.setAttribute(k,at[k]); if(padre) padre.appendChild(e); return e; };
+      // Cada trazo: camino de medida, dibujo de guía y puntos de control cada 8 unidades.
+      const tramos=T.d.map((d,i)=>{
+        const g=el('g',{class:'tramo'},gG), med=el('path',{d,class:'guia',fill:'none',stroke:'none'},g), L=med.getTotalLength();
+        const bw=T.banda?{style:`stroke-width:${T.banda}px`}:{};
+        if(n===0){ el('path',{d,class:'banda',...bw},g); el('path',{d,class:'avance','stroke-dasharray':`0 ${L+1}`,...bw},g); el('path',{d,class:'eje'},g); }
+        else if(n===1){ const k=Math.max(2,Math.round(L/15)); for(let j=0;j<=k;j++){ const p=med.getPointAtLength(L*j/k); el('circle',{cx:p.x.toFixed(1),cy:p.y.toFixed(1),r:4.6,class:'punto','data-l':(L*j/k).toFixed(1)},g); } }
+        else el('path',{d,class:'banda tenue',...bw},g);
+        const k=Math.max(4,Math.round(L/8)), pts=[];
+        for(let j=0;j<=k;j++){ const p=med.getPointAtLength(L*j/k); pts.push({x:p.x,y:p.y}); }
+        return {g,med,L,pts,c:0};
+      });
+      let act=0, listo=false, demoOn=false, empezado=false, ultAviso=0, sinAvance=0, hitos=0;
+      const punta=el('g',{class:'punta'},gM), halo=el('circle',{class:'halo',r:24},punta), estrella=el('g',{class:'meta'},gM);
+      punta.insertAdjacentHTML('beforeend',LOLITO); estrella.innerHTML=ESTRELLA;
+      const ponMarcas=()=>{
+        tramos.forEach((t,i)=>t.g.classList.toggle('espera',i>act));
+        const t=tramos[act]; if(!t) return;
+        const p=t.pts[Math.min(t.c,t.pts.length-1)], fin=t.pts[t.pts.length-1], cerrado=Math.hypot(fin.x-t.pts[0].x,fin.y-t.pts[0].y)<20;
+        punta.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
+        halo.style.opacity=t.c===0?'':'0';
+        estrella.setAttribute('transform',`translate(${fin.x} ${fin.y})`);
+        estrella.style.opacity=cerrado&&t.c<t.pts.length/2?'0':'';
+        const fr=t.c/t.pts.length, l=t.L*fr;
+        const av=t.g.querySelector('.avance'); if(av) av.setAttribute('stroke-dasharray',`${l.toFixed(1)} ${t.L+1}`);
+        t.g.querySelectorAll('.punto').forEach(c=>c.classList.toggle('pasado',+c.dataset.l<=l+2));
+      };
+      ponMarcas();
+
+      /* --- Lolo hace el trazo (demostración) --- */
+      let demoId=0;
+      function demo(){
+        const id=++demoId; demoOn=true; gD.innerHTML=''; pz.classList.add('mirando');
+        if(reduceSO){ tramos.forEach(t=>el('path',{d:t.med.getAttribute('d'),class:'demo'},gD)); return espera(1600).then(()=>finDemo(id)); }
+        return new Promise(ok=>{
+          let i=0;
+          const sigTramo=()=>{
+            if(id!==demoId||!svg.isConnected) return ok();
+            if(i>=tramos.length){ finDemo(id); return ok(); }
+            const t=tramos[i++], ruta=el('path',{d:t.med.getAttribute('d'),class:'demo','stroke-dasharray':`0 ${t.L+1}`},gD);
+            const dur=Math.min(4200,Math.max(1300,t.L*(calma?9:7))), t0=performance.now();
+            const paso=ahora=>{
+              if(id!==demoId||!svg.isConnected) return ok();
+              const f=Math.min(1,(ahora-t0)/dur), e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2, l=t.L*e, p=t.med.getPointAtLength(l);
+              ruta.setAttribute('stroke-dasharray',`${l.toFixed(1)} ${t.L+1}`);
+              punta.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`); halo.style.opacity='0';
+              if(f<1) requestAnimationFrame(paso); else setTimeout(sigTramo,350);
+            };
+            requestAnimationFrame(paso);
+          };
+          sigTramo();
+        });
+      }
+      function finDemo(id){
+        if(id!==undefined&&id!==demoId) return;
+        demoId++; demoOn=false; pz.classList.remove('mirando');
+        const viejos=[...gD.children]; viejos.forEach(p=>p.classList.add('desvanece')); setTimeout(()=>viejos.forEach(p=>p.remove()),500);
+        if(!listo) ponMarcas();
+      }
+
+      /* --- el niño traza --- */
+      let dedo=null, ruta=null, rutaFuera=null, ant=null, puntos='';
+      const aSvg=e=>{ const m=svg.getScreenCTM(); if(!m) return null; const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse()); return {x:p.x,y:p.y}; };
+      const tolerancia=()=>{ const m=svg.getScreenCTM(), esc=m?Math.hypot(m.a,m.b):1; return Math.max([30,27,25][n],34/esc); };
+      let tol=30;
+      function avanza(p){
+        const t=tramos[act]; if(!t) return false; let mov=false;
+        for(let k=t.c;k<Math.min(t.c+5,t.pts.length);k++) if(Math.hypot(p.x-t.pts[k].x,p.y-t.pts[k].y)<tol){ t.c=k+1; mov=true; }
+        return mov;
+      }
+      const cerca=p=>{ const t=tramos[act]; return t&&t.pts.some(q=>Math.hypot(p.x-q.x,p.y-q.y)<tol*1.6); };
+      function nuevaRuta(fuera){ const r=el('path',{class:'trazo'+(fuera?' fuera':''),d:''},gT); puntos=''; return r; }
+      function aviso(){
+        const ahora=Date.now(); if(ahora-ultAviso<6000) return; ultAviso=ahora; sinAvance=0;
+        const t=tramos[act]; decir(t.c===0?FR_TINTA.inicio:FR_TINTA.camino);
+        punta.classList.remove('llama'); void punta.getBoundingClientRect(); punta.classList.add('llama');
+      }
+      function mueve(p){
+        if(!ant) ant=p;
+        const dist=Math.hypot(p.x-ant.x,p.y-ant.y), pasos=Math.max(1,Math.ceil(dist/4)); let mov=false;
+        for(let i=1;i<=pasos;i++){ const q={x:ant.x+(p.x-ant.x)*i/pasos,y:ant.y+(p.y-ant.y)*i/pasos}; if(avanza(q)) mov=true; }
+        const fuera=!cerca(p);
+        if(!ruta||ruta.classList.contains('fuera')!==fuera){ const prev=ant; ruta=nuevaRuta(fuera); puntos=`M${prev.x.toFixed(1)} ${prev.y.toFixed(1)}`; }
+        puntos+=`L${p.x.toFixed(1)} ${p.y.toFixed(1)}`; ruta.setAttribute('d',puntos);
+        if(mov){ sinAvance=0; ponMarcas(); const t=tramos[act], h=Math.floor(t.c/t.pts.length*4);
+          if(h>hitos&&h<4){ hitos=h; tono([392*Math.pow(1.122,h+act*3)],'sine',.06,.1,.22); } }
+        else sinAvance+=dist;
+        if(sinAvance>(fuera?70:160)) aviso();
+        ant=p;
+        const t=tramos[act];
+        if(t&&t.c>=t.pts.length){
+          act++; hitos=0; ant=null; ruta=null;
+          if(act<tramos.length){ tono([523,659],'sine',.1,.09,.3); decir(T.medio||FR_TINTA.camino); ponMarcas(); }
+          else terminado();
+        }
+      }
+      svg.addEventListener('pointerdown',e=>{
+        if(listo||dedo!==null||e.button>0||!e.isPrimary) return;
+        e.preventDefault();
+        if(demoOn) finDemo();
+        empezado=true; dedo=e.pointerId; tol=tolerancia();
+        try{ svg.setPointerCapture(e.pointerId); }catch(err){}
+        const p=aSvg(e); if(!p) return; ant=null; ruta=null; mueve(p);
+      });
+      svg.addEventListener('pointermove',e=>{ if(e.pointerId!==dedo||listo) return; e.preventDefault();
+        const lista=e.getCoalescedEvents?e.getCoalescedEvents():[]; (lista.length?lista:[e]).forEach(ev=>{ if(listo) return; const p=aSvg(ev); if(p) mueve(p); }); });
+      const suelta=e=>{ if(e.pointerId!==dedo) return; dedo=null; ant=null; ruta=null; };
+      svg.addEventListener('pointerup',suelta); svg.addEventListener('pointercancel',suelta);
+
+      function terminado(){
+        listo=true; dedo=null; a.z.querySelector('.trazo-acc').remove();
+        pz.style.setProperty('--tinta-c',T.tinta); pz.classList.add('hecho'); if(T.gordo) pz.classList.add('gordo');
+        a.ok(n===1?FR_TINTA.ok1:T.ok,pz);
+        pz.dataset.hecho='1';
+      }
+
+      /* --- botones: ver otra vez a Lolo y borrar --- */
+      const acc=a.z.querySelector('.trazo-acc');
+      const bt=(txt,ic,fn)=>{ const b=document.createElement('button'); b.className='big sec peq'; b.type='button'; b.innerHTML=`<span class="mini">${icono(ic)}</span><span>${txt}</span>`; b.addEventListener('click',fn); acc.appendChild(b); return b; };
+      bt('Mira a Lolo','ojo',()=>{ if(listo) return; decir(T.intro); demo(); });
+      bt('Borrar','goma',()=>{ if(listo) return; finDemo(); gT.innerHTML=''; tramos.forEach(t=>t.c=0); act=0; hitos=0; ant=null; ruta=null; dedo=null; ponMarcas(); decir(FR_TINTA.borrar); });
+
+      // En móvil, la pizarra entera a la vista para poder trazar sin desplazar la página.
+      if(innerWidth<760) requestAnimationFrame(()=>{ const r=pz.getBoundingClientRect(); if(r.bottom>innerHeight||r.top<0) pz.scrollIntoView({block:'nearest',behavior:quieto()?'auto':'smooth'}); });
+      if(n===0){ decir(T.intro); demo().then(()=>trasLaVoz()).then(()=>{ if(!empezado&&!listo&&svg.isConnected&&modo==='tinta') decir(FR_TINTA.r0); }); }
+      else decir(n===1?FR_TINTA.r1:FR_TINTA.r2);
+    }};
+
   /* ================= MENÚ POR CATEGORÍAS Y EDADES ================= */
   const CATS=[
     {t:'Rutinas y asamblea',c:'#FF8A3D',ids:['lolo','jardin','muevete']},
@@ -1477,7 +1692,8 @@
     {t:'Lógica y matemáticas',c:'#3D8DF2',ids:['cuenta','series','cestas','tamanos','parejas','formas']},
     {t:'Retos y cooperación',c:'#FF5D8F',ids:['duo','escape','robot']},
     {t:'Ciencia y manipulación',c:'#2BB673',ids:['quepasa','construye','caza']},
-    {t:'El otoño',c:'#B8652B',ids:['hojas','arbol','ropa','frutos','bosque','castanas','viento']}
+    {t:'El otoño',c:'#B8652B',ids:['hojas','arbol','ropa','frutos','bosque','castanas','viento']},
+    {t:'Trazos',c:'#0B7A8F',ids:['tinta']}
   ];
   const INFO={
     lolo:{t:'La visita de Lolo',ic:'lolo',e:[3,4],d:'Asamblea con Lolo: una rutina distinta para cada día de la semana.'},
@@ -1504,7 +1720,8 @@
     frutos:{e:[3,4,5],d:'Adivinanzas de castañas, granadas, uvas, setas y más.'},
     bosque:{e:[4,5],d:'Qué hacen los animales en otoño: viajar, dormir o guardar comida.'},
     castanas:{e:[3,4,5],d:'Contar castañas asadas y servirlas en el cucurucho.'},
-    viento:{e:[3,4,5],d:'Movernos como hojas con el viento, caer y respirar.'}
+    viento:{e:[3,4,5],d:'Movernos como hojas con el viento, caer y respirar.'},
+    tinta:{e:[3,4,5],d:'Los ocho trazos con la tinta de Lolo: de la raya a la espiral.'}
   };
   const tituloDe=id=>INFO[id].t||JUEGOS[id].titulo, icDe=id=>INFO[id].ic||JUEGOS[id].ic, catDe=id=>CATS.find(c=>c.ids.includes(id));
   const edadTxt=e=>e.length===1?`${e[0]} años`:`${e[0]}–${e[e.length-1]} años`;

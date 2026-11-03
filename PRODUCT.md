@@ -14,7 +14,7 @@ web
 
 ## Product Purpose
 
-La visita de Lolo reúne 25 juegos educativos breves para la asamblea y los rincones de Infantil. Cada juego dura unos 10 minutos, se juega en grupo y termina con una actividad manipulativa sin pantalla. El éxito es que la maestra encuentre y lance el juego adecuado para su grupo en segundos, y que la clase juegue sin barreras.
+La visita de Lolo reúne 26 juegos educativos breves para la asamblea y los rincones de Infantil. Cada juego dura unos 10 minutos, se juega en grupo y termina con una actividad manipulativa sin pantalla. El éxito es que la maestra encuentre y lance el juego adecuado para su grupo en segundos, y que la clase juegue sin barreras.
 
 ## Positioning
 
@@ -30,7 +30,7 @@ Un único personaje, Lolo el pulpo, guía todos los juegos con voz y pictogramas
 ## Capabilities and Constraints
 
 - Web estática (HTML, CSS y JS sin framework), publicada en GitHub Pages desde `jvlsile/VISITA-DE-LOLO-`. La aplicación de juegos admite enlaces directos por hash (`#formas`, `#robot`…).
-- Hay 25 juegos en 6 categorías (Rutinas y asamblea; Lenguaje, cuentos y emociones; Lógica y matemáticas; Retos y cooperación; Ciencia y manipulación; El otoño), cada uno con su rango de edad.
+- Hay 26 juegos en 7 categorías (Rutinas y asamblea; Lenguaje, cuentos y emociones; Lógica y matemáticas; Retos y cooperación; Ciencia y manipulación; El otoño; Trazos), cada uno con su rango de edad.
 - La portada es la entrada principal del sitio y lanza los juegos.
 - No recoge datos personales. Solo guarda preferencias en el navegador.
 - Fuentes alojadas en el propio sitio: no se hacen peticiones a terceros.
@@ -44,7 +44,7 @@ Un único personaje, Lolo el pulpo, guía todos los juegos con voz y pictogramas
 
 ## Evidence on Hand
 
-- Los 25 juegos en funcionamiento (`jugar.html`, `js/app.js`) y la guía docente integrada.
+- Los 26 juegos en funcionamiento (`jugar.html`, `js/app.js`) y la guía docente integrada.
 - No hay testimonios, centros usuarios ni datos de uso. No se deben inventar.
 
 ## Product Principles

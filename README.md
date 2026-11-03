@@ -2,7 +2,7 @@
 
 Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital, tablet y móvil. Lolo, un pulpo, guía a la clase con voz, pictogramas y sin necesidad de leer.
 
-- **25 juegos** en seis categorías (entre ellas, siete juegos de otoño), con filtro por edad.
+- **26 juegos** en siete categorías (entre ellas, siete juegos de otoño y los ocho trazos de grafomotricidad), con filtro por edad.
 - **Rutinas para ciclos de 5 días** basadas en el currículo de Infantil de Andalucía (Decreto 100/2023 y Orden de 30 de mayo de 2023).
 - **Apoyos para alumnado con autismo**, útiles para toda la clase: agenda visual con «Ahora» y «Después», final anunciado, modo tranquilo, rincón de la calma, y la opción de arrastrar o tocar.
 - Sin puntos ni rankings: el progreso es colectivo y se ve en **el jardín de la clase**.
@@ -17,10 +17,12 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 | Lógica y matemáticas | Cuenta y toca · Series y patrones · Clasifica en cestas · Grande, mediano, pequeño · Encuentra la pareja · Formas geométricas |
 | Retos y cooperación | Juego a dúo · Mini-escape de colores · El robot perdido |
 | Ciencia y manipulación | ¿Qué pasa si…? · Toca, construye y comprueba · Caza mágica |
+| El otoño | Las hojas del otoño · El árbol y las estaciones · ¿Qué nos ponemos? · Adivina el fruto del otoño · Los animales en otoño · El puesto de castañas · El viento de otoño |
+| Trazos | La tinta de Lolo (vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral) |
 
 Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos.
 
-Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#formas`, `…/jugar.html#robot` o `…/jugar.html#caja`.
+Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#formas`, `…/jugar.html#robot`, `…/jugar.html#caja` o `…/jugar.html#tinta`.
 
 ## Portada
 
@@ -42,7 +44,7 @@ Después abre <http://localhost:4173>. Abrir `index.html` con doble clic tambié
 
 ## Pruebas automáticas
 
-Las pruebas recorren la portada (filtros, lanzar un juego, recientes) y juegan los 25 juegos de principio a fin en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
+Las pruebas recorren la portada (filtros, lanzar un juego, recientes) y juegan los 26 juegos de principio a fin (en La tinta de Lolo, trazando con el ratón de verdad) en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
 
 ```bash
 npm ci
@@ -69,7 +71,7 @@ La dirección es <https://jvlsile.github.io/VISITA-DE-LOLO-/>.
 index.html              Portada: elegir y lanzar juegos
 css/portada.css         Estilos de la portada
 js/portada.js           Lógica de la portada
-jugar.html              Los 25 juegos
+jugar.html              Los 26 juegos
 css/estilos.css         Estilos de los juegos
 js/app.js               Toda la lógica de los juegos
 fonts/                  Fuentes Fredoka y Nunito alojadas en el propio sitio

@@ -1,4 +1,4 @@
-# Prueba los 18 juegos y, si todo va bien en la rama main, publica la web en GitHub Pages.
+# Prueba los juegos y, si todo va bien en la rama main, publica la web en GitHub Pages.
 name: Probar y publicar
 
 on:

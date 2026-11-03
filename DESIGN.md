@@ -174,7 +174,7 @@ El mar es el único tema, a propósito. No hay modo oscuro ni cambio de tema: el
 - Fondo de mar en degradado vertical (aguamarina, turquesa, azul profundo, abismo) con arena en el pie.
 - Lolo grande, ilustrado en SVG con degradado radial, a la izquierda y como narrador.
 - Superficies blancas de vidrio con sombra azul difusa sobre el agua.
-- Color de categoría en cinco tonos (naranja, morado, azul, rosa, verde), siempre junto a icono y texto.
+- Color de categoría en siete tonos (naranja, morado, azul, rosa, verde, marrón de otoño y azul petróleo de trazos), siempre junto a icono y texto.
 - Fredoka redondeada para lo que se dice y se toca; Nunito para lo que se lee.
 - Formas de píldora y esquinas muy redondeadas: nada tiene canto vivo.
 - Movimiento con curvas de salida propias y una firma, la inmersión.
@@ -194,7 +194,7 @@ Un mar luminoso y saturado con un solo personaje cálido; el color de categoría
 ### Tertiary
 - **Latón Claro** (laton) y **Latón Viejo** (laton-2): exclusivos del anillo de los ojos de buey, en degradado cónico con un brillo #FFF1B8.
 - **Arena** (arena) y **Arena Tostada** (arena-2): el lecho del mar en el pie; el texto sobre la arena va en marrón #7A531A.
-- **Colores de categoría**: c-rutinas (naranja), c-lenguaje (morado), c-logica (azul), c-retos (rosa) y c-ciencia (verde). Rellenan el cristal del ojo de buey, el punto de categoría, la etiqueta de edad (16 % sobre blanco) y el círculo de icono del chip (22 % sobre blanco). El verde de ciencia es también el verde de acierto (`--ok`) en los juegos.
+- **Colores de categoría**: c-rutinas (naranja), c-lenguaje (morado), c-logica (azul), c-retos (rosa), c-ciencia (verde), c-otono (marrón) y c-trazos (azul petróleo, #0B7A8F, el color de los trazos del cuaderno). Rellenan el cristal del ojo de buey, el punto de categoría, la etiqueta de edad (16 % sobre blanco) y el círculo de icono del chip (22 % sobre blanco). El verde de ciencia es también el verde de acierto (`--ok`) en los juegos.
 - **Colores del día** en la app: lunes sol, martes rosa (c-retos), miércoles verde (c-ciencia), jueves morado (c-lenguaje) y viernes turquesa (mar-2). Tiñen la agenda, el selector de día y la tarjeta destacada «Para hoy».
 
 ### Neutral
