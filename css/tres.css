@@ -121,8 +121,9 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .op{position:relative;display:grid;grid-template-rows:1fr auto;place-items:center;gap:10px;min-height:clamp(200px,34vh,380px);padding:16px;border:5px solid #fff;border-radius:34px;cursor:pointer;color:var(--tinta);
   background:linear-gradient(180deg,#fff 0%,#EEF8FA 100%);box-shadow:0 12px 0 #CFE6EC,0 20px 34px rgba(8,50,80,.14);transition:transform .18s ease,box-shadow .18s ease,opacity .3s ease}
 .op:active{transform:translateY(8px);box-shadow:0 4px 0 #CFE6EC,0 8px 14px rgba(8,50,80,.12)}
-.op-dib{display:grid;place-items:center;width:100%;min-width:0;height:clamp(150px,26vh,280px)}
-.op-dib svg{width:100%;height:100%;max-width:clamp(130px,17vw,240px);overflow:visible}
+.op-dib{position:relative;display:block;width:100%;min-width:0;height:clamp(150px,26vh,280px)}
+/* El dibujo ocupa exactamente su hueco (posición absoluta): así ningún navegador lo hace crecer fuera de la tarjeta. */
+.op-dib > svg{position:absolute;inset:0;margin:auto;width:100%;height:100%;max-width:clamp(130px,17vw,240px);overflow:visible}
 .op-lbl{display:inline-flex;align-items:center;gap:8px;padding:4px 18px;border-radius:999px;background:#E6F3F6;font:700 clamp(1.05rem,1.6vw,1.35rem) var(--f-display);color:var(--tinta-2)}
 .op-lbl i{width:16px;height:16px;border-radius:50%;background:var(--oc);box-shadow:inset 0 0 0 2px rgba(24,49,83,.4)}
 .op.bien{border-color:var(--ok);background:linear-gradient(180deg,#F2FFF8,#D9F6E7);box-shadow:0 12px 0 #9ADDBC,0 0 0 10px rgba(43,182,115,.18)}
@@ -133,12 +134,12 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .op.pista,.parte.pista,.burbuja.pista{animation:latido 1.1s ease-in-out infinite}
 .op.pista{border-color:var(--sol);box-shadow:0 12px 0 #CFE6EC,0 0 0 10px rgba(255,201,60,.35)}
 .sacude{animation:tembleque .45s ease}
-.ops-tam .op-dib{align-items:end}
-.tam{display:grid;place-items:end center}
+
+.tam{position:absolute;inset:0;display:grid;place-items:end center}
 .tam svg{max-width:none!important}
 .tam-g svg{width:clamp(140px,24vh,250px)!important;height:clamp(140px,24vh,250px)!important}
 .tam-p svg{width:clamp(60px,10vh,100px)!important;height:clamp(60px,10vh,100px)!important}
-.ops-platos .op-dib svg{max-width:clamp(200px,24vw,320px)}
+.ops-platos .op-dib > svg{max-width:clamp(200px,24vw,320px)}
 .emo-lolo{display:grid;place-items:center}
 @media (min-width:861px){
   body[data-juego="emociones"] .zona{grid-template-columns:auto minmax(0,1fr);align-items:center}
@@ -198,8 +199,8 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .pasos li.ahora{box-shadow:inset 0 0 0 4px var(--jc)}
 .pasos li.hecho{background:#F0FBF5;box-shadow:inset 0 0 0 3px #9ADDBC}
 .pasos .pn{position:absolute;top:6px;left:8px;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--tinta);color:#fff;font:700 .95rem var(--f-display)}
-.pasos .pd{display:grid;place-items:center;width:70%;height:80%}
-.pasos .pd svg{width:100%;height:100%}
+.pasos .pd{position:absolute;inset:16% 14% 8%;display:grid;place-items:center}
+.pasos .pd svg{position:absolute;inset:0;width:100%;height:100%}
 .pasos .pd b{font-size:2.6rem;color:#B9CCDA}
 .pasos li.hecho .pd{animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
 
@@ -264,7 +265,9 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .pd-t{padding:3px 14px;border-radius:999px;background:var(--tinta);color:#fff;font:800 .8rem var(--f-body);letter-spacing:.06em;text-transform:uppercase}
 .pd-hueco{display:grid;place-items:center;align-content:center;gap:2px;width:100%;aspect-ratio:1.3;padding:8px;border-radius:22px;background:#fff;box-shadow:inset 0 0 0 3px #E2EEF2}
 .pd-hueco b{font-size:2.4rem;color:#B9CCDA}
-.pd-hueco svg{width:70%;height:70%}
+.pd-hueco{position:relative}
+.pd-hueco svg{position:absolute;left:10%;right:10%;top:6%;bottom:24%;width:80%;height:70%}
+.pd-hueco small{position:absolute;left:0;right:0;bottom:6%;text-align:center}
 .pd-hueco small{font:700 .9rem var(--f-display);color:var(--tinta-2)}
 .pd-hueco.lleno{background:#F0FBF5;box-shadow:inset 0 0 0 3px #9ADDBC;animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
 .pd-flecha svg{width:34px;height:34px;color:var(--tinta)}
