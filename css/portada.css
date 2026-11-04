@@ -53,6 +53,21 @@ svg{flex:none}
 .btn-sol small{display:block;margin-top:3px;font:700 .85rem/1 var(--f-texto);opacity:.75}
 .btn-cafe{gap:8px;background:#FFE08A;color:#4A2C12;box-shadow:0 4px 14px rgba(229,164,14,.32)}
 .btn-cafe svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* fichas para imprimir y modo 3 años, bajo las categorías */
+.extras{margin-top:clamp(22px,3vh,32px);scroll-margin-top:calc(var(--nav-h) + 16px)}
+.extras-t{margin:0 0 14px;font:700 1.2rem var(--f-titulo)}
+.extras-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.extra{display:flex;align-items:center;gap:14px;min-width:0;padding:16px 18px;border-radius:var(--r);background:var(--superficie);color:var(--tinta);text-decoration:none;box-shadow:var(--sombra-1),inset 0 0 0 1px color-mix(in srgb,var(--c) 22%,transparent);transition:transform 260ms var(--ease-out),box-shadow 260ms ease}
+.extra:active{transform:scale(.98)}
+.extra-ic{display:grid;place-items:center;flex:none;width:52px;height:52px;border-radius:16px;background:var(--c);color:#fff;box-shadow:0 8px 18px color-mix(in srgb,var(--c) 35%,transparent)}
+.extra-ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.extra-tx{display:grid;gap:3px;min-width:0}
+.extra-tx b{font:700 1.1rem/1.15 var(--f-titulo)}
+.extra-tx small{color:var(--tinta-2);font-size:.9rem;line-height:1.35}
+.extra-fl{flex:none;margin-left:auto;width:20px;height:20px;fill:none;stroke:color-mix(in srgb,var(--c) 75%,var(--tinta));stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:transform 260ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){.extra:hover{transform:translateY(-4px);box-shadow:var(--sombra-2),inset 0 0 0 1px color-mix(in srgb,var(--c) 35%,transparent)}.extra:hover .extra-fl{transform:translateX(4px)}}
+@media (max-width:1020px){.extras-grid{grid-template-columns:minmax(0,1fr)}}
+
 /* ventana de «Invítame a un café» */
 .cafe{width:min(380px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:30px 26px 24px;border:0;border-radius:var(--r-lg);background:var(--superficie);color:var(--tinta);box-shadow:var(--sombra-3);text-align:center;overflow:auto}
 .cafe[open]{display:grid;justify-items:center;gap:10px;animation:cafeEntra 260ms var(--ease-out)}

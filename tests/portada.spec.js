@@ -131,3 +131,13 @@ test('el botón «Invítame a un café» lleva a la donación de PayPal en otra 
   await page.goto('/jugar.html');
   await expect(page.locator('.btn-cafe')).toHaveCount(0);
 });
+
+test('en las categorías hay entrada a los generadores de fichas y al modo 3 años', async ({ page }) => {
+  await page.goto('/');
+  const extras = page.locator('#fichas .extra');
+  await expect(extras).toHaveCount(3);
+  await expect(page.locator('#fichas .extra[href="fichas.html"]')).toContainText('Fichas de trazos');
+  await page.locator('#fichas .extra[href="fichas-3.html"]').click();
+  await page.waitForURL(/fichas-3\.html$/);
+  await expect(page.locator('h1')).toHaveText('Fichas para 3 años');
+});

@@ -2,6 +2,7 @@
 
 ## 1.8.1 · noviembre de 2026
 
+- Portada: bajo las categorías, entrada directa a las Fichas de trazos, las Fichas para 3 años y el Modo 3 años, y enlace «Fichas» en la barra de arriba.
 - Botón «Invítame a un café» en la portada y en las páginas de fichas: abre una ventana con un código QR y un botón para donar con PayPal. Es un simple enlace; no aparece dentro de los juegos.
 - Modo 3 años: los dibujos de las opciones ya no se salen de la tarjeta en pantallas bajas.
 
