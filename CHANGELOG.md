@@ -1,5 +1,17 @@
 # Cambios
 
+## 1.8.0 · noviembre de 2026
+
+- Modo 3 años: seis juegos nuevos, pensados para alumnado con autismo y útiles para toda la clase. Cada opción lleva dibujo, palabra y voz, y vale responder tocando, señalando, mirando o hablando.
+  - **Primero y después**: tablero de anticipación con rutinas del aula (manos y comer, recoger y patio, abrigo y casa).
+  - **Quiero…**: elegir y pedir (tren o coche, tambor o maracas, sí o no). No hay respuestas malas, y decir «no» también se celebra.
+  - **La calma de Lolo**: reconocer triste, enfadado y asustado, y elegir qué ayuda (abrazo, respirar con el globo, contar, pedir ayuda, taparse los oídos, rincón de la calma).
+  - **Ahora tú, ahora yo**: turnos entre dos equipos (tren, torre y música), con aviso de «espera».
+  - **El tren de los números**: del 1 al 5 en orden.
+  - **La banda de Lolo**: escuchar a Lolo y repetir los golpes de tambor.
+- El menú del modo se organiza en dos secciones y añade una guía plegable para la maestra sobre alumnado con autismo.
+- 65 frases nuevas en el guion de audios (909 en total).
+
 ## 1.7.0 · noviembre de 2026
 
 - **Modo 3 años** (`tres.html`), independiente del resto de juegos: tres retos por juego, dos opciones grandes, solo tocar, sin sonido de error y con la respuesta iluminada al segundo intento.

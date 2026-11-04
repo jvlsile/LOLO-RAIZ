@@ -9,6 +9,7 @@
   const guarda = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
   const mezcla = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
   const espera = ms => new Promise(r => setTimeout(r, ms));
+  const may = t => t[0].toUpperCase() + t.slice(1);
   const K = '#183153';
 
   const reduceSO = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -71,6 +72,22 @@
   }
   const acierto = () => tono(calma ? [523, 784] : [523, 659, 784, 1047]);
   const pop = k => tono([520 + k * 60, 780 + k * 60], 'sine', .1, .04, .18);
+  function ruido(t0, dur, v, frec) {
+    const a = actx(); if (!a) return;
+    const n = Math.floor(a.sampleRate * dur), buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3);
+    const s = a.createBufferSource(), f = a.createBiquadFilter(), g = a.createGain(); s.buffer = buf; f.type = 'bandpass'; f.frequency.value = frec; f.Q.value = .8; g.gain.value = calma ? v * .45 : v;
+    s.connect(f).connect(g).connect(a.destination); s.start(a.currentTime + t0);
+  }
+  function golpe(t0) {
+    const a = actx(); if (!a) return;
+    const o = a.createOscillator(), g = a.createGain(), t = a.currentTime + t0;
+    o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(55, t + .25);
+    g.gain.setValueAtTime(calma ? .25 : .55, t); g.gain.exponentialRampToValueAtTime(.001, t + .35);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t + .4); ruido(t0, .07, .3, 400);
+  }
+  const tocaTambor = n => { for (let i = 0; i < n; i++) golpe(i * .3); };
+  const cancion = () => tono([523, 659, 784, 659, 523, 784], 'triangle', .1, .2, .35);
 
   /* ---------- Lolo ---------- */
   const TENT = [[62, 140, 30, 175, 44, 226], [88, 156, 70, 196, 78, 238], [112, 162, 108, 206, 104, 244], [136, 162, 140, 206, 150, 242], [158, 154, 178, 194, 174, 236], [180, 138, 214, 170, 204, 222]];
@@ -315,7 +332,232 @@
       }
     }
   };
-  const ORDEN = ['burbujas', 'cara', 'animales', 'emociones', 'manos', 'colores', 'cuenta', 'tamanos'];
+  /* ================= Comunicar, anticipar, calmarse y esperar turno =================
+     Pensados para alumnado con autismo y útiles para toda la clase. Cada opción lleva dibujo, palabra y voz,
+     así sirve igual si el niño toca, señala, mira o lo dice. */
+  const PIC = {
+    lavar: MANOS.jabon,
+    comer: svg('0 0 120 120', `<path d="M18 30v48M12 30v12q6 6 12 0V30" fill="none" ${T}/><path d="M102 30c-8 0-10 14-10 24h10v24" fill="#B9C8D6" ${T}/><ellipse cx="60" cy="74" rx="34" ry="16" fill="#fff" ${T}/><ellipse cx="60" cy="70" rx="22" ry="8" fill="#FFE3A6" stroke="${K}" stroke-width="3"/><circle cx="52" cy="66" r="5.5" fill="#2BB673" stroke="${K}" stroke-width="2.5"/><circle cx="66" cy="65" r="5.5" fill="#FF5A5F" stroke="${K}" stroke-width="2.5"/>`),
+    recoger: svg('0 0 120 120', `<circle cx="46" cy="44" r="14" fill="#FF5A5F" ${T}/><rect x="62" y="30" width="24" height="24" rx="4" fill="#3D8DF2" ${T}/><path d="M16 54h88l-9 46H25z" fill="#FFB84D" ${T}/><path d="M30 70h60" stroke="#E09A2A" stroke-width="4" stroke-linecap="round"/>`),
+    patio: svg('0 0 120 120', `<path d="M24 100V30M44 100V30M24 50h20M24 70h20M24 90h20" fill="none" ${T}/><path d="M44 30q40 6 56 70" fill="none" stroke="${K}" stroke-width="12" stroke-linecap="round"/><path d="M44 30q40 6 56 70" fill="none" stroke="#FF8A3D" stroke-width="7" stroke-linecap="round"/><path d="M14 100h96" ${T}/><circle cx="96" cy="26" r="10" fill="#FFC93C" ${T}/>`),
+    abrigo: svg('0 0 120 120', `<path d="M44 18h32l26 16-8 24-10-6v50H36V52l-10 6-8-24z" fill="#2BB673" ${T}/><path d="M60 26v76" stroke="${K}" stroke-width="3"/><circle cx="66" cy="50" r="3" fill="${K}"/><circle cx="66" cy="66" r="3" fill="${K}"/><circle cx="66" cy="82" r="3" fill="${K}"/><path d="M44 18q16 14 32 0" fill="#1C8C5B" ${T}/>`),
+    casa: svg('0 0 120 120', `<path d="M16 58L60 20l44 38" fill="none" ${T}/><path d="M26 50v52h68V50L60 22z" fill="#FFD27F" ${T}/><path d="M16 58L60 20l44 38" fill="#FF5A5F" ${T}/><rect x="50" y="70" width="20" height="32" rx="3" fill="#8B5A2B" ${T}/><rect x="74" y="62" width="14" height="14" rx="2" fill="#BFE6F5" ${T}/>`)
+  };
+  const VEH = {
+    tren: svg('0 0 140 100', `<rect x="18" y="38" width="62" height="38" rx="6" fill="#FF5A5F" ${T}/><rect x="80" y="22" width="40" height="54" rx="6" fill="#3D8DF2" ${T}/><rect x="88" y="30" width="24" height="18" rx="3" fill="#BFE6F5" ${T}/><rect x="28" y="20" width="14" height="18" rx="2" fill="#555F6E" ${T}/><path d="M6 76h126" ${T}/><g fill="#555F6E" ${T}><circle cx="34" cy="80" r="10"/><circle cx="64" cy="80" r="10"/><circle cx="100" cy="80" r="10"/></g><g class="humo" fill="#E3EDF2"><circle cx="34" cy="12" r="6"/><circle cx="22" cy="6" r="4"/></g>`),
+    coche: svg('0 0 140 100', `<path d="M14 66V52q0-8 8-10l16-4 14-16h40l18 18 14 4q8 2 8 10v12z" fill="#FFC93C" ${T}/><path d="M56 26h32l14 16H44z" fill="#BFE6F5" ${T}/><path d="M72 26v16" stroke="${K}" stroke-width="3"/><g fill="#555F6E" ${T}><circle cx="40" cy="68" r="12"/><circle cx="106" cy="68" r="12"/></g><circle cx="40" cy="68" r="4" fill="#fff"/><circle cx="106" cy="68" r="4" fill="#fff"/><path d="M124 54h6" ${T}/>`)
+  };
+  const INS = {
+    tambor: svg('0 0 120 120', `<path d="M24 48v34q36 20 72 0V48" fill="#FF5A5F" ${T}/><ellipse cx="60" cy="48" rx="36" ry="12" fill="#FFF3E3" ${T}/><path d="M24 64q36 20 72 0M36 82l6-22M60 88V64M84 82l-6-22" fill="none" stroke="${K}" stroke-width="3"/><path d="M32 14l22 26M92 12L70 40" stroke="#8B5A2B" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="14" r="5" fill="#FFC93C" ${T}/><circle cx="92" cy="12" r="5" fill="#FFC93C" ${T}/>`),
+    maracas: svg('0 0 120 120', `<g transform="rotate(-18 40 60)"><ellipse cx="40" cy="40" rx="18" ry="22" fill="#2BB673" ${T}/><path d="M40 62v38" stroke="#8B5A2B" stroke-width="8" stroke-linecap="round"/><path d="M28 36h24M30 46h20" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></g><g transform="rotate(18 80 60)"><ellipse cx="80" cy="40" rx="18" ry="22" fill="#9B6BFF" ${T}/><path d="M80 62v38" stroke="#8B5A2B" stroke-width="8" stroke-linecap="round"/><path d="M68 36h24M70 46h20" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".7"/></g>`)
+  };
+  const SINO = {
+    si: svg('0 0 100 100', `<circle cx="50" cy="50" r="42" fill="#2BB673" stroke="${K}" stroke-width="4"/><path d="M30 52l13 13 27-30" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`),
+    no: svg('0 0 100 100', `<circle cx="50" cy="50" r="42" fill="#FF5A5F" stroke="${K}" stroke-width="4"/><path d="M34 34l32 32M66 34L34 66" stroke="#fff" stroke-width="10" stroke-linecap="round"/>`)
+  };
+  CARA.asustado = svg('0 0 100 100', `<circle cx="50" cy="50" r="42" fill="#C9B5FF" stroke="${K}" stroke-width="4"/><path d="M26 30q8-6 16-2M74 30q-8-6-16-2" fill="none" ${T}/><circle cx="36" cy="44" r="7" fill="#fff" stroke="${K}" stroke-width="3"/><circle cx="64" cy="44" r="7" fill="#fff" stroke="${K}" stroke-width="3"/><circle cx="36" cy="44" r="3" fill="${K}"/><circle cx="64" cy="44" r="3" fill="${K}"/><ellipse cx="50" cy="70" rx="8" ry="10" fill="#B83A3A" ${T}/>`);
+  const AYUDA = {
+    abrazo: svg('0 0 120 120', `<path d="M60 100S18 74 18 46a20 20 0 0 1 42-8a20 20 0 0 1 42 8c0 28-42 54-42 54z" fill="#FF8FA3" ${T}/><path d="M30 60q30 22 60 0" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>`),
+    respirar: svg('0 0 120 120', `<path d="M60 92q-4 10 2 20" fill="none" stroke="${K}" stroke-width="3" stroke-linecap="round"/><ellipse cx="60" cy="52" rx="30" ry="38" fill="#6EC6F2" ${T}/><path d="M55 89h10l-5 5z" fill="#6EC6F2" stroke="${K}" stroke-width="3" stroke-linejoin="round"/><ellipse cx="48" cy="36" rx="7" ry="12" fill="#fff" opacity=".5" transform="rotate(-20 48 36)"/><path d="M98 40h14M100 54h16M98 68h12" stroke="#8FA2B2" stroke-width="4" stroke-linecap="round"/>`),
+    contar: svg('0 0 120 120', `<g font-family="Fredoka, sans-serif" font-weight="700" font-size="40" text-anchor="middle" stroke="${K}" stroke-width="2" paint-order="stroke"><text x="26" y="74" fill="#FF5A5F">1</text><text x="60" y="74" fill="#FFC93C">2</text><text x="94" y="74" fill="#3D8DF2">3</text></g><path d="M18 90q42 18 84 0" fill="none" stroke="#8FA2B2" stroke-width="4" stroke-linecap="round"/>`),
+    ayuda: svg('0 0 120 120', `<circle cx="52" cy="40" r="16" fill="#FFD7B0" ${T}/><path d="M44 36h3M57 36h3M46 46q6 4 12 0" stroke="${K}" stroke-width="3" stroke-linecap="round"/><path d="M24 108q2-40 28-40t28 40z" fill="#9B6BFF" ${T}/><path d="M76 78L92 24" stroke="#FFD7B0" stroke-width="12" stroke-linecap="round"/><path d="M76 78L92 24" stroke="${K}" stroke-width="16" stroke-linecap="round" opacity=".001"/><circle cx="93" cy="20" r="9" fill="#FFD7B0" ${T}/>`),
+    oidos: svg('0 0 120 120', `<circle cx="60" cy="56" r="30" fill="#FFD7B0" ${T}/><circle cx="50" cy="52" r="3.5" fill="${K}"/><circle cx="70" cy="52" r="3.5" fill="${K}"/><path d="M52 68q8 5 16 0" fill="none" stroke="${K}" stroke-width="3" stroke-linecap="round"/><rect x="18" y="42" width="18" height="30" rx="8" fill="#FFD7B0" ${T}/><rect x="84" y="42" width="18" height="30" rx="8" fill="#FFD7B0" ${T}/><path d="M20 14q-10 10 0 20M100 14q10 10 0 20" fill="none" stroke="#8FA2B2" stroke-width="4" stroke-linecap="round"/>`),
+    rincon: svg('0 0 120 120', `<path d="M60 16L14 100h92z" fill="#B5E1EA" ${T}/><path d="M60 16v84M46 100q14-30 28 0" fill="#7FB8D8" ${T}/><path d="M60 52s-9-6-9-12a5 5 0 0 1 9-2a5 5 0 0 1 9 2c0 6-9 12-9 12z" fill="#FF8FA3" stroke="${K}" stroke-width="2.5"/>`)
+  };
+  const EQUIPO = [{ n: 'amarillo', c: '#FFC93C', o: '#F0A817', ic: `<circle cx="20" cy="20" r="10" fill="#FFC93C" stroke="${K}" stroke-width="3"/>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = i * Math.PI / 4; return `<path d="M${20 + Math.cos(a) * 13} ${20 + Math.sin(a) * 13}L${20 + Math.cos(a) * 18} ${20 + Math.sin(a) * 18}" stroke="${K}" stroke-width="3" stroke-linecap="round"/>`; }).join('')}` },
+    { n: 'azul', c: '#3D8DF2', o: '#1E6FD9', ic: `<path d="M8 20l-6-7v14z" fill="#3D8DF2" stroke="${K}" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="21" cy="20" rx="14" ry="10" fill="#3D8DF2" stroke="${K}" stroke-width="3"/><circle cx="28" cy="17" r="2.4" fill="${K}"/>` }];
+
+  Object.assign(JUEGOS, {
+    primero: {
+      t: 'Primero y después', c: '#16698A', ic: svg('0 0 140 100', `<rect x="6" y="14" width="58" height="72" rx="10" fill="#fff" ${T}/><rect x="76" y="14" width="58" height="72" rx="10" fill="#fff" ${T}/><g transform="translate(8 22) scale(.45)">${MANOS.jabon.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g><g transform="translate(78 22) scale(.45)">${PIC.comer.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g><path d="M66 50h8" stroke="${K}" stroke-width="4" stroke-linecap="round"/>`), d: 'Anticipar: qué va primero y qué después.',
+      puente: 'Haced un tablero de «primero y después» con dos pictogramas y usadlo de verdad en clase: primero recogemos, después patio.',
+      L: { lavar: 'Lavarnos las manos', comer: 'Comer', recoger: 'Recoger', patio: 'Patio', abrigo: 'Abrigo', casa: 'A casa' },
+      rondas: [
+        { k: 'lavar', o: 'comer', q: 'Primero nos lavamos las manos y después comemos. ¿Qué hacemos primero?', ok: '¡Eso es! Primero, lavarnos las manos. Después, a comer.', f: 'Comer va después. Primero, lavarnos las manos.' },
+        { k: 'recoger', o: 'patio', q: 'Primero recogemos los juguetes y después salimos al patio. ¿Qué hacemos primero?', ok: '¡Muy bien! Primero recogemos. Después, al patio.', f: 'El patio va después. Primero, recoger los juguetes.' },
+        { k: 'abrigo', o: 'casa', q: 'Primero nos ponemos el abrigo y después nos vamos a casa. ¿Qué hacemos primero?', ok: '¡Sí! Primero el abrigo. Después, a casa.', f: 'A casa vamos después. Primero, el abrigo.' }
+      ],
+      ronda(R, a) {
+        const Lb = JUEGOS.primero.L;
+        a.z.innerHTML = `<div class="pd-tablero" aria-label="Tablero primero y después"><div class="pd-c"><span class="pd-t">Primero</span><span class="pd-hueco" data-pd="1"><b>?</b></span></div><span class="pd-flecha" aria-hidden="true">${ICONO.flecha}</span><div class="pd-c"><span class="pd-t">Después</span><span class="pd-hueco" data-pd="2"><b>?</b></span></div></div>`;
+        a.elige([{ html: PIC[R.k], lbl: Lb[R.k], ok: true }, { html: PIC[R.o], lbl: Lb[R.o] }], R.ok, () => [R.f], 'ops-pd', () => {
+          const h1 = a.z.querySelector('[data-pd="1"]'), h2 = a.z.querySelector('[data-pd="2"]');
+          h1.innerHTML = PIC[R.k] + `<small>${Lb[R.k]}</small>`; h2.innerHTML = PIC[R.o] + `<small>${Lb[R.o]}</small>`;
+          h1.classList.add('lleno'); setTimeout(() => h2.classList.add('lleno'), 350);
+        });
+        a.decir(R.q);
+      }
+    },
+
+    quiero: {
+      t: 'Quiero…', c: '#E8487F', ic: svg('0 0 140 100', `<g transform="translate(2 18) scale(.5)">${VEH.tren.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g><g transform="translate(72 6) scale(.5)">${INS.tambor.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g><g transform="translate(90 58) scale(.36)">${SINO.si.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>`), d: 'Elegir y pedir. Aquí todas las respuestas valen.',
+      puente: 'Durante el día, ofreced dos opciones reales (dos juguetes, dos canciones) y esperad a que elija tocando, señalando, mirando o diciendo «quiero».',
+      rondas: [
+        { tipo: 'veh', q: '¿Qué quieres: el tren o el coche? Elige uno.', oks: { tren: '«Quiero el tren». ¡Aquí tienes el tren! ¡Chu, chu!', coche: '«Quiero el coche». ¡Aquí tienes el coche! ¡Pi, pi!' } },
+        { tipo: 'ins', q: '¿Qué quieres tocar: el tambor o las maracas?', oks: { tambor: '«Quiero el tambor». ¡Pom, pom, pom!', maracas: '«Quiero las maracas». ¡Chiqui, chiqui, chiqui!' } },
+        { tipo: 'sino', q: '¿Quieres más música? Sí o no.', oks: { si: 'Sí: «quiero más». ¡Más música!', no: 'No: «no quiero más». Vale, paramos. Decir que no también está muy bien.' } }
+      ],
+      ronda(R, a) {
+        const ops = R.tipo === 'veh' ? [{ k: 'tren', html: VEH.tren, lbl: 'Tren' }, { k: 'coche', html: VEH.coche, lbl: 'Coche' }]
+          : R.tipo === 'ins' ? [{ k: 'tambor', html: INS.tambor, lbl: 'Tambor' }, { k: 'maracas', html: INS.maracas, lbl: 'Maracas' }]
+          : [{ k: 'si', html: SINO.si, lbl: 'Sí' }, { k: 'no', html: SINO.no, lbl: 'No' }];
+        a.elige(ops.map(o => ({ ...o, ok: true })), o => R.oks[o.k], () => [''], 'ops-quiero ' + (R.tipo === 'sino' ? 'ops-sino' : ''), (o, b) => {
+          if (o.k === 'tren') { b.classList.add('arranca'); tono([196, 196, 262], 'square', .05, .22, .3); }
+          if (o.k === 'coche') { b.classList.add('arranca'); tono([523, 523], 'square', .05, .2, .14); }
+          if (o.k === 'tambor') tocaTambor(3);
+          if (o.k === 'maracas') [0, .22, .44].forEach(t => ruido(t, .16, .5, 6500));
+          if (o.k === 'si') cancion();
+        }, { fijo: true });
+        a.decir(R.q);
+      }
+    },
+
+    calma: {
+      t: 'La calma de Lolo', c: '#7C6BD6', ic: AYUDA.respirar, d: 'Cómo se siente Lolo y qué le ayuda a calmarse.',
+      puente: 'Preparad un rincón de la calma con un cojín, un peluche y los pictogramas de «respirar», «abrazo» y «pedir ayuda». Practicad la respiración del globo cuando todos estén tranquilos.',
+      E: { triste: 'Triste', enfadado: 'Enfadado', asustado: 'Asustado', contento: 'Contento' },
+      A: { abrazo: 'Un abrazo', respirar: 'Respirar', contar: 'Contar hasta tres', ayuda: 'Pedir ayuda', oidos: 'Taparse los oídos', rincon: 'Rincón de la calma' },
+      rondas: [
+        { k: 'triste', o: 'contento', cara: 'triste', q: 'A Lolo se le ha caído el helado al suelo. ¿Cómo se siente Lolo?', ok: 'Sí, Lolo está triste. ¿Qué le puede ayudar?', f: 'Mirad su cara: tiene una lágrima. ¿Está triste o contento?', ay: ['abrazo', 'respirar'] },
+        { k: 'enfadado', o: 'contento', cara: 'enfadado', q: 'Un amigo le ha quitado el tren a Lolo. ¿Cómo se siente?', ok: 'Sí, Lolo está enfadado. ¿Qué le puede ayudar?', f: 'Mirad sus cejas: están muy juntas. ¿Está enfadado o contento?', ay: ['contar', 'ayuda'] },
+        { k: 'asustado', o: 'contento', cara: 'sorpresa', q: 'Hay un ruido muy fuerte. ¿Cómo se siente Lolo?', ok: 'Sí, Lolo está asustado. ¿Qué le puede ayudar?', f: 'Mirad sus ojos y su boca: está asustado. ¿Asustado o contento?', ay: ['oidos', 'rincon'] }
+      ],
+      hecho: {
+        abrazo: 'Un abrazo grande. Lolo ya está mejor.',
+        respirar: 'Respiramos con Lolo como un globo. Cogemos aire… y lo soltamos despacito.',
+        contar: 'Contamos despacito con Lolo: uno… dos… tres. Ya está más tranquilo.',
+        ayuda: 'Lolo pide ayuda a la maestra: «Me han quitado el tren». ¡Muy bien pedir ayuda!',
+        oidos: 'Lolo se tapa los oídos y el ruido ya no molesta tanto.',
+        rincon: 'Lolo va al rincón de la calma, se sienta en el cojín y descansa un poquito.'
+      },
+      listo: 'Ya estamos tranquilos',
+      ronda(R, a) {
+        a.sinMascota();
+        const C = JUEGOS.calma;
+        a.z.innerHTML = `<div class="emo-lolo">${lolo(R.cara)}</div>`;
+        a.elige([{ html: CARA[R.k], lbl: C.E[R.k], ok: true }, { html: CARA[R.o], lbl: C.E[R.o] }], R.ok, () => [R.f], 'ops-caras', () => {
+          setTimeout(() => {
+            if (a.resuelta()) return;
+            a.z.querySelector('.ops').remove();
+            a.elige(R.ay.map(k => ({ k, html: AYUDA[k], lbl: C.A[k], ok: true })), o => C.hecho[o.k], () => [''], 'ops-ayuda', o => {
+              const w = a.z.querySelector('.ops-ayuda'); w.remove();
+              const emo = a.z.querySelector('.emo-lolo');
+              if (o.k === 'respirar') { a.z.insertAdjacentHTML('beforeend', `<div class="respira" aria-hidden="true"><span class="globo-r"></span></div>`); }
+              emo.innerHTML = lolo(o.k === 'respirar' || o.k === 'contar' ? 'feliz' : 'feliz');
+              const f = document.createElement('div'); f.className = 'fila centro'; a.z.appendChild(f);
+              a.boton(C.listo, () => { f.remove(); a.ok('', emo); }, f, 'pulso', ICONO.ok);
+            }, { paso: true });
+          }, 1800);
+        }, { paso: true });
+        a.decir(R.q);
+      }
+    },
+
+    turnos: {
+      t: 'Ahora tú, ahora yo', c: '#F27A2E', ic: svg('0 0 140 100', `<g transform="translate(14 30) scale(1.3)">${EQUIPO[0].ic}</g><g transform="translate(76 30) scale(1.3)">${EQUIPO[1].ic}</g>`), d: 'Esperar el turno entre dos: amarillo y azul.',
+      puente: 'Jugad por parejas con un juguete real (un tambor, una torre de bloques): «ahora tú, ahora yo». Una tarjeta de «espera» ayuda a saber de quién es el turno.',
+      toca: ['Le toca al amarillo.', 'Le toca al azul.'],
+      espera: ['Espera un poquito. Ahora le toca al amarillo.', 'Espera un poquito. Ahora le toca al azul.'],
+      rondas: [
+        { k: 'tren', n: 6, q: 'Vamos a hacer un tren entre dos. Un vagón cada uno. Empieza el amarillo.', ok: '¡Qué tren tan largo! Lo habéis hecho por turnos. ¡Chu, chu!' },
+        { k: 'torre', n: 6, q: 'Ahora, una torre. Un bloque cada uno. Empieza el amarillo.', ok: '¡Una torre muy alta! ¡Muy bien esperado!' },
+        { k: 'musica', n: 8, q: 'Ahora hacemos música por turnos: el amarillo toca el tambor y el azul, la campana.', ok: '¡Qué canción tan bonita! Por turnos suena mejor.' }
+      ],
+      ronda(R, a) {
+        const J = JUEGOS.turnos;
+        a.z.innerHTML = `<div class="turnos t-${R.k}"><div class="t-pista" aria-label="Lo que vamos haciendo">${R.k === 'tren' ? `<span class="t-loco">${VEH.tren}</span>` : ''}</div><div class="jugadores">${EQUIPO.map((e, i) => `<button class="jug" type="button" data-j="${i}" style="--jc1:${e.c};--jc2:${e.o}" aria-label="Equipo ${e.n}"><svg viewBox="0 0 40 40" aria-hidden="true">${e.ic}</svg><span>${may(e.n)}</span><em class="espera-t">Espera</em></button>`).join('')}</div></div>`;
+        const pista = a.z.querySelector('.t-pista'), bs = [...a.z.querySelectorAll('.jug')];
+        let turno = 0, hechos = 0, avisado = 0;
+        const marca = () => bs.forEach((b, i) => { b.classList.toggle('toca', i === turno); b.classList.toggle('espera', i !== turno); b.setAttribute('aria-pressed', String(i === turno)); });
+        marca();
+        bs.forEach((b, i) => b.addEventListener('click', () => {
+          if (a.resuelta()) return;
+          if (i !== turno) { if (Date.now() - avisado > 2500) { avisado = Date.now(); a.decir(J.espera[turno]); } sacude(b); return; }
+          const e = EQUIPO[i];
+          if (R.k === 'tren') { pista.insertAdjacentHTML('beforeend', `<span class="t-vagon" style="--vc:${e.c}"><svg viewBox="0 0 60 44" aria-hidden="true"><rect x="4" y="4" width="52" height="28" rx="5" fill="${e.c}" stroke="${K}" stroke-width="3"/><circle cx="16" cy="36" r="6" fill="#555F6E" stroke="${K}" stroke-width="3"/><circle cx="44" cy="36" r="6" fill="#555F6E" stroke="${K}" stroke-width="3"/></svg></span>`); tono([392 + hechos * 30], 'triangle', .08, .1, .2); }
+          if (R.k === 'torre') { pista.insertAdjacentHTML('beforeend', `<span class="t-bloque" style="--vc:${e.c}"></span>`); tono([330 + hechos * 40], 'sine', .08, .1, .2); }
+          if (R.k === 'musica') { pista.insertAdjacentHTML('beforeend', `<span class="t-nota" style="--vc:${e.c}">♪</span>`); if (i === 0) tocaTambor(1); else tono([1047 + hechos * 20, 1568], 'sine', .12, .02, .7); }
+          hechos++;
+          if (hechos >= R.n) { bs.forEach(x => x.classList.remove('toca', 'espera')); a.ok(R.ok, pista); return; }
+          turno = 1 - turno; marca(); a.decir(J.toca[turno]);
+        }));
+        a.decir(R.q);
+      }
+    },
+
+    numeros: {
+      t: 'El tren de los números', c: '#2F80ED', ic: svg('0 0 140 100', `<g transform="translate(0 26) scale(.5)">${VEH.tren.replace(/^<svg[^>]*>|<\/svg>$/g, '')}</g>${[1, 2].map(i => `<g transform="translate(${64 + (i - 1) * 38} 40)"><rect width="34" height="26" rx="5" fill="#FFC93C" stroke="${K}" stroke-width="3"/><text x="17" y="21" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="20" fill="${K}">${i}</text><circle cx="8" cy="30" r="5" fill="#555F6E"/><circle cx="26" cy="30" r="5" fill="#555F6E"/></g>`).join('')}`), d: 'Los números en orden, vagón a vagón.',
+      puente: 'Haced un tren con cajas o sillas y poned un número en cada vagón. Los niños se sientan en orden: uno, dos, tres…',
+      PAL: ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco'],
+      ese: ['', 'Ese es el uno.', 'Ese es el dos.', 'Ese es el tres.', 'Ese es el cuatro.', 'Ese es el cinco.'],
+      busca: ['', 'Buscamos el uno.', 'Buscamos el dos.', 'Buscamos el tres.', 'Buscamos el cuatro.', 'Buscamos el cinco.'],
+      rondas: [
+        { n: 3, q: 'El tren necesita sus vagones en orden. Tocad el uno, luego el dos y luego el tres.', ok: '¡Uno, dos, tres! ¡El tren está listo! ¡Chu, chu!' },
+        { n: 4, q: 'Ahora hasta el cuatro. Empezamos por el uno.', ok: '¡Uno, dos, tres, cuatro! ¡Qué tren tan largo!' },
+        { n: 5, q: '¡Hasta el cinco! Empezamos por el uno.', ok: '¡Uno, dos, tres, cuatro, cinco! ¡Lo habéis conseguido!' }
+      ],
+      ronda(R, a) {
+        const J = JUEGOS.numeros, COLS = ['#FF5A5F', '#FFC93C', '#2BB673', '#3D8DF2', '#9B6BFF'];
+        const nums = mezcla(Array.from({ length: R.n }, (_, i) => i + 1));
+        a.z.innerHTML = `<div class="tren-n"><div class="tn-via"><span class="tn-loco">${VEH.tren}</span>${Array.from({ length: R.n }, (_, i) => `<span class="tn-hueco" data-p="${i + 1}"></span>`).join('')}</div><div class="tn-nums">${nums.map(n => `<button class="tn-num" type="button" data-n="${n}" style="--vc:${COLS[n - 1]}" aria-label="${J.PAL[n]}"><b>${n}</b><span class="pts">${'<i></i>'.repeat(n)}</span></button>`).join('')}</div></div>`;
+        let sig = 1;
+        a.z.querySelectorAll('.tn-num').forEach(b => b.addEventListener('click', () => {
+          if (a.resuelta() || b.disabled) return;
+          const n = +b.dataset.n;
+          if (n === sig) {
+            b.disabled = true; b.classList.add('puesto');
+            const h = a.z.querySelector(`.tn-hueco[data-p="${n}"]`); h.innerHTML = `<b>${n}</b>`; h.style.setProperty('--vc', COLS[n - 1]); h.classList.add('lleno');
+            hablar(J.PAL[n]); tono([392 + n * 50], 'triangle', .08, .1, .25);
+            sig++;
+            if (sig > R.n) { a.z.querySelector('.tn-via').classList.add('sale'); setTimeout(() => a.ok(R.ok, a.z.querySelector('.tn-via')), 400); }
+          } else { sacude(b); a.fallo(`${J.ese[n]} ${J.busca[sig]}`, a.z.querySelector(`.tn-num[data-n="${sig}"]`), [J.ese[n], J.busca[sig]]); }
+        }));
+        a.decir(R.q);
+      }
+    },
+
+    banda: {
+      t: 'La banda de Lolo', c: '#D9483B', ic: INS.tambor, d: 'Escuchar a Lolo y tocar igual: primero Lolo, luego tú.',
+      puente: 'Con un tambor de verdad (o una caja), haced turnos: el adulto da golpes y el niño repite. Después, que el niño invente y el adulto copie.',
+      escucha: 'Escuchad a Lolo.',
+      ahora: '¡Ahora vosotros! Tocad el tambor igual que Lolo.',
+      demas: '¡Uy! Uno de más. Escuchad otra vez a Lolo.',
+      rondas: [
+        { n: 1, ok: '¡Un golpe, igual que Lolo! ¡Pom!' },
+        { n: 2, ok: '¡Dos golpes, igual que Lolo! ¡Pom, pom!' },
+        { n: 3, ok: '¡Tres golpes! ¡Sois una banda estupenda!' }
+      ],
+      ronda(R, a) {
+        const J = JUEGOS.banda;
+        a.z.innerHTML = `<div class="banda"><div class="banda-lolo"><span class="bl-t">Lolo</span><span class="tambor-l">${INS.tambor}</span><span class="golpes">${'<i></i>'.repeat(R.n)}</span></div><button class="tambor-n" type="button" aria-label="Vuestro tambor" disabled>${INS.tambor}<span>Vuestro tambor</span><span class="golpes">${'<i></i>'.repeat(R.n)}</span></button></div>`;
+        const tl = a.z.querySelector('.tambor-l'), gl = [...a.z.querySelectorAll('.banda-lolo .golpes i')], tn = a.z.querySelector('.tambor-n'), gn = [...tn.querySelectorAll('.golpes i')];
+        let cuenta = 0, toca = 0;
+        const suena = async () => {
+          const yo = ++toca; tn.disabled = true; cuenta = 0; gn.forEach(i => i.classList.remove('on')); gl.forEach(i => i.classList.remove('on'));
+          a.decir(J.escucha); await espera(1300);
+          for (let i = 0; i < R.n; i++) { if (yo !== toca || !tl.isConnected) return; tocaTambor(1); gl[i].classList.add('on'); tl.classList.remove('golpe'); void tl.offsetWidth; tl.classList.add('golpe'); await espera(650); }
+          if (yo !== toca) return;
+          tn.disabled = false; tn.classList.add('turno'); a.decir(J.ahora);
+        };
+        tn.addEventListener('click', () => {
+          if (a.resuelta() || tn.disabled) return;
+          tocaTambor(1); tn.classList.remove('golpe'); void tn.offsetWidth; tn.classList.add('golpe');
+          cuenta++;
+          if (cuenta <= R.n) gn[cuenta - 1].classList.add('on');
+          if (cuenta === R.n) { setTimeout(() => { if (cuenta === R.n && !a.resuelta()) { tn.classList.remove('turno'); tn.disabled = true; a.ok(R.ok, tn); } }, 900); }
+          if (cuenta > R.n) { tn.classList.remove('turno'); a.decir(J.demas); setTimeout(suena, 1800); }
+        });
+        const f = document.createElement('div'); f.className = 'fila centro'; a.z.appendChild(f);
+        a.boton('Escuchar otra vez', () => suena(), f, 'sec', ICONO.oreja);
+        suena();
+      }
+    }
+  });
+
+  const SECCIONES = [
+    { t: 'Comunicar, esperar y estar tranquilos', d: 'Pensados para alumnado con autismo y buenos para toda la clase. En «Quiero…» no hay respuestas malas.', nuevo: true, ids: ['primero', 'quiero', 'calma', 'turnos'] },
+    { t: 'Aprender jugando', d: 'Colores, números, tamaños, el cuerpo, los animales y la música.', ids: ['burbujas', 'cara', 'animales', 'emociones', 'manos', 'colores', 'cuenta', 'tamanos', 'numeros', 'banda'] }
+  ];
   const ICONO = {
     oreja: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9a5 5 0 0 1 10 0c0 3-3 4-3 7a3 3 0 0 1-6 0"/><path d="M10 9a2 2 0 0 1 4 0"/></svg>',
     flecha: '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -358,7 +600,7 @@
       boton: (t, fn, cont, cl, ic) => boton(t, fn, cont, cl, ic),
       ok(msg, el) {
         if (s.resuelta || s !== est) return; s.resuelta = true; s.hechas = s.ronda + 1;
-        acierto(); celebrar(el || zona); cara('feliz'); anima('salta'); decir(msg); pintaAgenda();
+        acierto(); celebrar(el || zona); cara('feliz'); anima('salta'); if (msg) decir(msg); pintaAgenda();
         setTimeout(() => {
           if (s !== est) return;
           const f = document.createElement('div'); f.className = 'fila centro siguiente'; zona.appendChild(f);
@@ -374,15 +616,21 @@
         if (s.fallos >= 2) marcar(correcto);
       },
       /* Dos opciones grandes. ops: {html, lbl, ok, oculto}. fallo(o) → [texto, partes] */
-      elige(ops, okMsg, fallo, cl = '', alAcertar) {
-        const lista = mezcla(ops);
+      elige(ops, okMsg, fallo, cl = '', alAcertar, opc = {}) {
+        const lista = opc.fijo ? ops : mezcla(ops);
+        let elegido = false;
         const w = document.createElement('div'); w.className = 'ops ' + cl;
         w.innerHTML = lista.map((o, i) => `<button class="op" type="button" data-i="${i}"${o.ok ? ' data-ok="1"' : ''} aria-label="${o.lbl}"${o.color ? ` style="--oc:${o.color}"` : ''}><span class="op-dib">${o.html}</span>${o.oculto ? '' : `<span class="op-lbl">${o.color ? '<i></i>' : ''}${o.lbl}</span>`}</button>`).join('');
         zona.appendChild(w);
         const bs = [...w.querySelectorAll('.op')], buena = bs[lista.findIndex(o => o.ok)];
         bs.forEach((b, i) => b.addEventListener('click', () => {
-          if (s.resuelta) return; const o = lista[i];
-          if (o.ok) { b.classList.add('bien'); bs.forEach(x => x !== b && x.classList.add('apagada')); if (alAcertar) alAcertar(); a.ok(okMsg, b); }
+          if (s.resuelta || elegido) return; const o = lista[i];
+          if (o.ok) {
+            elegido = true; const msg = typeof okMsg === 'function' ? okMsg(o) : okMsg;
+            b.classList.add('bien'); bs.forEach(x => x !== b && x.classList.add('apagada'));
+            if (alAcertar) alAcertar(o, b);
+            if (opc.paso) { s.fallos = 0; acierto(); celebrar(b); cara('feliz'); decir(msg); } else a.ok(msg, b);
+          }
           else { sacude(b); const [t, p] = fallo(o); a.fallo(t, buena, p); }
         }));
       }
@@ -425,8 +673,9 @@
 
   /* ---------- menú ---------- */
   $('#menuLolo').innerHTML = lolo('feliz');
-  $('#menuGrid').innerHTML = ORDEN.map((id, i) => { const J = JUEGOS[id]; return `<a class="tile" href="#${id}" data-id="${id}" style="--c:${J.c};--i:${i}"><span class="tile-dib">${J.ic}</span><span class="tile-t"><b>${J.t}</b><small>${J.d}</small></span></a>`; }).join('');
-  $('#menuGrid').addEventListener('click', e => { const t = e.target.closest('.tile'); if (!t) return; e.preventDefault(); abrir(t.dataset.id); });
+  let nTile = 0;
+  $('#menuSecs').innerHTML = SECCIONES.map(S => `<section class="menu-sec"><div class="sec-cab"><h2>${S.t}${S.nuevo ? ' <span class="sec-nuevo">Nuevo</span>' : ''}</h2><p>${S.d}</p></div><div class="menu-grid">${S.ids.map(id => { const J = JUEGOS[id]; return `<a class="tile" href="#${id}" data-id="${id}" style="--c:${J.c};--i:${nTile++}"><span class="tile-dib">${J.ic}</span><span class="tile-t"><b>${J.t}</b><small>${J.d}</small></span></a>`; }).join('')}</div></section>`).join('');
+  $('#menuSecs').addEventListener('click', e => { const t = e.target.closest('.tile'); if (!t) return; e.preventDefault(); abrir(t.dataset.id); });
   addEventListener('hashchange', () => { const id = location.hash.slice(1); if (JUEGOS[id]) { if (!est || est.id !== id) abrir(id); } else if (est) irMenu(); });
 
   /* ---------- herramientas ---------- */
@@ -455,17 +704,18 @@
 
   /* Todas las frases que dice Lolo en este modo (para el guion de audios). */
   window.__frasesTres = () => {
-    const f = new Set(Object.values(FR));
+    const f = new Set(), add = v => { if (typeof v === 'string' && v.trim()) f.add(v); };
+    add(FR.menu); add(FR.fin);
     Object.values(JUEGOS).forEach(J => {
-      J.rondas.forEach(R => ['q', 'ok', 'f'].forEach(k => R[k] && f.add(R[k])));
-      ['aviso', 'otraVez'].forEach(k => J[k] && f.add(J[k]));
-      if (J.nombre) Object.values(J.nombre).forEach(v => f.add(v));
-      if (J.A) Object.values(J.A).forEach(v => { f.add(v.q); f.add(v.ok); f.add(v.es); });
-      if (J.hay) Object.values(J.hay).forEach(v => f.add(v));
+      J.rondas.forEach(R => { ['q', 'ok', 'f'].forEach(k => add(R[k])); if (R.oks) Object.values(R.oks).forEach(add); });
+      ['aviso', 'otraVez', 'escucha', 'ahora', 'demas'].forEach(k => add(J[k]));
+      [J.nombre, J.hay, J.hecho].forEach(o => o && Object.values(o).forEach(add));
+      if (J.A && J.A.vaca) Object.values(J.A).forEach(v => { add(v.q); add(v.ok); add(v.es); });
+      [J.toca, J.espera, J.ese, J.busca].forEach(l => l && l.forEach(add));
     });
-    f.delete(FR.seguimos);
     return [...f];
   };
+
 
   const id0 = location.hash.slice(1);
   if (JUEGOS[id0]) abrir(id0); else irMenu();

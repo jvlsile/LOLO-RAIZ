@@ -8,7 +8,7 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 - Sin puntos ni rankings: el progreso es colectivo y se ve en **el jardín de la clase**.
 - Cada juego termina con una actividad manipulativa, sin pantalla.
 - **Fichas de trazos para imprimir** (`fichas.html`): dos por hoja A4, con tres niveles de ayuda y tamaño según la edad.
-- **Modo 3 años** (`tres.html`): ocho juegos cortos (tres retos, dos opciones, solo tocar) y fichas para imprimir de gomets, punzón, flecos y colorear (`fichas-3.html`).
+- **Modo 3 años** (`tres.html`): catorce juegos cortos (tres retos, dos opciones, solo tocar), seis de ellos para comunicar, anticipar, calmarse y esperar turno, y fichas para imprimir de gomets, punzón, flecos y colorear (`fichas-3.html`).
 
 ## Juegos
 
@@ -75,7 +75,7 @@ css/portada.css         Estilos de la portada
 js/portada.js           Lógica de la portada
 jugar.html              Los 26 juegos
 fichas.html             Generador de fichas de trazos para imprimir (css/fichas.css, js/fichas.js)
-tres.html               Modo 3 años: ocho juegos para los más peques (css/tres.css, js/tres.js)
+tres.html               Modo 3 años: catorce juegos para los más peques (css/tres.css, js/tres.js)
 fichas-3.html           Fichas para 3 años: gomets, punzón, flecos y colorear (js/fichas-3.js)
 css/estilos.css         Estilos de los juegos
 js/app.js               Toda la lógica de los juegos
