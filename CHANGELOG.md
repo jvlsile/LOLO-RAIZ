@@ -1,5 +1,10 @@
 # Cambios
 
+## 1.8.1 · noviembre de 2026
+
+- Botón «Invítame a un café» en la portada y en las páginas de fichas: abre una ventana con un código QR y un botón para donar con PayPal. Es un simple enlace; no aparece dentro de los juegos.
+- Modo 3 años: los dibujos de las opciones ya no se salen de la tarjeta en pantallas bajas.
+
 ## 1.8.0 · noviembre de 2026
 
 - Modo 3 años: seis juegos nuevos, pensados para alumnado con autismo y útiles para toda la clase. Cada opción lleva dibujo, palabra y voz, y vale responder tocando, señalando, mirando o hablando.

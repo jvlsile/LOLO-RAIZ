@@ -114,3 +114,20 @@ test('la categoría de otoño reúne sus siete juegos', async ({ page }) => {
   await page.waitForURL(/jugar\.html#castanas$/);
   await expect(page.locator('#actualT')).toHaveText('El puesto de castañas');
 });
+
+test('el botón «Invítame a un café» lleva a la donación de PayPal en otra pestaña', async ({ page }) => {
+  await page.goto('/');
+  const cafe = page.locator('.nav .btn-cafe');
+  await expect(cafe).toBeVisible();
+  await expect(cafe).toHaveAttribute('href', /^https:\/\/www\.paypal\.com\/donate\//);
+  await expect(cafe).toHaveAttribute('target', '_blank');
+  await expect(page.locator('.pie-cafe')).toHaveCount(1);
+  await cafe.click();
+  await expect(page.locator('#cafe')).toBeVisible();
+  await expect(page.locator('#cafe .qr')).toBeVisible();
+  await expect(page.locator('#cafe .cafe-ir')).toHaveAttribute('href', /hosted_button_id=KGQEKG4Y45SCW/);
+  await page.click('#cafeCerrar');
+  await expect(page.locator('#cafe')).toBeHidden();
+  await page.goto('/jugar.html');
+  await expect(page.locator('.btn-cafe')).toHaveCount(0);
+});

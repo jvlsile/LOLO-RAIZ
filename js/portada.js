@@ -247,6 +247,15 @@
     els.forEach((e, i) => { e.style.transitionDelay = (e.classList.contains('cat') || e.closest('.pasos')) ? `${(i % 5) * 60}ms` : '0ms'; io.observe(e); });
   }
 
+  /* ---------- «Invítame a un café»: QR y enlace a PayPal ---------- */
+  const cafe = $('#cafe');
+  if (cafe && cafe.showModal) {
+    $$('[data-cafe]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); cafe.showModal(); }));
+    $('#cafeCerrar').addEventListener('click', () => cafe.close());
+    cafe.addEventListener('click', ev => { if (ev.target === cafe) cafe.close(); });
+    cafe.querySelector('.cafe-ir').addEventListener('click', () => setTimeout(() => cafe.close(), 300));
+  }
+
   /* ---------- ficha del juego ---------- */
   const ficha = $('#ficha'), fondo = $('#fichaFondo');
   let ultimoFoco = null;
