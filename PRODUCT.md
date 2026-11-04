@@ -32,6 +32,7 @@ Un único personaje, Lolo el pulpo, guía todos los juegos con voz y pictogramas
 - Web estática (HTML, CSS y JS sin framework), publicada en GitHub Pages desde `jvlsile/VISITA-DE-LOLO-`. La aplicación de juegos admite enlaces directos por hash (`#formas`, `#robot`…).
 - Hay 26 juegos en 7 categorías (Rutinas y asamblea; Lenguaje, cuentos y emociones; Lógica y matemáticas; Retos y cooperación; Ciencia y manipulación; El otoño; Trazos), cada uno con su rango de edad.
 - La portada es la entrada principal del sitio y lanza los juegos.
+- `fichas.html` genera fichas de trazos para imprimir, dos por hoja A4.
 - No recoge datos personales. Solo guarda preferencias en el navegador.
 - Fuentes alojadas en el propio sitio: no se hacen peticiones a terceros.
 - Pruebas de extremo a extremo con Playwright en CI.

@@ -645,7 +645,7 @@
     if(J.libre){ EST[id].libre=true; pintaRondas(); J.abrir(zonaDe(id)); return; }
     if(J.elegir){
       const z=zonaDe(id);
-      z.innerHTML=`<div class="opts">${J.elegir.ops.map(o=>`<button class="opt" type="button" data-k="${o.k}"><span class="dib">${o.html}</span><span class="lbl">${o.lbl}</span></button>`).join('')}</div>`;
+      z.innerHTML=`<div class="opts">${J.elegir.ops.map(o=>`<button class="opt" type="button" data-k="${o.k}"><span class="dib">${o.html}</span><span class="lbl">${o.lbl}</span></button>`).join('')}</div>`+(J.elegir.pie||'');
       pintaRondas(); cara('feliz'); decir(J.elegir.texto);
       z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{ EST[id].v=b.dataset.k; rondaJuego(id); }));
       return;
@@ -655,7 +655,7 @@
   function finJuego(id){
     const s=EST[id], J=JUEGOS[id], z=zonaDe(id); s.fin=true; pintaRondas(); paraMusica();
     cara('feliz'); anima('contento'); celebrar(z);
-    z.innerHTML=`${J.resumen?J.resumen(s):''}<div class="manos">${MANO}<div><b>Ahora, sin pantalla</b><p>${J.puente}</p></div></div><div class="fila"><span class="fin"><span class="c">${icono('fin').replace('stroke="currentColor"','stroke="#fff"')}</span>Se acabó el juego</span></div>`;
+    z.innerHTML=`${J.resumen?J.resumen(s):''}<div class="manos">${MANO}<div><b>Ahora, sin pantalla</b><p>${J.puente}</p></div></div>${J.extraFin?J.extraFin(s):''}<div class="fila"><span class="fin"><span class="c">${icono('fin').replace('stroke="currentColor"','stroke="#fff"')}</span>Se acabó el juego</span></div>`;
     decir('¡Muy bien! Hemos terminado. Lo habéis hecho genial todos juntos.');
     const f=document.createElement('div'); f.className='fila'; z.appendChild(f); boton('Jugar otra vez',()=>empezarJuego(id),false,f);
   }
@@ -1477,6 +1477,7 @@
      con un margen generoso que crece en pantallas pequeñas. Solo cuenta el primer dedo que toca. */
   Object.assign(P,{
     j_tinta:'<path d="M11 12a1 1 0 1 1 2 0a3 3 0 1 1-6 0a5 5 0 1 1 10 0a7 7 0 1 1-14 0"/>',
+    imprimir:'<path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z"/>',
     goma:'<path d="M7 21h13"/><path d="M3.6 13.4l8.8-8.8a2 2 0 0 1 2.8 0l4.2 4.2a2 2 0 0 1 0 2.8L12 19l-2 2H8z"/><path d="M8.5 8.5l7 7"/>'
   });
   const espiralD=(()=>{ const N=150, v=2.5; let d='';
@@ -1547,7 +1548,9 @@
 
   JUEGOS.tinta={titulo:'La tinta de Lolo',ic:'j_tinta',R:3,etiq:['Mira y repasa','Sigue los puntos','Tú solo'],
     get puente(){ const T=TRAZOS[EST.tinta&&EST.tinta.v]||TRAZOS.tronco; return `Repetid «${T.n.toLowerCase()}» en grande: primero en el aire con todo el brazo, luego con el dedo en una bandeja de arena o de sal, y por último con ceras gordas en un papel grande.`; },
-    elegir:{texto:FR_TINTA.eleg,ops:TRAZO_IDS.map((k,i)=>({k,lbl:`${i+1} · ${TRAZOS[k].n}`,html:miniTrazo(k)}))},
+    elegir:{texto:FR_TINTA.eleg,ops:TRAZO_IDS.map((k,i)=>({k,lbl:`${i+1} · ${TRAZOS[k].n}`,html:miniTrazo(k)})),
+      pie:`<div class="fila fila-fichas"><a class="big sec peq enlace-fichas" href="fichas.html"><span class="mini">${icono('imprimir')}</span><span>Fichas para imprimir</span></a></div>`},
+    extraFin:s=>`<div class="fila"><a class="big sec peq enlace-fichas" href="fichas.html?t=${s.v}"><span class="mini">${icono('imprimir')}</span><span>Imprimir fichas de este trazo</span></a></div>`,
     ronda(n,a){
       const s=EST.tinta, T=TRAZOS[s.v], num=TRAZO_IDS.indexOf(s.v)+1;
       a.z.innerHTML=`<div class="trazo-wrap"><div class="pizarra-trazo r${n}" data-trazo="${s.v}" style="--tinta-c:#3B3486">

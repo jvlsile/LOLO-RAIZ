@@ -7,6 +7,7 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 - **Apoyos para alumnado con autismo**, útiles para toda la clase: agenda visual con «Ahora» y «Después», final anunciado, modo tranquilo, rincón de la calma, y la opción de arrastrar o tocar.
 - Sin puntos ni rankings: el progreso es colectivo y se ve en **el jardín de la clase**.
 - Cada juego termina con una actividad manipulativa, sin pantalla.
+- **Fichas de trazos para imprimir** (`fichas.html`): dos por hoja A4, con tres niveles de ayuda y tamaño según la edad.
 
 ## Juegos
 
@@ -72,6 +73,7 @@ index.html              Portada: elegir y lanzar juegos
 css/portada.css         Estilos de la portada
 js/portada.js           Lógica de la portada
 jugar.html              Los 26 juegos
+fichas.html             Generador de fichas de trazos para imprimir (css/fichas.css, js/fichas.js)
 css/estilos.css         Estilos de los juegos
 js/app.js               Toda la lógica de los juegos
 fonts/                  Fuentes Fredoka y Nunito alojadas en el propio sitio

@@ -265,7 +265,10 @@ svg{flex:none}
 .ficha-lista li::before{content:"";flex:none;width:20px;height:20px;margin-top:3px;border-radius:50%;background:color-mix(in srgb,var(--c) 16%,#fff) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.5l3 3 7-7' fill='none' stroke='%2313263F' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
 .ficha-como{margin:0;color:var(--tinta-2)}
 .ficha-pie{padding:16px 28px max(20px, env(safe-area-inset-bottom,0px));border-top:1px solid var(--linea)}
+.ficha-pie{display:grid;gap:10px}
 .ficha-pie .btn{width:100%}
+.btn-secundario{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--linea-2)}
+.btn-secundario svg{fill:none}
 .ficha .ficha-cuerpo > *{animation:sube 460ms var(--ease-out) both}
 .ficha .ficha-cuerpo > *:nth-child(2){animation-delay:40ms}
 .ficha .ficha-cuerpo > *:nth-child(3){animation-delay:80ms}

@@ -1,5 +1,15 @@
 # Cambios
 
+## 1.6.0 · noviembre de 2026
+
+- **Generador de fichas de trazos** (`fichas.html`): fichas para imprimir de los ocho trazos, dos por hoja A4 con línea de corte.
+  - Cada ficha: el modelo del trazo con punto de inicio y flecha de dirección, filas de práctica y un dibujo para colorear.
+  - Ayuda progresiva (repasar, unir puntos y solo inicio y final) o un solo nivel para toda la ficha.
+  - Tamaño según la edad: 3, 4 o 5 filas.
+  - En cada hoja, dos fichas iguales (una por niño) o dos trazos seguidos.
+  - Opciones de nombre y fecha, dibujo para colorear y ahorro de tinta. Las preferencias se recuerdan en el navegador.
+  - Se llega desde La tinta de Lolo (al elegir trazo y al terminar, ya con ese trazo), desde la ficha del juego en la portada y desde la guía docente. Funciona sin conexión.
+
 ## 1.5.0 · noviembre de 2026
 
 - Nueva categoría **Trazos**, con el juego **La tinta de Lolo**: los ocho trazos de la grafomotricidad, de menor a mayor dificultad (vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral).

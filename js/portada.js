@@ -111,7 +111,7 @@
     { id: 'viento', t: 'El viento de otoño', cat: 'otono', e: [3, 4, 5], d: 'Somos hojas: nos mecemos, giramos con el viento, caemos y respiramos.',
       tr: ['Expresión corporal', 'Atención y control del movimiento', 'Relajación y respiración'], como: 'Cinco momentos de movimiento delante de la pizarra. En uno, Lolo sopla viento fuerte, suave o nada, y la clase se mueve así.' },
     { id: 'tinta', t: 'La tinta de Lolo', cat: 'trazos', e: [3, 4, 5], d: 'Ocho trazos con el dedo, de la raya de pie a la espiral. Lolo los dibuja primero con su tinta.',
-      tr: ['Grafomotricidad: vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral', 'Dirección del trazo: del punto verde a la estrella', 'Coordinación ojo-mano y gesto amplio'], como: 'Se elige uno de los ocho trazos. Primero Lolo lo dibuja y la clase lo repasa por un camino ancho; después se siguen los puntos, y al final solo hay inicio y final. Al acabar, el trazo cobra vida: crece un árbol, sale el gusanito, el caracol saca los cuernos.' }
+      tr: ['Grafomotricidad: vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral', 'Dirección del trazo: del punto verde a la estrella', 'Coordinación ojo-mano y gesto amplio'], como: 'Se elige uno de los ocho trazos. Primero Lolo lo dibuja y la clase lo repasa por un camino ancho; después se siguen los puntos, y al final solo hay inicio y final. Al acabar, el trazo cobra vida: crece un árbol, sale el gusanito, el caracol saca los cuernos. Hay fichas para imprimir de cada trazo, dos por hoja A4.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
   const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
@@ -261,6 +261,7 @@
     $('#fichaTrabaja').innerHTML = j.tr.map(x => `<li>${x}</li>`).join('');
     $('#fichaComo').textContent = j.como;
     const btn = $('#fichaJugar'); btn.href = `jugar.html#${id}`; btn.dataset.id = id;
+    $('#fichaImprimir').hidden = id !== 'tinta';
     fondo.hidden = false; ficha.hidden = false;
     const cuerpo = ficha.querySelector('.ficha-cuerpo'); cuerpo.scrollTop = 0;
     cuerpo.querySelectorAll(':scope > *').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });

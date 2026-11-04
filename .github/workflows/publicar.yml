@@ -56,7 +56,7 @@ jobs:
           mkdir -p _site
           # Índice de los audios grabados que ya existen (los que falten usan la voz del navegador)
           python3 scripts/indice-audios.py
-          cp -r index.html jugar.html sw.js manifest.webmanifest css js fonts icons audio _site/
+          cp -r index.html jugar.html fichas.html sw.js manifest.webmanifest css js fonts icons audio _site/
           rm -f _site/audio/guion.csv
           touch _site/.nojekyll
           # Nueva versión del modo sin conexión en cada publicación, para que las pizarras se actualicen
