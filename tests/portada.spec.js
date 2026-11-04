@@ -96,9 +96,9 @@ test('la portada no se sale de la pantalla a lo ancho', async ({ page }) => {
   }
 });
 
-test('el aviso de novedad lleva a los trazos', async ({ page }) => {
+test('la categoría de trazos lleva a La tinta de Lolo', async ({ page }) => {
   await page.goto('/');
-  await page.click('.novedad');
+  await page.locator('.cat[data-cat="trazos"]').click();
   await expect(page.locator('.pestana[data-cat="trazos"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(1);
   await page.locator('.tarjeta[data-id="tinta"] .jugar').click();

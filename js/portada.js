@@ -313,7 +313,7 @@
     const card = ev.target.closest('.tarjeta');
     if (card) { abreFicha(card.dataset.id, card); return; }
     const nv = ev.target.closest('.novedad');
-    if (nv) { ev.preventDefault(); filtroCat = nv.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
+    if (nv && nv.dataset.cat) { ev.preventDefault(); filtroCat = nv.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const c = ev.target.closest('.cat');
     if (c) { filtroCat = c.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const p = ev.target.closest('.pestana');

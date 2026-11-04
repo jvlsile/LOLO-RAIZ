@@ -1,5 +1,14 @@
 # Cambios
 
+## 1.7.0 · noviembre de 2026
+
+- **Modo 3 años** (`tres.html`), independiente del resto de juegos: tres retos por juego, dos opciones grandes, solo tocar, sin sonido de error y con la respuesta iluminada al segundo intento.
+  - Ocho juegos nuevos: Las burbujas de Lolo (explotar burbujas en orden, paso previo a los trazos), La cara de Lolo, ¿Quién hace este ruido?, ¿Cómo está Lolo? (contento, triste, enfadado), Nos lavamos las manos, Los globos de colores, Uno, dos, tres y Grande y pequeño.
+  - Cada juego termina con una propuesta sin pantalla. Comparte con los demás juegos el modo tranquilo y la voz.
+- **Fichas para 3 años** (`fichas-3.html`), dos por hoja A4: gomets (oruga, manzano, collar, lluvia, caracol), picado con punzón (seis siluetas), flecos para recortar (tentáculos de Lolo, lluvia, hierba) y colorear en grande con el color indicado.
+- Portada: enlace «3 años» y aviso de novedad que lleva al modo.
+- 79 frases nuevas en el guion de audios (844 en total).
+
 ## 1.6.0 · noviembre de 2026
 
 - **Generador de fichas de trazos** (`fichas.html`): fichas para imprimir de los ocho trazos, dos por hoja A4 con línea de corte.

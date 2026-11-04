@@ -33,6 +33,7 @@ Un único personaje, Lolo el pulpo, guía todos los juegos con voz y pictogramas
 - Hay 26 juegos en 7 categorías (Rutinas y asamblea; Lenguaje, cuentos y emociones; Lógica y matemáticas; Retos y cooperación; Ciencia y manipulación; El otoño; Trazos), cada uno con su rango de edad.
 - La portada es la entrada principal del sitio y lanza los juegos.
 - `fichas.html` genera fichas de trazos para imprimir, dos por hoja A4.
+- `tres.html` es el Modo 3 años: ocho juegos propios, más sencillos (tres retos, dos opciones, solo tocar), y `fichas-3.html` sus fichas para imprimir.
 - No recoge datos personales. Solo guarda preferencias en el navegador.
 - Fuentes alojadas en el propio sitio: no se hacen peticiones a terceros.
 - Pruebas de extremo a extremo con Playwright en CI.
