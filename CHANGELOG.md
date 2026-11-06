@@ -3,6 +3,7 @@
 ## 1.8.2 · noviembre de 2026
 
 - Juego a dúo: los colores para elegir son ahora manchas de pintura tipo salpicadura, cada una con su forma.
+- Mini-escape: en el candado del sonido, el instrumento suena siempre después de que Lolo termine de hablar (antes se pisaban). Si se elige mal, suena el instrumento tocado, luego Lolo y después otra vez el sonido correcto.
 
 ## 1.8.1 · noviembre de 2026
 

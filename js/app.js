@@ -1145,11 +1145,16 @@
         } else if(n===2){
           const ks=mezcla(Object.keys(INSTRUMENTOS)).slice(0,3), k=ks[0], ops=mezcla(ks);
           r.innerHTML=`<div class="fila" style="justify-content:center"><button class="big peq" type="button" data-acc="oir"><span>Escuchar el sonido</span></button></div><div class="opts">${ops.map(x=>`<button class="opt" type="button" data-k="${x}" aria-label="${NOMI[x]}"><span class="dib">${INSTRUMENTOS[x]}</span></button>`).join('')}</div>`;
-          const oir=()=>INSTR[k](); r.querySelector('[data-acc="oir"]').addEventListener('click',oir); setTimeout(()=>{ if(r.isConnected) oir(); },2600);
+          // El sonido del candado suena siempre después de que Lolo termine de hablar, nunca a la vez.
+          const oir=()=>INSTR[k]();
+          let turnoOir=0;
+          const oirTrasVoz=async()=>{ const yo=++turnoOir; await trasLaVoz(20000); await espera(400); if(yo===turnoOir&&r.isConnected&&!EST.escape.resuelta) oir(); };
+          r.querySelector('[data-acc="oir"]').addEventListener('click',()=>{ turnoOir++; callar(); oir(); });
           r.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{ if(EST.escape.resuelta) return; const x=b.dataset.k;
             if(x===k){ b.classList.add('bien'); abre(`¡Clic! ¡Era ${NOMI[k]}! Tercer candado abierto.`); }
-            else { INSTR[x](); sacude(b); a.fallo('Ese instrumento suena distinto. Escuchad otra vez el sonido.',()=>marca([r.querySelector(`[data-k="${k}"]`)])); } }));
+            else { turnoOir++; callar(); INSTR[x](); sacude(b); setTimeout(()=>{ if(!r.isConnected||EST.escape.resuelta) return; a.fallo('Ese instrumento suena distinto. Escuchad otra vez el sonido.',()=>marca([r.querySelector(`[data-k="${k}"]`)])); oirTrasVoz(); },1200); } }));
           decir('El último candado se abre con un sonido. Escuchad bien y elegid el instrumento que suena.');
+          oirTrasVoz();
         } else {
           r.innerHTML='<p class="texto-cuento" style="text-align:center">Tocad la jaula para abrir la puerta.</p>';
           const j=a.z.querySelector('.jaula'); j.classList.add('tocable'); j.setAttribute('role','button'); j.tabIndex=0; j.setAttribute('aria-label','Abrir la jaula');
@@ -1554,7 +1559,7 @@
     camino:'Volvemos al caminito. Seguimos desde donde está Lolo.',
     borrar:'Borramos y empezamos otra vez.'
   };
-  const hablando=()=>{ try{ if(sonando&&!sonando.fin&&sonando.el&&!sonando.el.ended) return true; return 'speechSynthesis' in window&&speechSynthesis.speaking; }catch(e){ return false; } };
+  const hablando=()=>{ try{ if(sonando&&!sonando.fin&&sonando.el&&!sonando.el.ended) return true; return 'speechSynthesis' in window&&(speechSynthesis.speaking||speechSynthesis.pending); }catch(e){ return false; } };
   async function trasLaVoz(max=8000){ const t0=Date.now(); await espera(250); while(hablando()&&Date.now()-t0<max) await espera(150); }
 
   JUEGOS.tinta={titulo:'La tinta de Lolo',ic:'j_tinta',R:3,etiq:['Mira y repasa','Sigue los puntos','Tú solo'],
