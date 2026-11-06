@@ -1,5 +1,9 @@
 # Cambios
 
+## 1.8.2 · noviembre de 2026
+
+- Juego a dúo: los colores para elegir son ahora manchas de pintura tipo salpicadura, cada una con su forma.
+
 ## 1.8.1 · noviembre de 2026
 
 - Portada: bajo las categorías, entrada directa a las Fichas de trazos, las Fichas para 3 años y el Modo 3 años, y enlace «Fichas» en la barra de arriba.

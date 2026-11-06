@@ -551,6 +551,17 @@
   });
   const COL={rojo:'#FF5A5F',azul:'#3D8DF2',amarillo:'#FFC93C',verde:'#2BB673'};
   const colAdj=(c,f)=>f&&/o$/.test(c)?c.slice(0,-1)+'a':c;
+  /* Mancha de pintura tipo salpicadura (para elegir colores). Cada color tiene su propia forma. */
+  const mancha=(c,sem=0)=>{
+    const rnd=k=>{ const x=Math.sin((sem+1)*97.31+k*12.9898)*43758.5453; return x-Math.floor(x); }, r1=n=>Math.round(n*10)/10;
+    const N=18, pts=[];
+    for(let i=0;i<N;i++){ const g=i/N*Math.PI*2+(rnd(i)-.5)*.18, r=i%2?20+rnd(i+20)*5:(rnd(i+90)>.45?36+rnd(i+40)*11:27+rnd(i+40)*5); pts.push([Math.cos(g)*r,Math.sin(g)*r]); }
+    const mid=(p,q)=>[(p[0]+q[0])/2,(p[1]+q[1])/2], m0=mid(pts[N-1],pts[0]);
+    let d=`M${r1(m0[0])} ${r1(m0[1])}`;
+    pts.forEach((p,i)=>{ const m=mid(p,pts[(i+1)%N]); d+=`Q${r1(p[0])} ${r1(p[1])} ${r1(m[0])} ${r1(m[1])}`; });
+    const gotas=[0,1,2,3,4].map(i=>{ const g=(i/5+rnd(i+60)*.15)*Math.PI*2, dd=38+rnd(i+70)*8, r=2.2+rnd(i+80)*3.6; return `<circle cx="${r1(Math.cos(g)*dd)}" cy="${r1(Math.sin(g)*dd)}" r="${r1(r)}" fill="${COL[c]}" stroke="${K}" stroke-width="2.5"/>`; }).join('');
+    return `<svg viewBox="-50 -50 100 100" aria-hidden="true"><path d="${d}Z" fill="${COL[c]}" stroke="${K}" stroke-width="3.5" stroke-linejoin="round"/>${gotas}<ellipse cx="-9" cy="-10" rx="9" ry="5" fill="#fff" opacity=".45" transform="rotate(-30 -9 -10)"/></svg>`;
+  };
   const FORMAS={
     circulo:{n:'círculo',pl:'círculos',d:'<circle cx="50" cy="50" r="42"/>'},
     cuadrado:{n:'cuadrado',pl:'cuadrados',d:'<rect x="10" y="10" width="80" height="80" rx="10"/>'},
@@ -1086,7 +1097,7 @@
         const cs=Object.keys(COL), fs=['circulo','cuadrado','triangulo','estrella'], t={c:azar(cs),f:azar(fs)}, oculto=n>=3;
         const nombre=`${art(t.f)} ${FORMAS[t.f].n} ${colAdj(t.c,FORMAS[t.f].f)}`;
         a.z.innerHTML=`<div class="duo">
-          <div class="mitad j1"><h4><span class="av">${SERES.pez.svg}</span>Jugador 1: el color</h4><div class="bts">${cs.map(c=>`<button class="bd" type="button" data-c="${c}" aria-label="${c}"><span class="sw" style="background:${COL[c]}"></span></button>`).join('')}</div></div>
+          <div class="mitad j1"><h4><span class="av">${SERES.pez.svg}</span>Jugador 1: el color</h4><div class="bts">${cs.map(c=>`<button class="bd" type="button" data-c="${c}" aria-label="${c}"><span class="mancha">${mancha(c,cs.indexOf(c))}</span></button>`).join('')}</div></div>
           <div class="objetivo"><span class="etq">Lolo necesita</span><div class="tgt">${oculto?'<span class="q">?</span>':tokenSvg(t.f,t.c)}</div><b>${oculto?'¡Escuchad!':may(nombre)}</b></div>
           <div class="mitad j2"><h4><span class="av">${SERES.estrella.svg}</span>Jugador 2: la forma</h4><div class="bts">${fs.map(f=>`<button class="bd" type="button" data-f="${f}" aria-label="${FORMAS[f].n}">${siluetaSvg(f).replace('stroke-dasharray="9 7"','').replace('rgba(24,49,83,.07)','#DCE4EC')}</button>`).join('')}</div></div></div>`;
         let sc=null, sf=null; const tgt=a.z.querySelector('.tgt');

@@ -436,6 +436,10 @@ button{font-family:inherit}
 .bd{aspect-ratio:1;border:4px solid #fff;border-radius:22px;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.08)}
 .bd svg{width:70%;height:auto}
 .bd .sw{width:62%;aspect-ratio:1;border-radius:50%;border:4px solid var(--tinta)}
+.bd .mancha{position:relative;display:block;width:80%;aspect-ratio:1}
+.bd .mancha svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.bd.sel .mancha svg{transform:scale(1.1) rotate(-6deg)}
+.calma .bd .mancha svg{transition:none}
 .bd.sel{border-color:var(--tinta);box-shadow:0 0 0 5px var(--sol)}
 .objetivo{display:grid;justify-items:center;align-content:center;gap:8px;padding:12px;border-radius:24px;background:#fff;min-width:140px;text-align:center}
 .objetivo .tgt{width:120px;height:120px;display:grid;place-items:center;border-radius:20px;border:4px dashed #B9CCDA}
