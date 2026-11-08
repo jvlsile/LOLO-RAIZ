@@ -617,7 +617,7 @@
   document.addEventListener('keydown',e=>{ const d=e.target.closest&&e.target.closest('[data-destino]'); if(d&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); d.click(); } });
 
   const EST={};
-  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento','tinta'];
+  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento','tinta','sentidos','oido','vista','olfato','gusto','tacto'];
   const zonaDe=id=>$('#panel-'+id+' .jz');
   const espera=ms=>new Promise(r=>setTimeout(r,ms));
   function botonSig(id){
@@ -1704,6 +1704,238 @@
       else decir(n===1?FR_TINTA.r1:FR_TINTA.r2);
     }};
 
+
+  /* ================= LOS SENTIDOS =================
+     Seis juegos con un «Pasaporte de los sentidos»: cada juego terminado pone un sello.
+     Los dibujos están en js/sentidos-dibujos.js (los comparten las fichas para imprimir). */
+  const SEN=window.LOLO_SENTIDOS;
+  if(SEN){
+    Object.assign(P,{j_sentidos:SEN.IC.sentidos,j_oido:SEN.IC.oido,j_vista:SEN.IC.vista,j_olfato:SEN.IC.olfato,j_gusto:SEN.IC.gusto,j_tacto:SEN.IC.tacto});
+    const SC=SEN.C, SO=SEN.ORGANOS, dS=k=>SEN.dib(k);
+    const nomDe=k=>(SO[k]||SC[k]).n;
+    const opS=(k,lbl)=>`<button class="opt" type="button" data-k="${k}" aria-label="${lbl}"><span class="dib">${dS(k)}</span><span class="lbl">${lbl}</span></button>`;
+    // Atiende las opciones de un reto: bien(b,k) al acertar; mal(b,k) al fallar. Tras dos fallos, se marca la buena.
+    const opciones=(id,a,buena,bien,mal)=>a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+      if(EST[id].resuelta) return; const k=b.dataset.k;
+      if(k===buena){ b.classList.add('bien'); bien(b,k); }
+      else { sacude(b); mal(b,k); }
+    }));
+    const pistaBuena=(a,k)=>()=>marca([a.z.querySelector(`.opt[data-k="${k}"]`)],4000);
+
+    /* --- pasaporte --- */
+    function pasaporte(id){
+      const v=SEN.ponSello(id), n=v.length;
+      return `<div class="pasaporte" style="--sc:${SEN.SELLOS.find(s=>s.id===id).c}"><b class="pas-t">Pasaporte de los sentidos</b>
+        <div class="sellos">${SEN.SELLOS.map(s=>`<span class="sello${v.includes(s.id)?' si':''}${s.id===id?' nuevo':''}" style="--sc:${s.c}"><span class="sello-ic"><svg viewBox="0 0 24 24" aria-hidden="true">${SEN.IC[s.id]}</svg></span><small>${s.s}</small></span>`).join('')}</div>
+        <p class="pas-txt">${n>=SEN.SELLOS.length?'¡Pasaporte completo! Sois exploradores de los sentidos. <a href="fichas-sentidos.html#diploma">Imprimid el diploma</a>.':`¡Sello conseguido! Lleváis ${n} de ${SEN.SELLOS.length}.`}</p></div>`;
+    }
+
+    /* --- sonidos del juego del oído (sintetizados: no hace falta descargar nada) --- */
+    function barrido(f0,f1,t0,dur,v=.12,tipo='sine'){
+      const a=ctx(); if(!a) return; const o=a.createOscillator(), g=a.createGain(), t=a.currentTime+t0;
+      o.type=tipo; o.frequency.setValueAtTime(f0,t); o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol(v),t+.015); g.gain.exponentialRampToValueAtTime(.001,t+dur);
+      o.connect(g).connect(a.destination); o.start(t); o.stop(t+dur+.05);
+    }
+    function golpeTambor(t0,fuerza){ const a=ctx(); if(!a) return; const o=a.createOscillator(), g=a.createGain(), t=a.currentTime+t0;
+      o.type='sine'; o.frequency.setValueAtTime(150,t); o.frequency.exponentialRampToValueAtTime(60,t+.35);
+      g.gain.setValueAtTime(vol(.75*fuerza),t); g.gain.exponentialRampToValueAtTime(.001,t+.45); o.connect(g).connect(a.destination); o.start(t); o.stop(t+.5);
+      ruido(t0,.06,.5*fuerza,400); }
+    function campanada(t0){ [[523,.22,1.6],[1046,.08,1.1],[1568,.05,.8],[1318,.04,.6]].forEach(([f,v,d])=>{ const a=ctx(); if(!a) return; const o=a.createOscillator(), g=a.createGain(), t=a.currentTime+t0;
+      o.type='sine'; o.frequency.value=f; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol(v),t+.01); g.gain.exponentialRampToValueAtTime(.001,t+d); o.connect(g).connect(a.destination); o.start(t); o.stop(t+d+.05); }); }
+    const SONIDO={
+      tambor:()=>{ [0,.32,.64,1.1].forEach(t=>golpeTambor(t,1)); },
+      campana:()=>{ campanada(0); campanada(1); },
+      silbato:()=>{ [0,.7].forEach(t0=>{ for(let i=0;i<10;i++) barrido(2300,2150,t0+i*.045,.05,.07,'triangle'); }); },
+      maracas:()=>{ [0,.2,.4,.6,.8,1,1.2].forEach((t,i)=>ruido(t,.09,i%2?.45:.7,6500)); },
+      pajaro:()=>{ [0,.18,.36,.9,1.08].forEach(t=>barrido(2400,3800,t,.12,.09)); },
+      lluvia:()=>{ for(let i=0;i<46;i++) ruido(Math.random()*1.8,.03,.25+Math.random()*.25,1800+Math.random()*2500); }
+    };
+
+    /* --- caras para «huele bien / huele mal» --- */
+    const CARA_BIEN=`<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="52" r="40" fill="#FFE07A" stroke="${K}" stroke-width="4.5"/><path d="M30 44q6-7 12 0M58 44q6-7 12 0" fill="none" stroke="${K}" stroke-width="4" stroke-linecap="round"/><path d="M50 50q-4 10 2 12" fill="none" stroke="${K}" stroke-width="3.5" stroke-linecap="round"/><path d="M34 70q16 12 32 0" fill="none" stroke="${K}" stroke-width="4.5" stroke-linecap="round"/><circle cx="28" cy="62" r="5" fill="#FF9FBF"/><circle cx="72" cy="62" r="5" fill="#FF9FBF"/><path d="M82 18q6 4 4 12M90 10q6 4 4 12" fill="none" stroke="#2BB673" stroke-width="3.5" stroke-linecap="round"/></svg>`;
+    const CARA_MAL=`<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="52" r="40" fill="#C9E7A8" stroke="${K}" stroke-width="4.5"/><path d="M28 40l12 6-12 6M72 40l-12 6 12 6" fill="none" stroke="${K}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M34 74q8-8 16 0t16 0" fill="none" stroke="${K}" stroke-width="4.5" stroke-linecap="round"/><path d="M38 58q12-6 24 0v8q-12 6-24 0z" fill="#FFC9A3" stroke="${K}" stroke-width="3.5" stroke-linejoin="round"/><path d="M84 16q6-6 0-12M92 26q6-6 0-12" fill="none" stroke="#7BB662" stroke-width="3.5" stroke-linecap="round"/></svg>`;
+    const BOLSA=`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M26 44Q14 96 30 108Q60 118 90 108Q106 96 94 44z" fill="#C9874E" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="M26 44Q60 54 94 44Q86 30 60 30Q34 30 26 44z" fill="#A86B3C" stroke="${K}" stroke-width="5" stroke-linejoin="round"/><path d="M40 40q20 10 40 0" fill="none" stroke="#FFC93C" stroke-width="5" stroke-linecap="round"/><path d="M52 74q0-12 10-12t10 10q0 8-10 10v8" fill="none" stroke="#FFF4DC" stroke-width="7" stroke-linecap="round"/><circle cx="62" cy="100" r="4.5" fill="#FFF4DC"/><path d="M88 34Q100 14 112 22Q104 30 108 40" fill="none" stroke="#FF8A3D" stroke-width="10" stroke-linecap="round"/></svg>`;
+
+    const PLURAL={ojo:'los ojos',oreja:'las orejas',nariz:'la nariz',boca:'la boca',mano:'las manos'};
+    const art=n=>n.split(' ')[0]; // el, la, los, las
+    const esPl=n=>/^l(o|a)s /.test(n), esF=n=>/^las? /.test(n);
+    const adjSabor=(s,n)=>s==='dulce'?(esPl(n)?'dulces':'dulce'):(s==='salado'?'salad':'ácid')+(esF(n)?'a':'o')+(esPl(n)?'s':'');
+    const verbo=n=>esPl(n)?'son':'es';
+
+    Object.assign(JUEGOS,{
+      sentidos:{titulo:'¿Con qué lo notas?',ic:'j_sentidos',
+        puente:'Preparad cinco cajas, una por sentido: algo para oler, algo que suene, algo para mirar, algo para probar y algo para tocar. Cada niño elige una caja y dice con qué parte del cuerpo lo ha notado.',
+        extraFin:()=>pasaporte('sentidos'),
+        ronda(n,a){
+          const SIT={
+            flor:{o:'nariz',t:'Lolo ha encontrado una flor. ¿Con qué la olemos?',ok:'¡Sí! Olemos con la nariz. Es el sentido del olfato.'},
+            tambor:{o:'oreja',t:'¡Pom, pom, pom! Suena el tambor. ¿Con qué lo oímos?',ok:'¡Muy bien! Oímos con las orejas. Es el sentido del oído.'},
+            arcoiris:{o:'ojo',t:'¡Ha salido el arcoíris! ¿Con qué vemos sus colores?',ok:'¡Eso es! Vemos con los ojos. Es el sentido de la vista.'},
+            helado:{o:'boca',t:'¡Qué helado tan rico! ¿Con qué notamos su sabor?',ok:'¡Sí! Saboreamos con la boca y la lengua. Es el sentido del gusto.'},
+            osito:{o:'mano',t:'El osito es muy suave. ¿Con qué notamos que es suave?',ok:'¡Muy bien! Tocamos con las manos y con toda la piel. Es el sentido del tacto.'}
+          };
+          const s=EST.sentidos; if(n===0) s.lista=mezcla(Object.keys(SIT));
+          const q=s.lista[n], R=SIT[q], N=[3,3,4,4,5][n];
+          const ops=mezcla([R.o,...mezcla(Object.keys(SO).filter(k=>k!==R.o)).slice(0,N-1)]);
+          a.z.innerHTML=`<div class="sit-caja"><div class="sit">${dS(q)}<span>${SC[q].lbl}</span></div></div>
+            <div class="opts organos">${ops.map(k=>opS(k,SO[k].lbl)).join('')}</div>`;
+          opciones('sentidos',a,R.o,b=>a.ok(R.ok,b),(b,k)=>a.fallo(`Con ${PLURAL[k]} ${SO[k].verbo}. ${R.t.split('. ').pop()}`,pistaBuena(a,R.o)));
+          decir(n===0?`Tenemos cinco sentidos para conocer el mundo: vemos, oímos, olemos, saboreamos y tocamos. ${R.t}`:R.t);
+        }},
+
+      oido:{titulo:'¿Qué suena?',ic:'j_oido',
+        puente:'Haced un minuto de silencio con los ojos cerrados (en clase o en el patio) y después contad todos los sonidos que habéis oído. Luego, un niño toca un instrumento escondido y los demás adivinan cuál es.',
+        extraFin:()=>pasaporte('oido'),
+        ronda(n,a){
+          const s=EST.oido; if(n===0) s.usados=[];
+          const cfg=[{t:'que',n:3},{t:'que',n:3},{t:'fuerte'},{t:'que',n:4},{t:'cuantas'}][n];
+          let oido=false, suena, buena, html;
+          if(cfg.t==='que'){
+            const q=mezcla(Object.keys(SONIDO).filter(k=>!s.usados.includes(k)))[0]; s.usados.push(q); buena=q;
+            const ops=mezcla([q,...mezcla(Object.keys(SONIDO).filter(k=>k!==q)).slice(0,cfg.n-1)]);
+            suena=SONIDO[q]; html=`<div class="opts">${ops.map(k=>opS(k,SC[k].lbl)).join('')}</div>`;
+          } else if(cfg.t==='fuerte'){
+            buena=Math.random()<.5?'fuerte':'flojo'; const f=buena==='fuerte'?1:.22;
+            suena=()=>{ [0,.42,.84].forEach(t=>golpeTambor(t,f)); };
+            html=`<div class="opts dos">${[['fuerte','Fuerte',1],['flojo','Flojito',.55]].map(([k,l,e])=>`<button class="opt" type="button" data-k="${k}" aria-label="${l}"><span class="dib"><svg viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(${50-50*e} ${54-50*e}) scale(${e})">${SC.tambor.svg}</g>${k==='fuerte'?`<path d="M4 30l8 6M2 50h10M4 70l8-6M96 30l-8 6M98 50H88M96 70l-8-6" stroke="${K}" stroke-width="4" stroke-linecap="round"/>`:''}</svg></span><span class="lbl">${l}</span></button>`).join('')}</div>`;
+          } else {
+            const N=1+Math.floor(Math.random()*3); buena=String(N);
+            suena=()=>{ for(let i=0;i<N;i++) campanada(i*.9); };
+            html=`<div class="opts dos">${[1,2,3].map(k=>`<button class="opt" type="button" data-k="${k}" aria-label="${NUMW[k]}"><span class="dib num-dib"><b>${k}</b><span class="pts-g">${'<i></i>'.repeat(k)}</span></span><span class="lbl">${may(NUMW[k])}</span></button>`).join('')}</div>`;
+          }
+          a.z.innerHTML=`<div class="escucha-caja"><button class="escuchar" type="button" aria-label="Escuchar el sonido">${dS('oreja')}<span>Escuchar</span></button></div>${html}`;
+          const esc=a.z.querySelector('.escuchar');
+          esc.addEventListener('click',()=>{ callar(); oido=true; esc.classList.remove('pista'); esc.classList.add('sonando'); suena(); setTimeout(()=>esc.classList.remove('sonando'),1800); });
+          if(!quieto()) esc.classList.add('pista');
+          a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',e=>{
+            if(EST.oido.resuelta) return;
+            if(!oido){ e.stopImmediatePropagation(); decir('Primero tocamos la oreja para escuchar el sonido.'); marca([esc],3000); }
+          },true));
+          const okTxt=cfg.t==='que'?`¡Sí! Era ${SC[buena].n}. ¡Qué bien escucháis!`:cfg.t==='fuerte'?(buena==='fuerte'?'¡Eso es! El tambor sonaba fuerte: ¡pom, pom, pom!':'¡Muy bien! Sonaba flojito, muy suave.'):`¡Sí! La campana ha sonado ${buena==='1'?'una vez':NUMW[+buena]+' veces'}.`;
+          opciones('oido',a,buena,b=>a.ok(okTxt,b),(b,k)=>a.fallo(cfg.t==='que'?`No, eso es ${SC[k].n}. Tocad la oreja y escuchad otra vez.`:cfg.t==='fuerte'?'Escuchad otra vez el tambor: ¿suena fuerte o flojito?':'Escuchad otra vez y contad con los dedos cada vez que suena.',pistaBuena(a,buena)));
+          decir(n===0?'Cerrad los ojos y escuchad con atención. Tocad la oreja para oír el sonido. ¿Qué suena?'
+            :cfg.t==='fuerte'?'Ahora suena el tambor. Escuchad: ¿suena fuerte o flojito?'
+            :cfg.t==='cuantas'?'¡Último reto! Escuchad la campana y contad: ¿cuántas veces suena?':'¡Otro sonido! Tocad la oreja y escuchad. ¿Qué es?');
+        }},
+
+      vista:{titulo:'La linterna de Lolo',ic:'j_vista',
+        puente:'Bajad las persianas y jugad al «Veo, veo» con una linterna: un niño ilumina la clase y los demás dicen lo que ven. ¿Qué pasa con los colores cuando hay poca luz?',
+        extraFin:()=>pasaporte('vista'),
+        ronda(n,a){
+          const MAR=['pez','estrella','concha','cangrejo','caracola','tortuga','medusa'];
+          const N=[3,4,5,6,6][n], dos=n===4, q=azar(MAR);
+          let cosas=mezcla(MAR.filter(k=>k!==q)).slice(0,N-(dos?2:1)); cosas=mezcla(dos?[q,q,...cosas]:[q,...cosas]);
+          const celdas=mezcla([...Array(8).keys()]).slice(0,cosas.length);
+          a.z.innerHTML=`<div class="linterna" style="--x:50%;--y:50%">
+            <div class="mar-noche">${cosas.map((k,i)=>{ const c=celdas[i], x=12.5+(c%4)*25+(Math.random()*8-4), y=27+Math.floor(c/4)*46+(Math.random()*8-4);
+              return `<button class="escondido" type="button" data-k="${k}" style="left:${x.toFixed(1)}%;top:${y.toFixed(1)}%;--g:${(Math.random()*30-15).toFixed(0)}deg" aria-label="${SC[k].lbl}">${dS(k)}</button>`; }).join('')}</div>
+            <div class="oscuro" aria-hidden="true"></div><span class="linterna-ayuda" aria-hidden="true">Mueve la luz con el dedo</span></div>`;
+          const L=a.z.querySelector('.linterna');
+          const luz=(x,y)=>{ const r=L.getBoundingClientRect(); L.style.setProperty('--x',((x-r.left)/r.width*100).toFixed(1)+'%'); L.style.setProperty('--y',((y-r.top)/r.height*100).toFixed(1)+'%'); L.classList.add('movida'); };
+          L.addEventListener('pointermove',e=>luz(e.clientX,e.clientY));
+          L.addEventListener('pointerdown',e=>luz(e.clientX,e.clientY));
+          L.addEventListener('focusin',e=>{ const b=e.target.closest('.escondido'); if(!b) return; const r=b.getBoundingClientRect(); luz(r.left+r.width/2,r.top+r.height/2); });
+          let hallados=0; const total=dos?2:1;
+          a.z.querySelectorAll('.escondido').forEach(b=>b.addEventListener('click',()=>{
+            if(EST.vista.resuelta||b.classList.contains('hallado')) return; const k=b.dataset.k;
+            if(k===q){ b.classList.add('hallado'); a.bien(); hallados++;
+              if(hallados===total){ L.classList.add('encendida'); a.ok(dos?'¡Lo habéis conseguido! Estaban los dos escondidos. ¡Qué ojos tan atentos!':`¡Ahí está ${SC[q].n}! ¡Qué buena vista!`,b); }
+              else decir('¡Muy bien! Ahora buscad su pareja.'); }
+            else { sacude(b); a.fallo(`Eso es ${SC[k].n}. Seguimos buscando ${SC[q].n}.`,()=>{ L.classList.add('grande'); marca([...a.z.querySelectorAll(`.escondido[data-k="${q}"]:not(.hallado)`)],4000); }); }
+          }));
+          decir(n===0?`¡Se ha hecho de noche en el fondo del mar! Lolo tiene una linterna. Moved la luz con el dedo y buscad ${SC[q].n}.`
+            :dos?`¡Último reto! Hay dos iguales escondidos. Buscad ${SC[q].n}… ¡y su pareja!`:`Moved la linterna y buscad ${SC[q].n}.`);
+        }},
+
+      olfato:{titulo:'La nariz de Lolo',ic:'j_olfato',
+        puente:'Preparad botes de olores tapados con una gasa (canela, limón, colonia, café, ajo) y oledlos de uno en uno: ¿huele bien o mal?, ¿a qué huele? Recordad: los productos de limpieza no se huelen.',
+        extraFin:()=>pasaporte('olfato'),
+        ronda(n,a){
+          if(n===4){
+            a.z.innerHTML=`<div class="sit-caja"><div class="sit sit-alerta">${dS('humo')}<span>¡Huele a humo!</span></div></div>
+              <div class="opts">${['avisar','seguir','acercarse'].map(k=>opS(k,SC[k].lbl)).join('')}</div>`;
+            const NO={seguir:'Si huele a humo no seguimos jugando, porque puede ser peligroso. ¿Qué hacemos?',acercarse:'¡No! Al humo no nos acercamos. ¿Qué hacemos?'};
+            opciones('olfato',a,'avisar',b=>a.ok('¡Muy bien! Si huele a humo, avisamos enseguida a una persona mayor. La nariz también nos avisa de los peligros.',b),(b,k)=>{ b.disabled=true; a.fallo(NO[k],pistaBuena(a,'avisar')); });
+            decir('¡Último reto! La nariz también nos cuida. ¡Uy, huele a humo! ¿Qué hacemos?');
+            return;
+          }
+          const BIEN=['flor','pan','naranja','jabon','galleta'], MAL=['basura','calcetin','caca','pescado'];
+          const por=[1,2,2,3][n], items=mezcla([...mezcla(BIEN).slice(0,por),...mezcla(MAL).slice(0,por)]);
+          a.z.innerHTML=`<div class="piezas grandes olores">${items.map((k,i)=>`<button class="pieza" type="button" data-i="${i}" aria-label="${SC[k].lbl}">${dS(k)}</button>`).join('')}</div>
+            <div class="cestas" style="--n:2">${[['bien','Huele bien',CARA_BIEN],['mal','Huele mal',CARA_MAL]].map(([v,l,c])=>`<div class="dest cesta olor-${v}" data-destino data-v="${v}" role="button" tabindex="0" data-di="${l}" aria-label="${l}"><span class="etq"><span class="sw-c">${c}</span>${l}</span><div class="dentro"></div></div>`).join('')}</div>`;
+          let quedan=items.length;
+          a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
+            const k=items[+el.dataset.i], v=SC[k].bien?'bien':'mal';
+            if(d.dataset.v===v){ el.disabled=true; d.querySelector('.dentro').appendChild(el); a.bien(); hablar(v==='bien'?'¡Mmm!':'¡Puaj!');
+              if(--quedan===0) a.ok(n===0?'¡Muy bien! Con la nariz sabemos qué huele bien y qué huele mal.':'¡Qué narices tan listas! Todo está en su sitio.',d.parentElement); }
+            else { sacude(el); sacude(d); a.fallo(v==='bien'?`¿${may(SC[k].n)} huele mal? ¡No! Huele muy bien.`:`¿${may(SC[k].n)} huele bien? ¡Puaj, no! Huele mal.`,()=>marca([a.z.querySelector(`.cesta[data-v="${v}"]`)])); }
+          }));
+          decir(n===0?'Lolo tiene una nariz muy curiosa. Con la nariz olemos. Llevad cada cosa a su sitio: ¿huele bien o huele mal?'
+            :n===3?'¡Ahora hay más cosas! ¿Huelen bien o huelen mal?':'¡Más cosas para oler! ¿Huelen bien o mal?');
+        }},
+
+      gusto:{titulo:'¿A qué sabe?',ic:'j_gusto',
+        puente:'Haced una cata de sabores con trocitos de fruta, pan con sal, miel y limón. Antes, consultad con las familias las alergias e intolerancias de cada niño y usad cucharillas de un solo uso.',
+        extraFin:()=>pasaporte('gusto'),
+        ronda(n,a){
+          const POR={dulce:['helado','piruleta','miel','fresa'],salado:['patatas','aceitunas','palomitas'],acido:['limon','lima']};
+          const saborDe=k=>Object.keys(POR).find(s=>POR[s].includes(k));
+          if(n<3){
+            const sab=['dulce','acido','salado'][n], q=azar(POR[sab]), nm=SC[q].n;
+            const ops=n===0?mezcla(['dulce','salado']):mezcla(['dulce','salado','acido']);
+            a.z.innerHTML=`<div class="sit-caja"><div class="sit plato">${dS(q)}<span>${SC[q].lbl}</span></div></div>
+              <div class="opts${ops.length===2?' dos':''}">${ops.map(k=>`<button class="opt" type="button" data-k="${k}" aria-label="${SEN.SABORES[k].lbl}"><span class="dib">${dS(k)}</span><span class="lbl">${SEN.SABORES[k].lbl}</span></button>`).join('')}</div>`;
+            const OK={dulce:`¡Sí! ${may(nm)} ${verbo(nm)} ${adjSabor('dulce',nm)}. ¡Mmm, qué rico!`,acido:`¡Uy, qué ácido! ${may(nm)} ${verbo(nm)} ${adjSabor('acido',nm)}: arrugamos la cara.`,salado:`¡Eso es! ${may(nm)} ${verbo(nm)} ${adjSabor('salado',nm)}.`};
+            opciones('gusto',a,sab,b=>{ a.ok(OK[sab],b); if(sab==='acido') cara('sorpresa'); },(b,k)=>{ b.disabled=true; a.fallo(`¿${may(nm)} ${adjSabor(k,nm)}? Pensad en cómo sabe cuando lo probamos.`,pistaBuena(a,sab)); });
+            decir(n===0?`Con la lengua notamos los sabores. Lolo va a probar ${nm}. ¿A qué sabe: dulce o salado?`:`Ahora Lolo prueba ${nm}. ¿A qué sabe?`);
+            return;
+          }
+          const sab3=['dulce','salado','acido'], items=n===3?sab3.map(s=>azar(POR[s])):mezcla(sab3.flatMap(s=>mezcla(POR[s]).slice(0,2)));
+          const lista=mezcla(items);
+          a.z.innerHTML=`<div class="piezas grandes sabores">${lista.map((k,i)=>`<button class="pieza" type="button" data-i="${i}" aria-label="${SC[k].lbl}">${dS(k)}</button>`).join('')}</div>
+            <div class="cestas" style="--n:3">${sab3.map(s=>`<div class="dest cesta plato-s" data-destino data-v="${s}" role="button" tabindex="0" data-di="El plato de lo ${SEN.SABORES[s].n}" aria-label="Plato de lo ${SEN.SABORES[s].n}"><span class="etq"><span class="sw-c">${dS(s)}</span>${SEN.SABORES[s].lbl}</span><div class="dentro"></div></div>`).join('')}</div>`;
+          let quedan=lista.length;
+          a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
+            const k=lista[+el.dataset.i], s=saborDe(k);
+            if(d.dataset.v===s){ el.disabled=true; d.querySelector('.dentro').appendChild(el); a.bien(); if(--quedan===0) a.ok('¡Qué mesa tan bien puesta! Lo dulce, lo salado y lo ácido, cada uno en su plato.',d.parentElement); }
+            else { sacude(el); sacude(d); a.fallo(`${may(SC[k].n)} no ${verbo(SC[k].n)} ${adjSabor(d.dataset.v,SC[k].n)}. ¿A qué sabe?`,()=>marca([a.z.querySelector(`.cesta[data-v="${s}"]`)])); }
+          }));
+          decir(n===3?'Ahora ponemos la mesa: cada comida, a su plato. Dulce, salado o ácido.':'¡Último reto! Más comida para colocar en su plato.');
+        }},
+
+      tacto:{titulo:'La bolsa misteriosa',ic:'j_tacto',
+        puente:'Meted en una bolsa de tela cosas de la clase (una pelota, una esponja, una piña, un peluche, una piedra). Por turnos, un niño mete la mano sin mirar, dice cómo es y los demás adivinan qué es.',
+        extraFin:()=>pasaporte('tacto'),
+        ronda(n,a){
+          const OBJ={
+            osito:['Es blandito.','Es suave, como el pelo de un gato.','Tiene dos orejas redondas y lo abrazamos para dormir.'],
+            pina:['Es dura.','Es áspera y rasca un poco.','Se cae de los pinos, en el campo.'],
+            hielo:['Está muy frío.','Es duro y resbala.','Si lo dejamos en la mano, se convierte en agua.'],
+            piedra:['Es dura y pesa.','Es lisa y fresquita.','La encontramos en el campo y en la playa.'],
+            esponja:['Es blandita.','Tiene muchos agujeritos.','Si la apretamos con agua, el agua sale.'],
+            cactus:['¡Pincha! Se toca con mucho cuidado.','Es verde.','Vive donde llueve muy poco.'],
+            pelota:['Es redonda.','Es lisa.','Si la tiramos al suelo, ¡bota!']
+          };
+          const s=EST.tacto; if(n===0) s.lista=mezcla(Object.keys(OBJ));
+          const q=s.lista[n], P3=OBJ[q], ops=mezcla([q,...mezcla(Object.keys(OBJ).filter(k=>k!==q)).slice(0,2)]);
+          let vistas=1;
+          a.z.innerHTML=`<div class="bolsa-caja"><div class="bolsa">${BOLSA}</div><ol class="pistas" aria-live="polite"></ol></div>
+            <div class="opts">${ops.map(k=>opS(k,SC[k].lbl)).join('')}</div>`;
+          const ol=a.z.querySelector('.pistas'), fila=document.createElement('div'); fila.className='fila'; a.z.querySelector('.bolsa-caja').after(fila);
+          const pinta=()=>{ ol.innerHTML=P3.slice(0,vistas).map((p,i)=>`<li class="${i===vistas-1?'nueva':''}"><span class="pn">${i+1}</span>${p}</li>`).join('')+P3.slice(vistas).map((_,i)=>`<li class="tapada"><span class="pn">${vistas+i+1}</span>?</li>`).join(''); };
+          let otra=null;
+          const masPista=()=>{ if(vistas>=3) return; vistas++; pinta(); decir(P3[vistas-1]); if(vistas>=3&&otra) otra.remove(); };
+          pinta();
+          otra=boton('Otra pista',masPista,false,fila,'pregunta'); otra.classList.add('sec');
+          opciones('tacto',a,q,b=>{ if(otra) otra.remove(); const e=4-vistas; a.ok(`¡Es ${SC[q].n}! Lo habéis adivinado con ${vistas===1?'una pista':NUMW[vistas]+' pistas'}: ¡${e===1?'una estrella':NUMW[e]+' estrellas'}!`,b);
+              b.insertAdjacentHTML('beforeend',`<span class="estrellas" aria-hidden="true">${'★'.repeat(e)}</span>`); },
+            (b,k)=>{ b.disabled=true; a.fallo(`No es ${SC[k].n}.${vistas<3?' Escuchad otra pista.':' Pensad en todas las pistas.'}`,pistaBuena(a,q)); if(vistas<3) setTimeout(masPista,1400); });
+          decir(n===0?`Lolo ha metido una cosa en la bolsa misteriosa. No la vemos: solo la toca con su tentáculo. Escuchad la pista: ${P3[0]} ¿Qué es?`:`Otra cosa en la bolsa. Primera pista: ${P3[0]}`);
+        }}
+    });
+  }
+
   /* ================= MENÚ POR CATEGORÍAS Y EDADES ================= */
   const CATS=[
     {t:'Rutinas y asamblea',c:'#FF8A3D',ids:['lolo','jardin','muevete']},
@@ -1712,7 +1944,8 @@
     {t:'Retos y cooperación',c:'#FF5D8F',ids:['duo','escape','robot']},
     {t:'Ciencia y manipulación',c:'#2BB673',ids:['quepasa','construye','caza']},
     {t:'El otoño',c:'#B8652B',ids:['hojas','arbol','ropa','frutos','bosque','castanas','viento']},
-    {t:'Trazos',c:'#0B7A8F',ids:['tinta']}
+    {t:'Trazos',c:'#0B7A8F',ids:['tinta']},
+    {t:'Los sentidos',c:'#5B5BD6',ids:['sentidos','oido','vista','olfato','gusto','tacto']}
   ];
   const INFO={
     lolo:{t:'La visita de Lolo',ic:'lolo',e:[3,4],d:'Asamblea con Lolo: una rutina distinta para cada día de la semana.'},
@@ -1740,7 +1973,13 @@
     bosque:{e:[4,5],d:'Qué hacen los animales en otoño: viajar, dormir o guardar comida.'},
     castanas:{e:[3,4,5],d:'Contar castañas asadas y servirlas en el cucurucho.'},
     viento:{e:[3,4,5],d:'Movernos como hojas con el viento, caer y respirar.'},
-    tinta:{e:[3,4,5],d:'Los ocho trazos con la tinta de Lolo: de la raya a la espiral.'}
+    tinta:{e:[3,4,5],d:'Los ocho trazos con la tinta de Lolo: de la raya a la espiral.'},
+    sentidos:{e:[3,4,5],d:'Relacionar lo que olemos, oímos, vemos, saboreamos y tocamos con su sentido.'},
+    oido:{e:[3,4,5],d:'Escuchar sonidos y adivinar qué suena, si suena fuerte o flojito y cuántas veces.'},
+    vista:{e:[3,4,5],d:'Mover la linterna por el fondo del mar a oscuras y encontrar lo que pide Lolo.'},
+    olfato:{e:[3,4,5],d:'Qué huele bien y qué huele mal, y qué hacemos si huele a humo.'},
+    gusto:{e:[3,4,5],d:'Dulce, salado y ácido: adivinar el sabor y poner la mesa.'},
+    tacto:{e:[4,5],d:'Adivinar qué hay en la bolsa con pistas de tacto: suave, áspero, frío, duro…'}
   };
   const tituloDe=id=>INFO[id].t||JUEGOS[id].titulo, icDe=id=>INFO[id].ic||JUEGOS[id].ic, catDe=id=>CATS.find(c=>c.ids.includes(id));
   const edadTxt=e=>e.length===1?`${e[0]} años`:`${e[0]}–${e[e.length-1]} años`;

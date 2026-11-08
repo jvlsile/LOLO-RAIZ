@@ -42,6 +42,8 @@
     tinta: '<path d="M11 12a1 1 0 1 1 2 0a3 3 0 1 1-6 0a5 5 0 1 1 10 0a7 7 0 1 1-14 0"/>',
     flecha: '<path d="M5 12h14M13 6l6 6-6 6"/>'
   };
+  const SEN = window.LOLO_SENTIDOS || null;
+  if (SEN) Object.assign(IC, SEN.IC);
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 
@@ -53,7 +55,8 @@
     { k: 'retos', t: 'Retos y cooperación', corto: 'Retos', c: 'var(--c-retos)', ic: 'duo', d: 'Resolver juntos: candados, robots y parejas.' },
     { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' },
     { k: 'otono', t: 'El otoño', corto: 'Otoño', c: 'var(--c-otono)', ic: 'hoja', d: 'Hojas, frutos, animales, ropa y tiempo de esta estación.' },
-    { k: 'trazos', t: 'Trazos', corto: 'Trazos', c: 'var(--c-trazos)', ic: 'tinta', d: 'Los ocho trazos de la grafomotricidad, con la tinta de Lolo.', nuevo: true }
+    { k: 'trazos', t: 'Trazos', corto: 'Trazos', c: 'var(--c-trazos)', ic: 'tinta', d: 'Los ocho trazos de la grafomotricidad, con la tinta de Lolo.' },
+    { k: 'sentidos', t: 'Los sentidos', corto: 'Sentidos', c: 'var(--c-sentidos)', ic: 'sentidos', d: 'Oír, ver, oler, saborear y tocar: seis juegos, fichas y un pasaporte de sellos para toda la clase.', nuevo: true }
   ];
   const cat = Object.fromEntries(CATS.map(c => [c.k, c]));
   // Los ocho trazos del cuaderno, en miniatura, para la tarjeta de la categoría Trazos.
@@ -111,7 +114,19 @@
     { id: 'viento', t: 'El viento de otoño', cat: 'otono', e: [3, 4, 5], d: 'Somos hojas: nos mecemos, giramos con el viento, caemos y respiramos.',
       tr: ['Expresión corporal', 'Atención y control del movimiento', 'Relajación y respiración'], como: 'Cinco momentos de movimiento delante de la pizarra. En uno, Lolo sopla viento fuerte, suave o nada, y la clase se mueve así.' },
     { id: 'tinta', t: 'La tinta de Lolo', cat: 'trazos', e: [3, 4, 5], d: 'Ocho trazos con el dedo, de la raya de pie a la espiral. Lolo los dibuja primero con su tinta.',
-      tr: ['Grafomotricidad: vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral', 'Dirección del trazo: del punto verde a la estrella', 'Coordinación ojo-mano y gesto amplio'], como: 'Se elige uno de los ocho trazos. Primero Lolo lo dibuja y la clase lo repasa por un camino ancho; después se siguen los puntos, y al final solo hay inicio y final. Al acabar, el trazo cobra vida: crece un árbol, sale el gusanito, el caracol saca los cuernos. Hay fichas para imprimir de cada trazo, dos por hoja A4.' }
+      tr: ['Grafomotricidad: vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral', 'Dirección del trazo: del punto verde a la estrella', 'Coordinación ojo-mano y gesto amplio'], como: 'Se elige uno de los ocho trazos. Primero Lolo lo dibuja y la clase lo repasa por un camino ancho; después se siguen los puntos, y al final solo hay inicio y final. Al acabar, el trazo cobra vida: crece un árbol, sale el gusanito, el caracol saca los cuernos. Hay fichas para imprimir de cada trazo, dos por hoja A4.' },
+    { id: 'sentidos', t: '¿Con qué lo notas?', cat: 'sentidos', e: [3, 4, 5], d: 'Oler una flor, oír un tambor, ver el arcoíris: ¿con qué parte del cuerpo lo notamos?',
+      tr: ['Los cinco sentidos y sus órganos', 'Vocabulario: vista, oído, olfato, gusto y tacto', 'Relacionar una experiencia con su sentido'], como: 'Aparece una situación y la clase elige el órgano del sentido: primero entre tres, al final entre los cinco. Lolo nombra cada sentido al acertar.' },
+    { id: 'oido', t: '¿Qué suena?', cat: 'sentidos', e: [3, 4, 5], d: 'Escuchar y adivinar: tambor, campana, silbato, maracas, pájaro o lluvia.',
+      tr: ['Discriminación auditiva', 'Fuerte y flojito', 'Contar sonidos'], como: 'El sonido solo suena al tocar «Escuchar», así se anticipa. Después se elige qué ha sonado, si sonaba fuerte o flojito y cuántas veces.' },
+    { id: 'vista', t: 'La linterna de Lolo', cat: 'sentidos', e: [3, 4, 5], d: 'El fondo del mar está a oscuras: movemos la linterna y buscamos lo que pide Lolo.',
+      tr: ['Atención y búsqueda visual', 'Vocabulario del mar', 'Coordinación ojo-mano'], como: 'Se mueve la luz con el dedo por el fondo del mar y se toca lo que pide Lolo. Cada reto esconde más cosas; en el último hay que encontrar dos iguales.' },
+    { id: 'olfato', t: 'La nariz de Lolo', cat: 'sentidos', e: [3, 4, 5], d: 'Qué huele bien, qué huele mal y qué hacemos si huele a humo.',
+      tr: ['Olores agradables y desagradables', 'Clasificar por un criterio', 'Seguridad: si huele a humo, avisamos'], como: 'Se lleva cada cosa a «huele bien» o «huele mal», arrastrando o tocando. El último reto es una norma de seguridad: ¿qué hacemos si huele a humo?' },
+    { id: 'gusto', t: '¿A qué sabe?', cat: 'sentidos', e: [3, 4, 5], d: 'Dulce, salado y ácido: adivinamos el sabor y ponemos la mesa.',
+      tr: ['Sabores dulce, salado y ácido', 'Clasificar alimentos', 'Hábitos saludables y cuidado con las alergias'], como: 'Lolo prueba una comida y la clase elige su sabor. En los últimos retos, cada comida se lleva a su plato.' },
+    { id: 'tacto', t: 'La bolsa misteriosa', cat: 'sentidos', e: [4, 5], d: 'Lolo toca algo sin verlo y da pistas: ¿es blando, áspero, frío o pincha?',
+      tr: ['Texturas: suave, áspero, duro, blando, frío', 'Comprensión oral e inferencia', 'Adivinar con pocas pistas'], como: 'Lolo da una pista de tacto y la clase elige entre tres cosas. Puede pedir otra pista (hasta tres): si aciertan con menos pistas, ganan más estrellas.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
   const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
@@ -124,8 +139,9 @@
   function pintaCategorias() {
     $('#listaCat').innerHTML = CATS.map(c => {
       const n = JUEGOS.filter(j => j.cat === c.k).length;
-      const tira = c.k === 'trazos' ? `<span class="cat-trazos" aria-hidden="true">${TRAZOS_MINI.map(d => `<svg viewBox="0 0 24 24">${d}</svg>`).join('')}</span>` : '';
-      return `<button class="cat revela${c.k === 'trazos' ? ' cat-ancha' : ''}" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p>${tira}<span class="cat-n">${n} ${n === 1 ? 'juego' : 'juegos'} ${svg('flecha')}</span></button>`;
+      const tira = c.k === 'trazos' ? `<span class="cat-trazos" aria-hidden="true">${TRAZOS_MINI.map(d => `<svg viewBox="0 0 24 24">${d}</svg>`).join('')}</span>`
+        : c.k === 'sentidos' && SEN ? `<span class="cat-sentidos" aria-hidden="true">${['ojo', 'oreja', 'nariz', 'boca', 'mano'].map(k => `<span>${SEN.dib(k)}</span>`).join('')}</span>` : '';
+      return `<button class="cat revela${c.k === 'trazos' ? ' cat-ancha' : ''}${c.k === 'sentidos' ? ' cat-ancha cat-sen' : ''}" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p>${tira}<span class="cat-n">${n} ${n === 1 ? 'juego' : 'juegos'} ${svg('flecha')}</span></button>`;
     }).join('');
   }
   function pintaFiltros() {
@@ -270,7 +286,7 @@
     $('#fichaTrabaja').innerHTML = j.tr.map(x => `<li>${x}</li>`).join('');
     $('#fichaComo').textContent = j.como;
     const btn = $('#fichaJugar'); btn.href = `jugar.html#${id}`; btn.dataset.id = id;
-    $('#fichaImprimir').hidden = id !== 'tinta';
+    const imp = $('#fichaImprimir'); imp.hidden = !(id === 'tinta' || j.cat === 'sentidos'); imp.href = j.cat === 'sentidos' ? 'fichas-sentidos.html' : 'fichas.html';
     fondo.hidden = false; ficha.hidden = false;
     const cuerpo = ficha.querySelector('.ficha-cuerpo'); cuerpo.scrollTop = 0;
     cuerpo.querySelectorAll(':scope > *').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
@@ -314,6 +330,49 @@
   }
   addEventListener('pageshow', () => { lanzando = false; $('#lanzador').classList.remove('activo'); cierraFicha(); pintaRecientes(); });
 
+
+  /* ---------- Los sentidos: vídeo de cabecera, pasaporte y juegos ---------- */
+  function pintaSentidos() {
+    if (!SEN || !$('#senGrid')) return;
+    const v = SEN.leeSellos(), n = v.length, T = SEN.SELLOS.length;
+    const DIB = { sentidos: 'arcoiris', oido: 'oreja', vista: 'ojo', olfato: 'nariz', gusto: 'boca', tacto: 'mano' };
+    $('#senPasaporte').innerHTML = `<div class="sen-pas-t"><b>Pasaporte de la clase</b><span>${n === T ? '¡Completo! Ya podéis imprimir el diploma.' : n ? `${n} de ${T} sellos` : 'Cada juego terminado pone un sello'}</span></div>
+      <div class="sen-sellos">${SEN.SELLOS.map(s => `<span class="sen-sello${v.includes(s.id) ? ' si' : ''}" style="--sc:${s.c}" title="${s.s}${v.includes(s.id) ? ': conseguido' : ''}"><svg viewBox="0 0 24 24" aria-hidden="true">${SEN.IC[s.id]}</svg></span>`).join('')}</div>
+      <span class="sr-only">${n} de ${T} sellos conseguidos.</span>`;
+    $('#senGrid').innerHTML = SEN.SELLOS.map((s, i) => {
+      const j = porId[s.id], ok = v.includes(s.id);
+      return `<a class="sen-card" href="jugar.html#${s.id}" data-id="${s.id}" style="--sc:${s.c};--i:${i}">
+        <span class="sen-card-dib">${SEN.dib(DIB[s.id])}</span>
+        <span class="sen-card-tx"><small>${s.s} · ${edadTxt(j.e)}</small><b>${j.t}</b><span>${j.d}</span></span>
+        <span class="sen-card-sello${ok ? ' si' : ''}" aria-label="${ok ? 'Sello conseguido' : 'Sin sello todavía'}"><svg viewBox="0 0 24 24" aria-hidden="true">${ok ? '<path d="M6 12.5l4 4 8-9"/>' : SEN.IC[s.id]}</svg></span></a>`;
+    }).join('');
+  }
+  (function videoSentidos() {
+    const vid = $('#senVideo'), cab = $('#senCab'), bP = $('#senPausa'), bS = $('#senSonido');
+    if (!vid) return;
+    let quiere = !quieto(), visible = false;
+    const pinta = () => {
+      const play = !vid.paused;
+      cab.classList.toggle('en-pausa', !play);
+      bP.setAttribute('aria-label', play ? 'Pausar el vídeo' : 'Ver el vídeo');
+      bP.innerHTML = play ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/></svg>' : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
+      bS.setAttribute('aria-pressed', String(!vid.muted));
+      bS.querySelector('span').textContent = vid.muted ? 'Activar sonido' : 'Quitar sonido';
+    };
+    const intenta = () => { if (quiere && visible) { const p = vid.play(); if (p && p.catch) p.catch(() => { quiere = false; pinta(); }); } else vid.pause(); };
+    vid.muted = true; vid.volume = .6;
+    ['play', 'pause', 'volumechange'].forEach(e => vid.addEventListener(e, pinta));
+    bP.addEventListener('click', () => { quiere = vid.paused; if (quiere) { visible = true; intenta(); } else vid.pause(); });
+    bS.addEventListener('click', () => { vid.muted = !vid.muted; if (!vid.muted) { quiere = true; visible = true; intenta(); } });
+    // Solo se reproduce mientras se ve (ahorra batería en tabletas y móviles).
+    if ('IntersectionObserver' in window) new IntersectionObserver(es => { visible = es[0].isIntersecting; intenta(); }, { threshold: .35 }).observe(vid);
+    else { visible = true; intenta(); }
+    $('#btnCalma').addEventListener('click', () => { if (quieto()) { quiere = false; vid.pause(); } });
+    pinta();
+  })();
+  pintaSentidos();
+  addEventListener('pageshow', pintaSentidos);
+
   /* ---------- eventos ---------- */
   function irAJuegos() { $('#juegos').scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); }
   document.addEventListener('click', ev => {
@@ -324,6 +383,7 @@
     const nv = ev.target.closest('.novedad');
     if (nv && nv.dataset.cat) { ev.preventDefault(); filtroCat = nv.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const c = ev.target.closest('.cat');
+    if (c && c.dataset.cat === 'sentidos' && $('#sentidos')) { $('#sentidos').scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); return; }
     if (c) { filtroCat = c.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const p = ev.target.closest('.pestana');
     if (p) { filtroCat = p.dataset.cat; pintaFiltros(); filtra(); return; }

@@ -3,7 +3,8 @@ const { test, expect } = require('@playwright/test');
 
 const MINIJUEGOS = ['cuenta', 'series', 'cestas', 'tamanos', 'parejas', 'formas', 'cuento', 'construye',
   'quepasa', 'emociones', 'muevete', 'caza', 'robot', 'duo', 'escape',
-  'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento'];
+  'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento',
+  'sentidos', 'oido', 'vista', 'olfato', 'gusto', 'tacto'];
 const TODOS = ['lolo', 'caja', 'jardin', ...MINIJUEGOS, 'tinta'];
 
 // Programas correctos para los 5 mapas del robot.
@@ -76,6 +77,16 @@ async function resolverReto(page, id, reto) {
       case 'viento':
         for (let i = 0; i < 3; i++) { pulsa(boton('Soplar')); await dormir(30); }
         pulsa(z.querySelector('[data-listo] .big')); break;
+      // Los sentidos
+      case 'sentidos': case 'tacto': await probarTodas('.opts .opt'); break;
+      case 'oido': pulsa(z.querySelector('.escuchar')); await dormir(30); await probarTodas('.opts .opt'); break;
+      case 'vista': await probarTodas('.escondido'); break;
+      case 'olfato': case 'gusto':
+        if (z.querySelector('.piezas .pieza')) {
+          for (const p of [...z.querySelectorAll('.piezas .pieza')])
+            for (const c of z.querySelectorAll('.cesta')) { if (p.disabled) break; pulsa(p); pulsa(c); await dormir(20); }
+        } else await probarTodas('.opts .opt');
+        break;
       case 'construye': pulsa(boton('construido')); await dormir(80); for (const b of z.querySelectorAll('.chk')) { pulsa(b); await dormir(15); } break;
       case 'quepasa':
         if (!z.querySelector('.votos') && z.querySelector('.opts .opt')) { pulsa(z.querySelector('.opts .opt')); await dormir(300); }
@@ -108,21 +119,21 @@ async function resolverReto(page, id, reto) {
 }
 
 test.describe('Menú', () => {
-  test('carga sin errores y muestra los 26 juegos por categorías', async ({ page }) => {
+  test('carga sin errores y muestra los 32 juegos por categorías', async ({ page }) => {
     await abrir(page);
     await expect(page).toHaveTitle('La visita de Lolo');
     await page.click('#btnMenu');
-    await expect(page.locator('.jcard')).toHaveCount(26);
-    await expect(page.locator('.cat')).toHaveCount(7);
+    await expect(page.locator('.jcard')).toHaveCount(32);
+    await expect(page.locator('.cat')).toHaveCount(8);
   });
 
   test('filtra por edad', async ({ page }) => {
     await abrir(page);
     await page.click('#btnMenu');
     await page.click('.edad-f[data-e="3"]');
-    await expect(page.locator('.jcard')).toHaveCount(20);
+    await expect(page.locator('.jcard')).toHaveCount(25);
     await page.click('.edad-f[data-e="5"]');
-    await expect(page.locator('.jcard')).toHaveCount(22);
+    await expect(page.locator('.jcard')).toHaveCount(28);
   });
 
   test('abre un juego desde el menú', async ({ page }) => {
