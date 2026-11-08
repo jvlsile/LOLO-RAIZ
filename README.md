@@ -24,7 +24,7 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 | Trazos | La tinta de Lolo (vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral) |
 | Los sentidos | ¿Con qué lo notas? · ¿Qué suena? · La linterna de Lolo · La nariz de Lolo · ¿A qué sabe? · La bolsa misteriosa |
 
-Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos.
+Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos. Hay más documentación en la [wiki](https://github.com/jvlsile/VISITA-DE-LOLO-/wiki).
 
 Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#formas`, `…/jugar.html#robot`, `…/jugar.html#caja` o `…/jugar.html#tinta`.
 
@@ -90,6 +90,7 @@ manifest.webmanifest    Permite instalarla como aplicación en tablets
 sw.js                   Modo sin conexión
 tests/                  Pruebas automáticas (portada y juegos)
 PRODUCT.md, DESIGN.md   Producto y sistema visual documentados
+wiki/                   Páginas de la wiki (se copian solas a la wiki de GitHub)
 ```
 
 ## Privacidad
