@@ -2,7 +2,8 @@
 
 Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital, tablet y móvil. Lolo, un pulpo, guía a la clase con voz, pictogramas y sin necesidad de leer.
 
-- **26 juegos** en siete categorías (entre ellas, siete juegos de otoño y los ocho trazos de grafomotricidad), con filtro por edad.
+- **32 juegos** en ocho categorías (entre ellas, siete juegos de otoño, los ocho trazos de grafomotricidad y seis juegos de los sentidos), con filtro por edad.
+- **Los sentidos**: seis juegos (uno por sentido y otro que los relaciona), un pasaporte de sellos para la clase, sección propia en la portada con vídeo de cabecera, y fichas para imprimir con registro de observación (`fichas-sentidos.html`).
 - **Rutinas para ciclos de 5 días** basadas en el currículo de Infantil de Andalucía (Decreto 100/2023 y Orden de 30 de mayo de 2023).
 - **Apoyos para alumnado con autismo**, útiles para toda la clase: agenda visual con «Ahora» y «Después», final anunciado, modo tranquilo, rincón de la calma, y la opción de arrastrar o tocar.
 - Sin puntos ni rankings: el progreso es colectivo y se ve en **el jardín de la clase**.
@@ -21,6 +22,7 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 | Ciencia y manipulación | ¿Qué pasa si…? · Toca, construye y comprueba · Caza mágica |
 | El otoño | Las hojas del otoño · El árbol y las estaciones · ¿Qué nos ponemos? · Adivina el fruto del otoño · Los animales en otoño · El puesto de castañas · El viento de otoño |
 | Trazos | La tinta de Lolo (vertical, horizontal, curva, círculo, zigzag, onda, cruz y espiral) |
+| Los sentidos | ¿Con qué lo notas? · ¿Qué suena? · La linterna de Lolo · La nariz de Lolo · ¿A qué sabe? · La bolsa misteriosa |
 
 Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos.
 
@@ -46,7 +48,7 @@ Después abre <http://localhost:4173>. Abrir `index.html` con doble clic tambié
 
 ## Pruebas automáticas
 
-Las pruebas recorren la portada (filtros, lanzar un juego, recientes) y juegan los 26 juegos de principio a fin (en La tinta de Lolo, trazando con el ratón de verdad) en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
+Las pruebas recorren la portada (filtros, lanzar un juego, recientes) y juegan los 32 juegos de principio a fin (en La tinta de Lolo, trazando con el ratón de verdad) en tres tamaños de pantalla (pizarra 1920×1080, portátil 1366×768 y móvil). También comprueban que no hay errores en la consola, que nada se sale de la pantalla y que se puede arrastrar.
 
 ```bash
 npm ci
@@ -73,10 +75,13 @@ La dirección es <https://jvlsile.github.io/VISITA-DE-LOLO-/>.
 index.html              Portada: elegir y lanzar juegos
 css/portada.css         Estilos de la portada
 js/portada.js           Lógica de la portada
-jugar.html              Los 26 juegos
+jugar.html              Los 32 juegos
 fichas.html             Generador de fichas de trazos para imprimir (css/fichas.css, js/fichas.js)
 tres.html               Modo 3 años: catorce juegos para los más peques (css/tres.css, js/tres.js)
 fichas-3.html           Fichas para 3 años: gomets, punzón, flecos y colorear (js/fichas-3.js)
+fichas-sentidos.html    Fichas de los sentidos, diploma y registro de observación (js/fichas-sentidos.js)
+js/sentidos-dibujos.js  Dibujos de los sentidos que comparten juegos, portada y fichas
+video/                  Vídeo de cabecera de la sección de los sentidos (y su imagen fija)
 css/estilos.css         Estilos de los juegos
 js/app.js               Toda la lógica de los juegos
 fonts/                  Fuentes Fredoka y Nunito alojadas en el propio sitio
@@ -91,7 +96,7 @@ PRODUCT.md, DESIGN.md   Producto y sistema visual documentados
 
 - La web **no recoge ningún dato** y no usa cookies, analítica ni servicios de terceros (las fuentes van incluidas).
 - El botón **«Invítame a un café»** (portada y fichas) es un simple enlace a una página de donación de PayPal: no carga nada de PayPal hasta que alguien lo pulsa, y se abre en otra pestaña. No aparece dentro de los juegos.
-- Solo guarda en el propio navegador algunas preferencias: la voz elegida, el modo tranquilo, el filtro de edad y los logros del jardín.
+- Solo guarda en el propio navegador algunas preferencias: la voz elegida, el modo tranquilo, el filtro de edad, los logros del jardín y los sellos del pasaporte de los sentidos.
 - La voz la genera el navegador del dispositivo. En Microsoft Edge, las voces naturales (Elvira, Álvaro) se procesan en los servidores de Microsoft.
 
 ## Antes de usarlo con alumnos

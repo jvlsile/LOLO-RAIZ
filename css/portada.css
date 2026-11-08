@@ -12,7 +12,7 @@
   --tinta:#13263F; --tinta-2:#4F6379; --tinta-3:#6E8196;
   --mar-claro:#7FDCD8; --mar:#1B91B0; --mar-hondo:#137A99; --abismo:#0B4767;
   --lolo:#FF7A2F; --sol:#FFC53D; --sol-hondo:#E5A40E;
-  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B; --c-trazos:#0B7A8F;
+  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B; --c-trazos:#0B7A8F; --c-sentidos:#5B5BD6;
   --f-titulo:"Fredoka", ui-rounded, system-ui, sans-serif;
   --f-texto:"Nunito", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -335,12 +335,95 @@ svg{flex:none}
 /* Modo tranquilo y movimiento reducido: sin movimiento continuo; quedan fundidos breves */
 .calma #lolo .cuerpo,.calma #lolo .tent,.calma #lolo .saludo,.calma .orbita,.calma .orbe-in,.calma .lanzador-ic{animation:none}
 .calma #burbujas{display:none}
+/* ---------- Los sentidos: categoría destacada y sección con vídeo ---------- */
+.cat.cat-sen{grid-column:1/-1;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"ic b tira" "ic h tira" "ic p tira" "ic n tira";align-items:center;align-content:center;column-gap:22px;row-gap:6px;min-height:0}
+.cat-sen .cat-nuevo{position:relative;top:auto;right:auto;grid-area:b;justify-self:start}
+.cat-sen h3{grid-area:h;margin-top:0}
+.cat-sen p{grid-area:p}
+.cat-sen .cat-ic{grid-area:ic;width:72px;height:72px;border-radius:22px}
+.cat-sen .cat-ic svg{width:38px;height:38px}
+.cat-sen .cat-n{grid-area:n}
+.cat-sentidos{grid-area:tira;position:relative;z-index:1;display:flex;gap:10px}
+.cat-sentidos span{display:grid;place-items:center;width:64px;height:64px;padding:8px;border-radius:18px;background:rgba(255,255,255,.85);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 18%,transparent);transition:transform 400ms var(--ease-out)}
+.cat-sentidos svg{display:block;width:48px;height:48px;overflow:visible}
+@media (hover:hover) and (pointer:fine){.cat-sen:hover .cat-sentidos span{transform:translateY(-4px)}.cat-sen:hover .cat-sentidos span:nth-child(2n){transform:translateY(-8px) rotate(4deg)}}
+
+.sen{scroll-margin-top:calc(var(--nav-h) + 8px)}
+.sen-cab{position:relative;display:flex;align-items:flex-end;min-height:clamp(380px,52vh,560px);border-radius:var(--r-lg);overflow:hidden;isolation:isolate;background:#1B91B0 url("../video/lolo-sentidos.jpg") center/cover no-repeat;box-shadow:var(--sombra-3)}
+.sen-video{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:62% 40%}
+.sen-velo{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,40,70,.86) 0%,rgba(9,40,70,.62) 34%,rgba(9,40,70,0) 62%),linear-gradient(0deg,rgba(9,40,70,.55) 0%,rgba(9,40,70,0) 40%)}
+.sen-texto{display:grid;gap:12px;max-width:min(560px,58%);padding:clamp(24px,4vw,48px);color:#fff}
+.sen-ante{display:inline-flex;align-items:center;gap:8px;margin:0;font:800 .82rem var(--f-texto);letter-spacing:.08em;text-transform:uppercase;color:#FFE08A}
+.sen-ante .punto{width:8px;height:8px;border-radius:50%;background:#FFE08A;box-shadow:0 0 0 4px rgba(255,224,138,.25)}
+.sen-texto h2{font:700 clamp(2.2rem,4.4vw,3.6rem)/1.02 var(--f-titulo);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.sen-sub{margin:0;max-width:46ch;font-size:clamp(1rem,1.3vw,1.12rem);color:#E8F7FB}
+.sen-acciones{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.sen-ctrl{position:absolute;right:16px;bottom:16px;display:flex;gap:8px}
+.sen-btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border:0;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;font:800 .9rem var(--f-texto);cursor:pointer;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color 160ms ease,transform 160ms var(--ease-out)}
+.sen-btn:active{transform:scale(.96)}
+.sen-btn svg{width:20px;height:20px;fill:currentColor;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sen-btn-ic{width:44px;padding:0;justify-content:center}
+.sen-btn-ic svg{stroke:none}
+.sen-btn[aria-pressed="true"]{background:#fff;color:var(--tinta)}
+@media (hover:hover) and (pointer:fine){.sen-btn:hover{background:rgba(255,255,255,.3)}.sen-btn[aria-pressed="true"]:hover{background:#fff}}
+
+.sen-pasaporte{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;margin:18px 0 16px;padding:14px 20px;border-radius:var(--r);background:#FFFBEF;box-shadow:inset 0 0 0 2px #F3E2AE}
+.sen-pas-t{display:grid;gap:2px}
+.sen-pas-t b{font:700 1.1rem var(--f-titulo)}
+.sen-pas-t span{color:var(--tinta-2);font-size:.92rem}
+.sen-sellos{display:flex;gap:10px;flex-wrap:wrap}
+.sen-sello{display:grid;place-items:center;width:46px;height:46px;border:2.5px dashed #D7C285;border-radius:50%;color:#C9B37A}
+.sen-sello svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.sen-sello.si{border:2.5px solid #fff;background:var(--sc);color:#fff;rotate:-8deg;box-shadow:0 0 0 2.5px var(--sc)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.sen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sen-card{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:16px;min-width:0;padding:16px 18px 16px 16px;border-radius:var(--r-lg);background:var(--superficie);color:var(--tinta);text-decoration:none;box-shadow:var(--sombra-1),inset 0 0 0 1px var(--linea);transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease-out);animation:senEntra .6s var(--ease-out) both;animation-delay:calc(var(--i) * 70ms)}
+@keyframes senEntra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sen-card-dib{display:grid;place-items:center;width:86px;height:86px;border-radius:24px;background:radial-gradient(120% 100% at 30% 20%,color-mix(in srgb,var(--sc) 10%,#fff),color-mix(in srgb,var(--sc) 26%,#fff))}
+.sen-card-dib svg{display:block;width:64px;height:64px;overflow:visible;transition:transform 400ms var(--ease-out)}
+.sen-card-tx{display:grid;gap:3px;min-width:0;padding-right:30px}
+.sen-card-tx small{font:800 .76rem var(--f-texto);letter-spacing:.05em;text-transform:uppercase;color:var(--sc)}
+.sen-card-tx b{font:700 1.15rem/1.15 var(--f-titulo)}
+.sen-card-tx span{color:var(--tinta-2);font-size:.9rem;line-height:1.35}
+.sen-card-sello{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:30px;height:30px;border:2px dashed #D7C285;border-radius:50%;color:#C9B37A}
+.sen-card-sello svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sen-card-sello.si{border:0;background:var(--sc);color:#fff}
+.sen-card:active{transform:scale(.98)}
+@media (hover:hover) and (pointer:fine){.sen-card:hover{transform:translateY(-5px);box-shadow:var(--sombra-3),inset 0 0 0 1px var(--linea)}.sen-card:hover .sen-card-dib svg{transform:scale(1.08) rotate(-4deg)}}
+
+@media (max-width:1100px){.sen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cat-sentidos span{width:54px;height:54px}.cat-sentidos svg{width:40px;height:40px}}
+@media (max-width:860px){
+  .cat.cat-sen{grid-template-columns:auto minmax(0,1fr);grid-template-areas:"ic b" "ic h" "p p" "tira tira" "n n"}
+  .cat-sentidos{margin:6px 0 2px}
+  .sen-cab{min-height:0;flex-direction:column;align-items:stretch;justify-content:flex-end;padding-top:min(48vw,300px)}
+  .sen-velo{background:linear-gradient(0deg,rgba(9,40,70,.92) 0%,rgba(9,40,70,.75) 45%,rgba(9,40,70,0) 75%)}
+  .sen-video{object-position:50% 20%}
+  .sen-texto{max-width:none}
+  .sen-ctrl{top:14px;bottom:auto;right:14px}
+}
+@media (max-width:560px){
+  .sen-grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .sen-card{padding:12px 14px 12px 12px;gap:12px}
+  .sen-card-dib{width:68px;height:68px;border-radius:20px}
+  .sen-card-dib svg{width:50px;height:50px}
+  .sen-acciones .btn{width:100%;justify-content:flex-start}
+  .sen-acciones .btn-cristal{justify-content:center}
+  .sen-btn span{display:none}
+  .sen-btn{width:44px;padding:0;justify-content:center}
+  .cat-sentidos{gap:6px}
+  .cat-sentidos span{width:46px;height:46px;padding:6px;border-radius:14px}
+  .cat-sentidos svg{width:34px;height:34px}
+}
+html.calma .sen-card{animation:none}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   #lolo .cuerpo,#lolo .tent,#lolo .saludo,#lolo .ojo,.orbita,.orbe-in,.lanzador-ic,.js .hero-lolo{animation:none}
   .js .novedad,.js .hero h1 .linea,.js .hero-sub,.js .hero-cta,.js .hero-datos,.ficha .ficha-cuerpo > *,.tarjeta.entra{animation:fundir 200ms ease both}
   .revela{transform:none;transition:opacity 200ms ease}
   .ficha{transition:transform 1ms}
+  .sen-card{animation:none}
 }
 @keyframes fundir{from{opacity:0}to{opacity:1}}
 

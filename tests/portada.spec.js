@@ -10,13 +10,13 @@ test.beforeEach(async ({ page }) => {
 });
 test.afterEach(() => { expect(errores, 'errores en la consola').toEqual([]); });
 
-test('muestra la portada con Lolo, las categorías y los 26 juegos', async ({ page }) => {
+test('muestra la portada con Lolo, las categorías y los 32 juegos', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('La visita de Lolo');
   await expect(page.locator('h1')).toContainText('Aprender jugando');
   await expect(page.locator('#ctaHoy')).toBeVisible();
-  await expect(page.locator('.cat')).toHaveCount(7);
-  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(26);
+  await expect(page.locator('.cat')).toHaveCount(8);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(32);
 });
 
 test('una categoría filtra los juegos y lleva hasta ellos', async ({ page }) => {
@@ -24,19 +24,19 @@ test('una categoría filtra los juegos y lleva hasta ellos', async ({ page }) =>
   await page.locator('.cat[data-cat="logica"]').click();
   await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(6);
   await expect(page.locator('.pestana[data-cat="logica"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('#cuantos')).toContainText('6 de 26 juegos');
+  await expect(page.locator('#cuantos')).toContainText('6 de 32 juegos');
 });
 
 test('filtra por edad y por búsqueda', async ({ page }) => {
   await page.goto('/');
   await page.click('#edades button[data-e="5"]');
-  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(22);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(28);
   await page.fill('#buscar', 'robot');
   await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(1);
   await page.fill('#buscar', 'xyz');
   await expect(page.locator('#vacio')).toBeVisible();
   await page.click('#limpiar');
-  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(26);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(32);
 });
 
 test('la ficha explica el juego y lo lanza', async ({ page }) => {

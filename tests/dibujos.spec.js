@@ -4,7 +4,8 @@ const { test, expect } = require('@playwright/test');
 
 const JUGAR = ['lolo', 'caja', 'jardin', 'cuenta', 'series', 'cestas', 'tamanos', 'parejas', 'formas', 'cuento', 'construye',
   'quepasa', 'emociones', 'muevete', 'caza', 'robot', 'duo', 'escape',
-  'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento', 'tinta'];
+  'hojas', 'arbol', 'ropa', 'frutos', 'bosque', 'castanas', 'viento', 'tinta',
+  'sentidos', 'oido', 'vista', 'olfato', 'gusto', 'tacto'];
 const TRES = ['burbujas', 'cara', 'animales', 'emociones', 'manos', 'colores', 'cuenta', 'tamanos', 'primero', 'quiero', 'calma', 'turnos', 'numeros', 'banda'];
 
 test.beforeEach(async ({ page }) => {
@@ -85,7 +86,7 @@ for (const id of TRES) {
   });
 }
 
-for (const pagina of ['/fichas.html', '/fichas-3.html']) {
+for (const pagina of ['/fichas.html', '/fichas-3.html', '/fichas-sentidos.html']) {
   test(`${pagina}: los dibujos caben en sus tarjetas`, async ({ page }) => {
     await page.goto(pagina);
     await comprobar(page);

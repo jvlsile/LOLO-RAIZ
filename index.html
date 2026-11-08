@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>La visita de Lolo</title>
-<meta name="description" content="26 juegos de Educación Infantil para la pizarra digital, guiados por Lolo el pulpo. Rutinas, lógica, emociones, cooperación, ciencia, otoño y trazos.">
+<meta name="description" content="32 juegos de Educación Infantil para la pizarra digital, guiados por Lolo el pulpo. Rutinas, lógica, emociones, cooperación, ciencia, otoño y trazos.">
 <meta name="theme-color" content="#137A99">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
@@ -58,15 +58,15 @@
     <canvas id="burbujas" aria-hidden="true"></canvas>
     <div class="hero-in">
       <div class="hero-texto">
-        <a class="novedad" href="tres.html"><span class="novedad-tag">Nuevo</span>Modo 3 años: juegos y fichas para los más peques<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="novedad" href="#sentidos"><span class="novedad-tag">Nuevo</span>Los cinco sentidos: seis juegos, fichas y pasaporte<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <h1 id="titulo"><span class="linea">Aprender jugando</span> <span class="linea">con Lolo</span></h1>
-        <p class="hero-sub">26 juegos de Educación Infantil para la pizarra digital. Elige uno, tócalo y la clase empieza a jugar con Lolo.</p>
+        <p class="hero-sub">32 juegos de Educación Infantil para la pizarra digital. Elige uno, tócalo y la clase empieza a jugar con Lolo.</p>
         <div class="hero-cta">
           <a class="btn btn-grande btn-sol" id="ctaHoy" href="jugar.html#lolo" data-id="lolo">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
             <span><b id="ctaHoyT">Empezar la rutina de hoy</b><small id="ctaHoyS">La visita de Lolo</small></span>
           </a>
-          <a class="btn btn-grande btn-cristal" href="#juegos">Ver los 26 juegos</a>
+          <a class="btn btn-grande btn-cristal" href="#juegos">Ver los 32 juegos</a>
         </div>
         <ul class="hero-datos" aria-label="Características">
           <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/></svg>De 3 a 5 años</li>
@@ -110,6 +110,30 @@
         <a class="extra revela" href="tres.html" style="--c:var(--c-rutinas)"><span class="extra-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="6"/><path d="M8 15l-2 5M11 16l-1 5M13 16l1 5M16 15l2 5"/><circle cx="10" cy="9.5" r=".8" fill="currentColor"/><circle cx="14" cy="9.5" r=".8" fill="currentColor"/></svg></span><span class="extra-tx"><b>Modo 3 años</b><small>Catorce juegos cortos: dos opciones y solo tocar.</small></span><svg class="extra-fl" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
+  </section>
+
+  <section class="seccion sen" id="sentidos" aria-labelledby="tSentidos">
+    <div class="sen-cab" id="senCab">
+      <video class="sen-video" id="senVideo" muted loop playsinline preload="metadata" poster="video/lolo-sentidos.jpg" aria-hidden="true" tabindex="-1">
+        <source src="video/lolo-sentidos.mp4" type="video/mp4">
+      </video>
+      <div class="sen-velo" aria-hidden="true"></div>
+      <div class="sen-texto">
+        <p class="sen-ante"><span class="punto"></span>Nueva categoría · De 3 a 5 años</p>
+        <h2 id="tSentidos">Los cinco sentidos</h2>
+        <p class="sen-sub">Seis juegos para descubrir con Lolo cómo vemos, oímos, olemos, saboreamos y tocamos. Cada juego terminado pone un sello en el pasaporte de la clase.</p>
+        <div class="sen-acciones">
+          <a class="btn btn-grande btn-sol" href="jugar.html#sentidos" data-id="sentidos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg><span><b>Empezar a jugar</b><small>¿Con qué lo notas?</small></span></a>
+          <a class="btn btn-grande btn-cristal" href="fichas-sentidos.html">Fichas y evaluación</a>
+        </div>
+      </div>
+      <div class="sen-ctrl">
+        <button class="sen-btn" id="senSonido" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9q1.5 3 0 6M18 7q3 5 0 10" fill="none"/></svg><span>Activar sonido</span></button>
+        <button class="sen-btn sen-btn-ic" id="senPausa" type="button" aria-label="Pausar el vídeo"></button>
+      </div>
+    </div>
+    <div class="sen-pasaporte" id="senPasaporte"></div>
+    <div class="sen-grid" id="senGrid"></div>
   </section>
 
   <section class="seccion" id="juegos" aria-labelledby="tJuegos">
@@ -202,6 +226,7 @@
 
 <div class="lanzador" id="lanzador" aria-hidden="true"><div class="lanzador-in"><span class="lanzador-ic" id="lanzadorIc"></span><span class="lanzador-t" id="lanzadorT"></span></div></div>
 
+<script src="js/sentidos-dibujos.js"></script>
 <script src="js/portada.js"></script>
 </body>
 </html>

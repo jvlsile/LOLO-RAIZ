@@ -1,6 +1,6 @@
 # Las voces de Lolo · guion y prompts para generar los audios
 
-Todo lo que dice Lolo está en **`audio/guion.csv`**: son **909 audios** (unos 52 000 caracteres).
+Todo lo que dice Lolo está en **`audio/guion.csv`**: son **1162 audios** (unos 65 000 caracteres).
 
 - **869 frases completas.**
 - **40 palabras sueltas** (colores, números, formas, direcciones…). El juego las encadena para las frases que cambian cada vez, como «Mirad la fila: rojo, azul, rojo… ¿Y ahora qué va?».

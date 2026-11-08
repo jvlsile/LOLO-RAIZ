@@ -1,5 +1,21 @@
 # Cambios
 
+## 1.9.0 · noviembre de 2026
+
+- **Nueva categoría: Los sentidos.** Seis juegos con cinco retos cada uno, ayuda al segundo fallo y actividad final sin pantalla:
+  - **¿Con qué lo notas?**: relacionar oler una flor, oír un tambor, ver el arcoíris, probar un helado o tocar un osito con el órgano de su sentido.
+  - **¿Qué suena?**: sonidos sintetizados (tambor, campana, silbato, maracas, pájaro y lluvia) que solo suenan al tocar «Escuchar»; también fuerte o flojito y contar campanadas.
+  - **La linterna de Lolo**: el fondo del mar a oscuras; se mueve la luz con el dedo para encontrar lo que pide Lolo.
+  - **La nariz de Lolo**: huele bien o huele mal, y qué hacer si huele a humo.
+  - **¿A qué sabe?**: dulce, salado y ácido; después, poner cada comida en su plato.
+  - **La bolsa misteriosa**: adivinar con pistas de tacto; con menos pistas se ganan más estrellas.
+- **Pasaporte de los sentidos**: cada juego terminado pone un sello (se guarda en el navegador). Con los seis, diploma para imprimir.
+- Portada: la categoría aparece destacada y tiene sección propia con vídeo de Lolo como cabecera (sin sonido hasta que se activa y solo mientras se ve; en modo tranquilo no arranca solo), el pasaporte de la clase y los seis juegos.
+- `fichas-sentidos.html`: ocho fichas A4 (unir, olores, sabores, sonidos, tacto, veo veo, pasaporte y diploma) y un registro de observación para la docente, con opción de dibujos solo con línea.
+- Guía docente: sección de los sentidos con secuencia, gamificación, sensibilidad sensorial, seguridad (alergias y humo) y criterios de evaluación de referencia.
+- 253 frases nuevas en el guion de audios (1162 en total).
+- Pruebas: los seis juegos se juegan enteros en todos los tamaños; nuevas pruebas de la sección, el pasaporte y las fichas.
+
 ## 1.8.2 · noviembre de 2026
 
 - Juego a dúo: los colores para elegir son ahora manchas de pintura tipo salpicadura, cada una con su forma.
