@@ -13,12 +13,14 @@ python3 -m http.server 4173
 
 ```
 index.html              Portada: elegir y lanzar juegos (css/portada.css, js/portada.js)
-jugar.html              Los 32 juegos (css/estilos.css, js/app.js)
+jugar.html              Los 38 juegos (css/estilos.css, js/app.js)
 tres.html               Modo 3 años (css/tres.css, js/tres.js)
 fichas.html             Fichas de trazos (css/fichas.css, js/fichas.js)
 fichas-3.html           Fichas para 3 años (js/fichas-3.js)
 fichas-sentidos.html    Fichas de los sentidos y registro (js/fichas-sentidos.js)
 js/sentidos-dibujos.js  Dibujos de los sentidos compartidos por juegos, portada y fichas
+fichas-cuerpo.html      Fichas del cuerpo y registro (js/fichas-cuerpo.js)
+js/cuerpo-dibujos.js    Nico y las partes del cuerpo, compartidos por juegos, portada y fichas
 video/                  Vídeo de cabecera de los sentidos y su imagen fija
 audio/                  Guion (guion.csv) y audios grabados
 fonts/, icons/          Fuentes e iconos alojados en el propio sitio

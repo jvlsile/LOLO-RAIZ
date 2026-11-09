@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fichas del cuerpo · La visita de Lolo</title>
+<meta name="description" content="Fichas para imprimir sobre las partes del cuerpo para 3 años: colorear, gomets, la cara, montar a Nico, qué falta, tarjetas, pasaporte, diploma y registro de observación.">
+<meta name="theme-color" content="#137A99">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/portada.css">
+<link rel="stylesheet" href="css/fichas.css">
+<style>
+  .chip-dib{min-height:64px}
+  .chip-dib .chip-ic{width:52px;height:46px;padding:4px;background:#F7FAFB}
+  .chip-dib .chip-ic svg{width:100%;height:100%;stroke:none;fill:none}
+  .chip-dib .chip-ic svg.ic-linea{fill:none;stroke:var(--tinta-3);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .chip-dib[aria-pressed="true"] .chip-ic{background:#fff}
+  .chip-trazo[aria-pressed="true"]{border-color:var(--c-cuerpo);background:color-mix(in srgb,var(--c-cuerpo) 7%,#fff)}
+  .chip-trazo[aria-pressed="true"] .chip-t b{color:var(--c-cuerpo)}
+  .chip-trazo[aria-pressed="true"] .chip-ok{background:var(--c-cuerpo)}
+  .disenos-sen{display:grid;gap:8px}
+  .hoja .ficha-sen{display:block;width:210mm;height:296.8mm}
+  .ficha-sen text{font-family:var(--f-texto);fill:var(--tinta)}
+  .ficha-sen .t-ante{font:800 3px var(--f-texto);letter-spacing:.3px;text-transform:uppercase;fill:var(--tinta-3)}
+  .ficha-sen .t-titulo{font:600 8px var(--f-titulo)}
+  .ficha-sen .t-ins{font:700 4.4px var(--f-texto)}
+  .ficha-sen .t-campo{font:800 3.2px var(--f-texto);fill:var(--tinta-3)}
+  .ficha-sen .t-pie{font:700 2.6px var(--f-texto);fill:var(--tinta-3)}
+  .ficha-sen .t-ley{font:700 4.6px var(--f-titulo)}
+  .ficha-sen .t-ley-g{font:600 5.6px var(--f-titulo)}
+  .ficha-sen .t-mini{font:700 3px var(--f-texto);fill:var(--tinta-2)}
+  .ficha-sen .t-hueco{font:700 3px var(--f-texto);fill:var(--tinta-3)}
+  .ficha-sen .t-nota{font:700 3.6px var(--f-texto)}
+  .ficha-sen .t-dip-a{font:600 7px var(--f-titulo);fill:var(--tinta-2)}
+  .ficha-sen .t-dip{font:600 10px var(--f-titulo)}
+  .ficha-sen .t-th{font:800 3.4px var(--f-texto)}
+  .ficha-sen .t-ind{font:700 3.2px var(--f-texto)}
+</style>
+</head>
+<body class="pag-fichas">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><radialGradient id="gLolo" cx=".38" cy=".3" r=".75"><stop offset="0" stop-color="#FFCB8A"/><stop offset=".5" stop-color="#FF8A3D"/><stop offset="1" stop-color="#DE5A18"/></radialGradient></defs>
+</svg>
+
+<a class="saltar" href="#opciones">Ir a las opciones</a>
+
+<header class="nav solida">
+  <div class="nav-in">
+    <a class="logo" href="./" aria-label="La visita de Lolo, inicio">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="22" r="17" fill="url(#gLolo)"/><circle cx="18" cy="21" r="4.6" fill="#fff"/><circle cx="30" cy="21" r="4.6" fill="#fff"/><circle cx="19" cy="22" r="2.3" fill="#13263F"/><circle cx="31" cy="22" r="2.3" fill="#13263F"/><path d="M19 29q5 4 10 0" stroke="#13263F" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      <span>La visita de Lolo</span>
+    </a>
+    <nav class="enlaces" aria-label="Secciones">
+      <a href="./#cuerpo">Juegos del cuerpo</a>
+      <a href="fichas.html">Fichas de trazos</a>
+    </nav>
+    <div class="nav-acciones">
+      <a class="btn btn-sm btn-cafe" href="https://www.paypal.com/donate/?hosted_button_id=KGQEKG4Y45SCW" target="_blank" rel="noopener noreferrer" aria-label="Invítame a un café: donar con PayPal (se abre en otra pestaña)" title="Si te resulta útil, puedes invitarme a un café"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3M12 3.5c0 1.5 1.5 1.5 1.5 3"/></svg><span>Invítame a un café</span></a>
+      <button class="btn btn-sm btn-primario imprimir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Imprimir</button>
+    </div>
+  </div>
+</header>
+
+<main class="fichas-main">
+  <div class="fichas-cab">
+    <p class="antetitulo"><span class="punto"></span>El cuerpo · Para imprimir · 3 años</p>
+    <h1>Fichas del cuerpo</h1>
+    <p>Ocho fichas A4 para 3 años, con Nico: colorear, pegar gomets, completar la cara, montar la figura, descubrir qué falta y tarjetas de vocabulario, más un registro de observación para evaluar a toda la clase.</p>
+  </div>
+
+  <div class="fichas-grid">
+    <form class="panel" id="opciones" aria-label="Opciones de las fichas">
+      <fieldset>
+        <legend class="leg-acc"><span>Fichas</span><span class="panel-acc"><button type="button" class="enlace" id="todos">Todas</button><span aria-hidden="true">·</span><button type="button" class="enlace" id="ninguno">Ninguna</button></span></legend>
+        <div class="disenos-sen" id="disenos"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Detalles</legend>
+        <label class="interruptor"><input type="checkbox" id="opNombre"><span class="pista"></span>Nombre y fecha</label>
+        <label class="interruptor"><input type="checkbox" id="opTinta"><span class="pista"></span>Dibujos solo con línea (para colorear y ahorrar tinta)</label>
+      </fieldset>
+
+      <div class="panel-pie">
+        <p class="resumen" id="resumen" aria-live="polite"></p>
+        <button class="btn btn-grande btn-primario imprimir" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2M7 14h10v7H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Imprimir</button>
+        <p class="nota">Al imprimir, elige <b>A4</b>, <b>vertical</b> y escala <b>100 %</b>. Las piezas de «Monta a Nico» y las tarjetas las recorta la maestra.</p>
+      </div>
+    </form>
+
+    <section class="vista" aria-label="Vista previa de las hojas">
+      <p class="vacio" id="vacio" hidden>Elige al menos una ficha para verla aquí.</p>
+      <div class="hojas" id="hojas"></div>
+    </section>
+  </div>
+</main>
+
+<script src="js/sentidos-dibujos.js"></script>
+<script src="js/cuerpo-dibujos.js"></script>
+<script src="js/fichas-cuerpo.js"></script>
+</body>
+</html>

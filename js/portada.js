@@ -44,6 +44,8 @@
   };
   const SEN = window.LOLO_SENTIDOS || null;
   if (SEN) Object.assign(IC, SEN.IC);
+  const CU = window.LOLO_CUERPO || null;
+  if (CU) Object.assign(IC, CU.IC);
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
   const PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>';
 
@@ -56,7 +58,8 @@
     { k: 'ciencia', t: 'Ciencia y manipulación', corto: 'Ciencia', c: 'var(--c-ciencia)', ic: 'quepasa', d: 'Predecir, experimentar y construir de verdad.' },
     { k: 'otono', t: 'El otoño', corto: 'Otoño', c: 'var(--c-otono)', ic: 'hoja', d: 'Hojas, frutos, animales, ropa y tiempo de esta estación.' },
     { k: 'trazos', t: 'Trazos', corto: 'Trazos', c: 'var(--c-trazos)', ic: 'tinta', d: 'Los ocho trazos de la grafomotricidad, con la tinta de Lolo.' },
-    { k: 'sentidos', t: 'Los sentidos', corto: 'Sentidos', c: 'var(--c-sentidos)', ic: 'sentidos', d: 'Oír, ver, oler, saborear y tocar: seis juegos, fichas y un pasaporte de sellos para toda la clase.', nuevo: true }
+    { k: 'sentidos', t: 'Los sentidos', corto: 'Sentidos', c: 'var(--c-sentidos)', ic: 'sentidos', d: 'Oír, ver, oler, saborear y tocar: seis juegos, fichas y un pasaporte de sellos para toda la clase.' },
+    { k: 'cuerpo', t: 'El cuerpo', corto: 'Cuerpo', c: 'var(--c-cuerpo)', ic: 'cuerpo', d: 'Cabeza, barriga, brazos, manos, piernas y pies con Nico: seis juegos y fichas pensados para 3 años.', nuevo: true }
   ];
   const cat = Object.fromEntries(CATS.map(c => [c.k, c]));
   // Los ocho trazos del cuaderno, en miniatura, para la tarjeta de la categoría Trazos.
@@ -126,7 +129,19 @@
     { id: 'gusto', t: '¿A qué sabe?', cat: 'sentidos', e: [3, 4, 5], d: 'Dulce, salado y ácido: adivinamos el sabor y ponemos la mesa.',
       tr: ['Sabores dulce, salado y ácido', 'Clasificar alimentos', 'Hábitos saludables y cuidado con las alergias'], como: 'Lolo prueba una comida y la clase elige su sabor. En los últimos retos, cada comida se lleva a su plato.' },
     { id: 'tacto', t: 'La bolsa misteriosa', cat: 'sentidos', e: [4, 5], d: 'Lolo toca algo sin verlo y da pistas: ¿es blando, áspero, frío o pincha?',
-      tr: ['Texturas: suave, áspero, duro, blando, frío', 'Comprensión oral e inferencia', 'Adivinar con pocas pistas'], como: 'Lolo da una pista de tacto y la clase elige entre tres cosas. Puede pedir otra pista (hasta tres): si aciertan con menos pistas, ganan más estrellas.' }
+      tr: ['Texturas: suave, áspero, duro, blando, frío', 'Comprensión oral e inferencia', 'Adivinar con pocas pistas'], como: 'Lolo da una pista de tacto y la clase elige entre tres cosas. Puede pedir otra pista (hasta tres): si aciertan con menos pistas, ganan más estrellas.' },
+    { id: 'cuerpo', t: '¿Dónde está?', cat: 'cuerpo', e: [3, 4], d: 'Lolo nombra una parte del cuerpo y la clase la toca en Nico.',
+      tr: ['Cabeza, barriga, brazos, manos, piernas y pies', 'Señalar y nombrar', 'Del dibujo al propio cuerpo'], como: 'Lolo dice una parte y un niño la toca en Nico. Al acertar, se ilumina y Lolo pide tocarla en el propio cuerpo.' },
+    { id: 'monta', t: 'Monta a Nico', cat: 'cuerpo', e: [3, 4], d: 'Llevar cada pieza a su hueco hasta montar a Nico entero.',
+      tr: ['La figura humana completa', 'Arriba, en el centro, a los lados y abajo', 'Motricidad fina: arrastrar o tocar'], como: 'Se lleva la cabeza, la barriga, los brazos y las piernas a su hueco sobre la silueta. Empieza con una pieza y termina con las seis.' },
+    { id: 'falta', t: '¿Qué le falta?', cat: 'cuerpo', e: [3, 4], d: 'A Nico le falta algo: un brazo, los ojos, la boca… ¿Qué es?',
+      tr: ['Atención y observación', 'Partes del cuerpo y de la cara', 'Vocabulario'], como: 'Nico aparece sin una parte y la clase la elige entre dos o tres dibujos. Si cuesta, se marca el hueco.' },
+    { id: 'sirve', t: '¿Para qué sirve?', cat: 'cuerpo', e: [3, 4], d: '¿Con qué aplaudimos, saltamos, abrazamos o damos una patada?',
+      tr: ['Funciones de las partes del cuerpo', 'Comprensión de preguntas', 'Movimiento después de cada respuesta'], como: 'Lolo hace una pregunta y la clase elige la parte del cuerpo. Después se prueba de verdad: aplaudir, saltar, abrazar.' },
+    { id: 'viste', t: 'Vestimos a Nico', cat: 'cuerpo', e: [3, 4, 5], d: 'Hace frío: gorro, bufanda, guantes y botas, cada uno en su sitio.',
+      tr: ['Prendas y partes del cuerpo', 'Autonomía al vestirse', 'El tiempo frío'], como: 'Se arrastra cada prenda a su sitio en Nico (o se toca la prenda y luego el sitio) y Nico se la pone.' },
+    { id: 'toca', t: 'Toca, toca', cat: 'cuerpo', e: [3, 4, 5], d: 'De pie: tocamos la cabeza, los hombros, las rodillas y los pies.',
+      tr: ['Esquema corporal', 'Escuchar y seguir una orden', 'Movimiento en grupo'], como: 'La parte se ilumina en Nico y la clase la toca en su cuerpo. La maestra pasa a la siguiente cuando todos están listos.' }
   ];
   const porId = Object.fromEntries(JUEGOS.map(j => [j.id, j]));
   const DIAS = [null, 'lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
@@ -140,8 +155,9 @@
     $('#listaCat').innerHTML = CATS.map(c => {
       const n = JUEGOS.filter(j => j.cat === c.k).length;
       const tira = c.k === 'trazos' ? `<span class="cat-trazos" aria-hidden="true">${TRAZOS_MINI.map(d => `<svg viewBox="0 0 24 24">${d}</svg>`).join('')}</span>`
-        : c.k === 'sentidos' && SEN ? `<span class="cat-sentidos" aria-hidden="true">${['ojo', 'oreja', 'nariz', 'boca', 'mano'].map(k => `<span>${SEN.dib(k)}</span>`).join('')}</span>` : '';
-      return `<button class="cat revela${c.k === 'trazos' ? ' cat-ancha' : ''}${c.k === 'sentidos' ? ' cat-ancha cat-sen' : ''}" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p>${tira}<span class="cat-n">${n} ${n === 1 ? 'juego' : 'juegos'} ${svg('flecha')}</span></button>`;
+        : c.k === 'sentidos' && SEN ? `<span class="cat-sentidos" aria-hidden="true">${['ojo', 'oreja', 'nariz', 'boca', 'mano'].map(k => `<span>${SEN.dib(k)}</span>`).join('')}</span>`
+        : c.k === 'cuerpo' && CU ? `<span class="cat-sentidos" aria-hidden="true">${['cabeza', 'tronco', 'brazo', 'pierna'].map(k => `<span>${CU.parte(k)}</span>`).join('')}<span>${CU.PIE}</span></span>` : '';
+      return `<button class="cat revela${c.k === 'trazos' ? ' cat-ancha' : ''}${c.k === 'sentidos' || c.k === 'cuerpo' ? ' cat-ancha cat-sen' : ''}" type="button" data-cat="${c.k}" style="--c:${c.c}">${c.nuevo ? '<span class="cat-nuevo">Nuevo</span>' : ''}<span class="cat-ic">${svg(c.ic)}</span><h3>${c.t}</h3><p>${c.d}</p>${tira}<span class="cat-n">${n} ${n === 1 ? 'juego' : 'juegos'} ${svg('flecha')}</span></button>`;
     }).join('');
   }
   function pintaFiltros() {
@@ -286,7 +302,7 @@
     $('#fichaTrabaja').innerHTML = j.tr.map(x => `<li>${x}</li>`).join('');
     $('#fichaComo').textContent = j.como;
     const btn = $('#fichaJugar'); btn.href = `jugar.html#${id}`; btn.dataset.id = id;
-    const imp = $('#fichaImprimir'); imp.hidden = !(id === 'tinta' || j.cat === 'sentidos'); imp.href = j.cat === 'sentidos' ? 'fichas-sentidos.html' : 'fichas.html';
+    const imp = $('#fichaImprimir'); imp.hidden = !(id === 'tinta' || j.cat === 'sentidos' || j.cat === 'cuerpo'); imp.href = j.cat === 'sentidos' ? 'fichas-sentidos.html' : j.cat === 'cuerpo' ? 'fichas-cuerpo.html' : 'fichas.html';
     fondo.hidden = false; ficha.hidden = false;
     const cuerpo = ficha.querySelector('.ficha-cuerpo'); cuerpo.scrollTop = 0;
     cuerpo.querySelectorAll(':scope > *').forEach(e => { e.style.animation = 'none'; void e.offsetWidth; e.style.animation = ''; });
@@ -373,6 +389,28 @@
   pintaSentidos();
   addEventListener('pageshow', pintaSentidos);
 
+
+  /* ---------- El cuerpo: cabecera con Nico, pasaporte y juegos ---------- */
+  function pintaCuerpo() {
+    if (!CU || !$('#cueGrid')) return;
+    const v = CU.leeSellos(), n = v.length, T = CU.SELLOS.length;
+    const DIB = { cuerpo: () => CU.parte('cabeza'), monta: () => `<svg viewBox="0 0 200 320" aria-hidden="true">${CU.nico({ piel: CU.PIELES[2], pelo: CU.PELOS[1], camiseta: CU.CAMISETAS[3] })}</svg>`, falta: () => CU.parte('brazo'), sirve: () => SEN ? SEN.dib('mano') : CU.PIE, viste: () => `<svg viewBox="0 0 200 320" aria-hidden="true">${CU.nico({ ropa: { gorro: 1, bufanda: 1, guantes: 1, botas: 1 }, piel: CU.PIELES[1] })}</svg>`, toca: () => `<svg viewBox="0 0 200 320" aria-hidden="true">${CU.nico({ saluda: true, piel: CU.PIELES[3], camiseta: CU.CAMISETAS[2] })}</svg>` };
+    $('#cuePasaporte').innerHTML = `<div class="sen-pas-t"><b>Pasaporte del cuerpo</b><span>${n === T ? '¡Completo! Ya podéis imprimir el diploma.' : n ? `${n} de ${T} sellos` : 'Cada juego terminado pone un sello'}</span></div>
+      <div class="sen-sellos">${CU.SELLOS.map(s => `<span class="sen-sello${v.includes(s.id) ? ' si' : ''}" style="--sc:${s.c}" title="${s.t}${v.includes(s.id) ? ': conseguido' : ''}"><svg viewBox="0 0 24 24" aria-hidden="true">${CU.IC[s.id]}</svg></span>`).join('')}</div>
+      <span class="sr-only">${n} de ${T} sellos conseguidos.</span>`;
+    $('#cueGrid').innerHTML = CU.SELLOS.map((s, i) => {
+      const j = porId[s.id], ok = v.includes(s.id);
+      return `<a class="sen-card" href="jugar.html#${s.id}" data-id="${s.id}" style="--sc:${s.c};--i:${i}">
+        <span class="sen-card-dib">${DIB[s.id]()}</span>
+        <span class="sen-card-tx"><small>${s.s} · ${edadTxt(j.e)}</small><b>${j.t}</b><span>${j.d}</span></span>
+        <span class="sen-card-sello${ok ? ' si' : ''}" aria-label="${ok ? 'Sello conseguido' : 'Sin sello todavía'}"><svg viewBox="0 0 24 24" aria-hidden="true">${ok ? '<path d="M6 12.5l4 4 8-9"/>' : CU.IC[s.id]}</svg></span></a>`;
+    }).join('');
+    const amigos = $('#cueAmigos');
+    if (amigos && !amigos.innerHTML) amigos.innerHTML = [[2, 1, 2, false], [0, 0, 0, true], [3, 3, 1, false]].map(([p, h, c, sal], i) => `<svg class="cue-nico cue-nico-${i}" viewBox="0 0 200 320" aria-hidden="true">${CU.nico({ piel: CU.PIELES[p], pelo: CU.PELOS[h], camiseta: CU.CAMISETAS[c], saluda: sal })}</svg>`).join('');
+  }
+  pintaCuerpo();
+  addEventListener('pageshow', pintaCuerpo);
+
   /* ---------- eventos ---------- */
   function irAJuegos() { $('#juegos').scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); }
   document.addEventListener('click', ev => {
@@ -383,7 +421,7 @@
     const nv = ev.target.closest('.novedad');
     if (nv && nv.dataset.cat) { ev.preventDefault(); filtroCat = nv.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const c = ev.target.closest('.cat');
-    if (c && c.dataset.cat === 'sentidos' && $('#sentidos')) { $('#sentidos').scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); return; }
+    if (c && (c.dataset.cat === 'sentidos' || c.dataset.cat === 'cuerpo') && $('#' + c.dataset.cat)) { $('#' + c.dataset.cat).scrollIntoView({ behavior: quieto() ? 'auto' : 'smooth', block: 'start' }); return; }
     if (c) { filtroCat = c.dataset.cat; pintaFiltros(); filtra(); irAJuegos(); return; }
     const p = ev.target.closest('.pestana');
     if (p) { filtroCat = p.dataset.cat; pintaFiltros(); filtra(); return; }

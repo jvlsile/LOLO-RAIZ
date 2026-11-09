@@ -4,6 +4,7 @@
 - [[Guía rápida]]
 - [[Juegos]]
 - [[Los sentidos]]
+- [[El cuerpo]]
 - [[Modo 3 años]]
 - [[Fichas para imprimir]]
 - [[Apoyos para alumnado con autismo]]

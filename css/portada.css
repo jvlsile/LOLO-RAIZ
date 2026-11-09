@@ -12,7 +12,7 @@
   --tinta:#13263F; --tinta-2:#4F6379; --tinta-3:#6E8196;
   --mar-claro:#7FDCD8; --mar:#1B91B0; --mar-hondo:#137A99; --abismo:#0B4767;
   --lolo:#FF7A2F; --sol:#FFC53D; --sol-hondo:#E5A40E;
-  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B; --c-trazos:#0B7A8F; --c-sentidos:#5B5BD6;
+  --c-rutinas:#F27A2E; --c-lenguaje:#8B5CF6; --c-logica:#2F80ED; --c-retos:#E8487F; --c-ciencia:#1FA36B; --c-otono:#B8652B; --c-trazos:#0B7A8F; --c-sentidos:#5B5BD6; --c-cuerpo:#E05A47;
   --f-titulo:"Fredoka", ui-rounded, system-ui, sans-serif;
   --f-texto:"Nunito", ui-rounded, system-ui, -apple-system, "Segoe UI", sans-serif;
   --ease-out:cubic-bezier(.23,1,.32,1);
@@ -417,6 +417,30 @@ svg{flex:none}
 }
 html.calma .sen-card{animation:none}
 
+/* ---------- El cuerpo: cabecera con Nico ---------- */
+.cue{padding-top:clamp(36px,6vh,64px)}
+.cue-cab{background:linear-gradient(120deg,#C2412F 0%,#E05A47 45%,#F28B5E 100%)}
+.cue-cab .sen-texto{position:relative;z-index:1}
+.cue-fondo{position:absolute;inset:0;z-index:0;overflow:hidden}
+.cue-fondo span{position:absolute;border-radius:50%;background:rgba(255,255,255,.12)}
+.cue-fondo span:nth-child(1){width:46%;aspect-ratio:1;right:-6%;top:-30%}
+.cue-fondo span:nth-child(2){width:26%;aspect-ratio:1;right:30%;bottom:-24%;background:rgba(255,224,138,.18)}
+.cue-fondo span:nth-child(3){width:12%;aspect-ratio:1;right:6%;bottom:8%;background:rgba(255,255,255,.16)}
+.cue-amigos{position:absolute;right:clamp(16px,4vw,64px);bottom:6px;z-index:0;display:flex;align-items:flex-end;gap:clamp(4px,1vw,14px)}
+/* Medidas explícitas: en Safari, un SVG con anchura automática calculada a partir de la altura se sale de su sitio. */
+.cue-nico{--h:clamp(200px,36vh,380px);display:block;flex:none;height:var(--h);width:calc(var(--h) * .625);overflow:visible;filter:drop-shadow(0 12px 18px rgba(80,20,10,.25))}
+.cue-nico-1{--h:clamp(236px,44vh,460px)}
+.cue-nico-1 .p-brazo-d,.cue-nico-1 .p-mano-d{transform-box:view-box;transform-origin:128px 124px;animation:cueSaluda 1.6s ease-in-out infinite}
+@keyframes cueSaluda{0%,100%{transform:rotate(0)}50%{transform:rotate(-16deg)}}
+.cue .sen-velo{display:none}
+@media (max-width:860px){
+  .cue-cab{padding-top:min(56vw,300px)}
+  .cue-amigos{left:50%;right:auto;translate:-50% 0;top:auto;bottom:auto;top:14px}
+  .cue-nico{--h:min(40vw,220px)}
+  .cue-nico-1{--h:min(48vw,260px)}
+}
+html.calma .cue-nico-1 .p-brazo-d,html.calma .cue-nico-1 .p-mano-d{animation:none}
+
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   #lolo .cuerpo,#lolo .tent,#lolo .saludo,#lolo .ojo,.orbita,.orbe-in,.lanzador-ic,.js .hero-lolo{animation:none}
@@ -424,6 +448,7 @@ html.calma .sen-card{animation:none}
   .revela{transform:none;transition:opacity 200ms ease}
   .ficha{transition:transform 1ms}
   .sen-card{animation:none}
+  .cue-nico-1 .p-brazo-d,.cue-nico-1 .p-mano-d{animation:none}
 }
 @keyframes fundir{from{opacity:0}to{opacity:1}}
 

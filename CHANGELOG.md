@@ -1,5 +1,20 @@
 # Cambios
 
+## 1.10.0 · noviembre de 2026
+
+- **Nueva categoría: El cuerpo**, pensada para 3 años. Nico, un niño de dibujo, cambia de color de piel y de pelo en cada partida. Seis juegos con cinco retos, ayuda al segundo fallo y actividad final sin pantalla:
+  - **¿Dónde está?**: tocar en Nico la parte que nombra Lolo (cabeza, barriga, brazos, manos, piernas y pies) y después en el propio cuerpo.
+  - **Monta a Nico**: llevar cada pieza a su hueco sobre la silueta, de una pieza a las seis.
+  - **¿Qué le falta?**: descubrir la parte que falta (un brazo, los ojos, una pierna, la boca, las orejas).
+  - **¿Para qué sirve?**: con qué aplaudimos, saltamos, abrazamos o damos una patada.
+  - **Vestimos a Nico**: gorro, bufanda, guantes y botas, cada uno en su sitio.
+  - **Toca, toca**: de pie, tocar la cabeza, los hombros, las rodillas y los pies cuando se iluminan en Nico.
+- **Pasaporte del cuerpo**, independiente del de los sentidos, con diploma.
+- Portada: la categoría aparece destacada y tiene sección propia, con Nico y sus amigos en la cabecera.
+- `fichas-cuerpo.html`: ocho fichas para 3 años (colorear, gomets en manos y pies, la cara para repasar, montar a Nico, qué le falta, tarjetas de vocabulario, pasaporte y diploma) y un registro de observación.
+- Guía docente y wiki: sección del cuerpo, con indicaciones para alumnado con autismo y respeto por el propio cuerpo.
+- 129 frases nuevas en el guion de audios (1291 en total).
+
 ## 1.9.0 · noviembre de 2026
 
 - **Nueva categoría: Los sentidos.** Seis juegos con cinco retos cada uno, ayuda al segundo fallo y actividad final sin pantalla:

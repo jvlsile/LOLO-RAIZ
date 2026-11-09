@@ -36,6 +36,12 @@ Todos los juegos tienen cinco retos de dificultad creciente (salvo los libres), 
 | | La nariz de Lolo | `#olfato` | 3–5 |
 | | ¿A qué sabe? | `#gusto` | 3–5 |
 | | La bolsa misteriosa | `#tacto` | 4–5 |
+| **El cuerpo** | ¿Dónde está? | `#cuerpo` | 3–4 |
+| | Monta a Nico | `#monta` | 3–4 |
+| | ¿Qué le falta? | `#falta` | 3–4 |
+| | ¿Para qué sirve? | `#sirve` | 3–4 |
+| | Vestimos a Nico | `#viste` | 3–5 |
+| | Toca, toca | `#toca` | 3–5 |
 
 ## La visita de Lolo: la rutina de la semana
 

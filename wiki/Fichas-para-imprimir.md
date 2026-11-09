@@ -37,3 +37,21 @@ Una ficha por hoja A4:
 La opción **«Dibujos solo con línea»** deja los dibujos en blanco para colorear y ahorra tinta.
 
 El enlace `fichas-sentidos.html#diploma` abre directamente solo el diploma.
+
+## Fichas del cuerpo · [`fichas-cuerpo.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-cuerpo.html)
+
+Una ficha por hoja A4, pensadas para 3 años:
+
+| Ficha | Qué se hace | Material |
+|---|---|---|
+| Colorea a Nico | Colorear y nombrar las partes | Ceras |
+| Gomets en las manos y los pies | Gomet rojo en las manos y azul en los pies | Gomets |
+| La cara de Nico | Repasar los puntos de los ojos, la nariz y la boca | Lápiz o cera |
+| Monta a Nico | Colorear las piezas; la maestra las recorta y el niño las pega en la silueta | Ceras, tijeras, pegamento |
+| ¿Qué le falta a Nico? | Dibujar la parte que falta en tres Nicos | Lápiz |
+| Tarjetas del cuerpo | Ocho tarjetas para nombrar, señalar y jugar a las parejas (también como pictogramas) | Tijeras |
+| Pasaporte del cuerpo | Un gomet o sello por cada juego terminado | Gomets o sellos |
+| Diploma | «Ya conozco mi cuerpo» | — |
+| **Registro de observación** | Para la docente: 24 alumnos × 6 indicadores (C, EP, I) | — |
+
+El enlace `fichas-cuerpo.html#diploma` abre directamente solo el diploma.
