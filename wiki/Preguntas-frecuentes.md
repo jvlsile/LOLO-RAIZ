@@ -12,7 +12,7 @@ Abre **Voz** y elige una voz marcada con ★. En Microsoft Edge suele haber voce
 **No se oye nada.**
 Revisa el volumen del dispositivo y de los altavoces del aula. Algunos navegadores no reproducen sonido hasta que se toca la pantalla por primera vez.
 
-**El jardín o el pasaporte de los sentidos han desaparecido.**
+**El jardín o los pasaportes han desaparecido.**
 Se guardan en el navegador de cada dispositivo. Si cambiáis de pizarra, de navegador o se borran los datos, empiezan de cero.
 
 **¿Recoge datos de los niños?**

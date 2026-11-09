@@ -617,7 +617,7 @@
   document.addEventListener('keydown',e=>{ const d=e.target.closest&&e.target.closest('[data-destino]'); if(d&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); d.click(); } });
 
   const EST={};
-  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento','tinta','sentidos','oido','vista','olfato','gusto','tacto'];
+  const IDS=['cuenta','series','cestas','tamanos','parejas','formas','cuento','robot','construye','jardin','quepasa','duo','escape','emociones','muevete','caza','hojas','arbol','ropa','frutos','bosque','castanas','viento','tinta','sentidos','oido','vista','olfato','gusto','tacto','cuerpo','monta','falta','sirve','viste','toca'];
   const zonaDe=id=>$('#panel-'+id+' .jz');
   const espera=ms=>new Promise(r=>setTimeout(r,ms));
   function botonSig(id){
@@ -1936,6 +1936,188 @@
     });
   }
 
+
+  /* ================= EL CUERPO =================
+     Seis juegos con Nico para 3 años (también valen en 4). Los dibujos están en js/cuerpo-dibujos.js. */
+  const CU=window.LOLO_CUERPO;
+  if(CU&&SEN){
+    Object.assign(P,{j_cuerpo:CU.IC.cuerpo,j_monta:CU.IC.monta,j_falta:CU.IC.falta,j_sirve:CU.IC.sirve,j_viste:CU.IC.viste,j_toca:CU.IC.toca});
+    const esPl=n=>/^l(o|a)s /.test(n), esF=n=>/^las? /.test(n);
+    const ese=n=>esPl(n)?(esF(n)?'Esas son':'Esos son'):(esF(n)?'Esa es':'Ese es');
+    const vuestro=n=>n.replace(/^la /,'vuestra ').replace(/^el /,'vuestro ').replace(/^los /,'vuestros ').replace(/^las /,'vuestras ');
+    const figura=(o,cl='')=>`<svg class="nico${cl?' '+cl:''}" viewBox="0 0 200 320" aria-hidden="true">${CU.nico(o)}</svg>`;
+    const look=id=>{ const s=EST[id]; if(!s.look) s.look=CU.aspecto(); return s.look; };
+    const pct=([x,y,w,h])=>`left:${(x/2).toFixed(1)}%;top:${(y/3.2).toFixed(2)}%;width:${(w/2).toFixed(1)}%;height:${(h/3.2).toFixed(2)}%`;
+    // Dibujo de cada opción: partes recortadas de Nico o dibujos de los sentidos.
+    const DIBP={cabeza:()=>CU.parte('cabeza'),tronco:()=>CU.parte('tronco'),brazos:()=>CU.parte('brazo'),piernas:()=>CU.parte('pierna'),manos:()=>SEN.dib('mano'),pies:()=>CU.PIE,
+      ojos:()=>SEN.dib('ojo'),nariz:()=>SEN.dib('nariz'),boca:()=>SEN.dib('boca'),orejas:()=>SEN.dib('oreja')};
+    const opP=k=>`<button class="opt" type="button" data-k="${k}" aria-label="${CU.PARTES[k].lbl}"><span class="dib">${DIBP[k]()}</span><span class="lbl">${CU.PARTES[k].lbl}</span></button>`;
+    const elige=(id,a,buena,bien,mal)=>a.z.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>{
+      if(EST[id].resuelta) return; const k=b.dataset.k;
+      if(k===buena){ b.classList.add('bien'); bien(b); } else { sacude(b); mal(b,k); }
+    }));
+
+    function pasaporteCuerpo(id){
+      const v=CU.ponSello(id), n=v.length, T=CU.SELLOS.length;
+      return `<div class="pasaporte" style="--sc:${CU.SELLOS.find(s=>s.id===id).c}"><b class="pas-t">Pasaporte del cuerpo</b>
+        <div class="sellos">${CU.SELLOS.map(s=>`<span class="sello${v.includes(s.id)?' si':''}${s.id===id?' nuevo':''}" style="--sc:${s.c}"><span class="sello-ic"><svg viewBox="0 0 24 24" aria-hidden="true">${CU.IC[s.id]}</svg></span><small>${s.s}</small></span>`).join('')}</div>
+        <p class="pas-txt">${n>=T?'¡Pasaporte completo! Ya conocéis muy bien vuestro cuerpo. <a href="fichas-cuerpo.html#diploma">Imprimid el diploma</a>.':`¡Sello conseguido! Lleváis ${n} de ${T}.`}</p></div>`;
+    }
+
+    /* Zonas que se pueden tocar en Nico (más grandes que el dibujo, para dedos pequeños). */
+    const ZONAS=`<g class="toques">
+      <path data-region="piernas" d="M86 202L84 270M114 202L116 270" stroke="transparent" stroke-width="44" stroke-linecap="round" fill="none" tabindex="0" role="button" aria-label="Piernas"/>
+      <path data-region="brazos" d="M72 124L48 184M128 124L152 184" stroke="transparent" stroke-width="40" stroke-linecap="round" fill="none" tabindex="0" role="button" aria-label="Brazos"/>
+      <rect data-region="tronco" x="64" y="112" width="72" height="92" rx="14" fill="transparent" tabindex="0" role="button" aria-label="Barriga"/>
+      <circle data-region="cabeza" cx="100" cy="62" r="52" fill="transparent" tabindex="0" role="button" aria-label="Cabeza"/>
+      <circle data-region="manos" cx="44" cy="199" r="22" fill="transparent" tabindex="0" role="button" aria-label="Mano"/><circle data-region="manos" cx="156" cy="199" r="22" fill="transparent" tabindex="0" role="button" aria-label="Mano"/>
+      <ellipse data-region="pies" cx="80" cy="287" rx="28" ry="18" fill="transparent" tabindex="0" role="button" aria-label="Pie"/><ellipse data-region="pies" cx="120" cy="287" rx="28" ry="18" fill="transparent" tabindex="0" role="button" aria-label="Pie"/></g>`;
+    const GRUPOS={cabeza:['cabeza','cuello'],tronco:['tronco'],brazos:['brazo-i','brazo-d','mano-i','mano-d'],manos:['mano-i','mano-d'],piernas:['pierna-i','pierna-d','pie-i','pie-d'],pies:['pie-i','pie-d']};
+    // Resalta una parte con círculos superpuestos (los filtros CSS dentro de un SVG no son fiables en Safari).
+    const RADIO={cabeza:50,tronco:44,brazos:24,manos:20,piernas:28,pies:24};
+    const ilumina=(svg,region)=>{ svg.querySelectorAll('.brillo').forEach(e=>e.remove()); const t=svg.querySelector('.toques');
+      (CU.PUNTOS[region==='tronco'?'barriga':region]||[]).forEach(([x,y])=>{ const c=`<circle class="brillo" cx="${x}" cy="${y}" r="${RADIO[region]}"/>`; if(t) t.insertAdjacentHTML('beforebegin',c); else svg.insertAdjacentHTML('beforeend',c); }); };
+    const puntos=(k)=>(CU.PUNTOS[k]||[]).map(([x,y])=>`<circle class="punto-toca" cx="${x}" cy="${y}" r="16"/>`).join('');
+
+    // Lugares de la ropa en Nico y sus nombres.
+    const SITIO={cabeza:{en:'en la cabeza',zonas:[[52,8,96,74]]},cuello:{en:'en el cuello',zonas:[[78,92,44,30]]},manos:{en:'en las manos',zonas:[[24,178,40,42],[136,178,40,42]]},pies:{en:'en los pies',zonas:[[56,268,48,34],[96,268,48,34]]}};
+    const GUANTES=`<path d="M18 86V46q0-12 12-12t12 12v40z" fill="#FFC93C" ${trazo}/><path d="M18 52q-10-4-10-14 0-6 6-6" fill="#FFC93C" ${trazo}/><path d="M58 86V46q0-12 12-12t12 12v40z" fill="#FFC93C" ${trazo}/><path d="M82 52q10-4 10-14 0-6-6-6" fill="#FFC93C" ${trazo}/><path d="M18 76h24M58 76h24" stroke="${K}" stroke-width="3"/>`;
+    const PRENDA={gorro:{n:'el gorro',lbl:'Gorro',va:'cabeza',svg:ROPA.gorro.svg},bufanda:{n:'la bufanda',lbl:'Bufanda',va:'cuello',svg:ROPA.bufanda.svg},guantes:{n:'los guantes',lbl:'Guantes',va:'manos',svg:GUANTES},botas:{n:'las botas',lbl:'Botas',va:'pies',svg:ROPA.botas.svg}};
+
+    Object.assign(JUEGOS,{
+      cuerpo:{titulo:'¿Dónde está?',ic:'j_cuerpo',
+        puente:'Jugad a «Lolo dice»: Lolo dice que toquéis la cabeza, la barriga, los pies… Después, delante del espejo, cada niño señala sus partes del cuerpo y las nombra.',
+        extraFin:()=>pasaporteCuerpo('cuerpo'),
+        ronda(n,a){
+          const s=EST.cuerpo; if(n===0) s.lista=['cabeza',...mezcla(['tronco','manos','pies','piernas','brazos'])].slice(0,5);
+          const q=s.lista[n], N=CU.PARTES[q];
+          a.z.innerHTML=`<div class="nico-caja toca-nico" role="group" aria-label="Nico">${figura(look('cuerpo'),'grande').replace('</svg>',ZONAS+'</svg>')}</div>`;
+          const svg=a.z.querySelector('svg.nico');
+          const toca=r=>{
+            if(EST.cuerpo.resuelta) return;
+            const vale=r===q||(q==='brazos'&&r==='manos')||(q==='piernas'&&r==='pies');
+            ilumina(svg,r);
+            if(vale){ ilumina(svg,q); a.ok(`¡Sí! ${ese(N.n)} ${N.n}. Ahora tocad ${vuestro(N.n)}.`,a.z.querySelector('.nico-caja')); }
+            else a.fallo(`${ese(CU.PARTES[r].n)} ${CU.PARTES[r].n}. Buscamos ${N.n}.`,()=>{ ilumina(svg,q); });
+          };
+          svg.querySelectorAll('[data-region]').forEach(z=>{ z.addEventListener('click',e=>{ e.stopPropagation(); toca(z.dataset.region); }); z.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toca(z.dataset.region); } }); });
+          const pl=esPl(N.n), fe=esF(N.n);
+          decir(n===0?'Este es Nico, nuestro amigo. ¿Dónde está su cabeza? Tocad la cabeza de Nico.':`${pl?'¿Dónde están':'¿Dónde está'} ${N.n} de Nico? Tocadl${pl?(fe?'as':'os'):(fe?'a':'o')}.`);
+        }},
+
+      monta:{titulo:'Monta a Nico',ic:'j_monta',
+        puente:'Tumbad a un niño sobre papel continuo y dibujad su silueta. Después, pegad en su sitio la cabeza, la barriga, los brazos y las piernas recortados de revistas o pintados por la clase.',
+        extraFin:()=>pasaporteCuerpo('monta'),
+        ronda(n,a){
+          const FALTAN=[['cabeza'],['brazo-i','brazo-d'],['pierna-i','pierna-d'],['cabeza','tronco'],['cabeza','tronco','brazo-i','brazo-d','pierna-i','pierna-d']][n];
+          const tipo=z=>z.replace(/-[id]$/,''), VER={cabeza:['cabeza','cuello'],tronco:['tronco'],'brazo-i':['brazo-i','mano-i'],'brazo-d':['brazo-d','mano-d'],'pierna-i':['pierna-i','pie-i'],'pierna-d':['pierna-d','pie-d']};
+          const NOM={cabeza:'la cabeza',tronco:'la barriga',brazo:'un brazo',pierna:'una pierna'}, VAN={cabeza:'La cabeza va arriba del todo.',tronco:'La barriga va en el centro.',brazo:'Los brazos van a los lados de la barriga.',pierna:'Las piernas van abajo, debajo de la barriga.'};
+          const ocultas=FALTAN.flatMap(z=>VER[z]);
+          const piezas=mezcla(FALTAN.map(tipo));
+          a.z.innerHTML=`<div class="monta-caja"><div class="monta-tablero">
+              <svg class="nico fantasma" viewBox="0 0 200 320" aria-hidden="true">${CU.nico({linea:true})}</svg>
+              ${figura({...look('monta'),ocultar:ocultas},'real')}
+              ${FALTAN.map(z=>`<div class="dest hueco-n" data-destino data-v="${tipo(z)}" data-z="${z}" role="button" tabindex="0" style="${pct(CU.CAJA[z])}" aria-label="Hueco para ${NOM[tipo(z)]}"></div>`).join('')}
+            </div>
+            <div class="piezas piezas-n">${piezas.map((t,i)=>`<button class="pieza pieza-n" type="button" data-i="${i}" data-t="${t}" aria-label="${NOM[t]}">${CU.parte(t,look('monta'))}</button>`).join('')}</div></div>`;
+          let quedan=FALTAN.length;
+          const real=()=>a.z.querySelector('svg.real');
+          a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
+            const t=el.dataset.t;
+            if(d.dataset.v===t){ el.disabled=true; el.classList.add('puesta'); d.remove();
+              const nuevo=ocultas.filter(x=>!VER[d.dataset.z].includes(x)); ocultas.length=0; ocultas.push(...nuevo);
+              real().outerHTML=figura({...look('monta'),ocultar:ocultas},'real'); a.bien();
+              if(--quedan===0) a.ok(n===4?'¡Nico está entero! Cabeza, barriga, dos brazos y dos piernas. ¡Qué bien lo habéis montado!':'¡Muy bien! Esa pieza va ahí.',a.z.querySelector('.monta-tablero')); }
+            else { sacude(el); sacude(d); a.fallo(`Esa pieza es ${NOM[t]}. ${VAN[t]}`,()=>marca([...a.z.querySelectorAll(`.hueco-n[data-v="${t}"]`)])); }
+          }));
+          decir(n===0?'¡Uy! A Nico le falta una pieza. Llevad la pieza a su sitio para montar a Nico.'
+            :n===4?'¡Último reto! Nico se ha desmontado entero. ¿Lo montamos pieza a pieza?':'¡A Nico le faltan piezas! ¿Dónde va cada una?');
+        }},
+
+      falta:{titulo:'¿Qué le falta?',ic:'j_falta',
+        puente:'Con un muñeco o un puzle del cuerpo, esconded una parte mientras la clase cierra los ojos. Al abrirlos: ¿qué le falta? También podéis dibujar caras sin boca o sin ojos para completarlas.',
+        extraFin:()=>pasaporteCuerpo('falta'),
+        ronda(n,a){
+          const R=[{q:'brazos',oc:['brazo-i','mano-i'],no:['manos'],ok:'un brazo'},{q:'ojos',oc:['ojos']},{q:'piernas',oc:['pierna-d','pie-d'],no:['pies'],ok:'una pierna'},{q:'boca',oc:['boca']},{q:'orejas',oc:['orejas']}][n];
+          const pool=['brazos','piernas','ojos','boca','nariz','orejas','manos','pies'].filter(k=>k!==R.q&&!(R.no||[]).includes(k));
+          const ops=mezcla([R.q,...mezcla(pool).slice(0,n<2?1:2)]);
+          const HUECO={brazos:[56,156,30],piernas:[115,240,32],ojos:[100,68,24],boca:[100,88,16],orejas:[100,70,48]}[R.q];
+          a.z.innerHTML=`<div class="falta-caja"><div class="nico-caja">${figura({...look('falta'),ocultar:R.oc},'grande').replace('</svg>',`<circle class="hueco-falta" cx="${HUECO[0]}" cy="${HUECO[1]}" r="${HUECO[2]}"/></svg>`)}</div>
+            <div class="opts${ops.length===2?' dos':''}">${ops.map(opP).join('')}</div></div>`;
+          const N=CU.PARTES[R.q];
+          elige('falta',a,R.q,b=>{ a.z.querySelector('.nico-caja').innerHTML=figura(look('falta'),'grande completa'); a.ok(R.ok?`¡Sí! Le faltaba ${R.ok}. ¡Ya está completo!`:`¡Sí! Le faltaba${esPl(N.n)?'n':''} ${N.n}. ¡Ya está completo!`,b); },
+            (b,k)=>{ b.disabled=true; a.fallo(`Nico sí tiene ${CU.PARTES[k].n}. Mirad bien: ¿qué le falta?`,()=>{ a.z.querySelector('.nico-caja').classList.add('ver-hueco'); marca([a.z.querySelector(`.opt[data-k="${R.q}"]`)],4000); }); });
+          decir(n===0?'¡Mirad a Nico! Le falta algo. ¿Qué le falta?':'Mirad bien a Nico. ¿Qué le falta ahora?');
+        }},
+
+      sirve:{titulo:'¿Para qué sirve?',ic:'j_sirve',
+        puente:'Jugad con el cuerpo: aplaudimos con las manos, saltamos con las piernas, nos damos un abrazo con los brazos, damos una patada suave a la pelota y decimos que sí con la cabeza.',
+        extraFin:()=>pasaporteCuerpo('sirve'),
+        ronda(n,a){
+          const Q={
+            manos:{t:'¿Con qué aplaudimos?',ok:'¡Sí! Aplaudimos con las manos. ¡Plas, plas, plas!',pic:null,son:1},
+            piernas:{t:'¿Con qué saltamos?',ok:'¡Muy bien! Saltamos con las piernas. ¡Hop, hop!'},
+            brazos:{t:'¿Con qué damos un abrazo?',ok:'¡Eso es! Abrazamos con los brazos. ¡Un abrazo muy fuerte!',pic:'osito'},
+            cabeza:{t:'¿Dónde nos ponemos el gorro?',ok:'¡Sí! El gorro va en la cabeza y nos la tapa del frío.',pic:'gorro'},
+            pies:{t:'¿Con qué damos una patada a la pelota?',ok:'¡Muy bien! Damos patadas con los pies. ¡Gol!',pic:'pelota'}
+          };
+          const s=EST.sirve; if(n===0) s.lista=mezcla(Object.keys(Q));
+          const q=s.lista[n], R=Q[q], par={manos:'brazos',brazos:'manos',pies:'piernas',piernas:'pies'};
+          const pool=['cabeza','manos','piernas','brazos','pies','boca'].filter(k=>k!==q&&k!==par[q]);
+          const ops=mezcla([q,...mezcla(pool).slice(0,n<2?1:2)]);
+          const pic=R.pic==='gorro'?`<svg viewBox="0 0 100 100" aria-hidden="true">${ROPA.gorro.svg}</svg>`:R.pic?SEN.dib(R.pic):'';
+          a.z.innerHTML=`${pic?`<div class="sit-caja"><div class="sit">${pic}</div></div>`:''}<div class="opts${ops.length===2?' dos':''}">${ops.map(opP).join('')}</div>`;
+          elige('sirve',a,q,b=>{ a.ok(R.ok,b); if(R.son) [0,.3,.6].forEach(t=>palmada(t)); },
+            (b,k)=>{ b.disabled=true; a.fallo(`${may(CU.PARTES[k].n)} no. ¡Probadlo con vuestro cuerpo! ${R.t}`,()=>marca([a.z.querySelector(`.opt[data-k="${q}"]`)],4000)); });
+          decir(R.t);
+        }},
+
+      viste:{titulo:'Vestimos a Nico',ic:'j_viste',
+        puente:'En el rincón de la casita, vestid a un muñeco para salir al patio en invierno. Después, cada niño se pone su abrigo, su gorro y su bufanda: ¿dónde va cada cosa?',
+        extraFin:()=>pasaporteCuerpo('viste'),
+        ronda(n,a){
+          const s=EST.viste; if(n===0||n===4) s.ropa={};
+          const items=[['gorro'],['bufanda'],['guantes'],['botas'],mezcla(['gorro','bufanda','guantes','botas'])][n];
+          const pinta=()=>{ const t=a.z.querySelector('.viste-tablero svg.nico'); t.outerHTML=figura({...look('viste'),ropa:s.ropa}); };
+          a.z.innerHTML=`<div class="monta-caja"><div class="monta-tablero viste-tablero">${figura({...look('viste'),ropa:s.ropa})}
+              ${Object.entries(SITIO).flatMap(([k,S])=>S.zonas.map(z=>`<div class="dest hueco-n hueco-ropa" data-destino data-v="${k}" role="button" tabindex="0" style="${pct(z)}" aria-label="${S.en.replace(/^en /,'')}"></div>`)).join('')}</div>
+            <div class="piezas piezas-n">${items.map((k,i)=>`<button class="pieza pieza-n" type="button" data-i="${i}" data-k="${k}" aria-label="${PRENDA[k].lbl}"><svg viewBox="0 0 100 100" aria-hidden="true">${PRENDA[k].svg}</svg></button>`).join('')}</div></div>`;
+          let quedan=items.length;
+          a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
+            const k=el.dataset.k, Pr=PRENDA[k];
+            if(d.dataset.v===Pr.va){ el.disabled=true; el.classList.add('puesta'); s.ropa[k]=1; pinta(); a.bien(); hablar(`${may(Pr.n)}, ${SITIO[Pr.va].en}.`);
+              if(--quedan===0) a.ok(n===4?'¡Nico ya está listo para salir al patio! Gorro, bufanda, guantes y botas.':`¡Muy bien! ${may(Pr.n)} ${esPl(Pr.n)?'van':'va'} ${SITIO[Pr.va].en}.`,a.z.querySelector('.monta-tablero')); }
+            else { sacude(el); sacude(d); a.fallo(`${may(Pr.n)} no ${esPl(Pr.n)?'van':'va'} ${SITIO[d.dataset.v].en}. ¿Dónde ${esPl(Pr.n)?'van':'va'}?`,()=>marca([...a.z.querySelectorAll(`.hueco-ropa[data-v="${Pr.va}"]`)])); }
+          }));
+          decir(n===0?'¡Hace frío! Nico va a salir al patio. Llevad el gorro a su sitio: ¿dónde se pone?'
+            :n===4?'¡Último reto! Nico se ha quitado la ropa. ¿Lo vestimos otra vez?':`Ahora, ${PRENDA[items[0]].n}. ¿Dónde se pone${esPl(PRENDA[items[0]].n)?'n':''}?`);
+        }},
+
+      toca:{titulo:'Toca, toca',ic:'j_toca',
+        puente:'Cantad una canción de las partes del cuerpo tocando cada parte: primero muy despacio, después un poco más rápido y al final otra vez despacio, para terminar tranquilos.',
+        extraFin:()=>pasaporteCuerpo('toca'),
+        ronda(n,a){
+          const NOMBRE={cabeza:'la cabeza',hombros:'los hombros',barriga:'la barriga',rodillas:'las rodillas',pies:'los pies'};
+          const PASOS=[['cabeza'],['hombros'],['barriga','rodillas'],['pies'],['cabeza','hombros','rodillas','pies']][n];
+          let i=0;
+          a.z.innerHTML=`<div class="toca-caja"><div class="nico-caja">${figura({...look('toca'),saluda:false},'grande')}</div><ol class="toca-pasos">${PASOS.map(p=>`<li data-p="${p}">${may(NOMBRE[p].replace(/^(la|las|los) /,''))}</li>`).join('')}</ol></div>`;
+          const svg=a.z.querySelector('svg.nico'), f=document.createElement('div'); f.className='fila'; a.z.appendChild(f);
+          const paso=()=>{
+            const p=PASOS[i]; svg.querySelectorAll('.punto-toca').forEach(e=>e.remove()); svg.insertAdjacentHTML('beforeend',puntos(p));
+            a.z.querySelectorAll('.toca-pasos li').forEach((li,j)=>{ li.classList.toggle('ahora',j===i); li.classList.toggle('hecho',j<i); });
+            decir(`Tocad ${NOMBRE[p]}${p==='cabeza'?' con las dos manos':''}.`);
+            f.innerHTML=''; boton(i<PASOS.length-1?`Ahora: ${NOMBRE[PASOS[i+1]].replace(/^(la|las|los) /,'')}`:'¡Lo hemos hecho!',()=>{
+              if(EST.toca.resuelta) return; i++;
+              if(i<PASOS.length) paso();
+              else { a.z.querySelectorAll('.toca-pasos li').forEach(li=>{ li.classList.remove('ahora'); li.classList.add('hecho'); }); svg.querySelectorAll('.punto-toca').forEach(e=>e.remove()); f.remove(); a.ok(n===4?'¡Cabeza, hombros, rodillas y pies! ¡Qué bien lo habéis hecho!':'¡Muy bien! ¡Qué bien conocéis vuestro cuerpo!'); }
+            },true,f,'mover');
+          };
+          if(n===0) { decir('Nos ponemos de pie delante de la pizarra. Lolo dice una parte del cuerpo y nosotros la tocamos. ¿Preparados?'); boton('¡Preparados!',()=>paso(),true,f,'mover'); }
+          else paso();
+        }}
+    });
+  }
+
   /* ================= MENÚ POR CATEGORÍAS Y EDADES ================= */
   const CATS=[
     {t:'Rutinas y asamblea',c:'#FF8A3D',ids:['lolo','jardin','muevete']},
@@ -1945,7 +2127,8 @@
     {t:'Ciencia y manipulación',c:'#2BB673',ids:['quepasa','construye','caza']},
     {t:'El otoño',c:'#B8652B',ids:['hojas','arbol','ropa','frutos','bosque','castanas','viento']},
     {t:'Trazos',c:'#0B7A8F',ids:['tinta']},
-    {t:'Los sentidos',c:'#5B5BD6',ids:['sentidos','oido','vista','olfato','gusto','tacto']}
+    {t:'Los sentidos',c:'#5B5BD6',ids:['sentidos','oido','vista','olfato','gusto','tacto']},
+    {t:'El cuerpo',c:'#E05A47',ids:['cuerpo','monta','falta','sirve','viste','toca']}
   ];
   const INFO={
     lolo:{t:'La visita de Lolo',ic:'lolo',e:[3,4],d:'Asamblea con Lolo: una rutina distinta para cada día de la semana.'},
@@ -1979,7 +2162,13 @@
     vista:{e:[3,4,5],d:'Mover la linterna por el fondo del mar a oscuras y encontrar lo que pide Lolo.'},
     olfato:{e:[3,4,5],d:'Qué huele bien y qué huele mal, y qué hacemos si huele a humo.'},
     gusto:{e:[3,4,5],d:'Dulce, salado y ácido: adivinar el sabor y poner la mesa.'},
-    tacto:{e:[4,5],d:'Adivinar qué hay en la bolsa con pistas de tacto: suave, áspero, frío, duro…'}
+    tacto:{e:[4,5],d:'Adivinar qué hay en la bolsa con pistas de tacto: suave, áspero, frío, duro…'},
+    cuerpo:{e:[3,4],d:'Tocar en Nico la cabeza, la barriga, los brazos, las manos, las piernas y los pies.'},
+    monta:{e:[3,4],d:'Llevar cada pieza a su sitio hasta montar a Nico entero.'},
+    falta:{e:[3,4],d:'A Nico le falta algo: un brazo, los ojos, la boca… ¿Qué le falta?'},
+    sirve:{e:[3,4],d:'¿Con qué aplaudimos, saltamos, abrazamos o damos una patada?'},
+    viste:{e:[3,4,5],d:'Vestir a Nico para salir al frío: gorro, bufanda, guantes y botas.'},
+    toca:{e:[3,4,5],d:'De pie: tocar la cabeza, los hombros, las rodillas y los pies cuando lo dice Lolo.'}
   };
   const tituloDe=id=>INFO[id].t||JUEGOS[id].titulo, icDe=id=>INFO[id].ic||JUEGOS[id].ic, catDe=id=>CATS.find(c=>c.ids.includes(id));
   const edadTxt=e=>e.length===1?`${e[0]} años`:`${e[0]}–${e[e.length-1]} años`;

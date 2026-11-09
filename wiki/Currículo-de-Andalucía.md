@@ -10,7 +10,7 @@
 
 | Área | Juegos que la trabajan especialmente |
 |---|---|
-| **Crecimiento en Armonía** | La visita de Lolo (emociones, cuerpo, hábitos), Las emociones de Lolo, Muévete y responde, El viento de otoño, Los sentidos, Modo 3 años |
+| **Crecimiento en Armonía** | La visita de Lolo (emociones, cuerpo, hábitos), Las emociones de Lolo, Muévete y responde, El viento de otoño, Los sentidos, El cuerpo, Modo 3 años |
 | **Descubrimiento y Exploración del Entorno** | Lógica y matemáticas, ¿Qué pasa si…?, El robot perdido, El otoño, Los sentidos |
 | **Comunicación y Representación de la Realidad** | La caja misteriosa, El cuento que decidimos, La tinta de Lolo, los instrumentos del jueves |
 
@@ -20,6 +20,12 @@
 - **Descubrimiento y Exploración del Entorno, 1.1.** «Establecer distintas relaciones entre los objetos a partir de sus cualidades o atributos, mostrando curiosidad e interés…».
 
 > **Comprobadlo antes de usarlo en una programación:** estos textos proceden de documentos de centros andaluces, porque la versión en línea del BOJA no incluye el Anexo I. Verificad el texto y la numeración en el Anexo I publicado.
+
+## El cuerpo: criterio de evaluación de referencia (segundo ciclo)
+
+- **Crecimiento en Armonía, 1.1.** «Progresar en el conocimiento de su cuerpo, ajustando acciones y reacciones y desarrollando el equilibrio, la percepción sensorial y la coordinación en el movimiento».
+
+La misma advertencia: comprobad el texto en el Anexo I publicado.
 
 ## Uso de pantallas
 
