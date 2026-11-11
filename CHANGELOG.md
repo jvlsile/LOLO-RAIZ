@@ -3,7 +3,9 @@
 ## Sin publicar · LOLO-RAIZ fase 1 (primer paso)
 
 - La nariz de Lolo: las pistas ya no dicen «¿La flor huele mal?». Ahora dicen «La flor huele muy bien. Va con «huele bien»» (y concuerdan en plural: «Las galletas huelen…»). Corregido también en `audio/guion.csv`.
-- Encuentra la pareja: con la edad 3 elegida en el menú, las cartas se ven 7 segundos en vez de 3,5.
+- Nivel por edad: la edad se elige una vez en el menú (sin elegir, 4 años) y, durante el juego, un selector «− Nivel N años +» deja subir o bajar un escalón. Ya lo usan:
+  - Cuenta y toca: hasta 5 con puntitos de apoyo (3 años), hasta 10 (4 años) y hasta 20 (5 años).
+  - Encuentra la pareja: de 2 a 6 parejas y cartas visibles 7 s (3 años), 4 s (4 años) o 2,5 s (5 años).
 - Modo 3 años · Las burbujas de Lolo: cuarto reto con las vocales A, E, I, O, U en mayúscula. El modo 3 años admite ya juegos con más de tres retos.
 
 ## 1.10.0 · noviembre de 2026
