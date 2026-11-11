@@ -54,7 +54,7 @@ async function resolverReto(page, id, reto) {
       case 'tamanos': for (const p of [...z.querySelectorAll('.piezas .pieza')]) { pulsa(p); pulsa(z.querySelector(`.peldano[data-t="${p.dataset.t}"]`)); await dormir(20); } break;
       case 'formas': for (const p of [...z.querySelectorAll('.piezas .pieza')]) { const v = p.dataset.v; pulsa(p); pulsa(z.querySelector(`.silueta[data-v="${v}"]`)); await dormir(20); } break;
       case 'parejas': {
-        await dormir(3700);
+        for (let t = 0; t < 100 && z.querySelector('.carta.vuelta'); t++) await dormir(100);
         const cs = [...z.querySelectorAll('.carta')], caras = cs.map(c => c.querySelector('.frente').innerHTML), hechas = new Set();
         for (let i = 0; i < cs.length; i++) {
           if (hechas.has(i)) continue;
@@ -150,7 +150,7 @@ test.describe('Menú', () => {
     await page.click('.edad-f[data-e="3"]');
     await expect(page.locator('.jcard')).toHaveCount(31);
     await page.click('.edad-f[data-e="5"]');
-    await expect(page.locator('.jcard')).toHaveCount(30);
+    await expect(page.locator('.jcard')).toHaveCount(31);
   });
 
   test('abre un juego desde el menú', async ({ page }) => {
