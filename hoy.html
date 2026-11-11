@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hoy · La visita de Lolo</title>
+<meta name="description" content="La agenda visual del día para la clase: pictogramas grandes, el encargado marca lo hecho, sin reloj.">
+<meta name="theme-color" content="#F6F2E9">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/hoy.css">
+</head>
+<body>
+<header class="barra">
+  <a class="volver" href="./" aria-label="Ir al inicio">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span>Inicio</span>
+  </a>
+  <div class="titulo"><h1 id="dia">Hoy</h1><p id="fecha"></p></div>
+  <a class="asamblea" href="jugar.html#lolo">Empezar la asamblea</a>
+  <button class="icono" id="btnImprimir" type="button" aria-label="Imprimir la agenda">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg>
+  </button>
+</header>
+
+<main>
+  <p class="estado" id="estado" role="status"></p>
+  <ol class="agenda" id="agenda" aria-label="Agenda del día"></ol>
+  <section class="editor" id="editor" hidden aria-label="Preparar la agenda">
+    <h2>Preparar la agenda de <span id="diaEd"></span></h2>
+    <ul id="listaEd"></ul>
+    <div class="ed-acc">
+      <button type="button" id="btnNueva">Añadir actividad</button>
+      <button type="button" id="btnTodos">Usar esta agenda todos los días</button>
+      <button type="button" id="btnReset">Volver a la agenda de ejemplo</button>
+    </div>
+    <p class="nota">Los dibujos son de ejemplo. Más adelante se podrán cambiar por pictogramas de ARASAAC.</p>
+  </section>
+</main>
+
+<button class="preparar" id="btnPreparar" type="button" aria-pressed="false">Preparar</button>
+<script src="js/hoy.js"></script>
+</body>
+</html>
