@@ -102,7 +102,6 @@ wiki/                   Páginas de la wiki (se copian solas a la wiki de GitHub
 ## Privacidad
 
 - La web **no recoge ningún dato** y no usa cookies, analítica ni servicios de terceros (las fuentes van incluidas).
-- El botón **«Invítame a un café»** (portada y fichas) es un simple enlace a una página de donación de PayPal: no carga nada de PayPal hasta que alguien lo pulsa, y se abre en otra pestaña. No aparece dentro de los juegos.
 - Solo guarda en el propio navegador algunas preferencias: la voz elegida, el modo tranquilo, el filtro de edad, los logros del jardín y los sellos de los pasaportes de los sentidos y del cuerpo.
 - La voz la genera el navegador del dispositivo. En Microsoft Edge, las voces naturales (Elvira, Álvaro) se procesan en los servidores de Microsoft.
 

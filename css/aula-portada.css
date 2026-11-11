@@ -9,7 +9,6 @@ body{background:var(--lienzo)}
 .nav:not(.solida) .icono-btn,.nav:not(.solida) .icono-btn[aria-pressed="true"]{color:var(--tinta)}
 .nav:not(.solida) .icono-btn[aria-pressed="true"]{background:#E3EEFD}
 .nav:not(.solida) .btn-primario{background:var(--tinta);color:#fff}
-.btn-cafe{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 1px var(--linea-2)}
 /* cabecera sin mar */
 .hero{color:var(--tinta);background:var(--lienzo)}
 #burbujas,.ola{display:none}

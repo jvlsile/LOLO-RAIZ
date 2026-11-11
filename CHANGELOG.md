@@ -2,6 +2,8 @@
 
 ## Sin publicar · LOLO-RAIZ fase 1 (primer paso)
 
+- Se quita el botón «Invítame a un café» (con su ventana de PayPal y el código QR) de la portada y de las fichas. Esta versión no lleva ningún botón de donación.
+
 - La nariz de Lolo: las pistas ya no dicen «¿La flor huele mal?». Ahora dicen «La flor huele muy bien. Va con «huele bien»» (y concuerdan en plural: «Las galletas huelen…»). Corregido también en `audio/guion.csv`.
 - Nivel por edad: la edad se elige una vez en el menú (sin elegir, 4 años) y, durante el juego, un selector «− Nivel N años +» deja subir o bajar un escalón. Ya lo usan:
   - Cuenta y toca: hasta 5 con puntitos de apoyo (3 años), hasta 10 (4 años) y hasta 20 (5 años).
