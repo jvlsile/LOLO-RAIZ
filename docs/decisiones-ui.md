@@ -84,4 +84,4 @@ Todo está en ramas encadenadas (PR #4 a #12); se fusionan en orden.
 - Revisar las listas de palabras y preguntas reto por tema (las propuso la app).
 - Niveles reales en el resto de juegos (robot, construye, cuento, otoño, sentidos, cuerpo…).
 - Aspecto «Aula luminosa» más a fondo en el modo 3 años (formas y tarjetas) y en las fichas.
-- Prueba real en pizarra y en iPad; botón de donación; grabación de audios.
+- Prueba real en pizarra y en iPad; grabación de audios.
