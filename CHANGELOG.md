@@ -1,5 +1,11 @@
 # Cambios
 
+## Sin publicar · LOLO-RAIZ fase 1 (primer paso)
+
+- La nariz de Lolo: las pistas ya no dicen «¿La flor huele mal?». Ahora dicen «La flor huele muy bien. Va con «huele bien»» (y concuerdan en plural: «Las galletas huelen…»). Corregido también en `audio/guion.csv`.
+- Encuentra la pareja: con la edad 3 elegida en el menú, las cartas se ven 7 segundos en vez de 3,5.
+- Modo 3 años · Las burbujas de Lolo: cuarto reto con las vocales A, E, I, O, U en mayúscula. El modo 3 años admite ya juegos con más de tres retos.
+
 ## 1.10.0 · noviembre de 2026
 
 - **Nueva categoría: El cuerpo**, pensada para 3 años. Nico, un niño de dibujo, cambia de color de piel y de pelo en cada partida. Seis juegos con cinco retos, ayuda al segundo fallo y actividad final sin pantalla:
