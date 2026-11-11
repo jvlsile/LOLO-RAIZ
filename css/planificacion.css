@@ -1,0 +1,10 @@
+.plan h3{margin:18px 0 8px;font:700 1.05rem var(--f-titulo);color:var(--tinta-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{padding:8px 14px;border:1.5px solid var(--filete);border-radius:999px;background:#fff;font:700 1.05rem var(--f-titulo)}
+.lista-simple{margin:0;padding-left:22px}.lista-simple li{margin:4px 0}
+.plan textarea{width:100%;padding:12px;border:1.5px solid var(--filete-2);border-radius:14px;font:700 1rem var(--f-texto);color:var(--tinta);resize:vertical}
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.area{padding:16px;border:1.5px solid var(--filete);border-radius:18px;background:#fff}
+.area h3{margin:0 0 8px;color:var(--tinta)}
+.area ul{margin:0;padding-left:20px}.area li{margin:4px 0}
+@media print{.plan .dias,.plan .icono{display:none}.plan .editor{border:1px solid #999;break-inside:avoid}}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Planificación · La visita de Lolo</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F2E9">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/hoy.css">
+<link rel="stylesheet" href="css/registro.css">
+<link rel="stylesheet" href="css/planificacion.css">
+</head>
+<body class="reg plan">
+<header class="barra">
+  <a class="volver" href="hoy.html" aria-label="Volver a Hoy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Hoy</span></a>
+  <div class="titulo"><h1>Planificación por trimestre</h1><p>Tema, palabras y áreas del currículo</p></div>
+  <button class="icono" id="btnImprimir" type="button" aria-label="Imprimir la planificación"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg></button>
+</header>
+<main>
+  <div class="dias" id="trims" role="tablist" aria-label="Trimestre"></div>
+  <section class="editor" aria-labelledby="tTema">
+    <h2 id="tTema"></h2>
+    <p class="nota" id="rango"></p>
+    <h3>Palabras protagonistas propuestas</h3>
+    <ul class="chips" id="palabras"></ul>
+    <h3>Preguntas reto propuestas</h3>
+    <ul class="lista-simple" id="retos"></ul>
+    <h3>Situación de aprendizaje de este trimestre (la escribes tú)</h3>
+    <textarea id="sit" rows="3" aria-label="Situación de aprendizaje del trimestre"></textarea>
+  </section>
+  <section class="editor" aria-labelledby="tAreas">
+    <h2 id="tAreas">Cómo se reparten las tres áreas</h2>
+    <p class="nota">Orientación de dónde se trabaja cada área en esta app. No sustituye a tu programación. Las áreas son las del Decreto 100/2023, de 9 de mayo, y la Orden de 30 de mayo de 2023 (Educación Infantil en Andalucía).</p>
+    <div class="areas" id="areas"></div>
+  </section>
+</main>
+<script src="js/agenda.js"></script>
+<script src="js/asamblea-datos.js"></script>
+<script src="js/planificacion.js"></script>
+</body>
+</html>
