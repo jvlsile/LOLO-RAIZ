@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Preparar · La visita de Lolo</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F6F2E9">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/hoy.css">
+</head>
+<body class="prep">
+<header class="barra">
+  <a class="volver" href="hoy.html" aria-label="Volver a Hoy">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Hoy</span>
+  </a>
+  <div class="titulo"><h1>Preparar</h1><p>Configura la agenda de la semana. Se guarda en este navegador.</p></div>
+</header>
+
+<main>
+  <div class="dias" id="dias" role="tablist" aria-label="Día de la semana"></div>
+  <section class="editor" aria-label="Agenda del día elegido">
+    <h2>Agenda del <span id="diaEd"></span></h2>
+    <ul id="listaEd"></ul>
+    <div class="ed-acc">
+      <button type="button" id="btnNueva">Añadir actividad</button>
+      <button type="button" id="btnTodos">Copiar a todos los días</button>
+      <button type="button" id="btnReset">Volver a la agenda de ejemplo</button>
+    </div>
+    <p class="nota" id="aviso" role="status"></p>
+  </section>
+  <section class="editor" aria-label="Copia de seguridad">
+    <h2>Copia de seguridad</h2>
+    <p class="nota">Todo lo que configures vive solo en este navegador. Para pasarlo a otro ordenador o guardarlo, descarga la copia y cárgala allí.</p>
+    <div class="ed-acc">
+      <button type="button" id="btnExporta">Descargar copia</button>
+      <label class="boton-archivo">Cargar copia<input type="file" id="archivo" accept="application/json,.json" hidden></label>
+    </div>
+  </section>
+  <p class="nota">Los dibujos son de ejemplo. Más adelante se podrán cambiar por pictogramas de ARASAAC.</p>
+</main>
+<script src="js/agenda.js"></script>
+<script src="js/preparar.js"></script>
+</body>
+</html>

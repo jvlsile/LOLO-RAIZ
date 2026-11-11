@@ -51,3 +51,12 @@ main{max-width:1360px;margin:14px auto 90px;padding:0 0}
   .barra{border:0;box-shadow:0;margin:0}.agenda{grid-template-columns:repeat(4,1fr);gap:10px}.act{break-inside:avoid;border-color:#999}
   .act.ahora{box-shadow:none;border-color:#999}.act .pic{background:#fff;border:1px solid #bbb}}
 @media (prefers-reduced-motion:no-preference){.act{transition:background-color .2s,border-color .2s}}
+/* Preparar */
+.preparar{text-decoration:none;display:inline-flex;align-items:center}
+.dias{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.dia{min-height:48px;padding:0 20px;border:1.5px solid var(--filete-2);border-radius:14px;background:#fff;color:var(--tinta);font:700 1.05rem var(--f-titulo);text-transform:capitalize;cursor:pointer}
+.dia[aria-selected="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.prep .editor{margin-top:14px;border-style:solid}
+.editor .n{width:28px;font:700 1rem var(--f-titulo);color:var(--tinta-2);text-align:center}
+.boton-archivo{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--filete-2);border-radius:12px;background:#fff;font:800 .95rem var(--f-texto);cursor:pointer}
+.prep .nota{margin-left:6px}

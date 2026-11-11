@@ -19,16 +19,30 @@ test('muestra la agenda y se marca lo hecho, también tras recargar', async ({ p
   await expect(page.locator('.act.listo')).toHaveCount(1);
 });
 
-test('Preparar: se cambia, se añade y se quita una actividad', async ({ page }) => {
+test('Preparar: se cambia, se añade y se quita una actividad, y Hoy lo refleja', async ({ page }) => {
   await page.goto('/hoy.html');
-  await expect(page.locator('#editor')).toBeHidden();
-  await page.click('#btnPreparar');
+  await page.click('.preparar');
+  await expect(page).toHaveURL(/preparar\.html/);
   await page.click('#btnNueva');
-  await expect(page.locator('.act')).toHaveCount(9);
   await page.locator('#listaEd li').last().locator('input').fill('Psicomotricidad');
+  await page.goto('/hoy.html');
+  await expect(page.locator('.act')).toHaveCount(9);
   await expect(page.locator('.act').last().locator('.nom')).toHaveText('Psicomotricidad');
+  await page.goto('/preparar.html');
   await page.locator('#listaEd li').last().locator('[data-a="quita"]').click();
-  await expect(page.locator('.act')).toHaveCount(8);
+  await expect(page.locator('#listaEd li')).toHaveCount(8);
+});
+
+test('Preparar: la copia de seguridad se descarga y se vuelve a cargar', async ({ page }) => {
+  await page.goto('/preparar.html');
+  await page.click('#btnNueva');
+  const [d] = await Promise.all([page.waitForEvent('download'), page.click('#btnExporta')]);
+  const ruta = await d.path();
+  await page.click('#btnReset');
+  await expect(page.locator('#listaEd li')).toHaveCount(8);
+  await page.setInputFiles('#archivo', ruta);
+  await expect(page.locator('#aviso')).toHaveText('Copia cargada.');
+  await expect(page.locator('#listaEd li')).toHaveCount(9);
 });
 
 test('la agenda no se sale de la pantalla y la asamblea enlaza a Lolo', async ({ page }) => {
