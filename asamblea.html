@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asamblea · La visita de Lolo</title>
+<meta name="description" content="La asamblea de la clase paso a paso: saludo, fecha, agenda, trazo, palabra, número, pregunta reto, rincones y despedida.">
+<meta name="theme-color" content="#F6F2E9">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/hoy.css">
+<link rel="stylesheet" href="css/asamblea.css">
+</head>
+<body class="asam">
+<header class="barra">
+  <a class="volver" href="hoy.html" aria-label="Volver a Hoy">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>Hoy</span>
+  </a>
+  <div class="titulo"><h1>Asamblea</h1><p id="tema"></p></div>
+  <div class="edades" id="edades" role="group" aria-label="Edad de la clase">
+    <button type="button" data-e="3">3 años</button><button type="button" data-e="4">4 años</button><button type="button" data-e="5">5 años</button>
+  </div>
+</header>
+
+<div class="cuerpo">
+  <nav class="menu" id="menu" aria-label="Bloques de la asamblea"></nav>
+  <main class="escena">
+    <section class="tarjeta" id="bloque" aria-live="polite" tabindex="-1"></section>
+    <div class="pasos">
+      <button type="button" id="btnAnt" class="paso">Anterior</button>
+      <span id="cuenta" class="cuenta"></span>
+      <button type="button" id="btnSig" class="paso principal">Siguiente</button>
+    </div>
+  </main>
+</div>
+<script src="js/agenda.js"></script>
+<script src="js/asamblea-datos.js"></script>
+<script src="js/asamblea.js"></script>
+</body>
+</html>

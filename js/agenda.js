@@ -20,7 +20,7 @@
   };
   const NOMBRES = { entrada: 'Entrada', asamblea: 'Asamblea', fruta: 'Fruta', rincones: 'Rincones', patio: 'Patio', aseo: 'Aseo', comida: 'Comida', juego: 'Juego', cuento: 'Cuento', musica: 'Música', salida: 'Salida' };
   const EJEMPLO = [
-    { t: 'Entrada', i: 'entrada' }, { t: 'Asamblea', i: 'asamblea', enlace: 'jugar.html#lolo' },
+    { t: 'Entrada', i: 'entrada' }, { t: 'Asamblea', i: 'asamblea', enlace: 'asamblea.html' },
     { t: 'Fruta', i: 'fruta' }, { t: 'Rincones', i: 'rincones' }, { t: 'Patio', i: 'patio' },
     { t: 'Aseo', i: 'aseo' }, { t: 'Cuento', i: 'cuento' }, { t: 'Salida', i: 'salida' }
   ];

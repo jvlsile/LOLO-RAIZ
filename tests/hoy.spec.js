@@ -45,9 +45,9 @@ test('Preparar: la copia de seguridad se descarga y se vuelve a cargar', async (
   await expect(page.locator('#listaEd li')).toHaveCount(9);
 });
 
-test('la agenda no se sale de la pantalla y la asamblea enlaza a Lolo', async ({ page }) => {
+test('la agenda no se sale de la pantalla y la asamblea enlaza a su recorrido', async ({ page }) => {
   await page.goto('/hoy.html');
   const ancho = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(ancho).toBeLessThanOrEqual(1);
-  await expect(page.locator('.asamblea')).toHaveAttribute('href', 'jugar.html#lolo');
+  await expect(page.locator('.asamblea')).toHaveAttribute('href', 'asamblea.html');
 });

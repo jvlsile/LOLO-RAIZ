@@ -60,3 +60,8 @@ main{max-width:1360px;margin:14px auto 90px;padding:0 0}
 .editor .n{width:28px;font:700 1rem var(--f-titulo);color:var(--tinta-2);text-align:center}
 .boton-archivo{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--filete-2);border-radius:12px;background:#fff;font:800 .95rem var(--f-texto);cursor:pointer}
 .prep .nota{margin-left:6px}
+.campos{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))!important}
+.campos li{display:grid!important;gap:4px}
+.campos label{font-size:.9rem;color:var(--tinta-2)}
+.editor h2 input[type=date]{min-height:40px;font-size:1rem}
+.enlace-bt{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--filete-2);border-radius:12px;color:var(--tinta);font:800 .95rem var(--f-texto);text-decoration:none}

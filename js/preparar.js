@@ -4,7 +4,7 @@
   const $ = s => document.querySelector(s);
   const A = window.RAIZ_AGENDA, esc = A.esc;
   const LAB = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes'];
-  const ENLACES = [['', 'Sin enlace'], ['jugar.html#lolo', 'La visita de Lolo (asamblea)'], ['tres.html', 'Modo 3 años'], ['jugar.html#caja', 'La caja misteriosa'], ['jugar.html#jardin', 'El jardín de la clase'], ['index.html#juegos', 'Todos los juegos']];
+  const ENLACES = [['', 'Sin enlace'], ['asamblea.html', 'Asamblea guiada'], ['jugar.html#lolo', 'La visita de Lolo'], ['tres.html', 'Modo 3 años'], ['jugar.html#caja', 'La caja misteriosa'], ['jugar.html#jardin', 'El jardín de la clase'], ['index.html#juegos', 'Todos los juegos']];
   const hoy = new Date().getDay();
   let dia = A.diaAgenda(hoy);
 
@@ -66,5 +66,35 @@
     };
     r.readAsText(f);
   });
+
+  /* Asamblea del día: palabra, número, trazo, pregunta y rincones. */
+  const D = window.RAIZ_ASAMBLEA;
+  const fAs = $('#fAs'); fAs.value = D.f2(new Date());
+  const edAs = () => D.edad();
+  const campos = { pal: $('#asPal'), num: $('#asNum'), traz: $('#asTraz'), reto: $('#asReto'), r: [$('#asR1'), $('#asR2'), $('#asR3')] };
+  const fechaAs = () => fAs.value ? D.fecha(fAs.value) : new Date();
+  const opcionesTrazo = e => e === 3 ? D.TRAZOS : e === 4 ? ['A', 'E', 'I', 'O', 'U'].map(x => 'Vocal ' + x) : D.VOCALES_5.map(x => 'Vocal ' + x);
+  function pintaAs() {
+    const e = edAs(), d = fechaAs(), p = D.propuesta(d, e), c = (A.leer('raiz-asamblea-dia', {})[D.f2(d)]) || {};
+    $('#edAs').textContent = e;
+    campos.pal.value = c.palabra || ''; campos.pal.placeholder = p.palabra;
+    campos.num.value = Number.isInteger(c.numero) ? c.numero : ''; campos.num.placeholder = p.numero; campos.num.max = D.AMAX[e];
+    campos.traz.innerHTML = '<option value="">Propuesta: ' + esc(opcionesTrazo(e)[p.trazo % opcionesTrazo(e).length]) + '</option>' + opcionesTrazo(e).map((t, i) => `<option value="${i}"${c.trazo === i ? ' selected' : ''}>${esc(t)}</option>`).join('');
+    campos.reto.value = c.reto || ''; campos.reto.placeholder = p.reto;
+    campos.r.forEach((el, i) => { el.value = (c.rincones && c.rincones[i]) || ''; el.placeholder = p.rincones[i] || ''; });
+  }
+  function guardaAs() {
+    const d = fechaAs(), e = edAs(), c = {};
+    if (campos.pal.value.trim()) c.palabra = campos.pal.value.trim().toLowerCase().replace(/[^a-záéíóúüñ-]/g, '');
+    const n = parseInt(campos.num.value, 10); if (n >= 1 && n <= D.AMAX[e]) c.numero = n;
+    if (campos.traz.value !== '') c.trazo = +campos.traz.value;
+    if (campos.reto.value.trim()) c.reto = campos.reto.value.trim();
+    if (campos.r.some(el => el.value.trim())) c.rincones = campos.r.map(el => el.value.trim());
+    if (!D.guardaDia(d, c)) aviso('No se ha podido guardar en este navegador.');
+  }
+  $('#camposAs').addEventListener('input', guardaAs);
+  fAs.addEventListener('change', pintaAs);
+  $('#btnAsReset').addEventListener('click', () => { D.guardaDia(fechaAs(), {}); pintaAs(); aviso('Vuelve la propuesta para ese día.'); });
+  pintaAs();
   pinta();
 })();
