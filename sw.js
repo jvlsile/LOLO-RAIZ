@@ -3,7 +3,7 @@
    La versión se sustituye automáticamente en cada despliegue (ver .github/workflows/publicar.yml). */
 const VERSION = 'raiz-dev';
 const ARCHIVOS = [
-  './', 'index.html', 'jugar.html', 'fichas.html', 'tres.html', 'fichas-3.html', 'css/tres.css', 'js/tres.js', 'js/fichas-3.js', 'css/portada.css', 'js/portada.js', 'css/fichas.css', 'js/fichas.js', 'css/estilos.css', 'js/app.js', 'js/sentidos-dibujos.js', 'fichas-sentidos.html', 'js/fichas-sentidos.js', 'js/cuerpo-dibujos.js', 'fichas-cuerpo.html', 'js/fichas-cuerpo.js', 'video/lolo-sentidos.jpg', 'manifest.webmanifest', 'audio/frases.json',
+  './', 'index.html', 'jugar.html', 'fichas.html', 'tres.html', 'fichas-3.html', 'css/tres.css', 'js/tres.js', 'js/fichas-3.js', 'css/portada.css', 'js/portada.js', 'css/fichas.css', 'js/fichas.js', 'css/estilos.css', 'css/aula.css', 'js/app.js', 'js/sentidos-dibujos.js', 'fichas-sentidos.html', 'js/fichas-sentidos.js', 'js/cuerpo-dibujos.js', 'fichas-cuerpo.html', 'js/fichas-cuerpo.js', 'video/lolo-sentidos.jpg', 'manifest.webmanifest', 'audio/frases.json',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
   'fonts/fredoka-latin-500-normal.woff2', 'fonts/fredoka-latin-600-normal.woff2', 'fonts/fredoka-latin-700-normal.woff2',
   'fonts/nunito-latin-600-normal.woff2', 'fonts/nunito-latin-700-normal.woff2', 'fonts/nunito-latin-800-normal.woff2'

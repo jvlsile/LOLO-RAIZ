@@ -14,6 +14,7 @@
 <link rel="preload" href="fonts/fredoka-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/nunito-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/aula.css">
 </head>
 <body>
 <noscript><p style="padding:24px;font:18px system-ui">Este juego necesita JavaScript. Actívalo en el navegador para jugar.</p></noscript>
@@ -52,13 +53,6 @@
       <span class="ico"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="9" cy="11" r="2.4" fill="#fff"/><circle cx="15" cy="11" r="2.4" fill="#fff"/><circle cx="9.4" cy="11.4" r="1.2" fill="#183153"/><circle cx="15.4" cy="11.4" r="1.2" fill="#183153"/><path d="M9.5 15.5q2.5 2 5 0" stroke="#183153" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></span>
       <div><h1>La visita de Lolo</h1><small><i></i><b id="diaMarca">Lunes</b> · Educación Infantil</small></div>
     </div>
-    <div class="tools">
-      <button class="tool" id="btnRepetir" type="button" aria-label="Repetir lo que dice Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8"/><path d="M4 4v5h5"/></svg><span>Repetir</span></button>
-      <button class="tool" id="btnSonido" type="button" aria-pressed="true" aria-label="Voz de Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path id="ondas" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path id="mute" d="M17 9l5 6M22 9l-5 6" style="display:none"/></svg><span id="txtVoz">Voz</span></button>
-      <button class="tool calmaBtn" id="btnTranquilo" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Modo tranquilo</span></button>
-      <button class="tool" id="btnRincon" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span>Rincón de la calma</span></button>
-      <button class="tool" id="btnGuia" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span>Guía docente</span></button>
-    </div>
   </header>
 
   <div class="barra-juegos">
@@ -67,6 +61,17 @@
     <div class="actual"><span class="ti" id="actualIc"></span><div><b id="actualT">La visita de Lolo</b><small id="actualC">Rutinas y asamblea · 3–4 años</small></div></div>
     <div class="nivel" id="nivel" role="group" aria-label="Nivel del juego" hidden><button type="button" id="nivelMenos" aria-label="Más fácil">−</button><span id="nivelTxt" aria-live="polite">Nivel 4 años</span><button type="button" id="nivelMas" aria-label="Más difícil">+</button></div>
     <button class="chip-jardin" id="chipJardin" type="button" aria-label="Ver el jardín de la clase"><span class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 15c-4 0-6-3-6-6 4 0 6 3 6 6zM12 13c0-4 3-6 6-6 0 4-3 6-6 6z"/><path d="M4 21h16"/></svg></span><b id="jardinN">0</b><span>logros en el jardín</span></button>
+    <div class="mas">
+      <button class="btn-mas" id="btnMas" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menuMas" aria-label="Más opciones: voz, modo tranquilo, rincón de la calma y guía"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5.5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.5" cy="12" r="2"/></svg></button>
+      <div class="menu-mas" id="menuMas" hidden><div class="tools">
+      <button class="tool" id="btnRepetir" type="button" aria-label="Repetir lo que dice Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.5-5.8"/><path d="M4 4v5h5"/></svg><span>Repetir</span></button>
+      <button class="tool" id="btnSonido" type="button" aria-pressed="true" aria-label="Voz de Lolo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path id="ondas" d="M16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/><path id="mute" d="M17 9l5 6M22 9l-5 6" style="display:none"/></svg><span id="txtVoz">Voz</span></button>
+      <button class="tool calmaBtn" id="btnTranquilo" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Modo tranquilo</span></button>
+      <button class="tool" id="btnRincon" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg><span>Rincón de la calma</span></button>
+      <button class="tool" id="btnGuia" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg><span>Guía docente</span></button>
+    </div></div>
+    </div>
+
   </div>
 
   <nav class="agenda" id="agenda" aria-label="Agenda visual"></nav>

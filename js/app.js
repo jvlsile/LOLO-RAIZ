@@ -420,6 +420,15 @@
   $('#btnRincon').addEventListener('click',()=>{ textoAntes=ultimo; callar(); rincon.hidden=false; $('#cerrarRincon').focus(); decir('Vamos a respirar juntos. Cogemos aire… y lo soltamos despacito.'); });
   $('#cerrarRincon').addEventListener('click',()=>{ rincon.hidden=true; if(textoAntes) repite(textoAntes); });
   $('#btnGuia').addEventListener('click',()=>{ guia.hidden=false; $('#cerrarGuia').focus(); });
+  /* Menú «Más»: voz, modo tranquilo, rincón de la calma y guía */
+  (function(){
+    const b=$('#btnMas'), m=$('#menuMas'); if(!b||!m) return;
+    const cierra=foco=>{ if(m.hidden) return; m.hidden=true; b.setAttribute('aria-expanded','false'); if(foco) b.focus(); };
+    b.addEventListener('click',e=>{ e.stopPropagation(); const abre=m.hidden; m.hidden=!abre; b.setAttribute('aria-expanded',String(abre)); if(abre){ const p=m.querySelector('.tool'); if(p) p.focus(); } });
+    m.addEventListener('click',e=>{ if(e.target.closest('.tool')) setTimeout(()=>cierra(false),0); });
+    document.addEventListener('click',e=>{ if(!e.target.closest('.mas')) cierra(false); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') cierra(true); });
+  })();
   $('#cerrarGuia').addEventListener('click',()=>guia.hidden=true);
   guia.addEventListener('click',e=>{ if(e.target===guia) guia.hidden=true; });
   addEventListener('keydown',e=>{ if(e.key==='Escape'){ guia.hidden=true; vozCapa.hidden=true; $('#menuCapa').hidden=true; } });
@@ -499,6 +508,7 @@
     if(modo!=='caja') return;
     const items=[...ORDEN.map(k=>({k:RUT[k].ic,lbl:RUT[k].lbl})),{k:'estrella',lbl:'¡Lo vemos!'}];
     const cur=cajaFin?3:rPaso;
+    agendaEl.dataset.txt='Rutina de la caja';
     agendaEl.innerHTML=items.map((s,i)=>`${i?flechaAg:''}<div class="ag ${cajaFin&&i<3?'hecho':''} ${i===cur?'ahora':''}">${i===cur?'<span class="tag">Ahora</span>':''}<span class="pic">${icono(s.k)}</span><span>${s.lbl}</span></div>`).join('');
     document.querySelectorAll('.rut').forEach(b=>{ b.classList.toggle('on',!cajaFin&&b.dataset.r===ORDEN[rPaso]); b.disabled=cajaFin; });
   }
@@ -644,10 +654,11 @@
   }
   function pintaRondas(){
     const s=EST[modo], J=JUEGOS[modo]; if(!s||!J) return;
-    if(J.libre){ agendaEl.innerHTML=`<div class="ag ahora"><span class="tag">Ahora</span><span class="pic">${icono(J.ic)}</span><span>${J.titulo}</span></div>`; return; }
+    if(J.libre){ agendaEl.dataset.txt=J.titulo; agendaEl.innerHTML=`<div class="ag ahora"><span class="tag">Ahora</span><span class="pic">${icono(J.ic)}</span><span>${J.titulo}</span></div>`; return; }
     const R=J.R||5;
     const items=[...Array(R)].map((_,i)=>({k:J.ic,lbl:J.etiq?J.etiq[i]:'Reto '+(i+1)})).concat([{k:'fin',lbl:'Fin'}]);
     const cur=s.fin?-1:(s.v===undefined&&J.elegir?-1:s.ronda), hechos=s.fin?R+1:s.hechas;
+    agendaEl.dataset.txt=s.fin?'Terminado':`Reto ${Math.min(s.ronda+1,R)} de ${R}`;
     agendaEl.innerHTML=items.map((it,i)=>`${i?flechaAg:''}<div class="ag ${i<hechos?'hecho':''} ${i===cur?'ahora':''}">${i===cur?'<span class="tag">Ahora</span>':''}${cur>=0&&i===cur+1&&!s.fin?'<span class="tag despues">Después</span>':''}<span class="pic">${icono(it.k)}</span><span>${it.lbl}</span></div>`).join('');
   }
   function rondaJuego(id){

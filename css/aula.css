@@ -1,0 +1,84 @@
+/* LOLO-RAIZ · estilo «Aula luminosa» para jugar.html (decisiones en docs/decisiones-ui.md).
+   Se carga después de estilos.css y solo cambia la piel: no toca la estructura de los juegos. */
+:root{ --papel:#F6F2E9; --filete:#E4DCCB; --filete-2:#D5CCB8; --azul:#3D8DF2; --azul-2:#E3EEFD; --tinta-3:#46607F; }
+
+body{background:var(--papel)}
+.mar{display:none}
+.top{display:none}
+.arrecife{display:none}
+.app{max-width:1360px;grid-template-rows:auto auto 1fr;gap:14px;padding-block:16px 24px}
+
+/* ---------- una sola barra arriba ---------- */
+.barra-juegos{position:relative;gap:12px;flex-wrap:nowrap;padding:10px 12px;background:#fff;border:1px solid var(--filete);border-radius:20px;box-shadow:0 1px 2px rgba(24,49,83,.06)}
+.btn-inicio{height:48px;padding:0 14px 0 8px;border:0;border-radius:14px;background:transparent;box-shadow:none;font:800 1rem var(--f-body)}
+.btn-inicio:hover{background:#F0F5F8}
+.btn-menu{height:48px;padding:0 18px 0 14px;border-radius:14px;box-shadow:none;font:700 1rem var(--f-display)}
+.btn-menu:hover{transform:none;background:#24456F}
+.actual{flex:1 1 auto;min-width:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+.actual .ti{border-radius:14px}
+.actual b{font-size:1.25rem}
+.nivel{display:flex;align-items:center;gap:0;height:48px;padding:0;overflow:hidden;border:1.5px solid var(--filete-2);border-radius:14px;background:#fff;box-shadow:none}
+.nivel button{width:48px;height:100%;border:0;border-radius:0;background:#fff;box-shadow:none}
+.nivel button:first-child{border-right:1.5px solid var(--filete-2)}
+.nivel button:last-child{border-left:1.5px solid var(--filete-2)}
+.nivel button:hover:not(:disabled){background:#F0F5F8}
+.nivel span{min-width:124px}
+.chip-jardin{height:48px;border:1.5px solid var(--filete-2);border-radius:14px;background:#fff;box-shadow:none}
+.mas{position:relative;flex:none}
+.btn-mas{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1.5px solid var(--filete-2);border-radius:14px;background:#fff;color:var(--tinta);cursor:pointer}
+.btn-mas:hover,.btn-mas[aria-expanded="true"]{background:#F0F5F8}
+.btn-mas svg{width:24px;height:24px}
+.menu-mas{position:absolute;z-index:60;right:0;top:calc(100% + 10px);min-width:270px;padding:8px;background:#fff;border:1px solid var(--filete);border-radius:18px;box-shadow:0 16px 36px rgba(24,49,83,.16)}
+.menu-mas .tools{flex-direction:column;flex-wrap:nowrap;gap:2px}
+.menu-mas .tool{width:100%;height:52px;justify-content:flex-start;gap:12px;padding:0 14px;border:0;border-radius:12px;background:transparent;box-shadow:none;opacity:1;font-size:1rem}
+.menu-mas .tool:hover{transform:none;background:#F0F5F8}
+.menu-mas .tool span{display:inline}
+.menu-mas .tool.calmaBtn{background:transparent}
+.menu-mas .tool.calmaBtn[aria-pressed="true"]{background:#7E8CE0;color:#fff}
+.menu-mas .tool[aria-pressed="false"]{opacity:1}
+
+/* ---------- retos: una franja fina ---------- */
+.modo-caja .agenda{display:flex;align-items:center;gap:8px;min-height:28px;padding:0 4px;overflow:visible;background:none;border:0;box-shadow:none}
+.modo-caja .agenda::before{content:attr(data-txt);margin-right:8px;white-space:nowrap;font:800 .95rem var(--f-body);color:var(--tinta-3)}
+.modo-caja .agenda .flecha-ag{display:none}
+.modo-caja .ag{position:relative;flex:0 0 auto;display:block;width:clamp(36px,6vw,64px);height:7px;padding:0;overflow:hidden;border-radius:4px;background:var(--filete-2);opacity:1}
+.modo-caja .ag > *{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.modo-caja .ag.hecho{background:var(--tinta)}
+.modo-caja .ag.hecho::after{display:none}
+.modo-caja .ag.ahora{background:var(--azul)}
+/* la agenda del día (Lolo) pasa a tarjetas claras */
+.app:not(.modo-caja) .agenda{background:#fff;border:1px solid var(--filete);border-radius:20px;box-shadow:0 1px 2px rgba(24,49,83,.06)}
+.app:not(.modo-caja) .ag.ahora{background:var(--azul-2)}
+.app:not(.modo-caja) .ag .pic{border-radius:14px}
+
+/* ---------- el juego, en una tarjeta; Lolo pequeño junto a la pregunta ---------- */
+.stage{display:block;position:relative;min-width:0}
+.mascota{position:absolute;z-index:2;left:clamp(18px,3vw,44px);top:clamp(14px,2.2vw,30px);width:clamp(72px,8vw,108px);max-width:none}
+.mascota svg{filter:none}
+.sombra{display:none}
+.panel{background:#fff;border:1px solid var(--filete);border-radius:26px;padding:clamp(16px,2.4vw,30px) clamp(16px,3vw,44px) clamp(18px,2.4vw,32px);box-shadow:0 1px 2px rgba(24,49,83,.06),0 16px 36px rgba(24,49,83,.07)}
+.bocadillo{align-content:center;min-height:clamp(76px,9vw,112px);padding-left:clamp(88px,10vw,134px)}
+.quien{display:none}
+#texto,#textoCaja,.panel .txt{font-size:clamp(1.3rem,2.5vw,2.3rem)}
+
+/* respuestas: sobrias, sin relieve */
+.opt{border:2px solid #D5DCE6;border-radius:20px;background:#fff;box-shadow:none}
+.opt:hover{transform:none;border-color:var(--azul)}
+.opt:active{transform:scale(.98);box-shadow:none}
+.opt .lbl{background:#F0F5F8}
+.opt.bien{border-color:var(--ok);background:#F2FBF6;box-shadow:none}
+.num{border:2px solid #D5DCE6;border-radius:20px;background:#fff;box-shadow:none}
+.num:hover{transform:none;border-color:var(--azul)}
+.zona-cuenta{background:#F0F5F8;border-radius:20px}
+.big{border-radius:16px}
+.big.sec{border:1.5px solid var(--filete-2);box-shadow:none}
+
+/* ---------- pantallas pequeñas ---------- */
+@media (max-width:760px){
+  .barra-juegos{flex-wrap:wrap}
+  .actual{order:5;flex-basis:100%}
+  .nivel span{min-width:96px}
+  .bocadillo{padding-left:clamp(76px,22vw,100px);min-height:72px}
+  .mascota{width:68px}
+  .menu-mas{position:fixed;left:16px;right:16px;top:auto;bottom:16px;min-width:0}
+}

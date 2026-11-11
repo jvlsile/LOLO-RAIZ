@@ -7,6 +7,7 @@
   - Cuenta y toca: hasta 5 con puntitos de apoyo (3 años), hasta 10 (4 años) y hasta 20 (5 años).
   - Encuentra la pareja: de 2 a 6 parejas y cartas visibles 7 s (3 años), 4 s (4 años) o 2,5 s (5 años).
 - Modo 3 años · Las burbujas de Lolo: cuarto reto con las vocales A, E, I, O, U en mayúscula. El modo 3 años admite ya juegos con más de tres retos.
+- Nuevo aspecto «Aula luminosa» en la pantalla de juego (primer paso): fondo de papel, una sola barra blanca, agenda fina arriba y escenario en una tarjeta. Voz, modo tranquilo, rincón de la calma y guía pasan al botón «⋯».
 
 ## 1.10.0 · noviembre de 2026
 
