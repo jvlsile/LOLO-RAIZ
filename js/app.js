@@ -997,10 +997,10 @@
         }
       }},
 
-    robot:{titulo:'El robot perdido',ic:'j_robot',
+    robot:{titulo:'El robot perdido',ic:'j_robot',niveles:true,
       puente:'Ahora, con vuestro robot de suelo: copiad el programa en el robot y comprobad si llega a la flor del tapete.',
       ronda(n,a){
-        const L=[{s:[0,1],m:[2,1],r:[]},{s:[1,0],m:[1,3],r:[]},{s:[0,0],m:[2,2],r:[[1,0],[0,2]]},{s:[0,3],m:[4,0],r:[[1,3],[2,1],[3,2]]},{s:[4,3],m:[0,0],r:[[3,3],[2,2],[1,1],[3,0]]}][n];
+        const L=[{s:[0,1],m:[2,1],r:[]},{s:[1,0],m:[1,3],r:[]},{s:[0,0],m:[2,2],r:[[1,0],[0,2]]},{s:[0,3],m:[4,0],r:[[1,3],[2,1],[3,2]]},{s:[4,3],m:[0,0],r:[[3,3],[2,2],[1,1],[3,0]]}][[[0,1,0,1,2],[0,1,2,3,4],[2,3,4,3,4]][nivel()-3][n]];
         const C=5,F=4, esRoca=(x,y)=>L.r.some(([p,q])=>p===x&&q===y), fuera=(x,y)=>x<0||y<0||x>=C||y>=F;
         const NOM={arriba:'arriba',abajo:'abajo',izquierda:'izquierda',derecha:'derecha'}, D={arriba:[0,-1],abajo:[0,1],izquierda:[-1,0],derecha:[1,0]};
         a.z.innerHTML=`<div class="robot-wrap"><div class="mapa" style="--c:${C}">${Array.from({length:C*F},(_,i)=>{ const x=i%C,y=Math.floor(i/C); return `<div class="celda" data-x="${x}" data-y="${y}">${esRoca(x,y)?ROCA:(x===L.m[0]&&y===L.m[1]?FLOR('#FF5D8F'):'')}</div>`; }).join('')}<div class="robi">${ROBOT}</div></div>
@@ -1034,10 +1034,10 @@
         decir(n===0?'Robi el robot quiere llegar a la flor. Tocad las flechas para hacer el camino y después pulsad «¡Adelante!».':'Otro camino para Robi. ¡Cuidado con las rocas!');
       }},
 
-    construye:{titulo:'Toca, construye y comprueba',ic:'j_construye',
+    construye:{titulo:'Toca, construye y comprueba',ic:'j_construye',niveles:true,
       puente:'Dejad los bloques en el rincón de construcción con estas torres como tarjetas modelo, para que sigan copiándolas.',
       ronda(n,a){
-        const N=[2,3,3,4,5][n], fila=n===2, mod=Array.from({length:N},()=>azar(Object.keys(COL)));
+        const N=[[2,2,3,2,3],[2,3,3,4,5],[3,4,4,5,5]][nivel()-3][n], fila=n===2, mod=Array.from({length:N},()=>azar(Object.keys(COL)));
         a.z.innerHTML=`<div class="modelo"><div class="torre ${fila?'fila-b':''}">${mod.map(c=>`<span class="bloque">${BLOQUE(c)}</span>`).join('')}</div></div><div class="pasos-c"></div>`;
         { const ini=`Con vuestros bloques de verdad, construid ${fila?'este tren':'esta torre'} de ${NUMW[N]} bloques. ${fila?'De izquierda a derecha':'De abajo arriba'}:`; decir(`${ini} ${mod.join(', ')}.`,[ini,...mod]); }
         const pc=a.z.querySelector('.pasos-c'), f=document.createElement('div'); f.className='fila'; pc.appendChild(f);
@@ -1357,10 +1357,10 @@
   const cF=n=>n===1?'una castaña':NUMW[n]+' castañas';
 
   Object.assign(JUEGOS,{
-    hojas:{titulo:'Las hojas del otoño',ic:'j_hojas',
+    hojas:{titulo:'Las hojas del otoño',ic:'j_hojas',niveles:true,
       puente:'Salid al patio a recoger hojas de verdad. En clase, haced montones por colores y buscad la hoja más grande y la más pequeña.',
       ronda(n,a){
-        const cfg=[{k:'color',v:2},{k:'color',v:3},{k:'tamano'},{k:'color',v:3},{k:'color',v:4}][n];
+        const cfg=[[{k:'color',v:2},{k:'color',v:2},{k:'tamano'},{k:'color',v:2},{k:'color',v:3}],[{k:'color',v:2},{k:'color',v:3},{k:'tamano'},{k:'color',v:3},{k:'color',v:4}],[{k:'color',v:3},{k:'color',v:4},{k:'tamano'},{k:'color',v:4},{k:'color',v:4}]][nivel()-3][n];
         const cs=mezcla(Object.keys(HCOL)); let vals, items=[];
         if(cfg.k==='color'){ vals=cs.slice(0,cfg.v); const por=cfg.v===2?3:2; vals.forEach(v=>{ for(let i=0;i<por;i++) items.push({v,c:v,t:Math.random()<.5?1:0,s:1}); }); }
         else { vals=['grande','pequena']; vals.forEach(v=>{ for(let i=0;i<3;i++) items.push({v,c:cs[i],t:i%2,s:v==='grande'?1:.55}); }); }
@@ -1451,10 +1451,10 @@
         decir(n===0?`En otoño hace frío y hay poca comida. Cada animal se prepara a su manera. ¿Qué hace ${B.ar} ${B.n}?`:`¿Y ${B.ar} ${B.n}? ¿Qué hace en otoño?`);
       }},
 
-    castanas:{titulo:'El puesto de castañas',ic:'j_castanas',
+    castanas:{titulo:'El puesto de castañas',ic:'j_castanas',niveles:true,
       puente:'Montad en el rincón un puesto de castañas con castañas de verdad (o piñas) y cucuruchos de papel. Unos piden, otros sirven y todos cuentan.',
       ronda(n,a){
-        const N=[2,3,1,4,5][n];
+        const N=[[1,2,1,3,2],[2,3,1,4,5],[4,5,6,5,7]][nivel()-3][n];
         a.z.innerHTML=`<div class="puesto" data-n="${N}">
           <div class="pedido"><span class="grande">${N}</span><span class="pts-g">${'<i></i>'.repeat(N)}</span><small>Lolo quiere</small></div>
           <div class="brasero" data-di="Las castañas calentitas">${Array.from({length:8},(_,i)=>`<button class="castana" type="button" aria-label="Castaña">${CASTANA}</button>`).join('')}</div>

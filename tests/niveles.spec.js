@@ -68,3 +68,28 @@ test('series: con 3 años la fila es más corta que con 5', async ({ page }) => 
   await page.locator('#nivelMas').click(); await page.locator('#nivelMas').click();
   expect(await page.locator('.serie .tok').count()).toBeGreaterThan(a);
 });
+
+test('castañas: el pedido es más pequeño con 3 años que con 5', async ({ page }) => {
+  await abre(page, '3', 'castanas');
+  const a = +(await page.locator('.puesto').getAttribute('data-n'));
+  expect(a).toBeLessThanOrEqual(2);
+  await page.locator('#nivelMas').click(); await page.locator('#nivelMas').click();
+  expect(+(await page.locator('.puesto').getAttribute('data-n'))).toBeGreaterThanOrEqual(4);
+});
+
+test('construye: la torre modelo tiene 2 bloques con 3 años y 3 con 5', async ({ page }) => {
+  await abre(page, '3', 'construye');
+  await expect(page.locator('.modelo .bloque')).toHaveCount(2);
+  await page.locator('#nivelMas').click(); await page.locator('#nivelMas').click();
+  await expect(page.locator('.modelo .bloque')).toHaveCount(3);
+});
+
+test('robot enseña el selector de nivel', async ({ page }) => {
+  await abre(page, '5', 'robot');
+  await expect(page.locator('#nivelTxt')).toHaveText('Nivel 5 años');
+});
+
+test('hojas: con 3 años solo hay dos colores en la primera ronda', async ({ page }) => {
+  await abre(page, '3', 'hojas');
+  await expect(page.locator('.cesta')).toHaveCount(2);
+});
