@@ -2,6 +2,8 @@
 
 ## Sin publicar · LOLO-RAIZ fase 1 (primer paso)
 
+- Portada en móvil apaisado: la barra ya no se parte en varias líneas (el logo y los enlaces no se parten y se ocultan los menos usados), la cabecera es más baja y Lolo queda al lado del texto. El enlace «Hoy» se ve en todos los tamaños.
+
 - Se quita el botón «Invítame a un café» (con su ventana de PayPal y el código QR) de la portada y de las fichas. Esta versión no lleva ningún botón de donación.
 
 - La nariz de Lolo: las pistas ya no dicen «¿La flor huele mal?». Ahora dicen «La flor huele muy bien. Va con «huele bien»» (y concuerdan en plural: «Las galletas huelen…»). Corregido también en `audio/guion.csv`.

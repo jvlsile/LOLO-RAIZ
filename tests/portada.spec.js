@@ -132,3 +132,15 @@ test('en las categorías hay entrada a los generadores de fichas y al modo 3 añ
   await page.waitForURL(/fichas-3\.html$/);
   await expect(page.locator('h1')).toHaveText('Fichas para 3 años');
 });
+
+test('la barra de la portada no se parte en varias líneas en móvil apaisado', async ({ page }) => {
+  for (const [w, h] of [[932, 430], [844, 390], [667, 375]]) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/');
+    const alto = await page.evaluate(() => document.querySelector('.nav-in').getBoundingClientRect().height);
+    expect(alto, `barra a ${w}x${h}`).toBeLessThanOrEqual(76);
+    const lineas = await page.evaluate(() => document.querySelector('.logo span').getBoundingClientRect().height);
+    expect(lineas, `logo a ${w}x${h}`).toBeLessThan(40);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+  }
+});
