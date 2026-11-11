@@ -48,3 +48,17 @@ Cualquier cambio de estos acuerdos se habla antes con ella.
 1. Edades: ajuste único de edad, tres niveles reales por juego, vocales en mayúscula en burbujas (3 años), memoria visible más tiempo (3 años), corregir la frase de «la flor huele mal».
 2. Asamblea y agenda.
 3. Temas por trimestre, planificación semanal, imprimibles y registros por áreas con la Orden de Andalucía.
+
+## Estilo visual elegido: «Aula luminosa» (propuesta B)
+
+Elegido por la autora entre tres propuestas (A «Mar sereno», B «Aula luminosa», C «Escenario») por ser la más profesional y educativa. Propuestas dibujadas en el lienzo «Lolo Raíz · propuestas de interfaz».
+
+- **Fondo** claro y cálido (papel, `#F6F2E9`). Se abandona el mar fijo con rayos, burbujas y algas.
+- **Una sola barra arriba**, blanca y fina, con filete: volver, nombre del juego y su categoría, selector de nivel y botón «⋯» con Voz, Modo tranquilo, Rincón de la calma y Guía docente.
+- **Franja de retos** debajo de la barra: «Reto 2 de 5» y cinco trazos finos.
+- **El juego, en una sola tarjeta blanca** con filete fino y sombra suave, lo más grande posible.
+- **Lolo pequeño**, junto a la pregunta que formula, y no como columna lateral.
+- **Formas más sobrias:** botones y zonas con esquinas de unos 14–26 px (ya no píldoras); filetes de 1,5 px en vez de sombras marcadas.
+- **Color:** tinta marina para el texto, un solo acento por categoría (etiqueta y trazo del reto actual) y el naranja de Lolo reservado para Lolo.
+- **Tipografía:** Fredoka para lo que se dice y se toca; Nunito para lo que lee la maestra.
+- **Estado:** solo hay dibujos de la pantalla «Cuenta y toca»; falta dibujar HOY, asamblea, menú de juegos y Preparar en este estilo antes de tocar la app.
