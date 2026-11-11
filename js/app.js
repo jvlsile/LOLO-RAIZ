@@ -1563,8 +1563,17 @@
       ok:'¡El caracol ha sacado los cuernos! ¡Hola, caracol!',
       fondo:pr(0,`<circle cx="150" cy="102" r="90" fill="#F6C99A" stroke="${K}" stroke-width="4"/>`),
       frente:pr(1,`<g class="cuerpo-caracol"><path d="M118 190Q200 198 274 186Q292 180 286 162L262 160Q200 178 128 178Z" fill="#C8E6A0" stroke="${K}" stroke-width="4" stroke-linejoin="round"/><circle cx="270" cy="150" r="16" fill="#C8E6A0" stroke="${K}" stroke-width="4"/><path d="M262 136l-8-24M278 136l6-24" stroke="${K}" stroke-width="4" stroke-linecap="round"/><circle cx="254" cy="110" r="5" fill="${K}"/><circle cx="284" cy="110" r="5" fill="${K}"/><path d="M264 156q6 4 12 0" stroke="${K}" stroke-width="2.6" fill="none" stroke-linecap="round"/></g>`)}
+    ,
+    /* Vocales en mayúscula (4 años). Solo aparecen cuando la edad elegida es 4. */
+    vA:{n:'La vocal A',tipo:'vocal mayúscula',letra:1,d:['M80 172L150 34L220 172','M104 124H196'],tinta:'#3B3486',intro:'La A mayúscula sube como un tejado y luego una rayita la cruza. Mirad a Lolo.',ok:'¡Muy bien! Ya sabéis escribir la A.'},
+    vE:{n:'La vocal E',tipo:'vocal mayúscula',letra:1,d:['M208 34H100V172H208','M100 104H188'],tinta:'#3B3486',intro:'La E mayúscula tiene un tronco y tres ramas. Mirad a Lolo.',ok:'¡Muy bien! Ya sabéis escribir la E.'},
+    vI:{n:'La vocal I',tipo:'vocal mayúscula',letra:1,d:['M150 34V172'],tinta:'#3B3486',intro:'La I mayúscula es una raya de pie, como un tronco. Mirad a Lolo.',ok:'¡Muy bien! Ya sabéis escribir la I.'},
+    vO:{n:'La vocal O',tipo:'vocal mayúscula',letra:1,d:['M150 32A64 72 0 1 0 150 176A64 72 0 1 0 150 32'],tinta:'#3B3486',intro:'La O mayúscula es una rueda redonda. Mirad a Lolo.',ok:'¡Muy bien! Ya sabéis escribir la O.'},
+    vU:{n:'La vocal U',tipo:'vocal mayúscula',letra:1,d:['M96 34V118Q96 176 150 176Q204 176 204 118V34'],tinta:'#3B3486',intro:'La U mayúscula baja, da la vuelta y sube. Mirad a Lolo.',ok:'¡Muy bien! Ya sabéis escribir la U.'}
   };
-  const TRAZO_IDS=Object.keys(TRAZOS);
+  const TRAZO_IDS=Object.keys(TRAZOS).filter(k=>!TRAZOS[k].letra);
+  const LETRA_IDS=Object.keys(TRAZOS).filter(k=>TRAZOS[k].letra);
+  const idsTinta=()=>edadApp()===4?[...TRAZO_IDS,...LETRA_IDS]:TRAZO_IDS;
   const miniTrazo=k=>sv('0 0 300 200',`<rect x="4" y="4" width="292" height="192" rx="26" fill="#F2FAFC"/>${TRAZOS[k].d.map(d=>`<path d="${d}" fill="none" stroke="#0B7A8F" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}`);
   const LOLITO=`<g class="lolito"><circle r="15" fill="#FF8A3D" stroke="${K}" stroke-width="3.2"/><circle cx="-5.2" cy="-2.5" r="3.8" fill="#fff"/><circle cx="5.2" cy="-2.5" r="3.8" fill="#fff"/><circle cx="-4.6" cy="-2" r="1.9" fill="${K}"/><circle cx="5.8" cy="-2" r="1.9" fill="${K}"/><path d="M-4.5 5.5q4.5 3.4 9 0" stroke="${K}" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>`;
   const ESTRELLA=`<path d="M0-16l4.7 9.6 10.5 1.5-7.6 7.4 1.8 10.5L0 8l-9.4 5 1.8-10.5-7.6-7.4 10.5-1.5z" fill="#FFC93C" stroke="${K}" stroke-width="3" stroke-linejoin="round"/>`;
@@ -1583,11 +1592,11 @@
 
   JUEGOS.tinta={titulo:'La tinta de Lolo',ic:'j_tinta',R:3,etiq:['Mira y repasa','Sigue los puntos','Tú solo'],
     get puente(){ const T=TRAZOS[EST.tinta&&EST.tinta.v]||TRAZOS.tronco; return `Repetid «${T.n.toLowerCase()}» en grande: primero en el aire con todo el brazo, luego con el dedo en una bandeja de arena o de sal, y por último con ceras gordas en un papel grande.`; },
-    elegir:{texto:FR_TINTA.eleg,ops:TRAZO_IDS.map((k,i)=>({k,lbl:`${i+1} · ${TRAZOS[k].n}`,html:miniTrazo(k)})),
+    elegir:{texto:FR_TINTA.eleg,get ops(){ return idsTinta().map((k,i)=>({k,lbl:`${i+1} · ${TRAZOS[k].n}`,html:miniTrazo(k)})); },
       pie:`<div class="fila fila-fichas"><a class="big sec peq enlace-fichas" href="fichas.html"><span class="mini">${icono('imprimir')}</span><span>Fichas para imprimir</span></a></div>`},
-    extraFin:s=>`<div class="fila"><a class="big sec peq enlace-fichas" href="fichas.html?t=${s.v}"><span class="mini">${icono('imprimir')}</span><span>Imprimir fichas de este trazo</span></a></div>`,
+    extraFin:s=>TRAZOS[s.v]&&TRAZOS[s.v].letra?'':`<div class="fila"><a class="big sec peq enlace-fichas" href="fichas.html?t=${s.v}"><span class="mini">${icono('imprimir')}</span><span>Imprimir fichas de este trazo</span></a></div>`,
     ronda(n,a){
-      const s=EST.tinta, T=TRAZOS[s.v], num=TRAZO_IDS.indexOf(s.v)+1;
+      const s=EST.tinta, T=TRAZOS[s.v], num=idsTinta().indexOf(s.v)+1||1;
       a.z.innerHTML=`<div class="trazo-wrap"><div class="pizarra-trazo r${n}" data-trazo="${s.v}" style="--tinta-c:#3B3486">
           <span class="trazo-nombre"><b>${num}</b>${T.n}<i>${T.tipo}</i></span>
           <svg class="lienzo" viewBox="0 0 300 200" role="img" aria-label="${T.n}, trazo ${T.tipo}. Empieza en el punto verde y termina en la estrella.">
