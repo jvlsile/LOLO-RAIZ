@@ -10,6 +10,7 @@
 - Nivel por edad: la edad se elige una vez en el menú (sin elegir, 4 años) y, durante el juego, un selector «− Nivel N años +» deja subir o bajar un escalón. Ya lo usan:
   - Cuenta y toca: hasta 5 con puntitos de apoyo (3 años), hasta 10 (4 años) y hasta 20 (5 años).
   - Encuentra la pareja: de 2 a 6 parejas y cartas visibles 7 s (3 años), 4 s (4 años) o 2,5 s (5 años).
+  - El puesto de castañas (pedidos de 1 a 3, de 1 a 5 o de 4 a 7), Toca, construye y comprueba (torres de 2, 2 a 5 o 3 a 5 bloques), El robot perdido (mapas más sencillos con 3 años y los más difíciles con 5) y Las hojas del otoño (de 2 a 4 colores).
   - Series (fila más corta con 3 años, patrones de tres piezas con 5), Clasifica en cestas (hasta tres cestas y nueve piezas con 5), Grande, mediano, pequeño (con silueta de ayuda a los 3 años y sin ella a los 5) y Formas geométricas (de 2 a 4 siluetas).
 - Modo 3 años · Las burbujas de Lolo: cuarto reto con las vocales A, E, I, O, U en mayúscula. El modo 3 años admite ya juegos con más de tres retos.
 - La tinta de Lolo con 4 años: además de los ocho trazos aparecen las cinco vocales en mayúscula (A, E, I, O, U), que se repasan igual que un trazo. Con 3 y 5 años siguen los ocho trazos. Las minúsculas con rabillo y las consonantes quedan a la espera de tu orden de letras.

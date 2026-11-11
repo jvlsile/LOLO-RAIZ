@@ -75,13 +75,13 @@ Todo está en ramas encadenadas (PR #4 a #12); se fusionan en orden.
 | Asamblea guiada con menú lateral | `asamblea.html` | Hecho. Contenido por edad según la tabla de arriba |
 | Registro semanal imprimible | `registro.html` | Hecho. Se rellena al llegar a la despedida |
 | Planificación por trimestre y áreas | `planificacion.html` | Hecho. Reparto de áreas orientativo |
-| Niveles reales por edad | juegos | Cuenta, parejas, series, cestas, tamaños y formas |
+| Niveles reales por edad | juegos | Cuenta, parejas, series, cestas, tamaños, formas, castañas, construye, robot y hojas |
 | La tinta de Lolo | `jugar.html#tinta` | 8 trazos; con 4 años, además, vocales en mayúscula |
 
 ### Pendiente
 - Horario semanal real y pictogramas de ARASAAC (licencia CC BY-NC-SA) en HOY.
 - Consonantes en mayúscula de 4 años; orden completo de letras y minúsculas con rabillo de 5 años (La tinta y trazo de la asamblea).
 - Revisar las listas de palabras y preguntas reto por tema (las propuso la app).
-- Niveles reales en el resto de juegos (robot, construye, cuento, otoño, sentidos, cuerpo…).
+- Niveles reales en el resto de juegos (cuento, caza, escape, duo, sentidos, cuerpo…): se hacen donde tengan algo que graduar.
 - Aspecto «Aula luminosa» más a fondo en el modo 3 años (formas y tarjetas) y en las fichas.
 - Prueba real en pizarra y en iPad; grabación de audios.
