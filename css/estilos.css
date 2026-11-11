@@ -323,6 +323,11 @@ button{font-family:inherit}
 .actual{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 240px;background:var(--vidrio);border:3px solid #fff;border-radius:999px;padding:5px 18px 5px 6px;box-shadow:0 6px 18px rgba(10,60,90,.16)}
 .actual .ti{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--catc,#3DBBC9) 28%,#fff)}
 .actual .ti svg{width:24px;height:24px}
+.nivel{display:flex;align-items:center;gap:4px;flex:none;background:var(--vidrio);border:3px solid #fff;border-radius:999px;padding:3px;box-shadow:0 6px 18px rgba(24,49,83,.12)}
+.nivel[hidden]{display:none}
+.nivel button{width:44px;height:44px;border:0;border-radius:50%;background:#fff;color:var(--tinta);font:700 1.5rem/1 var(--f-display);cursor:pointer;box-shadow:0 3px 0 rgba(24,49,83,.12)}
+.nivel button:disabled{opacity:.35;cursor:default;box-shadow:none}
+.nivel span{min-width:7.2em;text-align:center;font:700 .9rem var(--f-body);color:var(--tinta)}
 .actual b{display:block;font:700 1.12rem/1.1 var(--f-display)}
 .actual small{font:700 .78rem var(--f-body);color:var(--tinta-2)}
 .chip-jardin{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 16px 0 6px;border-radius:999px;border:3px solid #fff;background:#E6F7EC;color:var(--tinta);font:700 .9rem var(--f-body);cursor:pointer;box-shadow:0 6px 18px rgba(10,60,90,.16)}

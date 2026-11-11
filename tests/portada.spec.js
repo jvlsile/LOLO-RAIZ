@@ -30,7 +30,7 @@ test('una categoría filtra los juegos y lleva hasta ellos', async ({ page }) =>
 test('filtra por edad y por búsqueda', async ({ page }) => {
   await page.goto('/');
   await page.click('#edades button[data-e="5"]');
-  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(30);
+  await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(31);
   await page.fill('#buscar', 'robot');
   await expect(page.locator('.tarjeta:not([hidden])')).toHaveCount(1);
   await page.fill('#buscar', 'xyz');

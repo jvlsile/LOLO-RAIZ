@@ -230,6 +230,10 @@
     });
   }
   const may=s=>s[0].toUpperCase()+s.slice(1);
+  const edadApp=()=>{ try{ return +(localStorage.getItem('raiz-edad')||0)||0; }catch(e){ return 0; } };
+  /* Nivel del juego: la edad elegida una vez para toda la app (sin elegir = 4 años) y un ajuste de ±1 que la maestra cambia durante el juego. */
+  let ajusteNivel=0;
+  const nivel=()=>Math.min(5,Math.max(3,(edadApp()||4)+ajusteNivel));
 
   const ACT={
     tiempo:{k:'tiempo',lbl:'El tiempo',run(){
@@ -580,7 +584,7 @@
     pulpito:{sg:'pulpito',pl:'pulpitos',f:0,svg:`<svg viewBox="0 0 100 100"><g stroke="#E8641F" stroke-width="9" stroke-linecap="round" fill="none"><path d="M30 62q-8 18-2 30"/><path d="M43 68q-2 16-6 26"/><path d="M57 68q2 16 6 26"/><path d="M70 62q8 18 2 30"/></g><ellipse cx="50" cy="44" rx="34" ry="32" fill="url(#gLolo)" stroke="${K}" stroke-width="4"/><circle cx="40" cy="44" r="7" fill="#fff"/><circle cx="60" cy="44" r="7" fill="#fff"/><circle cx="41" cy="45" r="3.5" fill="${K}"/><circle cx="61" cy="45" r="3.5" fill="${K}"/><path d="M43 57q7 6 14 0" stroke="${K}" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>`},
     pelota:{sg:'pelota',pl:'pelotas',f:1,svg:pelota(52)}
   };
-  const NUMW=['','uno','dos','tres','cuatro','cinco'];
+  const NUMW=['','uno','dos','tres','cuatro','cinco','seis','siete','ocho','nueve','diez','once','doce','trece','catorce','quince','dieciséis','diecisiete','dieciocho','diecinueve','veinte'];
   const cnt=(n,s)=>n===1?(s.f?'una ':'un ')+s.sg:NUMW[n]+' '+s.pl;
   const MANO=`<svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#fff"/><path d="M22 44V24a3 3 0 0 1 6 0v12M28 34V18a3 3 0 0 1 6 0v16M34 34V20a3 3 0 0 1 6 0v16M40 36v-8a3 3 0 0 1 6 0v10c0 8-6 14-14 14h-2c-5 0-8-2-11-6l-6-8a3 3 0 0 1 5-4l4 4" fill="#FFD7B0" stroke="${K}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
   const DORSO=`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34" fill="#fff" opacity=".22"/><circle cx="22" cy="20" r="5" fill="#fff" opacity=".35"/><circle cx="80" cy="82" r="7" fill="#fff" opacity=".3"/><text x="50" y="66" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="46" fill="#fff">?</text></svg>`;
@@ -682,14 +686,16 @@
   function paraMusica(){ if(musT){ clearInterval(musT); musT=null; } }
 
   const JUEGOS={
-    cuenta:{titulo:'Cuenta y toca',ic:'j_cuenta',
-      puente:'Coged entre una y cinco piezas de construcción y contadlas juntos, señalando cada una con el dedo.',
+    cuenta:{titulo:'Cuenta y toca',ic:'j_cuenta',niveles:true,
+      puente:'Coged piezas de construcción (hasta cinco con 3 años, hasta diez con 4 y hasta veinte con 5) y contadlas juntos, señalando cada una con el dedo.',
       ronda(n,a){
-        const rg=[[1,3],[1,3],[2,4],[3,5],[3,5]][n], N=rg[0]+Math.floor(Math.random()*(rg[1]-rg[0]+1));
+        const niv=nivel(), TOPE=[5,10,20][niv-3];
+        const rg=[[[1,3],[1,3],[2,4],[3,5],[3,5]],[[2,5],[3,6],[4,8],[5,10],[6,10]],[[5,10],[8,14],[10,16],[12,20],[14,20]]][niv-3][n], N=rg[0]+Math.floor(Math.random()*(rg[1]-rg[0]+1));
         const s=SERES[azar(['pez','concha','estrella','pulpito'])];
-        const ops=[N,...mezcla([1,2,3,4,5].filter(x=>x!==N)).slice(0,2)].sort((x,y)=>x-y);
+        const cerca=[...Array(TOPE)].map((_,i)=>i+1).filter(x=>x!==N&&Math.abs(x-N)<=(niv===3?4:3));
+        const ops=[N,...mezcla(cerca).slice(0,niv===5?3:2)].sort((x,y)=>x-y);
         a.z.innerHTML=`<div class="zona-cuenta">${Array.from({length:N},()=>`<button class="obj" type="button" aria-label="${s.sg}">${s.svg}</button>`).join('')}</div>
-          <div class="nums">${ops.map(k=>`<button class="num" type="button" data-k="${k}" aria-label="${k}">${k}<span class="pts">${'<i></i>'.repeat(k)}</span></button>`).join('')}</div>`;
+          <div class="nums">${ops.map(k=>`<button class="num" type="button" data-k="${k}" aria-label="${k}">${k}${niv===3?`<span class="pts">${'<i></i>'.repeat(k)}</span>`:''}</button>`).join('')}</div>`;
         let c=0;
         a.z.querySelectorAll('.obj').forEach(o=>o.addEventListener('click',()=>{ if(o.classList.contains('contado')) return; c++; o.classList.add('contado'); o.insertAdjacentHTML('beforeend',`<span class="badge">${c}</span>`); hablar(NUMW[c]||String(c)); tono([500+c*70],'sine',.08,.1,.25); }));
         a.z.querySelectorAll('.num').forEach(b=>b.addEventListener('click',()=>{
@@ -772,20 +778,21 @@
         decir(`Ordenamos ${s.f?'las':'los'} ${s.pl}: ${L[0]}, ${L[1]} y ${L[2]}. Llevad cada un${s.f?'a':'o'} a su sitio.`);
       }},
 
-    parejas:{titulo:'Encuentra la pareja',ic:'j_parejas',
+    parejas:{titulo:'Encuentra la pareja',ic:'j_parejas',niveles:true,
       puente:'Jugad al memory con cartas de papel en la alfombra, o buscad parejas de calcetines y zapatos.',
       ronda(n,a){
-        const cfg=[['colores',2],['animales',3],['numeros',3],['animales',3],['mezcla',4]][n];
+        const base=[['colores',2],['animales',3],['numeros',3],['animales',3],['mezcla',4]][n], np=base[1]+nivel()-3;
+        const cfg=[base[0],Math.min(4,np)];
         const C=Object.keys(COL).map(c=>({id:'c'+c,nm:c,svg:`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="38" fill="${COL[c]}" stroke="${K}" stroke-width="5"/><ellipse cx="38" cy="36" rx="12" ry="7" fill="#fff" opacity=".45" transform="rotate(-25 38 36)"/></svg>`}));
         const An=Object.keys(ANIMALES).map(k=>({id:'a'+k,nm:k,svg:ANIMALES[k]}));
         const Nu=[1,2,3,4,5].map(k=>({id:'n'+k,nm:NUMW[k],svg:`<svg viewBox="0 0 100 100"><text x="50" y="62" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="58" fill="${K}">${k}</text><g fill="#FF8A3D">${Array.from({length:k},(_,i)=>`<circle cx="${50+(i-(k-1)/2)*13}" cy="84" r="5"/>`).join('')}</g></svg>`}));
-        const caras=cfg[0]==='colores'?mezcla(C).slice(0,2):cfg[0]==='animales'?mezcla(An).slice(0,3):cfg[0]==='numeros'?mezcla(Nu).slice(0,3):[...mezcla(An).slice(0,2),mezcla(C)[0],mezcla(Nu)[0]];
+        const caras=cfg[0]==='colores'?mezcla(C).slice(0,np):cfg[0]==='animales'?mezcla(An).slice(0,np):cfg[0]==='numeros'?mezcla(Nu).slice(0,np):[...mezcla(An).slice(0,2),...mezcla(C).slice(0,Math.max(1,Math.ceil((np-2)/2))),...mezcla(Nu).slice(0,Math.max(1,Math.floor((np-2)/2)))];
         const mazo=mezcla([...caras,...caras]);
         a.z.innerHTML=`<div class="memoria" style="--c:${cfg[1]}">${mazo.map((c,i)=>`<button class="carta vuelta" type="button" data-i="${i}" aria-label="${c.nm}"><span class="in"><span class="cara dorso">${DORSO}</span><span class="cara frente">${c.svg}</span></span></button>`).join('')}</div>`;
         let jugable=false, abierta=null, bloqueo=false, hechas=0;
         const tk=EST.parejas.tk=Math.random();
         decir('Mirad bien dónde está cada dibujo… ¡Ahora se dan la vuelta! Buscad las parejas.');
-        setTimeout(()=>{ if(EST.parejas.tk!==tk) return; a.z.querySelectorAll('.carta').forEach(c=>{ c.classList.remove('vuelta'); c.setAttribute('aria-label','Carta'); }); jugable=true; },3500);
+        setTimeout(()=>{ if(EST.parejas.tk!==tk) return; a.z.querySelectorAll('.carta').forEach(c=>{ c.classList.remove('vuelta'); c.setAttribute('aria-label','Carta'); }); jugable=true; },[7000,4000,2500][nivel()-3]);
         a.z.querySelectorAll('.carta').forEach(c=>c.addEventListener('click',()=>{
           if(!jugable||bloqueo||c.classList.contains('vuelta')) return;
           const d=mazo[+c.dataset.i]; c.classList.add('vuelta'); c.setAttribute('aria-label',d.nm); hablar(d.nm);
@@ -1869,7 +1876,7 @@
             const k=items[+el.dataset.i], v=SC[k].bien?'bien':'mal';
             if(d.dataset.v===v){ el.disabled=true; d.querySelector('.dentro').appendChild(el); a.bien(); hablar(v==='bien'?'¡Mmm!':'¡Puaj!');
               if(--quedan===0) a.ok(n===0?'¡Muy bien! Con la nariz sabemos qué huele bien y qué huele mal.':'¡Qué narices tan listas! Todo está en su sitio.',d.parentElement); }
-            else { sacude(el); sacude(d); a.fallo(v==='bien'?`¿${may(SC[k].n)} huele mal? ¡No! Huele muy bien.`:`¿${may(SC[k].n)} huele bien? ¡Puaj, no! Huele mal.`,()=>marca([a.z.querySelector(`.cesta[data-v="${v}"]`)])); }
+            else { sacude(el); sacude(d); a.fallo(v==='bien'?`${may(SC[k].n)} ${esPl(SC[k].n)?'huelen':'huele'} muy bien. Va con «huele bien».`:`${may(SC[k].n)} ${esPl(SC[k].n)?'huelen':'huele'} mal. Va con «huele mal».`,()=>marca([a.z.querySelector(`.cesta[data-v="${v}"]`)])); }
           }));
           decir(n===0?'Lolo tiene una nariz muy curiosa. Con la nariz olemos. Llevad cada cosa a su sitio: ¿huele bien o huele mal?'
             :n===3?'¡Ahora hay más cosas! ¿Huelen bien o huelen mal?':'¡Más cosas para oler! ¿Huelen bien o mal?');
@@ -2137,11 +2144,11 @@
     caja:{t:'La caja misteriosa',ic:'caja',e:[3,4,5],d:'Una imagen escondida y la rutina Veo, Pienso, Me pregunto.'},
     cuento:{e:[3,4,5],d:'Un cuento con tres decisiones que vota toda la clase.'},
     emociones:{e:[3,4,5],d:'Reconocer cómo se sienten los personajes y pensar cómo ayudarles.'},
-    cuenta:{e:[3,4],d:'Contar objetos del 1 al 5 y elegir el número.'},
+    cuenta:{e:[3,4,5],d:'Contar objetos y elegir el número: hasta 5, 10 o 20 según el nivel.'},
     series:{e:[4,5],d:'Completar series de colores, formas y tamaños.'},
     cestas:{e:[3,4],d:'Clasificar juguetes por color, forma o tamaño.'},
     tamanos:{e:[3,4],d:'Ordenar de pequeño a grande.'},
-    parejas:{e:[3,4,5],d:'Memory de colores, animales y números.'},
+    parejas:{e:[3,4,5],d:'Memory de colores, animales y números: más parejas y menos tiempo a mayor nivel.'},
     formas:{e:[3,4,5],d:'Encajar cada forma en su silueta.'},
     duo:{e:[4,5],d:'Dos niños, cada uno con su mitad de la pantalla: solo ganan juntos.'},
     escape:{e:[4,5],d:'Tres candados de colores, formas y sonidos para rescatar a Paco.'},
@@ -2178,11 +2185,23 @@
       return `<section class="cat" style="--catc:${c.c}"><h3><i></i>${c.t}</h3><div class="cat-grid">${ids.map(id=>`<button class="jcard" type="button" data-m="${id}" ${id===modo?'aria-current="true"':''}><span class="ti">${icono(icDe(id))}</span><span><b>${tituloDe(id)}</b><p>${INFO[id].d}</p><span class="ed">${edadTxt(INFO[id].e)}</span></span></button>`).join('')}</div></section>`; }).join('');
     document.querySelectorAll('.edad-f').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.e===filtroEdad));
   }
-  function pintaActual(){ const c=catDe(modo); $('#actualIc').innerHTML=icono(icDe(modo)); $('#actualT').textContent=tituloDe(modo); $('#actualC').textContent=`${c.t} · ${edadTxt(INFO[modo].e)}`; $('.actual').style.setProperty('--catc',c.c); }
+  function pintaNivel(){
+    const ctl=$('#nivel'); if(!ctl) return;
+    ctl.hidden=!(JUEGOS[modo]&&JUEGOS[modo].niveles);
+    const n=nivel(); $('#nivelTxt').textContent=`Nivel ${n} años`;
+    $('#nivelMenos').disabled=n<=3; $('#nivelMas').disabled=n>=5;
+  }
+  function cambiaNivel(d){
+    const n=nivel()+d; if(n<3||n>5) return; ajusteNivel+=d; pintaNivel();
+    const s=EST[modo]; if(s&&!s.libre&&!s.fin&&!s.resuelta) rondaJuego(modo);
+  }
+  $('#nivelMenos').addEventListener('click',()=>cambiaNivel(-1));
+  $('#nivelMas').addEventListener('click',()=>cambiaNivel(1));
+  function pintaActual(){ const c=catDe(modo); $('#actualIc').innerHTML=icono(icDe(modo)); $('#actualT').textContent=tituloDe(modo); $('#actualC').textContent=`${c.t} · ${edadTxt(INFO[modo].e)}`; $('.actual').style.setProperty('--catc',c.c); pintaNivel(); }
   const menuCapa=$('#menuCapa');
   $('#btnMenu').addEventListener('click',()=>{ pintaMenu(); menuCapa.hidden=false; const a=menuCapa.querySelector('.jcard[aria-current="true"]')||menuCapa.querySelector('.jcard'); if(a) a.focus(); });
   $('#cerrarMenu').addEventListener('click',()=>menuCapa.hidden=true);
-  menuCapa.addEventListener('click',e=>{ if(e.target===menuCapa){ menuCapa.hidden=true; return; } const j=e.target.closest('.jcard'); if(j){ menuCapa.hidden=true; ponModo(j.dataset.m); } const f=e.target.closest('.edad-f'); if(f){ filtroEdad=+f.dataset.e; try{ localStorage.setItem('raiz-edad',filtroEdad); }catch(err){} pintaMenu(); } });
+  menuCapa.addEventListener('click',e=>{ if(e.target===menuCapa){ menuCapa.hidden=true; return; } const j=e.target.closest('.jcard'); if(j){ menuCapa.hidden=true; ponModo(j.dataset.m); } const f=e.target.closest('.edad-f'); if(f){ filtroEdad=+f.dataset.e; ajusteNivel=0; try{ localStorage.setItem('raiz-edad',filtroEdad); }catch(err){} pintaMenu(); pintaNivel(); } });
   $('#chipJardin').addEventListener('click',()=>ponModo('jardin'));
   jardinPon(jardinMem);
   $('#panelCaja').insertAdjacentHTML('afterend',IDS.map(id=>`<section class="panel juego" id="panel-${id}" aria-label="${JUEGOS[id].titulo}" hidden><div class="bocadillo"><span class="quien">Lolo</span><p class="txt" aria-live="polite"></p></div><div class="zona jz"></div></section>`).join(''));

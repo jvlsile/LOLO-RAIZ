@@ -70,15 +70,16 @@ for (const id of JUEGOS) {
   test(`${id}: se juega de principio a fin`, async ({ page }) => {
     await page.goto('/tres.html');
     await page.locator(`.tile[data-id="${id}"]`).click();
-    await expect(page.locator('#agenda .ag')).toHaveCount(4);
-    for (let reto = 0; reto < 3; reto++) {
+    const retos = id === 'burbujas' ? 4 : 3;
+    await expect(page.locator('#agenda .ag')).toHaveCount(retos + 1);
+    for (let reto = 0; reto < retos; reto++) {
       await resolver(page, reto);
       const sig = page.locator('#zona .big.pulso');
       await expect(sig, `reto ${reto + 1}`).toBeVisible({ timeout: 6000 });
       await sig.click();
     }
     await expect(page.locator('#zona .final')).toBeVisible();
-    await expect(page.locator('#agenda .ag.hecho')).toHaveCount(4);
+    await expect(page.locator('#agenda .ag.hecho')).toHaveCount(retos + 1);
     const ancho = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(ancho, 'desborde a lo ancho').toBeLessThanOrEqual(1);
     await page.locator('#zona .big', { hasText: 'Otro juego' }).click();

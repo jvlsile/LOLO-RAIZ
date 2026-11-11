@@ -172,14 +172,16 @@
       rondas: [
         { k: 'vertical', q: 'Lolo ha hecho burbujas en fila, de arriba abajo. Tocad la burbuja que brilla, una detrás de otra.', ok: '¡Habéis explotado todas las burbujas! De arriba abajo, ¡muy bien!' },
         { k: 'horizontal', q: 'Ahora las burbujas van de un lado al otro. Tocad la que brilla.', ok: '¡Todas explotadas! De un lado al otro.' },
-        { k: 'circulo', q: '¡Las burbujas hacen un círculo! Empezamos arriba y damos la vuelta.', ok: '¡Un círculo de burbujas! ¡Qué bien lo habéis hecho!' }
+        { k: 'circulo', q: '¡Las burbujas hacen un círculo! Empezamos arriba y damos la vuelta.', ok: '¡Un círculo de burbujas! ¡Qué bien lo habéis hecho!' },
+        { k: 'vocales', q: 'Estas burbujas tienen las vocales. Tocad la que brilla y decid su nombre: A, E, I, O, U.', ok: '¡Habéis explotado todas las vocales! A, E, I, O, U. ¡Qué bien!' }
       ],
       aviso: 'Esa todavía no. Tocad la burbuja que brilla.',
       ronda(R, a) {
         const P = R.k === 'vertical' ? [26, 63, 100, 137, 174].map(y => [150, y])
           : R.k === 'horizontal' ? [40, 84, 128, 172, 216, 260].map(x => [x, 100])
+          : R.k === 'vocales' ? [30, 90, 150, 210, 270].map(x => [x, 100])
           : Array.from({ length: 8 }, (_, i) => { const g = -Math.PI / 2 - i * Math.PI / 4; return [150 + Math.cos(g) * 72, 100 + Math.sin(g) * 72]; });
-        a.z.innerHTML = `<div class="burbujas-caja"><svg class="burbujas-svg" viewBox="0 0 300 200" role="group" aria-label="Burbujas en fila"><g class="tinta-b"></g>${P.map(([x, y], i) => `<g class="burbuja" data-i="${i}" transform="translate(${x} ${y})" role="button" aria-label="Burbuja ${i + 1}" tabindex="-1"><circle class="aro" r="24"/><circle class="cuerpo-b" r="18"/><circle class="brillo-b" cx="-6.5" cy="-6.5" r="4.6"/></g>`).join('')}</svg></div>`;
+        a.z.innerHTML = `<div class="burbujas-caja"><svg class="burbujas-svg" viewBox="0 0 300 200" role="group" aria-label="Burbujas en fila"><g class="tinta-b"></g>${P.map(([x, y], i) => `<g class="burbuja" data-i="${i}" transform="translate(${x} ${y})" role="button" aria-label="Burbuja ${i + 1}" tabindex="-1"><circle class="aro" r="24"/><circle class="cuerpo-b" r="18"/><circle class="brillo-b" cx="-6.5" cy="-6.5" r="4.6"/>${R.k === 'vocales' ? `<text class="letra-b" y="9" text-anchor="middle">${'AEIOU'[i]}</text>` : ''}</g>`).join('')}</svg></div>`;
         const bs = [...a.z.querySelectorAll('.burbuja')], tinta = a.z.querySelector('.tinta-b');
         let sig = 0, avisado = 0;
         const marca = () => bs.forEach((b, i) => { b.classList.toggle('sig', i === sig); b.setAttribute('tabindex', i === sig ? '0' : '-1'); });
@@ -189,7 +191,8 @@
           const i = +b.dataset.i;
           if (i === sig) {
             b.classList.add('rota'); pop(i);
-            if (i > 0) { const [x1, y1] = P[i - 1], [x2, y2] = P[i]; tinta.insertAdjacentHTML('beforeend', `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`); }
+            if (R.k === 'vocales' && i < P.length - 1) a.decir('¡' + 'AEIOU'[i] + '!');
+            if (i > 0 && R.k !== 'vocales') { const [x1, y1] = P[i - 1], [x2, y2] = P[i]; tinta.insertAdjacentHTML('beforeend', `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`); }
             sig++;
             if (sig === P.length) { bs.forEach(x => { x.classList.remove('sig'); x.setAttribute('tabindex', '-1'); }); if (R.k === 'circulo') { const [x1, y1] = P[P.length - 1], [x2, y2] = P[0]; tinta.insertAdjacentHTML('beforeend', `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>`); } a.ok(R.ok, a.z.querySelector('.burbujas-svg')); }
             else marca();
@@ -576,8 +579,8 @@
   const agenda = $('#agenda'), juegoEl = $('#juego'), menuEl = $('#menu');
   function pintaAgenda() {
     if (!est) return;
-    const J = JUEGOS[est.id], hechos = est.fin ? 4 : est.hechas;
-    const it = [0, 1, 2].map(i => ({ lbl: `Reto ${i + 1}`, ic: J.ic })).concat([{ lbl: 'Fin', fin: true }]);
+    const J = JUEGOS[est.id], hechos = est.fin ? J.rondas.length + 1 : est.hechas;
+    const it = J.rondas.map((_, i) => i).map(i => ({ lbl: `Reto ${i + 1}`, ic: J.ic })).concat([{ lbl: 'Fin', fin: true }]);
     agenda.innerHTML = it.map((x, i) => `<li class="ag${i < hechos ? ' hecho' : ''}${!est.fin && i === est.ronda ? ' ahora' : ''}">${!est.fin && i === est.ronda ? '<span class="tag">Ahora</span>' : ''}<span class="ag-ic">${x.fin ? ICONO.ok : x.ic}</span><span class="ag-t">${x.lbl}</span>${i < hechos ? `<span class="ag-ok" aria-label="hecho">${ICONO.ok}</span>` : ''}</li>`).join('');
   }
   function boton(txt, fn, cont, cl = '', ic = '') {
@@ -604,7 +607,7 @@
         setTimeout(() => {
           if (s !== est) return;
           const f = document.createElement('div'); f.className = 'fila centro siguiente'; zona.appendChild(f);
-          const ult = s.ronda >= 2;
+          const ult = s.ronda >= JUEGOS[s.id].rondas.length - 1;
           boton(ult ? 'Terminar' : FR.seguimos, () => { if (ult) fin(); else { s.ronda++; ronda(); } }, f, 'pulso', ult ? ICONO.ok : JUEGOS[s.id].ic);
           const r = f.getBoundingClientRect(); if (f.scrollIntoView && (r.bottom > innerHeight || r.top < 0)) f.scrollIntoView({ block: 'nearest', behavior: quieto() ? 'auto' : 'smooth' });
         }, 650);

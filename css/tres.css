@@ -88,7 +88,7 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .menu-nota{margin:20px 4px 0;max-width:70ch;color:#EAFBFD;font-size:.95rem}
 
 /* ---------- juego ---------- */
-.agenda{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 clamp(12px,2vh,22px);padding:12px;list-style:none;border-radius:26px;background:var(--vidrio);box-shadow:0 8px 24px rgba(8,50,80,.14)}
+.agenda{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:10px;margin:4px 0 clamp(12px,2vh,22px);padding:12px;list-style:none;border-radius:26px;background:var(--vidrio);box-shadow:0 8px 24px rgba(8,50,80,.14)}
 .ag{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:66px;padding:8px 12px;border-radius:18px;font:700 1.05rem var(--f-display);color:var(--tinta-2);transition:background-color 300ms ease}
 .ag-ic{display:grid;place-items:center;flex:none;width:52px;height:52px;padding:6px;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 2px #E2EEF2}
 .ag-ic svg{width:100%;height:100%}
@@ -172,6 +172,8 @@ main{max-width:var(--ancho);margin:0 auto;padding:6px var(--gutter) 140px}
 .burbuja .brillo-b{fill:#fff;transition:opacity .2s ease}
 .burbuja.sig .aro{opacity:1;animation:aroBrilla 1.2s ease-in-out infinite}
 .burbuja.sig .cuerpo-b{transform:scale(1.12)}
+.burbuja .letra-b{font-family:'Fredoka',sans-serif;font-weight:700;font-size:26px;fill:#183153;pointer-events:none;transition:opacity .2s ease}
+.burbuja.rota .letra-b{opacity:0}
 .burbuja.rota{pointer-events:none}
 .burbuja.rota .cuerpo-b{animation:explota .35s ease-out forwards}
 .burbuja.rota .brillo-b,.burbuja.rota .aro{opacity:0}
