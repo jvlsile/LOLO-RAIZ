@@ -719,9 +719,10 @@
         decir(`¿${s.f?'Cuántas':'Cuántos'} ${s.pl} hay? Tocad${s.f?'las':'los'} para contar${s.f?'las':'los'}.`);
       }},
 
-    series:{titulo:'Series y patrones',ic:'j_series',
+    series:{titulo:'Series y patrones',ic:'j_series',niveles:true,
       puente:'Haced una fila en la alfombra alternando piezas de dos colores. Después, probad con los niños: de pie, sentado, de pie…',
       ronda(n,a){
+        const niv=nivel(); if(niv===3) n=n%3; else if(niv===5) n=3+(n%2);
         const [c1,c2,c3]=mezcla(Object.keys(COL)), [f1,f2]=mezcla(['circulo','cuadrado','triangulo','estrella','corazon']);
         let pat, crit, extra=null;
         if(n===0){ pat=[{f:f1,c:c1},{f:f1,c:c2}]; crit='color'; }
@@ -729,7 +730,7 @@
         else if(n===2){ pat=[{f:f1,c:c1,s:1},{f:f1,c:c1,s:.55}]; crit='tamano'; }
         else if(n===3){ pat=[{f:f1,c:c1},{f:f1,c:c2},{f:f1,c:c3}]; crit='color'; }
         else { const A={f:f1,c:c1},B={f:f2,c:c2}; pat=[A,A,B]; crit='forma'; extra={f:f2,c:c1}; }
-        const L=6, seq=Array.from({length:L},(_,i)=>pat[i%pat.length]), visto=seq.slice(0,L-1), sol=seq[L-1];
+        const L=niv===3?5:niv===5?7:6, seq=Array.from({length:L},(_,i)=>pat[i%pat.length]), visto=seq.slice(0,L-1), sol=seq[L-1];
         const nom=t=>crit==='color'?colAdj(t.c,FORMAS[t.f].f):crit==='forma'?FORMAS[t.f].n:(t.s===1?'grande':(FORMAS[t.f].f?'pequeña':'pequeño'));
         const unicos=[...new Map(pat.map(t=>[JSON.stringify(t),t])).values()]; if(extra) unicos.push(extra);
         const ops=mezcla(unicos);
@@ -745,14 +746,14 @@
         decir(`Mirad la fila: ${frase}… ¿Y ahora qué va?`,['Mirad la fila:',...piezas,'¿Y ahora qué va?']);
       }},
 
-    cestas:{titulo:'Clasifica en cestas',ic:'j_cestas',
+    cestas:{titulo:'Clasifica en cestas',ic:'j_cestas',niveles:true,
       puente:'Poned dos o tres aros o cajas en la alfombra y clasificad juguetes reales de la clase por colores o por formas.',
       ronda(n,a){
-        const cfg=[{k:'color',v:2},{k:'forma',v:2},{k:'tamano',v:2},{k:'color',v:3},{k:'forma',v:3}][n];
+        const niv=nivel(), cfg=[{k:'color',v:2},{k:'forma',v:2},{k:'tamano',v:2},{k:'color',v:3},{k:'forma',v:3}][niv===3?[0,1,2,0,1][n]:niv===5?[3,4,3,4,3][n]:n], per=niv===5&&cfg.k!=='tamano'?3:2;
         const cs=mezcla(Object.keys(COL)), fs=mezcla(['circulo','cuadrado','triangulo','estrella','corazon']);
         let vals, items=[];
-        if(cfg.k==='color'){ vals=cs.slice(0,cfg.v); vals.forEach((v,j)=>{ for(let i=0;i<2;i++) items.push({v,f:fs[(i*2+j)%fs.length],c:v,s:1}); }); }
-        else if(cfg.k==='forma'){ vals=fs.slice(0,cfg.v); vals.forEach((v,j)=>{ for(let i=0;i<2;i++) items.push({v,f:v,c:cs[(i*2+j)%4],s:1}); }); }
+        if(cfg.k==='color'){ vals=cs.slice(0,cfg.v); vals.forEach((v,j)=>{ for(let i=0;i<per;i++) items.push({v,f:fs[(i*2+j)%fs.length],c:v,s:1}); }); }
+        else if(cfg.k==='forma'){ vals=fs.slice(0,cfg.v); vals.forEach((v,j)=>{ for(let i=0;i<per;i++) items.push({v,f:v,c:cs[(i*2+j)%4],s:1}); }); }
         else { vals=['grande','pequeno']; const f=fs[0]; vals.forEach((v,j)=>{ for(let i=0;i<2;i++) items.push({v,f,c:cs[(i*2+j)%4],s:v==='grande'?1:.5}); }); }
         items=mezcla(items);
         const lblTxt=v=>cfg.k==='color'?colAdj(v,1):cfg.k==='forma'?'de los '+FORMAS[v].pl:(v==='grande'?'de los grandes':'de los pequeños');
@@ -771,14 +772,14 @@
           :cfg.k==='forma'?'Ahora ordenamos por formas. Cada juguete va a la cesta de su forma.':'Ahora, los grandes van a una cesta y los pequeños a otra.');
       }},
 
-    tamanos:{titulo:'Grande, mediano, pequeño',ic:'j_tamanos',
+    tamanos:{titulo:'Grande, mediano, pequeño',ic:'j_tamanos',niveles:true,
       puente:'Buscad en la clase tres cosas parecidas de distinto tamaño (pelotas, vasos, peluches) y ordenadlas de pequeña a grande.',
       ronda(n,a){
         const s=SERES[['pelota','pez','estrella','concha','pulpito'][n]];
         const S=[.42,.7,1], L=s.f?['pequeña','mediana','grande']:['pequeño','mediano','grande'], ar=s.f?'la':'el';
         const orden=mezcla([0,1,2]);
         a.z.innerHTML=`<div class="piezas grandes">${orden.map(i=>`<button class="pieza" type="button" data-t="${i}" style="--s:${S[i]}" aria-label="${s.sg} ${L[i]}">${s.svg}</button>`).join('')}</div>
-          <div class="escalera">${[0,1,2].map(i=>`<div class="dest peldano" data-destino data-t="${i}" role="button" tabindex="0" data-di="Aquí va ${ar} ${s.sg} ${L[i]}" aria-label="Sitio para ${L[i]}"><span class="sil" style="--s:${S[i]}">${n<3?s.svg:''}</span><span class="etq">${may(L[i])}</span></div>`).join('')}</div>`;
+          <div class="escalera">${[0,1,2].map(i=>`<div class="dest peldano" data-destino data-t="${i}" role="button" tabindex="0" data-di="Aquí va ${ar} ${s.sg} ${L[i]}" aria-label="Sitio para ${L[i]}"><span class="sil" style="--s:${S[i]}">${nivel()===3||(nivel()===4&&n<3)?s.svg:''}</span><span class="etq">${may(L[i])}</span></div>`).join('')}</div>`;
         let q=3;
         a.z.querySelectorAll('.pieza').forEach(p=>arrastrable(p,(el,d)=>{
           if(d.classList.contains('lleno')){ sacude(el); return; }
@@ -819,10 +820,10 @@
         }));
       }},
 
-    formas:{titulo:'Formas geométricas',ic:'j_formas',
+    formas:{titulo:'Formas geométricas',ic:'j_formas',niveles:true,
       puente:'Usad un encajable de formas, o recortad formas de cartón y buscad su silueta dibujada en un papel.',
       ronda(n,a){
-        const set=[['circulo','cuadrado'],['circulo','triangulo','cuadrado'],['estrella','corazon','triangulo'],['circulo','cuadrado','triangulo','estrella'],['corazon','rectangulo','estrella','triangulo']][n];
+        const niv=nivel(), set=[['circulo','cuadrado'],['circulo','triangulo','cuadrado'],['estrella','corazon','triangulo'],['circulo','cuadrado','triangulo','estrella'],['corazon','rectangulo','estrella','triangulo']][niv===3?[0,1,0,1,2][n]:niv===5?[3,4,3,4,4][n]:n];
         const cs=mezcla(Object.keys(COL)), sil=mezcla(set), pz=mezcla(set);
         a.z.innerHTML=`<div class="tablero" style="--n:${set.length}">${sil.map(f=>`<div class="dest silueta" data-destino data-v="${f}" role="button" tabindex="0" data-di="Aquí va ${art(f)} ${FORMAS[f].n}" aria-label="Silueta: ${FORMAS[f].n}">${siluetaSvg(f)}</div>`).join('')}</div>
           <div class="piezas">${pz.map((f,i)=>`<button class="pieza" type="button" data-v="${f}" aria-label="${FORMAS[f].n}">${tokenSvg(f,cs[i%4])}</button>`).join('')}</div>`;
