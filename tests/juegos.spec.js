@@ -309,6 +309,7 @@ test('ningún juego se sale de la pantalla a lo ancho', async ({ page }) => {
 
 test('el modo tranquilo se recuerda', async ({ page }) => {
   await abrir(page);
+  await page.click('#btnMas');
   await page.click('#btnTranquilo');
   await page.reload();
   await expect(page.locator('html')).toHaveClass(/calma/);
