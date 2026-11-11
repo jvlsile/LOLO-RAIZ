@@ -6,3 +6,4 @@
 - Nada de diseño ni cambios sin que la autora lo pida: primero se acuerda qué hacer.
 - Cada subida a `main` pasa las pruebas Playwright (pizarra, portátil, móvil, iPad e iPhone) y después se publica en GitHub Pages.
 - Ojo con Safari: los SVG necesitan medidas explícitas (nunca anchura automática calculada a partir de la altura).
+- Decisiones de estructura y asamblea acordadas: `docs/decisiones-ui.md`. Se siguen tal cual; si algo cambia, se acuerda antes con la autora.
