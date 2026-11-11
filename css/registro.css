@@ -1,0 +1,9 @@
+.reg .tabla-ev{overflow-x:auto;background:#fff;border:1px solid var(--filete);border-radius:20px}
+.reg table{width:100%;border-collapse:collapse;min-width:720px}
+.reg th,.reg td{padding:12px 14px;border-bottom:1px solid var(--filete);text-align:left;vertical-align:top}
+.reg th{font:700 .95rem var(--f-titulo);color:var(--tinta-2);background:#FBF8F1}
+.reg td.dia{font:700 1.1rem var(--f-titulo);text-transform:capitalize;white-space:nowrap}
+.reg td.vacio{color:#9AA9BC}
+.reg textarea{width:100%;min-height:56px;padding:8px;border:1.5px solid var(--filete-2);border-radius:10px;font:700 .95rem var(--f-texto);color:var(--tinta);resize:vertical}
+.pie-imp{display:none}
+@media print{.reg body,body.reg{background:#fff}.reg .tabla-ev{border:1px solid #999;border-radius:0}.reg th{background:#eee;color:#000}.reg textarea{border:0;resize:none;min-height:0}.pie-imp{display:block;margin-top:10px;font-size:.8rem;color:#555}.reg .nota{display:none}}
