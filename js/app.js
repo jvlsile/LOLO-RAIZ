@@ -230,6 +230,7 @@
     });
   }
   const may=s=>s[0].toUpperCase()+s.slice(1);
+  const edadApp=()=>{ try{ return +(localStorage.getItem('raiz-edad')||0)||0; }catch(e){ return 0; } };
 
   const ACT={
     tiempo:{k:'tiempo',lbl:'El tiempo',run(){
@@ -785,7 +786,7 @@
         let jugable=false, abierta=null, bloqueo=false, hechas=0;
         const tk=EST.parejas.tk=Math.random();
         decir('Mirad bien dónde está cada dibujo… ¡Ahora se dan la vuelta! Buscad las parejas.');
-        setTimeout(()=>{ if(EST.parejas.tk!==tk) return; a.z.querySelectorAll('.carta').forEach(c=>{ c.classList.remove('vuelta'); c.setAttribute('aria-label','Carta'); }); jugable=true; },3500);
+        setTimeout(()=>{ if(EST.parejas.tk!==tk) return; a.z.querySelectorAll('.carta').forEach(c=>{ c.classList.remove('vuelta'); c.setAttribute('aria-label','Carta'); }); jugable=true; },edadApp()===3?7000:3500);
         a.z.querySelectorAll('.carta').forEach(c=>c.addEventListener('click',()=>{
           if(!jugable||bloqueo||c.classList.contains('vuelta')) return;
           const d=mazo[+c.dataset.i]; c.classList.add('vuelta'); c.setAttribute('aria-label',d.nm); hablar(d.nm);
@@ -1869,7 +1870,7 @@
             const k=items[+el.dataset.i], v=SC[k].bien?'bien':'mal';
             if(d.dataset.v===v){ el.disabled=true; d.querySelector('.dentro').appendChild(el); a.bien(); hablar(v==='bien'?'¡Mmm!':'¡Puaj!');
               if(--quedan===0) a.ok(n===0?'¡Muy bien! Con la nariz sabemos qué huele bien y qué huele mal.':'¡Qué narices tan listas! Todo está en su sitio.',d.parentElement); }
-            else { sacude(el); sacude(d); a.fallo(v==='bien'?`¿${may(SC[k].n)} huele mal? ¡No! Huele muy bien.`:`¿${may(SC[k].n)} huele bien? ¡Puaj, no! Huele mal.`,()=>marca([a.z.querySelector(`.cesta[data-v="${v}"]`)])); }
+            else { sacude(el); sacude(d); a.fallo(v==='bien'?`${may(SC[k].n)} ${esPl(SC[k].n)?'huelen':'huele'} muy bien. Va con «huele bien».`:`${may(SC[k].n)} ${esPl(SC[k].n)?'huelen':'huele'} mal. Va con «huele mal».`,()=>marca([a.z.querySelector(`.cesta[data-v="${v}"]`)])); }
           }));
           decir(n===0?'Lolo tiene una nariz muy curiosa. Con la nariz olemos. Llevad cada cosa a su sitio: ¿huele bien o huele mal?'
             :n===3?'¡Ahora hay más cosas! ¿Huelen bien o huelen mal?':'¡Más cosas para oler! ¿Huelen bien o mal?');
