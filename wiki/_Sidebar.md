@@ -16,4 +16,4 @@
 - [[Privacidad]]
 - [[Para desarrolladores]]
 
-[▶ Abrir la web](https://jvlsile.github.io/VISITA-DE-LOLO-/)
+[▶ Abrir la web](https://jvlsile.github.io/LOLO-RAIZ/)

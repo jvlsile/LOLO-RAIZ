@@ -188,7 +188,7 @@
   /* ---------- estado y opciones ---------- */
   const DEF = { trazos: TRAZOS.map(t => t.k), nivel: 'prog', edad: '4', modo: 'iguales', nombre: true, colorear: true, tinta: false };
   let op = { ...DEF };
-  try { const g = JSON.parse(lee('lolo-fichas', 'null')); if (g && typeof g === 'object') op = { ...DEF, ...g }; } catch (e) {}
+  try { const g = JSON.parse(lee('raiz-fichas', 'null')); if (g && typeof g === 'object') op = { ...DEF, ...g }; } catch (e) {}
   op.trazos = (op.trazos || []).filter(k => porK[k]);
   // Enlace directo: fichas.html?t=caracol (o varios: ?t=tronco,rama)
   try {
@@ -226,7 +226,7 @@
     $('#vacio').hidden = n > 0;
     $$('.imprimir').forEach(b => { b.disabled = !n; b.setAttribute('aria-disabled', String(!n)); });
     $('#nivelDesc').textContent = NIVELES[op.nivel].d;
-    guarda('lolo-fichas', JSON.stringify(op));
+    guarda('raiz-fichas', JSON.stringify(op));
     escala();
   }
 

@@ -1,4 +1,6 @@
-# La visita de Lolo
+# La visita de Lolo · LOLO-RAIZ (versión de pruebas)
+
+> **Versión de pruebas.** Aquí se prueba la nueva organización de la app (edades, asamblea y Método Raíz) sin tocar la app de clase, que sigue en [VISITA-DE-LOLO-](https://github.com/jvlsile/VISITA-DE-LOLO-) y en <https://jvlsile.github.io/VISITA-DE-LOLO-/>. La referencia del método está en [docs/metodo-raiz.md](docs/metodo-raiz.md).
 
 Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital, tablet y móvil. Lolo, un pulpo, guía a la clase con voz, pictogramas y sin necesidad de leer.
 
@@ -26,7 +28,7 @@ Juegos educativos de **Educación Infantil (3–5 años)** para pizarra digital,
 | Los sentidos | ¿Con qué lo notas? · ¿Qué suena? · La linterna de Lolo · La nariz de Lolo · ¿A qué sabe? · La bolsa misteriosa |
 | El cuerpo | ¿Dónde está? · Monta a Nico · ¿Qué le falta? · ¿Para qué sirve? · Vestimos a Nico · Toca, toca |
 
-Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos. Hay más documentación en la [wiki](https://github.com/jvlsile/VISITA-DE-LOLO-/wiki).
+Dentro de la aplicación, el botón **Guía docente** explica cada juego, la normativa y los apoyos. Hay más documentación en la [wiki](https://github.com/jvlsile/LOLO-RAIZ/wiki).
 
 Se puede abrir un juego concreto directamente, por ejemplo `…/jugar.html#formas`, `…/jugar.html#robot`, `…/jugar.html#caja` o `…/jugar.html#tinta`.
 
@@ -69,7 +71,7 @@ Si alguna prueba falla, no se publica nada y el informe queda en la pestaña *Ac
 
 **Solo la primera vez:** en el repositorio, ve a *Settings → Pages → Build and deployment → Source* y elige **GitHub Actions**.
 
-La dirección es <https://jvlsile.github.io/VISITA-DE-LOLO-/>.
+La dirección es <https://jvlsile.github.io/LOLO-RAIZ/>.
 
 ## Estructura
 

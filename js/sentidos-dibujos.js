@@ -102,8 +102,8 @@
     { id: 'gusto', t: '¿A qué sabe?', s: 'El gusto', c: '#FF5D8F' },
     { id: 'tacto', t: 'La bolsa misteriosa', s: 'El tacto', c: '#FF8A3D' }
   ];
-  const leeSellos = () => { try { const v = JSON.parse(localStorage.getItem('lolo-sellos') || '[]'); return Array.isArray(v) ? v.filter(x => SELLOS.some(s => s.id === x)) : []; } catch (e) { return []; } };
-  const ponSello = id => { const v = leeSellos(); if (!v.includes(id)) v.push(id); try { localStorage.setItem('lolo-sellos', JSON.stringify(v)); } catch (e) {} return v; };
+  const leeSellos = () => { try { const v = JSON.parse(localStorage.getItem('raiz-sellos') || '[]'); return Array.isArray(v) ? v.filter(x => SELLOS.some(s => s.id === x)) : []; } catch (e) { return []; } };
+  const ponSello = id => { const v = leeSellos(); if (!v.includes(id)) v.push(id); try { localStorage.setItem('raiz-sellos', JSON.stringify(v)); } catch (e) {} return v; };
 
   const dib = (k, cl = '') => { const d = ORGANOS[k] || C[k] || SABORES[k]; return `<svg viewBox="0 0 100 100"${cl ? ` class="${cl}"` : ''} aria-hidden="true">${d.svg}</svg>`; };
 

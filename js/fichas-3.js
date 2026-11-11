@@ -145,7 +145,7 @@
   /* ---------- opciones ---------- */
   const DEF = { tipo: 'gomets', sel: Object.fromEntries(Object.keys(TIPOS).map(t => [t, D.filter(d => d.tipo === t).map(d => d.k)])), modo: 'iguales', nombre: true, tinta: false };
   let op = JSON.parse(JSON.stringify(DEF));
-  try { const g = JSON.parse(lee('lolo-fichas-3', 'null')); if (g && typeof g === 'object') op = { ...op, ...g, sel: { ...op.sel, ...(g.sel || {}) } }; } catch (e) {}
+  try { const g = JSON.parse(lee('raiz-fichas-3', 'null')); if (g && typeof g === 'object') op = { ...op, ...g, sel: { ...op.sel, ...(g.sel || {}) } }; } catch (e) {}
   if (!TIPOS[op.tipo]) op.tipo = 'gomets';
   Object.keys(op.sel).forEach(t => { op.sel[t] = (op.sel[t] || []).filter(k => porK[k] && porK[k].tipo === t); });
   try { const t = new URLSearchParams(location.search).get('tipo'); if (TIPOS[t]) op.tipo = t; } catch (e) {}
@@ -172,7 +172,7 @@
     $('#resumen').innerHTML = n ? `<b>${n} ${n === 1 ? 'hoja' : 'hojas'} A4</b> · ${n * 2} fichas` : 'Elige al menos una ficha';
     $('#vacio').hidden = n > 0;
     $$('.imprimir').forEach(b => { b.disabled = !n; });
-    guarda('lolo-fichas-3', JSON.stringify(op));
+    guarda('raiz-fichas-3', JSON.stringify(op));
     escala();
   }
   function escala() { const v = $('#hojas'); if (!v) return; v.style.setProperty('--esc', Math.min(1, (v.clientWidth || 1) / (210 * 96 / 25.4)).toFixed(4)); }

@@ -100,7 +100,7 @@
     { id: 'viste', t: 'Vestimos a Nico', s: 'Vestirse', c: '#FF8A3D' },
     { id: 'toca', t: 'Toca, toca', s: 'Moverse', c: '#0B7A8F' }
   ];
-  const CLAVE = 'lolo-sellos-cuerpo';
+  const CLAVE = 'raiz-sellos-cuerpo';
   const leeSellos = () => { try { const v = JSON.parse(localStorage.getItem(CLAVE) || '[]'); return Array.isArray(v) ? v.filter(x => SELLOS.some(s => s.id === x)) : []; } catch (e) { return []; } };
   const ponSello = id => { const v = leeSellos(); if (!v.includes(id)) v.push(id); try { localStorage.setItem(CLAVE, JSON.stringify(v)); } catch (e) {} return v; };
   const aspecto = () => ({ piel: azar(PIELES), pelo: azar(PELOS), camiseta: azar(CAMISETAS) });

@@ -8,7 +8,7 @@
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const lee = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : v; } catch (e) { return d; } };
   const guarda = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
-  let calma = lee('lolo-calma', '0') === '1';
+  let calma = lee('raiz-calma', '0') === '1';
   const quieto = () => reduce || calma;
 
   /* ---------- iconos de trazo (24×24) ---------- */
@@ -148,7 +148,7 @@
   const edadTxt = e => e.length === 1 ? `${e[0]} años` : `${e[0]}–${e[e.length - 1]} años`;
   const sinTilde = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-  let filtroCat = 'todas', edad = +lee('lolo-edad', '0') || 0, busca = '';
+  let filtroCat = 'todas', edad = +lee('raiz-edad', '0') || 0, busca = '';
 
   /* ---------- pintar ---------- */
   function pintaCategorias() {
@@ -202,7 +202,7 @@
   }
   function pintaRecientes() {
     let r = [];
-    try { r = JSON.parse(lee('lolo-recientes', '[]')).filter(id => porId[id]).slice(0, 4); } catch (e) {}
+    try { r = JSON.parse(lee('raiz-recientes', '[]')).filter(id => porId[id]).slice(0, 4); } catch (e) {}
     $('#recientes').hidden = !r.length;
     $('#recientesFila').innerHTML = r.map(id => { const j = porId[id]; return `<a class="reciente" href="jugar.html#${id}" data-id="${id}" style="--c:${cat[j.cat].c}"><span>${svg(id)}</span>${j.t}</a>`; }).join('');
   }
@@ -426,8 +426,8 @@
     const p = ev.target.closest('.pestana');
     if (p) { filtroCat = p.dataset.cat; pintaFiltros(); filtra(); return; }
     const e = ev.target.closest('#edades button');
-    if (e) { edad = +e.dataset.e; guarda('lolo-edad', String(edad)); pintaFiltros(); filtra(); return; }
-    if (ev.target.closest('#limpiar')) { filtroCat = 'todas'; edad = 0; busca = ''; $('#buscar').value = ''; guarda('lolo-edad', '0'); pintaFiltros(); filtra(); }
+    if (e) { edad = +e.dataset.e; guarda('raiz-edad', String(edad)); pintaFiltros(); filtra(); return; }
+    if (ev.target.closest('#limpiar')) { filtroCat = 'todas'; edad = 0; busca = ''; $('#buscar').value = ''; guarda('raiz-edad', '0'); pintaFiltros(); filtra(); }
   });
   document.addEventListener('keydown', ev => {
     const card = ev.target.closest && ev.target.closest('.tarjeta');
@@ -437,7 +437,7 @@
 
   /* ---------- acciones ---------- */
   function aplicaCalma() { html.classList.toggle('calma', calma); $('#btnCalma').setAttribute('aria-pressed', String(calma)); }
-  $('#btnCalma').addEventListener('click', () => { calma = !calma; guarda('lolo-calma', calma ? '1' : '0'); aplicaCalma(); });
+  $('#btnCalma').addEventListener('click', () => { calma = !calma; guarda('raiz-calma', calma ? '1' : '0'); aplicaCalma(); });
   const btnP = $('#btnPantalla');
   if (!document.fullscreenEnabled) btnP.hidden = true;
   btnP.addEventListener('click', () => { (document.fullscreenElement ? document.exitFullscreen() : html.requestFullscreen()).catch(() => {}); });

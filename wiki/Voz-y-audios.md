@@ -10,8 +10,8 @@ Lolo habla con **audios grabados** cuando existen y, si falta alguno, con la **v
 
 ## Grabar la voz de Lolo
 
-- Todo lo que dice Lolo está en [`audio/guion.csv`](https://github.com/jvlsile/VISITA-DE-LOLO-/blob/main/audio/guion.csv): **1291 audios**, cada uno con su nombre de archivo y una indicación de tono (alegre, pista amable, curiosa, cálida, suave…).
-- La guía completa (prompt para diseñar la voz, cómo leer cada frase, formato y cómo subirlos) está en [`AUDIOS.md`](https://github.com/jvlsile/VISITA-DE-LOLO-/blob/main/AUDIOS.md).
+- Todo lo que dice Lolo está en [`audio/guion.csv`](https://github.com/jvlsile/LOLO-RAIZ/blob/main/audio/guion.csv): **1291 audios**, cada uno con su nombre de archivo y una indicación de tono (alegre, pista amable, curiosa, cálida, suave…).
+- La guía completa (prompt para diseñar la voz, cómo leer cada frase, formato y cómo subirlos) está en [`AUDIOS.md`](https://github.com/jvlsile/LOLO-RAIZ/blob/main/AUDIOS.md).
 - Formato: **MP3, mono, 44,1 kHz**, con el nombre exacto de la columna `archivo` (por ejemplo, `lolo_0001.mp3`), en la carpeta `audio/`.
 - Después de subirlos, la publicación genera sola el índice de audios.
 

@@ -2,7 +2,7 @@
 
 Juegos de **Educación Infantil (3 a 5 años)** para pizarra digital, tablet y móvil. Lolo, un pulpo, guía a la clase con voz, pictogramas y sin necesidad de leer.
 
-**▶ Abrir la web:** <https://jvlsile.github.io/VISITA-DE-LOLO-/>
+**▶ Abrir la web:** <https://jvlsile.github.io/LOLO-RAIZ/>
 
 ## Qué hay
 

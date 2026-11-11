@@ -4,7 +4,7 @@ Las tres páginas de fichas funcionan igual: se eligen las fichas en el panel, s
 
 **Al imprimir:** papel **A4**, orientación **vertical** y escala **100 %** (no «ajustar a la página»).
 
-## Fichas de trazos · [`fichas.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas.html)
+## Fichas de trazos · [`fichas.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas.html)
 
 - Los ocho trazos de *La tinta de Lolo*.
 - **Dos fichas por hoja A4** (se corta por la mitad): dos iguales o dos trazos seguidos.
@@ -12,13 +12,13 @@ Las tres páginas de fichas funcionan igual: se eligen las fichas en el panel, s
 - **Tamaño según la edad**: 3, 4 o 5 filas.
 - Opciones de nombre y fecha, dibujo para colorear y ahorro de tinta.
 
-## Fichas para 3 años · [`fichas-3.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-3.html)
+## Fichas para 3 años · [`fichas-3.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas-3.html)
 
 - **Gomets**, **punzón**, **flecos** y **colorear**, con varios dibujos de cada tipo.
 - Dos fichas por hoja A4.
 - El punzón se usa sobre una almohadilla de picado y con un adulto cerca.
 
-## Fichas de los sentidos · [`fichas-sentidos.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-sentidos.html)
+## Fichas de los sentidos · [`fichas-sentidos.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas-sentidos.html)
 
 Una ficha por hoja A4:
 
@@ -38,7 +38,7 @@ La opción **«Dibujos solo con línea»** deja los dibujos en blanco para color
 
 El enlace `fichas-sentidos.html#diploma` abre directamente solo el diploma.
 
-## Fichas del cuerpo · [`fichas-cuerpo.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-cuerpo.html)
+## Fichas del cuerpo · [`fichas-cuerpo.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas-cuerpo.html)
 
 Una ficha por hoja A4, pensadas para 3 años:
 

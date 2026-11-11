@@ -66,4 +66,4 @@ En Safari (iPad e iPhone), los SVG con anchura automática calculada a partir de
 
 ## Esta wiki
 
-Las páginas de la wiki se editan en la carpeta [`wiki/`](https://github.com/jvlsile/VISITA-DE-LOLO-/tree/main/wiki) del repositorio. Al subir cambios a `main`, la acción **Wiki** las copia a la wiki. No editéis la wiki desde la web: los cambios se perderían en la siguiente copia.
+Las páginas de la wiki se editan en la carpeta [`wiki/`](https://github.com/jvlsile/LOLO-RAIZ/tree/main/wiki) del repositorio. Al subir cambios a `main`, la acción **Wiki** las copia a la wiki. No editéis la wiki desde la web: los cambios se perderían en la siguiente copia.

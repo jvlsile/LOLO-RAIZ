@@ -22,10 +22,10 @@ No. Ver [[Privacidad]].
 Al imprimir, elige A4, vertical y escala 100 % (no «ajustar a la página»).
 
 **¿Puedo abrir un juego concreto con un enlace?**
-Sí: `https://jvlsile.github.io/VISITA-DE-LOLO-/jugar.html#robot` (cambia `robot` por el juego que quieras; la lista está en [[Juegos]]).
+Sí: `https://jvlsile.github.io/LOLO-RAIZ/jugar.html#robot` (cambia `robot` por el juego que quieras; la lista está en [[Juegos]]).
 
 **¿Funciona en iPad?**
 Las pruebas automáticas pasan con el motor de Safari en iPad e iPhone. Falta probarla en iPads y pizarras reales; *El robot perdido* en iPad está pendiente de esa prueba.
 
 **He encontrado un error.**
-Abre una incidencia en [Issues](https://github.com/jvlsile/VISITA-DE-LOLO-/issues) con el juego, el dispositivo, el navegador y qué ha pasado.
+Abre una incidencia en [Issues](https://github.com/jvlsile/LOLO-RAIZ/issues) con el juego, el dispositivo, el navegador y qué ha pasado.

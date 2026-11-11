@@ -33,7 +33,7 @@ Cada juego terminado pone un sello en el **Pasaporte del cuerpo**, distinto del 
 
 ## Fichas y evaluación
 
-En [`fichas-cuerpo.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-cuerpo.html) hay ocho fichas A4 y un registro de observación (ver [[Fichas para imprimir]]).
+En [`fichas-cuerpo.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas-cuerpo.html) hay ocho fichas A4 y un registro de observación (ver [[Fichas para imprimir]]).
 
 Indicadores del registro:
 

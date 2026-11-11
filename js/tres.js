@@ -13,9 +13,9 @@
   const K = '#183153';
 
   const reduceSO = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let calma = lee('lolo-calma', '0') === '1';
+  let calma = lee('raiz-calma', '0') === '1';
   const quieto = () => reduceSO || calma;
-  let voz = lee('lolo-tres-voz', '1') !== '0';
+  let voz = lee('raiz-tres-voz', '1') !== '0';
   const texto = $('#texto'), zona = $('#zona');
   let ultimo = null;
 
@@ -26,7 +26,7 @@
   function cargarVoces() {
     try {
       voces = speechSynthesis.getVoices().filter(v => /^es/i.test(v.lang)).sort((a, b) => puntua(b) - puntua(a));
-      const g = lee('lolo-voz', null); vozEs = voces.find(v => v.voiceURI === g) || voces[0] || null;
+      const g = lee('raiz-voz', null); vozEs = voces.find(v => v.voiceURI === g) || voces[0] || null;
     } catch (e) {}
   }
   try { cargarVoces(); speechSynthesis.onvoiceschanged = cargarVoces; } catch (e) {}
@@ -681,8 +681,8 @@
   /* ---------- herramientas ---------- */
   function aplicaCalma() { document.documentElement.classList.toggle('calma', calma); $('#btnCalma').setAttribute('aria-pressed', String(calma)); }
   function aplicaVoz() { $('#btnVoz').setAttribute('aria-pressed', String(voz)); $('#btnVoz span').textContent = voz ? 'Voz' : 'Sin voz'; }
-  $('#btnCalma').addEventListener('click', () => { calma = !calma; guarda('lolo-calma', calma ? '1' : '0'); aplicaCalma(); });
-  $('#btnVoz').addEventListener('click', () => { voz = !voz; guarda('lolo-tres-voz', voz ? '1' : '0'); if (!voz) callar(); aplicaVoz(); });
+  $('#btnCalma').addEventListener('click', () => { calma = !calma; guarda('raiz-calma', calma ? '1' : '0'); aplicaCalma(); });
+  $('#btnVoz').addEventListener('click', () => { voz = !voz; guarda('raiz-tres-voz', voz ? '1' : '0'); if (!voz) callar(); aplicaVoz(); });
   $('#btnRepetir').addEventListener('click', () => { if (!ultimo) { ultimo = [FR.menu]; } if (est) decir(ultimo[0], ultimo[1]); else hablar(FR.menu); });
   $('#btnJuegos').addEventListener('click', irMenu);
   aplicaCalma(); aplicaVoz();

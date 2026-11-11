@@ -39,7 +39,7 @@
       ${cuerpo}
       <path d="M16 282h178" stroke="${SUAVE}" stroke-width=".35"/>
       ${txt(16, 288, f.pie || '', 't-pie')}
-      ${f.docente ? '' : txt(194, 288, 'jvlsile.github.io/VISITA-DE-LOLO-', 't-pie', 'text-anchor="end"')}
+      ${f.docente ? '' : txt(194, 288, 'jvlsile.github.io/LOLO-RAIZ', 't-pie', 'text-anchor="end"')}
     </svg>`;
   }
 
@@ -140,7 +140,7 @@
 
   /* ---------- estado ---------- */
   let op = { sel: F.map(f => f.k), nombre: true, lineas: false };
-  try { const g = JSON.parse(lee('lolo-fichas-cuerpo', 'null')); if (g && Array.isArray(g.sel)) op = { ...op, ...g, sel: g.sel.filter(k => porK[k]) }; } catch (e) {}
+  try { const g = JSON.parse(lee('raiz-fichas-cuerpo', 'null')); if (g && Array.isArray(g.sel)) op = { ...op, ...g, sel: g.sel.filter(k => porK[k]) }; } catch (e) {}
   if (location.hash === '#diploma') op.sel = ['diploma'];
 
   const mini = f => {
@@ -162,7 +162,7 @@
     $('#resumen').innerHTML = n ? `<b>${n} ${n === 1 ? 'hoja' : 'hojas'} A4</b> · una ficha por hoja` : 'Elige al menos una ficha';
     $('#vacio').hidden = n > 0;
     $$('.imprimir').forEach(b => { b.disabled = !n; });
-    guarda('lolo-fichas-cuerpo', JSON.stringify({ sel: op.sel, nombre: op.nombre, lineas: op.lineas }));
+    guarda('raiz-fichas-cuerpo', JSON.stringify({ sel: op.sel, nombre: op.nombre, lineas: op.lineas }));
     escala();
   }
   function escala() { const v = $('#hojas'); if (!v) return; v.style.setProperty('--esc', Math.min(1, (v.clientWidth || 1) / (210 * 96 / 25.4)).toFixed(4)); }

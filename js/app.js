@@ -5,7 +5,7 @@
   const lolo = $('#lolo'), zona = $('#zona'), arrecife = $('#arrecife'), agendaEl = $('#agenda');
   let texto = $('#texto');
   const reduceSO = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let calma = false; try{ calma = localStorage.getItem('lolo-calma')==='1'; }catch(e){}
+  let calma = false; try{ calma = localStorage.getItem('raiz-calma')==='1'; }catch(e){}
   const quieto = () => reduceSO || calma;
   let voz = true, ultimo = '', paso = 0, dia = 0, colorDia = 'rojo', modo = 'lolo';
 
@@ -65,7 +65,7 @@
   const puntua=v=>(/natural|neural/i.test(v.name)?60:0)+(/online/i.test(v.name)?20:0)+(/premium|enhanced|mejorad|siri/i.test(v.name)?50:0)+(/google/i.test(v.name)?35:0)+(/^es[-_]ES/i.test(v.lang)?10:0)+(v.localService===false?5:0);
   function cargar(){ try{
     voces=speechSynthesis.getVoices().filter(v=>/^es/i.test(v.lang)).sort((a,b)=>puntua(b)-puntua(a));
-    let guardada=null; try{ guardada=localStorage.getItem('lolo-voz'); }catch(e){}
+    let guardada=null; try{ guardada=localStorage.getItem('raiz-voz'); }catch(e){}
     vozEs=voces.find(v=>v.voiceURI===guardada)||voces[0]||null;
     const sel=$('#selVoz');
     if(sel){ sel.innerHTML=voces.length?voces.map(v=>`<option value="${v.voiceURI.replace(/"/g,'&quot;')}">${esNatural(v)?'★ ':''}${v.name} (${v.lang})</option>`).join(''):'<option value="">No hay voces en español en este navegador</option>'; if(vozEs) sel.value=vozEs.voiceURI; }
@@ -396,7 +396,7 @@
   }
 
   /* ---------- herramientas ---------- */
-  function aplicaCalma(){ app.classList.toggle('calma',calma); $('#btnTranquilo').setAttribute('aria-pressed',calma); try{ localStorage.setItem('lolo-calma',calma?'1':'0'); }catch(e){} }
+  function aplicaCalma(){ app.classList.toggle('calma',calma); $('#btnTranquilo').setAttribute('aria-pressed',calma); try{ localStorage.setItem('raiz-calma',calma?'1':'0'); }catch(e){} }
   $('#btnTranquilo').addEventListener('click',()=>{ calma=!calma; aplicaCalma(); });
   $('#btnRepetir').addEventListener('click',()=>{ if(ultimo) repite(ultimo); });
   const vozCapa=$('#vozCapa');
@@ -405,7 +405,7 @@
     if(!voz) callar(); }
   $('#btnSonido').addEventListener('click',()=>{ cargar(); vozCapa.hidden=false; $('#selVoz').focus(); });
   $('#vozOn').addEventListener('change',e=>ponVoz(e.target.checked));
-  $('#selVoz').addEventListener('change',e=>{ vozEs=voces.find(v=>v.voiceURI===e.target.value)||vozEs; try{ localStorage.setItem('lolo-voz',e.target.value); }catch(err){} hablar('¡Hola! Soy Lolo. ¿Te gusta mi voz?'); });
+  $('#selVoz').addEventListener('change',e=>{ vozEs=voces.find(v=>v.voiceURI===e.target.value)||vozEs; try{ localStorage.setItem('raiz-voz',e.target.value); }catch(err){} hablar('¡Hola! Soy Lolo. ¿Te gusta mi voz?'); });
   $('#probarVoz').addEventListener('click',()=>hablar('¡Hola, amigos! Soy Lolo, el pulpo. ¿Jugamos juntos?'));
   $('#cerrarVoz').addEventListener('click',()=>vozCapa.hidden=true);
   vozCapa.addEventListener('click',e=>{ if(e.target===vozCapa) vozCapa.hidden=true; });
@@ -672,8 +672,8 @@
   }
 
   /* jardín de la clase: logros compartidos (se guarda en este navegador) */
-  let jardinMem=0; try{ jardinMem=parseInt(localStorage.getItem('lolo-jardin')||'0',10)||0; }catch(e){}
-  function jardinPon(v){ jardinMem=v; try{ localStorage.setItem('lolo-jardin',String(v)); }catch(e){} const n=$('#jardinN'); if(n) n.textContent=v; }
+  let jardinMem=0; try{ jardinMem=parseInt(localStorage.getItem('raiz-jardin')||'0',10)||0; }catch(e){}
+  function jardinPon(v){ jardinMem=v; try{ localStorage.setItem('raiz-jardin',String(v)); }catch(e){} const n=$('#jardinN'); if(n) n.textContent=v; }
   function jardinSuma(k){ jardinPon(jardinMem+k); const c=$('#chipJardin'); if(c&&!quieto()){ c.classList.remove('crece'); void c.offsetWidth; c.classList.add('crece'); } }
 
   /* música para las estatuas */
@@ -2172,7 +2172,7 @@
   };
   const tituloDe=id=>INFO[id].t||JUEGOS[id].titulo, icDe=id=>INFO[id].ic||JUEGOS[id].ic, catDe=id=>CATS.find(c=>c.ids.includes(id));
   const edadTxt=e=>e.length===1?`${e[0]} años`:`${e[0]}–${e[e.length-1]} años`;
-  let filtroEdad=0; try{ filtroEdad=+(localStorage.getItem('lolo-edad')||0)||0; }catch(e){}
+  let filtroEdad=0; try{ filtroEdad=+(localStorage.getItem('raiz-edad')||0)||0; }catch(e){}
   function pintaMenu(){
     $('#menuCats').innerHTML=CATS.map(c=>{ const ids=c.ids.filter(id=>!filtroEdad||INFO[id].e.includes(filtroEdad)); if(!ids.length) return '';
       return `<section class="cat" style="--catc:${c.c}"><h3><i></i>${c.t}</h3><div class="cat-grid">${ids.map(id=>`<button class="jcard" type="button" data-m="${id}" ${id===modo?'aria-current="true"':''}><span class="ti">${icono(icDe(id))}</span><span><b>${tituloDe(id)}</b><p>${INFO[id].d}</p><span class="ed">${edadTxt(INFO[id].e)}</span></span></button>`).join('')}</div></section>`; }).join('');
@@ -2182,13 +2182,13 @@
   const menuCapa=$('#menuCapa');
   $('#btnMenu').addEventListener('click',()=>{ pintaMenu(); menuCapa.hidden=false; const a=menuCapa.querySelector('.jcard[aria-current="true"]')||menuCapa.querySelector('.jcard'); if(a) a.focus(); });
   $('#cerrarMenu').addEventListener('click',()=>menuCapa.hidden=true);
-  menuCapa.addEventListener('click',e=>{ if(e.target===menuCapa){ menuCapa.hidden=true; return; } const j=e.target.closest('.jcard'); if(j){ menuCapa.hidden=true; ponModo(j.dataset.m); } const f=e.target.closest('.edad-f'); if(f){ filtroEdad=+f.dataset.e; try{ localStorage.setItem('lolo-edad',filtroEdad); }catch(err){} pintaMenu(); } });
+  menuCapa.addEventListener('click',e=>{ if(e.target===menuCapa){ menuCapa.hidden=true; return; } const j=e.target.closest('.jcard'); if(j){ menuCapa.hidden=true; ponModo(j.dataset.m); } const f=e.target.closest('.edad-f'); if(f){ filtroEdad=+f.dataset.e; try{ localStorage.setItem('raiz-edad',filtroEdad); }catch(err){} pintaMenu(); } });
   $('#chipJardin').addEventListener('click',()=>ponModo('jardin'));
   jardinPon(jardinMem);
   $('#panelCaja').insertAdjacentHTML('afterend',IDS.map(id=>`<section class="panel juego" id="panel-${id}" aria-label="${JUEGOS[id].titulo}" hidden><div class="bocadillo"><span class="quien">Lolo</span><p class="txt" aria-live="polite"></p></div><div class="zona jz"></div></section>`).join(''));
 
   /* últimos juegos abiertos, para la portada */
-  function registraReciente(m){ try{ const r=JSON.parse(localStorage.getItem('lolo-recientes')||'[]').filter(x=>x!==m); r.unshift(m); localStorage.setItem('lolo-recientes',JSON.stringify(r.slice(0,6))); }catch(e){} }
+  function registraReciente(m){ try{ const r=JSON.parse(localStorage.getItem('raiz-recientes')||'[]').filter(x=>x!==m); r.unshift(m); localStorage.setItem('raiz-recientes',JSON.stringify(r.slice(0,6))); }catch(e){} }
 
   /* ---------- cambiar de juego ---------- */
   const MODOS=['lolo','caja',...IDS];

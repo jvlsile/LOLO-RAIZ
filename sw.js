@@ -1,6 +1,7 @@
-/* Modo sin conexión de La visita de Lolo.
+/* Modo sin conexión de La visita de Lolo · versión de pruebas LOLO-RAIZ.
+   Usa el prefijo «raiz-» para no tocar la caché de la app de clase, que está en el mismo dominio.
    La versión se sustituye automáticamente en cada despliegue (ver .github/workflows/publicar.yml). */
-const VERSION = 'lolo-dev';
+const VERSION = 'raiz-dev';
 const ARCHIVOS = [
   './', 'index.html', 'jugar.html', 'fichas.html', 'tres.html', 'fichas-3.html', 'css/tres.css', 'js/tres.js', 'js/fichas-3.js', 'css/portada.css', 'js/portada.js', 'css/fichas.css', 'js/fichas.js', 'css/estilos.css', 'js/app.js', 'js/sentidos-dibujos.js', 'fichas-sentidos.html', 'js/fichas-sentidos.js', 'js/cuerpo-dibujos.js', 'fichas-cuerpo.html', 'js/fichas-cuerpo.js', 'video/lolo-sentidos.jpg', 'manifest.webmanifest', 'audio/frases.json',
   'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png',
@@ -14,7 +15,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil(caches.keys()
-    .then(ks => Promise.all(ks.filter(k => k !== VERSION).map(k => caches.delete(k))))
+    .then(ks => Promise.all(ks.filter(k => k.startsWith('raiz-') && k !== VERSION).map(k => caches.delete(k))))
     .then(() => self.clients.claim()));
 });
 

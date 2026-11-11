@@ -40,7 +40,7 @@ El pasaporte se guarda en el navegador de ese dispositivo. Si usáis la web en o
 
 ## Fichas y evaluación
 
-En [`fichas-sentidos.html`](https://jvlsile.github.io/VISITA-DE-LOLO-/fichas-sentidos.html) hay ocho fichas A4 y un registro de observación (ver [[Fichas para imprimir]]).
+En [`fichas-sentidos.html`](https://jvlsile.github.io/LOLO-RAIZ/fichas-sentidos.html) hay ocho fichas A4 y un registro de observación (ver [[Fichas para imprimir]]).
 
 Indicadores del registro:
 
