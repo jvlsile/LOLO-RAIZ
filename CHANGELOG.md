@@ -9,6 +9,7 @@
 - Modo 3 años · Las burbujas de Lolo: cuarto reto con las vocales A, E, I, O, U en mayúscula. El modo 3 años admite ya juegos con más de tres retos.
 - Nuevo aspecto «Aula luminosa» en la pantalla de juego (primer paso): fondo de papel, una sola barra blanca, agenda fina arriba y escenario en una tarjeta. Voz, modo tranquilo, rincón de la calma y guía pasan al botón «⋯».
 - Portada con el mismo aspecto «Aula luminosa»: cabecera clara sin mar, barra blanca y tarjetas sobrias (`css/aula-portada.css`). Solo cambia el color y el fondo; los textos y la estructura son los mismos.
+- Nueva pantalla «Hoy» (`hoy.html`): la agenda visual del día con dibujos grandes, el encargado marca «Hecho», sin reloj, se guarda por día en el navegador y se puede imprimir. «Preparar» (botón discreto en la esquina) cambia, ordena, añade y quita actividades. Los dibujos son de ejemplo hasta usar pictogramas de ARASAAC; la agenda de ejemplo es provisional hasta tener el horario real.
 
 ## 1.10.0 · noviembre de 2026
 
