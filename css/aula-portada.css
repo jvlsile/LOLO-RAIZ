@@ -1,0 +1,31 @@
+/* Aula luminosa · portada. Papel claro, una barra blanca, tinta azul marino.
+   Solo recolorea: la estructura y los textos de portada.css no cambian. */
+:root{--lienzo:#F6F2E9;--linea:#E4DCCB;--linea-2:#D5CCB8;--tinta:#183153;--tinta-2:#46607F;--tinta-3:#5F7694}
+body{background:var(--lienzo)}
+/* barra: siempre blanca con filete */
+.nav{background:#fff;box-shadow:0 1px 0 var(--linea);padding-bottom:0}
+.nav .logo{color:var(--tinta)}
+.nav .enlaces a{color:var(--tinta-2)}
+.nav:not(.solida) .icono-btn,.nav:not(.solida) .icono-btn[aria-pressed="true"]{color:var(--tinta)}
+.nav:not(.solida) .icono-btn[aria-pressed="true"]{background:#E3EEFD}
+.nav:not(.solida) .btn-primario{background:var(--tinta);color:#fff}
+.btn-cafe{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 1px var(--linea-2)}
+/* cabecera sin mar */
+.hero{color:var(--tinta);background:var(--lienzo)}
+#burbujas,.ola{display:none}
+.hero h1{color:var(--tinta)}
+.hero h1 .linea:last-child{color:#2A74D8}
+.hero-sub{color:var(--tinta-2)}
+.hero-datos{color:var(--tinta-2)}
+.hero-datos svg{stroke:#2A74D8}
+.btn-sol{box-shadow:0 1px 0 #E5A40E,0 6px 14px rgba(229,164,14,.25)}
+.btn-cristal{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 1px var(--linea-2);backdrop-filter:none}
+.novedad{background:#fff;color:var(--tinta);box-shadow:inset 0 0 0 1px var(--linea-2)}
+.aro{background:#fff;box-shadow:inset 0 0 0 1px var(--linea)}
+#lolo{filter:drop-shadow(0 18px 18px rgba(24,49,83,.18))}
+.orbe{box-shadow:0 0 0 1px var(--linea),0 8px 16px rgba(24,49,83,.10)}
+/* categorías y extras: tarjetas blancas sobrias */
+.cat{background:#fff;box-shadow:inset 0 0 0 1px var(--linea);}
+.cat::after{display:none}
+.cat-ic{box-shadow:none}
+.extra{background:#fff;box-shadow:inset 0 0 0 1px var(--linea)}

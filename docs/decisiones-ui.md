@@ -1,6 +1,6 @@
 # Decisiones de la nueva versión (LOLO-RAIZ)
 
-Documento de acuerdos con la autora. Solo recoge lo decidido; no hay diseño visual ni código todavía.
+Documento de acuerdos con la autora. Recoge lo decidido y, al final, el estado de lo construido.
 Cualquier cambio de estos acuerdos se habla antes con ella.
 
 ## Contexto de uso
@@ -62,3 +62,26 @@ Elegido por la autora entre tres propuestas (A «Mar sereno», B «Aula luminosa
 - **Color:** tinta marina para el texto, un solo acento por categoría (etiqueta y trazo del reto actual) y el naranja de Lolo reservado para Lolo.
 - **Tipografía:** Fredoka para lo que se dice y se toca; Nunito para lo que lee la maestra.
 - **Estado:** solo hay dibujos de la pantalla «Cuenta y toca»; falta dibujar HOY, asamblea, menú de juegos y Preparar en este estilo antes de tocar la app.
+
+## Estado de lo construido (noviembre de 2026)
+
+Todo está en ramas encadenadas (PR #4 a #12); se fusionan en orden.
+
+| Pieza | Página | Estado |
+|---|---|---|
+| Aspecto «Aula luminosa» en juegos, portada, modo 3 años y fichas | `jugar.html`, `index.html`, `tres.html`, `fichas*.html` | Hecho (solo color y fondo en portada, 3 años y fichas) |
+| Agenda visual del día, con marcas del encargado e imprimir | `hoy.html` | Hecho. Dibujos y horario de ejemplo |
+| Preparar: agenda por día, asamblea del día y copia de seguridad | `preparar.html` | Hecho. Sin contraseña. Todo en el navegador (prefijo `raiz-`) |
+| Asamblea guiada con menú lateral | `asamblea.html` | Hecho. Contenido por edad según la tabla de arriba |
+| Registro semanal imprimible | `registro.html` | Hecho. Se rellena al llegar a la despedida |
+| Planificación por trimestre y áreas | `planificacion.html` | Hecho. Reparto de áreas orientativo |
+| Niveles reales por edad | juegos | Cuenta, parejas, series, cestas, tamaños y formas |
+| La tinta de Lolo | `jugar.html#tinta` | 8 trazos; con 4 años, además, vocales en mayúscula |
+
+### Pendiente
+- Horario semanal real y pictogramas de ARASAAC (licencia CC BY-NC-SA) en HOY.
+- Consonantes en mayúscula de 4 años; orden completo de letras y minúsculas con rabillo de 5 años (La tinta y trazo de la asamblea).
+- Revisar las listas de palabras y preguntas reto por tema (las propuso la app).
+- Niveles reales en el resto de juegos (robot, construye, cuento, otoño, sentidos, cuerpo…).
+- Aspecto «Aula luminosa» más a fondo en el modo 3 años (formas y tarjetas) y en las fichas.
+- Prueba real en pizarra y en iPad; botón de donación; grabación de audios.
