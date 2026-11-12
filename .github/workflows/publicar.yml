@@ -56,7 +56,7 @@ jobs:
           mkdir -p _site
           # Índice de los audios grabados que ya existen (los que falten usan la voz del navegador)
           python3 scripts/indice-audios.py
-          cp -r index.html jugar.html fichas.html tres.html fichas-3.html fichas-sentidos.html fichas-cuerpo.html sw.js manifest.webmanifest css js fonts icons audio video _site/
+          cp -r index.html jugar.html hoy.html asamblea.html registro.html planificacion.html preparar.html fichas.html tres.html fichas-3.html fichas-sentidos.html fichas-cuerpo.html sw.js manifest.webmanifest css js fonts icons audio video _site/
           rm -f _site/audio/guion.csv
           touch _site/.nojekyll
           # Nueva versión del modo sin conexión en cada publicación, para que las pizarras se actualicen
@@ -68,6 +68,8 @@ jobs:
           grep -q "estilos.css?v=${V}" _site/jugar.html
           grep -q "sentidos-dibujos.js?v=${V}" _site/jugar.html
           grep -q "cuerpo-dibujos.js?v=${V}" _site/jugar.html
+          # Todas las páginas de la web tienen que estar publicadas
+          for p in hoy asamblea registro planificacion preparar; do test -f "_site/$p.html"; done
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
