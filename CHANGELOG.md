@@ -2,6 +2,8 @@
 
 ## Sin publicar · LOLO-RAIZ fase 1 (primer paso)
 
+- Los juegos ocupan la pantalla: la zona de juego es más ancha y se agranda según el espacio libre (hasta el doble), con las piezas, los números y los dibujos a la vez. Durante un reto solo se encoge, nunca crece de golpe, para que nada se mueva bajo el dedo. En móvil no cambia.
+
 - Menú lateral de iconos (Hoy, Asamblea, Juegos, Fichas, Registro, Planificación y, abajo, Preparar) en Hoy, Asamblea, Registro, Planificación, Preparar y Juegos. Sustituye a los botones «Inicio/Volver» y a los enlaces sueltos de la cabecera. En el móvil pasa a ser una barra inferior; en Juegos hay un botón «Pantalla completa» que lo oculta. El logo lleva a la portada.
 
 - Portada en móvil apaisado: la barra ya no se parte en varias líneas (el logo y los enlaces no se parten y se ocultan los menos usados), la cabecera es más baja y Lolo queda al lado del texto. El enlace «Hoy» se ve en todos los tamaños.
