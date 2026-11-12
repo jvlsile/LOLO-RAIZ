@@ -21,7 +21,7 @@ test('muestra la agenda y se marca lo hecho, también tras recargar', async ({ p
 
 test('Preparar: se cambia, se añade y se quita una actividad, y Hoy lo refleja', async ({ page }) => {
   await page.goto('/hoy.html');
-  await page.click('.preparar');
+  await page.click('#lateral a[href="preparar.html"]');
   await expect(page).toHaveURL(/preparar\.html/);
   await page.click('#btnNueva');
   await page.locator('#listaEd li').last().locator('input').fill('Psicomotricidad');

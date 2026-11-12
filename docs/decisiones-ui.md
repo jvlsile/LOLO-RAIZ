@@ -85,3 +85,11 @@ Todo está en ramas encadenadas (PR #4 a #12); se fusionan en orden.
 - Niveles reales en el resto de juegos (cuento, caza, escape, duo, sentidos, cuerpo…): se hacen donde tengan algo que graduar.
 - Aspecto «Aula luminosa» más a fondo en el modo 3 años (formas y tarjetas) y en las fichas.
 - Prueba real en pizarra y en iPad; grabación de audios.
+
+
+## Menú lateral (acordado el 12 de noviembre de 2026)
+
+- Barra fija a la izquierda (112 px) con iconos grandes y su nombre debajo: Hoy, Asamblea, Juegos, Fichas, Registro, Planificación; Preparar, discreto, al final. El contenido va a la derecha con una franja fina arriba.
+- En Juegos, «Pantalla completa» oculta la barra (botón pequeño para volver). Voz, calma y guía siguen en el menú «…» del juego.
+- Móvil (≤760 px): barra inferior. Móvil apaisado: barra estrecha (84 px).
+- Pendiente: llevarlo también a las fichas y a «Todos los juegos» como icono único; mover Voz/Calma/Guía a la barra.
