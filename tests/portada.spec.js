@@ -57,7 +57,7 @@ test('«Jugar» abre el juego directamente y aparece en recientes', async ({ pag
   await page.goto('/');
   await page.locator('.tarjeta[data-id="cuenta"] .jugar').click();
   await page.waitForURL(/jugar\.html#cuenta$/);
-  await page.click('.btn-inicio');
+  await page.locator('#lateral .lat-logo:visible, .btn-inicio:visible').first().click();
   await page.waitForURL(/\/(index\.html)?$/);
   await expect(page.locator('#recientes')).toBeVisible();
   await expect(page.locator('.reciente[data-id="cuenta"]')).toBeVisible();
