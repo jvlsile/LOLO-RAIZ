@@ -25,16 +25,37 @@
   const quitaAcentos = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
   const esVocal = c => 'aeiou'.includes(quitaAcentos(c.toLowerCase()));
 
+  /* Listas para los bloques nuevos. Cambian cada día con el número del día del año. */
+  const PARTES = ['cabeza', 'ojos', 'nariz', 'boca', 'orejas', 'manos', 'pies', 'barriga', 'rodillas', 'hombros'];
+  const PICTOS = ['moto', 'coche', 'casa', 'mano', 'pie', 'cabeza', 'ojo', 'boca', 'nariz', 'sol', 'flor', 'pan'];
+  const SONIDOS = { m: ['mano', 'mesa', 'moto', 'mar'], p: ['pie', 'pan', 'pelota', 'perro'], c: ['casa', 'coche', 'cola', 'cuna'], s: ['sol', 'sapo', 'silla', 'sopa'], l: ['luna', 'lobo', 'libro', 'lupa'], t: ['tren', 'taza', 'tortuga', 'tela'], d: ['dado', 'dedo', 'dulce', 'dibujo'], n: ['nariz', 'nube', 'nido', 'nata'] };
+  const SONIDO_LISTA = Object.keys(SONIDOS);
+
   /* Propuesta para una fecha y una edad. Se puede cambiar en Preparar. */
   function propuesta(d, ed) {
     const T = TEMAS[tema(d)], n = diaAno(d), dm = d.getDate();
     const idx5 = Math.floor(n / 7);
+    const npic = ed - 1, nopc = ed - 1;
+    const sonido = SONIDO_LISTA[n % SONIDO_LISTA.length];
+    const buenos = SONIDOS[sonido];
+    const otras = Object.values(SONIDOS).flat().filter(w => w[0] !== sonido[0]);
+    const correcta = buenos[n % buenos.length];
+    const opciones = [correcta];
+    for (let i = 0; opciones.length < nopc; i++) { const w = otras[(n * 3 + i * 5) % otras.length]; if (!opciones.includes(w)) opciones.push(w); }
+    const orden = [...opciones.slice(n % opciones.length), ...opciones.slice(0, n % opciones.length)];
+    const retoOpciones = [];
+    const nreto = ed === 3 ? 2 : 3;
+    for (let i = 0; retoOpciones.length < nreto && i < T.retos.length; i++) retoOpciones.push(T.retos[(n + i) % T.retos.length]);
     return {
       palabra: T.palabras[n % T.palabras.length],
       numero: ((dm - 1) % AMAX[ed]) + 1,
       trazo: ed === 3 ? idx5 % 8 : ed === 4 ? n % 5 : n % 5,
       reto: T.retos[n % T.retos.length],
-      rincones: T.rincones.slice()
+      retoOpciones,
+      rincones: T.rincones.slice(),
+      cuerpo: [PARTES[n % PARTES.length], PARTES[(n + 3) % PARTES.length]],
+      pictos: [...Array(npic)].map((_, i) => PICTOS[(n + i * 2) % PICTOS.length]),
+      veo: { sonido, opciones: orden }
     };
   }
   /* Lo del día: la propuesta con lo que la maestra haya cambiado encima. */
@@ -54,5 +75,5 @@
     const claves = Object.keys(reg).sort(); while (claves.length > 120) delete reg[claves.shift()];
     A.guarda(CLAVE_REG, reg);
   }
-  window.RAIZ_ASAMBLEA = { TEMAS, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
+  window.RAIZ_ASAMBLEA = { TEMAS, PARTES, PICTOS, SONIDOS, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
 })();

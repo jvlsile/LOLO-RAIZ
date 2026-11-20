@@ -7,6 +7,7 @@
   const CLAVE = 'raiz-planificacion';
   const CLAVE_SEMANA = 'raiz-planificacion-semana';
   const CLAVE_EDAD = 'raiz-planificacion-edad';
+  const CLAVE_NOMBRES = 'raiz-nombres';
   const RANGO = { 1: 'De septiembre a diciembre', 2: 'De enero a marzo', 3: 'De abril a junio' };
   const EDADES = [3, 4, 5];
   const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
@@ -114,6 +115,12 @@
     guardaDia(d, v);
   });
   $('#sit').addEventListener('input', e => { const n = notas(); if (e.target.value.trim()) n[t] = e.target.value; else delete n[t]; A.guarda(CLAVE, n); });
+  $('#nombres').addEventListener('input', e => {
+    const lista = e.target.value.split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+    A.guarda(CLAVE_NOMBRES, lista);
+  });
   $('#btnImprimir').addEventListener('click', () => window.print());
+  const nombres = A.leer(CLAVE_NOMBRES, []);
+  $('#nombres').value = Array.isArray(nombres) ? nombres.join('\n') : '';
   pinta();
 })();
