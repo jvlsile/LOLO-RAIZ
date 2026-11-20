@@ -26,3 +26,27 @@ test('la situación de aprendizaje se guarda', async ({ page }) => {
   await page.reload();
   await expect(page.locator('#sit')).toHaveValue('Mi cuerpo y yo');
 });
+
+test('la semana muestra cinco días y guarda rincones, palabra y número', async ({ page }) => {
+  await page.goto('/planificacion.html');
+  await page.click('[data-e="4"]');
+  await expect(page.locator('.dia-plan')).toHaveCount(5);
+  await page.locator('.dia-plan').first().locator('input[data-k="rincones"]').first().check();
+  await page.locator('.dia-plan').first().locator('input[data-k="palabra"]').fill('mano');
+  const num = page.locator('.dia-plan').first().locator('input[data-k="numero"]');
+  await num.fill('7');
+  await num.dispatchEvent('change');
+  await page.reload();
+  await expect(page.locator('.dia-plan').first().locator('input[data-k="palabra"]')).toHaveValue('mano');
+  await expect(page.locator('.dia-plan').first().locator('input[data-k="numero"]')).toHaveValue('7');
+  await expect(page.locator('.dia-plan').first().locator('input[data-k="rincones"]').first()).toBeChecked();
+});
+
+test('el número protagonista se limita al rango de cada edad', async ({ page }) => {
+  await page.goto('/planificacion.html');
+  await page.click('[data-e="3"]');
+  const num = page.locator('.dia-plan').first().locator('input[data-k="numero"]');
+  await num.fill('9');
+  await num.dispatchEvent('change');
+  await expect(num).toHaveValue('5');
+});
