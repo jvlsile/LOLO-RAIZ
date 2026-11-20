@@ -6,7 +6,6 @@
   const A = window.RAIZ_AGENDA, D = window.RAIZ_ASAMBLEA, esc = A.esc;
   const CLAVE = 'raiz-planificacion';
   const CLAVE_SEMANA = 'raiz-planificacion-semana';
-  const CLAVE_EDAD = 'raiz-planificacion-edad';
   const CLAVE_NOMBRES = 'raiz-nombres';
   const RANGO = { 1: 'De septiembre a diciembre', 2: 'De enero a marzo', 3: 'De abril a junio' };
   const EDADES = [3, 4, 5];
@@ -40,7 +39,7 @@
   const propuestas = (edad, t) => { const p = PROPUESTAS[edad]; return typeof p === 'function' ? p(t) : p; };
 
   let t = D.tema(new Date());
-  let edad = Math.min(5, Math.max(3, +A.leer(CLAVE_EDAD, 3) || 3));
+  let edad = D.edad();
   const notas = () => A.leer(CLAVE, {});
   const semanas = () => { const s = A.leer(CLAVE_SEMANA, {}); return s && typeof s === 'object' ? s : {}; };
   const diaVacio = () => ({ rincones: [], palabra: '', numero: '', reto: '' });
@@ -109,7 +108,7 @@
   $('#trims').addEventListener('click', e => { const b = e.target.closest('.dia'); if (b) { t = +b.dataset.t; pinta(); } });
   $('#edades').addEventListener('click', e => {
     const b = e.target.closest('.dia'); if (!b) return;
-    edad = +b.dataset.e; A.guarda(CLAVE_EDAD, edad); pinta();
+    edad = +b.dataset.e; D.ponEdad(edad); pinta();
   });
   $('#semana').addEventListener('change', e => {
     const el = e.target, d = el.dataset.d, k = el.dataset.k;

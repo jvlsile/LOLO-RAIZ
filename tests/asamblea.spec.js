@@ -112,3 +112,29 @@ test('en la palabra se pueden señalar las letras y se cuentan las vocales', asy
   await primera.click();
   await expect(page.locator('#marca')).toContainText('Vocales señaladas: 1');
 });
+
+test('lo que la docente planifica para el día aparece en la asamblea', async ({ page }) => {
+  const dow = new Date().getDay();
+  test.skip(dow === 0 || dow === 6, 'La planificación es de lunes a viernes');
+  await page.goto('/asamblea.html');
+  await page.evaluate(() => {
+    const d = new Date(), m = d.getMonth() + 1;
+    const t = m >= 9 ? 1 : m <= 3 ? 2 : m <= 6 ? 3 : 1;
+    const dia = { palabra: 'sol', numero: 2, reto: '¿Qué ves en el cielo?', rincones: ['Rincón A', 'Rincón B'] };
+    const semana = {};
+    semana[t + '-4'] = { d0: dia, d1: dia, d2: dia, d3: dia, d4: dia };
+    localStorage.setItem('raiz-planificacion-semana', JSON.stringify(semana));
+    localStorage.setItem('raiz-edad', '4');
+  });
+  await page.goto('/asamblea.html#palabra');
+  await expect(page.locator('.silabas')).toContainText(/sol/i);
+  await page.goto('/asamblea.html#reto');
+  await expect(page.locator('#bloque')).toContainText('¿Qué ves en el cielo?');
+});
+
+test('la edad se elige una vez y la planificación usa la misma', async ({ page }) => {
+  await page.goto('/planificacion.html');
+  await page.click('[data-e="5"]');
+  await page.goto('/asamblea.html');
+  await expect(page.locator('#edades [data-e="5"]')).toHaveAttribute('aria-pressed', 'true');
+});

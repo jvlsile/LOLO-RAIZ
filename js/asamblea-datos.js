@@ -59,13 +59,24 @@
     };
   }
   /* Lo del día: la propuesta con lo que la maestra haya cambiado encima. */
+  /* Lo que la docente programó en Planificación para ese día, la edad y el trimestre (si hay algo). */
+  function planificado(d, ed) {
+    const dow = d.getDay(); if (dow < 1 || dow > 5) return null;
+    const semana = A.leer('raiz-planificacion-semana', {}) || {};
+    const dia = semana[tema(d) + '-' + ed] && semana[tema(d) + '-' + ed]['d' + (dow - 1)];
+    return dia || null;
+  }
   function delDia(d, ed) {
-    const p = propuesta(d, ed), c = todo()[f2(d)] || {};
+    const p = propuesta(d, ed), c = todo()[f2(d)] || {}, pl = planificado(d, ed) || {};
     const r = { ...p };
+    if (typeof pl.palabra === 'string' && pl.palabra.trim()) r.palabra = pl.palabra.trim();
+    if (typeof pl.reto === 'string' && pl.reto.trim()) r.reto = pl.reto.trim();
+    if (pl.numero && +pl.numero >= 1 && +pl.numero <= AMAX[ed]) r.numero = +pl.numero;
+    if (Array.isArray(pl.rincones) && pl.rincones.length) r.rincones = pl.rincones.slice(0, 3);
     ['palabra', 'reto'].forEach(k => { if (typeof c[k] === 'string' && c[k].trim()) r[k] = c[k].trim(); });
     if (Number.isInteger(c.numero) && c.numero >= 0 && c.numero <= AMAX[ed]) r.numero = c.numero;
     if (Number.isInteger(c.trazo) && c.trazo >= 0) r.trazo = c.trazo;
-    if (Array.isArray(c.rincones)) r.rincones = [0, 1, 2].map(i => (typeof c.rincones[i] === 'string' && c.rincones[i].trim()) || p.rincones[i] || '');
+    if (Array.isArray(c.rincones)) r.rincones = [0, 1, 2].map(i => (typeof c.rincones[i] === 'string' && c.rincones[i].trim()) || r.rincones[i] || '');
     return r;
   }
   function guardaDia(d, datos) { const t = todo(); t[f2(d)] = datos; return A.guarda(CLAVE, t); }
