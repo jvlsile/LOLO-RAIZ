@@ -8,3 +8,13 @@
 .area h3{margin:0 0 8px;color:var(--tinta)}
 .area ul{margin:0;padding-left:20px}.area li{margin:4px 0}
 @media print{.plan .dias,.plan .icono{display:none}.plan .editor{border:1px solid #999;break-inside:avoid}}
+.edades{display:flex;gap:8px;margin:0 0 14px}
+.edades .dia[aria-selected="true"]{font-weight:700}
+.semana{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.dia-plan{margin:0;padding:14px;border:1.5px solid var(--filete);border-radius:18px;background:#fff;min-width:0}
+.dia-plan legend{padding:0 6px;font:700 1.1rem var(--f-titulo);color:var(--tinta)}
+.dia-plan .grupo{margin:8px 0 4px;font:700 .85rem var(--f-texto);color:var(--tinta-2)}
+.dia-plan label{display:block;margin:4px 0;font:600 .95rem var(--f-texto)}
+.dia-plan input[type="text"],.dia-plan input[type="number"]{width:100%;box-sizing:border-box;padding:8px 10px;border:1.5px solid var(--filete-2);border-radius:10px;font:600 1rem var(--f-texto)}
+.dia-plan .campo{margin-top:10px}
+.dia-plan .pendiente{font:600 .9rem var(--f-texto);color:var(--tinta-2)}

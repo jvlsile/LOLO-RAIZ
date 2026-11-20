@@ -25,26 +25,58 @@
   const quitaAcentos = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
   const esVocal = c => 'aeiou'.includes(quitaAcentos(c.toLowerCase()));
 
+  /* Listas para los bloques nuevos. Cambian cada día con el número del día del año. */
+  const PARTES = ['cabeza', 'ojos', 'nariz', 'boca', 'orejas', 'manos', 'pies', 'barriga', 'rodillas', 'hombros'];
+  const PICTOS = ['moto', 'coche', 'casa', 'mano', 'pie', 'cabeza', 'ojo', 'boca', 'nariz', 'sol', 'flor', 'pan'];
+  const SONIDOS = { m: ['mano', 'mesa', 'moto', 'mar'], p: ['pie', 'pan', 'pelota', 'perro'], c: ['casa', 'coche', 'cola', 'cuna'], s: ['sol', 'sapo', 'silla', 'sopa'], l: ['luna', 'lobo', 'libro', 'lupa'], t: ['tren', 'taza', 'tortuga', 'tela'], d: ['dado', 'dedo', 'dulce', 'dibujo'], n: ['nariz', 'nube', 'nido', 'nata'] };
+  const SONIDO_LISTA = Object.keys(SONIDOS);
+
   /* Propuesta para una fecha y una edad. Se puede cambiar en Preparar. */
   function propuesta(d, ed) {
     const T = TEMAS[tema(d)], n = diaAno(d), dm = d.getDate();
     const idx5 = Math.floor(n / 7);
+    const npic = ed - 1, nopc = ed - 1;
+    const sonido = SONIDO_LISTA[n % SONIDO_LISTA.length];
+    const buenos = SONIDOS[sonido];
+    const otras = Object.values(SONIDOS).flat().filter(w => w[0] !== sonido[0]);
+    const correcta = buenos[n % buenos.length];
+    const opciones = [correcta];
+    for (let i = 0; opciones.length < nopc; i++) { const w = otras[(n * 3 + i * 5) % otras.length]; if (!opciones.includes(w)) opciones.push(w); }
+    const orden = [...opciones.slice(n % opciones.length), ...opciones.slice(0, n % opciones.length)];
+    const retoOpciones = [];
+    const nreto = ed === 3 ? 2 : 3;
+    for (let i = 0; retoOpciones.length < nreto && i < T.retos.length; i++) retoOpciones.push(T.retos[(n + i) % T.retos.length]);
     return {
       palabra: T.palabras[n % T.palabras.length],
       numero: ((dm - 1) % AMAX[ed]) + 1,
       trazo: ed === 3 ? idx5 % 8 : ed === 4 ? n % 5 : n % 5,
       reto: T.retos[n % T.retos.length],
-      rincones: T.rincones.slice()
+      retoOpciones,
+      rincones: T.rincones.slice(),
+      cuerpo: [PARTES[n % PARTES.length], PARTES[(n + 3) % PARTES.length]],
+      pictos: [...Array(npic)].map((_, i) => PICTOS[(n + i * 2) % PICTOS.length]),
+      veo: { sonido, opciones: orden }
     };
   }
   /* Lo del día: la propuesta con lo que la maestra haya cambiado encima. */
+  /* Lo que la docente programó en Planificación para ese día, la edad y el trimestre (si hay algo). */
+  function planificado(d, ed) {
+    const dow = d.getDay(); if (dow < 1 || dow > 5) return null;
+    const semana = A.leer('raiz-planificacion-semana', {}) || {};
+    const dia = semana[tema(d) + '-' + ed] && semana[tema(d) + '-' + ed]['d' + (dow - 1)];
+    return dia || null;
+  }
   function delDia(d, ed) {
-    const p = propuesta(d, ed), c = todo()[f2(d)] || {};
+    const p = propuesta(d, ed), c = todo()[f2(d)] || {}, pl = planificado(d, ed) || {};
     const r = { ...p };
+    if (typeof pl.palabra === 'string' && pl.palabra.trim()) r.palabra = pl.palabra.trim();
+    if (typeof pl.reto === 'string' && pl.reto.trim()) r.reto = pl.reto.trim();
+    if (pl.numero && +pl.numero >= 1 && +pl.numero <= AMAX[ed]) r.numero = +pl.numero;
+    if (Array.isArray(pl.rincones) && pl.rincones.length) r.rincones = pl.rincones.slice(0, 3);
     ['palabra', 'reto'].forEach(k => { if (typeof c[k] === 'string' && c[k].trim()) r[k] = c[k].trim(); });
     if (Number.isInteger(c.numero) && c.numero >= 0 && c.numero <= AMAX[ed]) r.numero = c.numero;
     if (Number.isInteger(c.trazo) && c.trazo >= 0) r.trazo = c.trazo;
-    if (Array.isArray(c.rincones)) r.rincones = [0, 1, 2].map(i => (typeof c.rincones[i] === 'string' && c.rincones[i].trim()) || p.rincones[i] || '');
+    if (Array.isArray(c.rincones)) r.rincones = [0, 1, 2].map(i => (typeof c.rincones[i] === 'string' && c.rincones[i].trim()) || r.rincones[i] || '');
     return r;
   }
   function guardaDia(d, datos) { const t = todo(); t[f2(d)] = datos; return A.guarda(CLAVE, t); }
@@ -54,5 +86,5 @@
     const claves = Object.keys(reg).sort(); while (claves.length > 120) delete reg[claves.shift()];
     A.guarda(CLAVE_REG, reg);
   }
-  window.RAIZ_ASAMBLEA = { TEMAS, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
+  window.RAIZ_ASAMBLEA = { TEMAS, PARTES, PICTOS, SONIDOS, diaAno, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
 })();

@@ -14,11 +14,19 @@
     numero: '<path d="M9 4L7 20M17 4l-2 16M4 9h17M3 15h17"/>',
     reto: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>',
     rincones: '<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/>',
-    despedida: '<path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>'
+    despedida: '<path d="M12 21s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/>',
+    cuerpo: '<circle cx="12" cy="5" r="2.5"/><path d="M12 9v6M8 12h8M10 21l2-6 2 6"/>',
+    logica: '<circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',
+    pictos: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/>',
+    veo: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    nombres: '<path d="M4 4h16v16H4zM8 9h8M8 13h5"/>'
   };
-  const BLOQUES = [['saludo', 'Saludo'], ['fecha', 'Fecha'], ['agenda', 'Agenda'], ['trazo', 'Trazo'], ['palabra', 'Palabra'], ['numero', 'Número'], ['reto', 'Pregunta reto'], ['rincones', 'Tres rincones'], ['despedida', 'Despedida']];
+  // [clave, nombre, edad (solo si el bloque es de una edad)]
+  const BLOQUES = [['saludo', 'Saludo'], ['fecha', 'Fecha'], ['agenda', 'Agenda'], ['trazo', 'Trazo'], ['cuerpo', 'Cuerpo'], ['palabra', 'Palabra'], ['nombres', 'Nombres', 3], ['numero', 'Número'], ['logica', 'Lógica'], ['pictos', 'Pictogramas'], ['veo', 'Veo-veo'], ['reto', 'Pregunta reto'], ['rincones', 'Tres rincones'], ['despedida', 'Despedida']];
+  const bloques = () => BLOQUES.filter(b => !b[2] || b[2] === ed);
   const ico = k => '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICON[k] + '</svg>';
-  let ed = D.edad(), cur = Math.max(0, BLOQUES.findIndex(b => b[0] === location.hash.slice(1))), vistos = new Set();
+  let ed = D.edad(), cur = 0, vistos = new Set();
+  cur = Math.max(0, bloques().findIndex(b => b[0] === location.hash.slice(1)));
   const dato = () => D.delDia(hoy, ed);
 
   const letras = (txt, may) => [...txt].map(c => `<span class="${D.esVocal(c) ? 'vocal' : 'cons'}">${esc(may ? c.toLocaleUpperCase('es') : c.toLocaleLowerCase('es'))}</span>`).join('');
@@ -51,6 +59,7 @@
       const V = vocs.map(c => `<span class="vocal">${may ? c.toUpperCase() : c}</span>`).join(', ');
       let h = `<h2>La palabra de hoy</h2><p class="sub">${ed === 3 ? 'La miramos, damos palmas y decimos sus vocales.' : ed === 4 ? 'Contamos sílabas y letras. Vocales en azul, consonantes en rojo.' : 'La leemos, hacemos una frase entre todos y buscamos qué clase de palabra es.'}</p>
         <div class="silabas">${sil.map(s => `<div class="silaba"><span class="gran">${letras(s, may)}</span><span class="palmas" aria-hidden="true"><i></i></span></div>`).join('')}</div>
+        <p class="sub" id="marca" aria-live="polite">${ed === 3 ? 'Tocamos las vocales. Cuando las tengamos, pasamos a las consonantes.' : 'Tocamos las letras: marcamos las vocales y las consonantes.'}</p>
         <div class="datos"><div class="dato"><small>Palmas (sílabas)</small>${sil.length}</div>`;
       if (ed >= 4) h += `<div class="dato"><small>Letras</small>${plano.length}</div>`;
       h += `<div class="dato"><small>${vocs.length === 1 ? 'Vocal' : 'Vocales'}</small>${V}</div></div>`;
@@ -68,35 +77,96 @@
         <div class="serie"><span class="gran">${n}</span></div>
         <div class="datos"><div class="dato">${x} + ${y} = ${n}</div><div class="dato">${n} − ${y} = ${x}</div></div>`;
     },
-    reto: () => `<h2>Pregunta reto</h2><p class="sub">Pensamos y contestamos entre todos.</p><p class="gran" style="font-size:clamp(1.8rem,4.2vw,3.4rem)">${esc(dato().reto)}</p>`,
+    cuerpo: () => {
+      const tit = D.tema(hoy) === 1 ? 'Repaso del cuerpo' : 'Repaso del tema';
+      const partes = D.propuesta(hoy, ed).cuerpo;
+      return `<h2>${tit}</h2><p class="sub">Señalamos cada parte de nuestro cuerpo y la decimos en voz alta.</p>
+        <div class="pictos">${partes.map((x, i) => `<div class="picto"><small>${i + 1}</small><span class="gran">${esc(x)}</span></div>`).join('')}</div>`;
+    },
+    nombres: () => {
+      const lista = A.leer('raiz-nombres', []);
+      if (!Array.isArray(lista) || !lista.length) return `<h2>Buscamos nuestro nombre</h2><p class="sub">La docente sube la lista de nombres de la clase desde Planificación.</p>`;
+      return `<h2>Buscamos nuestro nombre</h2><p class="sub">Cada uno busca su nombre o su inicial, juntos.</p>
+        <div class="pictos">${lista.map(n => `<div class="picto"><span class="gran">${esc(n)}</span><small>${esc(n.charAt(0).toLocaleUpperCase('es'))}</small></div>`).join('')}</div>`;
+    },
+    logica: () => {
+      const n = dato().numero;
+      if (ed === 3) return `<h2>¿Cuántos hay?</h2><p class="sub">Contamos los objetos y decimos el número.</p>${puntos(n)}<p class="gran">${n}</p>`;
+      if (ed === 4) { const a = Math.max(1, Math.min(n, 12)); return `<h2>¿Qué número falta?</h2><p class="sub">Seguimos la serie y decimos el número que falta.</p><div class="serie"><span class="gran">${a}</span><span class="gran">${a + 1}</span><span class="gran vecino">?</span><span class="gran">${a + 3}</span></div>`; }
+      const a = Math.max(1, n), b = Math.min(D.AMAX[5], n + 7), c = Math.max(1, n - 5);
+      return `<h2>Ordenamos de menor a mayor</h2><p class="sub">Leemos los tres números y los ordenamos.</p><div class="serie"><span class="gran">${a}</span><span class="gran">${b}</span><span class="gran">${c}</span></div>`;
+    },
+    pictos: () => {
+      const p = D.propuesta(hoy, ed).pictos;
+      return `<h2>Lo leemos juntos</h2><p class="sub">Leemos cada palabra y la decimos en voz alta, a nuestro ritmo.</p>
+        <div class="pictos">${p.map((w, i) => `<div class="picto"><small>${i + 1}</small><span class="gran">${esc(w)}</span></div>`).join('')}</div>`;
+    },
+    veo: () => {
+      const v = D.propuesta(hoy, ed).veo;
+      return `<h2>Veo, veo…</h2><p class="sub">Una de estas palabras empieza por el sonido <b>/${esc(v.sonido)}/</b>. ¿Cuál es?</p>
+        <div class="opciones">${v.opciones.map(w => `<button type="button" class="opcion" data-ok="${D.SONIDOS[v.sonido].includes(w) ? 1 : 0}"><span class="gran">${esc(w)}</span></button>`).join('')}</div>
+        <p class="sub" id="marca" aria-live="polite">Tocamos la palabra que creemos.</p>`;
+    },
+    reto: () => {
+      const r = dato(), ops = [r.reto, ...D.propuesta(hoy, ed).retoOpciones.filter(x => x !== r.reto)].slice(0, ed === 3 ? 2 : 3);
+      return `<h2>Pregunta reto</h2><p class="sub">Elegimos una pregunta para pensar entre todos.</p><div class="opciones">${ops.map(x => `<button type="button" class="opcion"><span class="gran" style="font-size:clamp(1.3rem,3vw,2.2rem)">${esc(x)}</span></button>`).join('')}</div>`;
+    },
     rincones: () => `<h2>Los tres rincones</h2><p class="sub">Cada grupo va a su rincón.</p><div class="rincones">${dato().rincones.map(r => `<div class="rincon">${esc(r)}</div>`).join('')}</div>`,
     despedida: () => `<h2>¡Hasta mañana!</h2><p class="sub">Recogemos y nos despedimos de Lolo.</p><p class="gran" aria-hidden="true">👋</p>`
   };
 
   function pinta(foco) {
-    const [k] = BLOQUES[cur];
+    const [k] = bloques()[cur];
     $('#bloque').innerHTML = VISTAS[k]();
-    $('#menu').innerHTML = BLOQUES.map(([c, n], i) => `<button type="button" data-i="${i}"${i === cur ? ' aria-current="step"' : ''}${vistos.has(i) ? ' class="visto"' : ''}><span class="ic">${ico(c)}</span><span class="t">${n}</span></button>`).join('');
-    $('#cuenta').textContent = `${cur + 1} de ${BLOQUES.length} · ${BLOQUES[cur][1]}`;
+    $('#menu').innerHTML = bloques().map(([c, n], i) => `<button type="button" data-i="${i}"${i === cur ? ' aria-current="step"' : ''}${vistos.has(i) ? ' class="visto"' : ''}><span class="ic">${ico(c)}</span><span class="t">${n}</span></button>`).join('');
+    $('#cuenta').textContent = `${cur + 1} de ${bloques().length} · ${bloques()[cur][1]}`;
     $('#btnAnt').disabled = cur === 0;
-    $('#btnSig').textContent = cur === BLOQUES.length - 1 ? 'Terminar' : 'Siguiente';
+    $('#btnSig').textContent = cur === bloques().length - 1 ? 'Terminar' : 'Siguiente';
     document.querySelectorAll('#edades button').forEach(b => b.setAttribute('aria-pressed', +b.dataset.e === ed));
     $('#tema').textContent = 'Tema: ' + D.TEMAS[D.tema(hoy)].n;
     vistos.add(cur);
-    if (cur === BLOQUES.length - 1) D.registra(hoy, ed, dato());
+    if (cur === bloques().length - 1) D.registra(hoy, ed, dato());
     history.replaceState(null, '', '#' + k);
     if (foco) $('#bloque').focus({ preventScroll: true });
   }
-  const ir = i => { cur = Math.min(BLOQUES.length - 1, Math.max(0, i)); pinta(true); };
-  $('#btnSig').addEventListener('click', () => { if (cur === BLOQUES.length - 1) location.href = 'hoy.html'; else ir(cur + 1); });
+  const ir = i => { cur = Math.min(bloques().length - 1, Math.max(0, i)); pinta(true); };
+  $('#btnSig').addEventListener('click', () => { if (cur === bloques().length - 1) location.href = 'hoy.html'; else ir(cur + 1); });
   $('#btnAnt').addEventListener('click', () => ir(cur - 1));
   $('#menu').addEventListener('click', e => { const b = e.target.closest('button'); if (b) ir(+b.dataset.i); });
-  $('#edades').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; ed = +b.dataset.e; D.ponEdad(ed); pinta(false); });
+  $('#edades').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const clave = bloques()[cur] ? bloques()[cur][0] : null;
+    ed = +b.dataset.e; D.ponEdad(ed);
+    const i = bloques().findIndex(x => x[0] === clave);
+    cur = i >= 0 ? i : Math.min(cur, bloques().length - 1);
+    pinta(false);
+  });
+  // Interacción de la clase: tocar letras (palabra), elegir una imagen (veo-veo) o una pregunta (reto).
+  $('#bloque').addEventListener('click', e => {
+    const letra = e.target.closest('.silabas .gran span');
+    if (letra) {
+      letra.classList.toggle('sel');
+      const vocs = [...document.querySelectorAll('.silabas .gran span.vocal')].length;
+      const elegidas = [...document.querySelectorAll('.silabas .gran span.sel')].filter(x => x.classList.contains('vocal')).length;
+      const m = $('#marca');
+      if (m) m.textContent = `Vocales señaladas: ${elegidas} de ${vocs}.`;
+      return;
+    }
+    const op = e.target.closest('.opcion');
+    if (op) {
+      document.querySelectorAll('.opcion').forEach(x => x.classList.remove('elegida', 'ok', 'no'));
+      op.classList.add('elegida');
+      if (op.dataset.ok !== undefined) {
+        op.classList.add(op.dataset.ok === '1' ? 'ok' : 'no');
+        const m = $('#marca'); if (m) m.textContent = op.dataset.ok === '1' ? '¡Muy bien! Empieza por ese sonido.' : 'Mira otra vez: ¿cuál empieza por ese sonido?';
+      }
+    }
+  });
   document.addEventListener('keydown', e => {
     if (e.target.matches('input,textarea,select') || e.altKey || e.ctrlKey || e.metaKey) return;
-    if (e.key === ' ' || e.key === 'ArrowRight') { if (e.target.closest('button') && e.key === ' ') return; e.preventDefault(); if (cur < BLOQUES.length - 1) ir(cur + 1); }
+    if (e.key === ' ' || e.key === 'ArrowRight') { if (e.target.closest('button') && e.key === ' ') return; e.preventDefault(); if (cur < bloques().length - 1) ir(cur + 1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); ir(cur - 1); }
   });
-  addEventListener('hashchange', () => { const i = BLOQUES.findIndex(b => b[0] === location.hash.slice(1)); if (i >= 0 && i !== cur) { cur = i; pinta(false); } });
+  addEventListener('hashchange', () => { const i = bloques().findIndex(b => b[0] === location.hash.slice(1)); if (i >= 0 && i !== cur) { cur = i; pinta(false); } });
   pinta(false);
 })();
