@@ -24,11 +24,19 @@
     2: ['Puesto de frutas con cajas de cartón', 'Huerto con arena y semillas en la mesa de luz'],
     3: ['Semáforo con bloques y luces', 'Calle de arena con cochecitos']
   };
-  const PROPUESTAS = {
-    3: { 'Construcción': ['Encajar piezas grandes', 'Apilar vasos de plástico', 'Torres con bloques de madera'], 'Matemáticas': ['Clasificar bloques de colores'], 'Motricidad fina': ['Ensartar cuentas gruesas'] },
-    4: t => ({ 'Construcción': ['Puentes con cartones de huevo y palitos', 'Torres con vasos de plástico de distintos tamaños', 'Ciudad con bloques de madera y figuras pequeñas'], 'Matemáticas': MAT4[t], 'Construcción (vida práctica)': VIDA[t] }),
-    5: () => ({})
+  // Borrador de 5 años (por revisar con la autora): mismas áreas que 4 años, con más dificultad.
+  const MAT5 = {
+    1: ['Ordenar siluetas del cuerpo de mayor a menor y contar cuántas hay', 'Contar dedos y escribir el número con tapones'],
+    2: ['Agrupar frutas por tamaño y contar cuántas hay de cada grupo', 'Repartir piezas de fruta en dos cestas y comparar'],
+    3: ['Ordenar señales por forma, color y número de lados', 'Contar coches de un aparcamiento y comparar cuántos hay de cada color']
   };
+  // Cada semana cambia la propuesta destacada de cada grupo (no se repiten en semanas seguidas).
+  const PROPUESTAS = {
+    3: { 'Construcción': ['Encajar piezas grandes', 'Apilar vasos de plástico', 'Torres con bloques de madera'], 'Matemáticas': ['Clasificar bloques de colores', 'Encajar aros por tamaño', 'Contar cuentas gruesas'], 'Motricidad fina': ['Ensartar cuentas gruesas', 'Pinzar con pinzas de colores', 'Rasgar papel de periódico'] },
+    4: t => ({ 'Construcción': ['Puentes con cartones de huevo y palitos', 'Torres con vasos de plástico de distintos tamaños', 'Ciudad con bloques de madera y figuras pequeñas'], 'Matemáticas': MAT4[t], 'Construcción (vida práctica)': VIDA[t] }),
+    5: t => ({ 'Construcción': ['Maqueta del tema con cajas y palitos', 'Tobogán con cartón y canicas', 'Edificio con bloques y etiquetas escritas'], 'Matemáticas': MAT5[t], 'Vida práctica': VIDA[t] })
+  };
+
   const propuestas = (edad, t) => { const p = PROPUESTAS[edad]; return typeof p === 'function' ? p(t) : p; };
 
   let t = D.tema(new Date());
@@ -58,7 +66,11 @@
     const max = NUMERO_MAX[edad];
     $('#semana').innerHTML = DIAS.map((nombre, i) => {
       const d = 'd' + i, v = dato(d);
-      const grupos = Object.keys(prop).map(g => `<div class="grupo">${esc(g)}</div>` + prop[g].map(r => `<label><input type="checkbox" data-d="${d}" data-k="rincones" value="${esc(r)}"${v.rincones.includes(r) ? ' checked' : ''}> ${esc(r)}</label>`).join('')).join('');
+      const sem = Math.floor(D.diaAno(new Date()) / 7) + i;
+      const grupos = Object.keys(prop).map(g => {
+        const lista = prop[g], destacada = lista[sem % lista.length];
+        return `<div class="grupo">${esc(g)}</div>` + lista.map(r => `<label><input type="checkbox" data-d="${d}" data-k="rincones" value="${esc(r)}"${v.rincones.includes(r) ? ' checked' : ''}> ${esc(r)}${r === destacada ? ' <small>(sugerida esta semana)</small>' : ''}</label>`).join('');
+      }).join('');
       return `<fieldset class="dia-plan" data-d="${d}">
         <legend>${nombre}</legend>
         <p class="pendiente">${hayPropuestas ? '' : 'Propuestas de rincones pendientes de las situaciones de aprendizaje para ' + edad + ' años.'}</p>

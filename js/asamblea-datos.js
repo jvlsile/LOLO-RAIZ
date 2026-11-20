@@ -75,5 +75,5 @@
     const claves = Object.keys(reg).sort(); while (claves.length > 120) delete reg[claves.shift()];
     A.guarda(CLAVE_REG, reg);
   }
-  window.RAIZ_ASAMBLEA = { TEMAS, PARTES, PICTOS, SONIDOS, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
+  window.RAIZ_ASAMBLEA = { TEMAS, PARTES, PICTOS, SONIDOS, diaAno, TRAZOS, TRAZO_SIGNO, VOCALES_5, AMAX, f2, fecha, tema, edad, ponEdad, propuesta, delDia, guardaDia, registra, esVocal, quitaAcentos };
 })();
