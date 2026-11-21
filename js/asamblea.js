@@ -71,7 +71,7 @@
       const n = dato().numero;
       if (ed === 3) return `<h2>El número de hoy</h2><p class="sub">Lo contamos con los dedos y con objetos.</p><p class="gran">${n}</p>${puntos(n)}`;
       if (ed === 4) { const a = Math.ceil(n / 2); return `<h2>El número de hoy</h2><p class="sub">Qué número va antes y cuál va después. ${n} se puede dibujar como ${a} + ${n - a}.</p>
-        <div class="serie"><span class="gran vecino">${n > 1 ? n - 1 : ''}</span><span class="gran">${n}</span><span class="gran vecino">${n < 15 ? n + 1 : ''}</span></div>${puntos(n, a)}`; }
+        <div class="serie"><span class="gran vecino">${n > 1 ? n - 1 : ''}</span><span class="gran">${n}</span><span class="gran vecino">${n < D.AMAX[4] ? n + 1 : ''}</span></div>${puntos(n, a)}`; }
       const y = n % 10 ? n % 10 : 5, x = n - y;
       return `<h2>El número de hoy</h2><p class="sub">Lo escribimos y hacemos sumas y restas de una cifra, sin llevadas.</p>
         <div class="serie"><span class="gran">${n}</span></div>
@@ -92,7 +92,7 @@
     logica: () => {
       const n = dato().numero;
       if (ed === 3) return `<h2>¿Cuántos hay?</h2><p class="sub">Contamos los objetos y decimos el número.</p>${puntos(n)}<p class="gran">${n}</p>`;
-      if (ed === 4) { const a = Math.max(1, Math.min(n, 12)); return `<h2>¿Qué número falta?</h2><p class="sub">Seguimos la serie y decimos el número que falta.</p><div class="serie"><span class="gran">${a}</span><span class="gran">${a + 1}</span><span class="gran vecino">?</span><span class="gran">${a + 3}</span></div>`; }
+      if (ed === 4) { const a = Math.max(1, Math.min(n, D.AMAX[4] - 3)); return `<h2>¿Qué número falta?</h2><p class="sub">Seguimos la serie y decimos el número que falta.</p><div class="serie"><span class="gran">${a}</span><span class="gran">${a + 1}</span><span class="gran vecino">?</span><span class="gran">${a + 3}</span></div>`; }
       const a = Math.max(1, n), b = Math.min(D.AMAX[5], n + 7), c = Math.max(1, n - 5);
       return `<h2>Ordenamos de menor a mayor</h2><p class="sub">Leemos los tres números y los ordenamos.</p><div class="serie"><span class="gran">${a}</span><span class="gran">${b}</span><span class="gran">${c}</span></div>`;
     },

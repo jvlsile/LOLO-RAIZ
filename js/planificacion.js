@@ -10,8 +10,8 @@
   const RANGO = { 1: 'De septiembre a diciembre', 2: 'De enero a marzo', 3: 'De abril a junio' };
   const EDADES = [3, 4, 5];
   const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'];
-  // Conteo máximo de la palabra y el número protagonista por edad (decisiones-ui.md). Por confirmar con la autora.
-  const NUMERO_MAX = { 3: 5, 4: 15, 5: 50 };
+  // Conteo máximo del número protagonista por edad: 5, 10 y 20 (acordado con la autora).
+  const NUMERO_MAX = { 3: 5, 4: 10, 5: 20 };
   // Propuestas de rincones acordadas. Lo que no está acordado queda como pendiente.
   const MAT4 = {
     1: ['Ordenar siluetas del cuerpo por tamaño', 'Contar dedos con tapones de colores'],

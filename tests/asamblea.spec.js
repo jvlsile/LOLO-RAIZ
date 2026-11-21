@@ -39,7 +39,7 @@ test('la palabra cambia con la edad: 3 en mayúscula, 4 con colores y 5 en minú
 
 test('el número respeta el máximo de cada edad y la pauta tiene copa, tronco y raíces', async ({ page }) => {
   await page.goto('/asamblea.html#numero');
-  for (const [e, max] of [[3, 5], [4, 15], [5, 50]]) {
+  for (const [e, max] of [[3, 5], [4, 10], [5, 20]]) {
     await page.click(`#edades [data-e="${e}"]`);
     const n = +(await page.locator('.tarjeta .gran').nth(e === 4 ? 1 : 0).innerText());
     expect(n).toBeGreaterThanOrEqual(1); expect(n).toBeLessThanOrEqual(max);
