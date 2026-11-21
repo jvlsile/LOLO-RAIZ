@@ -91,7 +91,7 @@ test('los bloques nuevos aparecen en orden y los de 3 años incluyen el repaso d
   await page.click('#edades [data-e="3"]');
   await expect(page.locator('#menu button')).toHaveCount(14);
   await page.evaluate(() => localStorage.setItem('raiz-nombres', JSON.stringify(['Ana', 'Lucía'])));
-  await page.locator('#menu button .t').filter({ hasText: 'Nombres' }).click();
+  await page.goto('/asamblea.html#nombres');
   await expect(page.locator('#bloque .picto')).toHaveCount(2);
 });
 
