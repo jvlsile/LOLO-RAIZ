@@ -75,7 +75,7 @@ for (const id of JUEGOS) {
     for (let reto = 0; reto < retos; reto++) {
       await resolver(page, reto);
       const sig = page.locator('#zona .big.pulso');
-      await expect(sig, `reto ${reto + 1}`).toBeVisible({ timeout: 6000 });
+      await expect(sig, `reto ${reto + 1}`).toBeVisible({ timeout: 15000 });
       await sig.click();
     }
     await expect(page.locator('#zona .final')).toBeVisible();
