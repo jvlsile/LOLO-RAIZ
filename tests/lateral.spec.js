@@ -19,7 +19,8 @@ for (const [url, nombre] of PAGINAS) {
     await expect(nav.locator('.lat-it')).toHaveCount(url === "jugar.html" ? 8 : 7);
     const cont = await page.locator('main, .stage').first().boundingBox();
     const caja = await nav.boundingBox();
-    if (caja.width > caja.height) expect(cont.y + cont.height).toBeLessThanOrEqual(caja.y + 1 + 4000);
+    // La planificación de la semana es larga (cinco días): el límite de altura se ajusta a ella.
+    if (caja.width > caja.height) expect(cont.y + cont.height).toBeLessThanOrEqual(caja.y + 1 + (url === 'planificacion.html' ? 8000 : 4000));
     else expect(cont.x).toBeGreaterThanOrEqual(caja.x + caja.width - 1);
   });
 }
