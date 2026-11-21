@@ -18,6 +18,6 @@ Revisión hecha antes de mostrar la versión a la autora. Lo arreglado va en la 
 
 ## Pendiente de datos
 
-- Límite de conteo por edad (5/15/50 o 5/10/20).
+- Límite de conteo: 5, 10 y 20 (acordado).
 - Situaciones de aprendizaje de los tres trimestres.
 - Imágenes ARASAAC para pictogramas y veo-veo.

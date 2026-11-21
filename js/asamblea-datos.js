@@ -14,7 +14,7 @@
   const TRAZOS = ['El Tronco', 'La Rama Dormida', 'La Sonrisa de la Hoja', 'El Fruto', 'El Rayo entre las Ramas', 'El Gusanito de la Tierra', 'Las Ramas que se Cruzan', 'El Caracol de la Raíz'];
   const TRAZO_SIGNO = ['|', '—', '︶', 'o', 'ᴧ', '∿', '+', '@'];
   const VOCALES_5 = ['i', 'u', 'o', 'e', 'a'];
-  const AMAX = { 3: 5, 4: 15, 5: 50 };
+  const AMAX = { 3: 5, 4: 10, 5: 20 };
   const f2 = d => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const fecha = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
   const tema = d => { const m = d.getMonth() + 1; return m >= 9 ? 1 : m <= 3 ? 2 : m <= 6 ? 3 : 1; };
